@@ -41,6 +41,7 @@ public class Main extends Application {
     private void handleClick(ActionEvent event) {
         this.counter++;
         this.button.setText("" + this.counter);
+        System.out.println("You have clicked "+counter+" times!");
     }
 
     private void handleKey(KeyEvent event) {
