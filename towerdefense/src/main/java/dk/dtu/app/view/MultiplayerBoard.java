@@ -17,8 +17,6 @@ public class MultiplayerBoard extends Application{
     GridPane rightPane = new GridPane();
     int sizeX = 1400;
     int sizeY = 900;    //MyButton cell = new MyButton(0);
-    Button btn = new Button("hello");
-    Button btn2 = new Button("byebye");
     Button btn3 = new Button("333");
     Button btn4 = new Button("4444");
 
@@ -59,14 +57,12 @@ public class MultiplayerBoard extends Application{
         
 
         // Buttons
-        leftPane.getChildren().addAll(btn);
-        rightPane.getChildren().addAll(btn2);
         leftVbox.getChildren().addAll(btn3);
         rightVbox.getChildren().addAll(btn4);
 
         // Creating boards for the two players
-        Board.createPlayerBoard(leftPane);
-        Board.createPlayerBoard(rightPane);
+        Board.createPlayerBoard(leftPane,100,10, 14);
+        Board.createPlayerBoard(rightPane,100,10,14);
         
 
     }
