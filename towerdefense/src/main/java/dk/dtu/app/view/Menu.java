@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MainMenu extends Application{
+public class Menu extends Application{
 
     private int sizeX = 800;
     private int sizeY = 600;
