@@ -1,6 +1,5 @@
 package dk.dtu.app.view;
 
-
 import java.io.File;
 import java.net.MalformedURLException;
 import javafx.scene.layout.StackPane;
@@ -11,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -19,7 +17,12 @@ public class Menu extends Application{
 
     private int sizeX = 700;
     private int sizeY = 700;
-    private Stage mainMenuStage = new Stage();
+    public Button singleplayerBtn = new Button();
+    public Button multiplayerBtn = new Button();
+    public Button testBtn = new Button("Nikos test knap"); // Til test af multiplayer boardet.
+    public Button exitBtn = new Button();
+    public Button rulesBtn = new Button(); 
+    public static Stage mainMenuStage = new Stage();
 
     @Override
     public void start(Stage primaryStage) throws MalformedURLException {
@@ -54,7 +57,7 @@ public class Menu extends Application{
          // Opret og konfigurer knappen
         // Opret en StackPane og tilføj ImageView og Button
         StackPane stackPane = new StackPane();
-        stackPane.getChildren().addAll(imageView, singleplayerBtn, multiplayerBtn, rulesBtn, exitBtn); // Knap oven på billedet
+        stackPane.getChildren().addAll(imageView, singleplayerBtn, multiplayerBtn, rulesBtn, exitBtn, testBtn); // Knap oven på billedet
         StackPane.setAlignment(singleplayerBtn, Pos.TOP_CENTER);
         StackPane.setAlignment(multiplayerBtn, Pos.TOP_CENTER);
         StackPane.setAlignment(rulesBtn, Pos.TOP_CENTER);
@@ -63,6 +66,7 @@ public class Menu extends Application{
         StackPane.setMargin(multiplayerBtn, new javafx.geometry.Insets(260, 0, 0, 0));
         StackPane.setMargin(rulesBtn, new javafx.geometry.Insets(320, 0, 0, 0));
         StackPane.setMargin(exitBtn, new javafx.geometry.Insets(380, 0, 0, 0));
+        StackPane.setMargin(testBtn, new javafx.geometry.Insets(440, 0, 0, 0));
         
         String buttonStyle = "-fx-background-color: #5DADE2; -fx-text-fill: white; "
         + "-fx-font-size: 1.5em; -fx-min-width: 150px; -fx-min-height: 25px; "
@@ -87,7 +91,6 @@ public class Menu extends Application{
         exitBtn.setOnMouseEntered(e -> exitBtn.setStyle(buttonStyle + hoverStyle));
         exitBtn.setOnMouseExited(e -> exitBtn.setStyle(buttonStyle));
 
-        
     
         // Opret Scene med StackPane og sæt den til Stage
         Scene scene2 = new Scene(stackPane, sizeX, sizeY);
@@ -107,9 +110,23 @@ public class Menu extends Application{
         // Show the new SingleplayerBoard stage
         SingleplayerBoard.boardStage.show();
     }
+
+    private void multiplayerMenu(ActionEvent event) {
+        MultiplayerMenu multiplayerMenu = new MultiplayerMenu();
+
+        // Start the MultiplayerMenu stage
+        try {
+            multiplayerMenu.start(MultiplayerMenu.boardStage);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        MultiplayerMenu.boardStage.show();
+        mainMenuStage.close();
+    }
     
 
-    private void multiplayerMenu (ActionEvent event) {
+    private void multiplayerBoard (ActionEvent event) {
         MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
         multiplayerBoard.start(MultiplayerBoard.boardStage);
 
@@ -129,6 +146,10 @@ public class Menu extends Application{
 
     private void closeProgram (ActionEvent event) {
         System.exit(0);
+    }
+
+    public void openProgram (ActionEvent event){
+        System.out.println("Open MultiplayerMenu");
     }
 
 
