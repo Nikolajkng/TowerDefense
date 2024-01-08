@@ -2,7 +2,8 @@ package dk.dtu;
 
 import java.net.SocketException;
 import java.net.UnknownHostException;
-
+import dk.dtu.app.view.MainMenu;
+import dk.dtu.backend.*;
 import javafx.application.Application;
 
 public class Main {
@@ -15,7 +16,7 @@ public class Main {
 
         // Launch the Lobby Application (start window)
         System.out.println("Starting application...");
-        Application.launch(Lobby.class, args);
+        Application.launch(MainMenu.class, args);
         
     }
 

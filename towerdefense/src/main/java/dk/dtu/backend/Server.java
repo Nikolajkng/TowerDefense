@@ -1,4 +1,4 @@
-package dk.dtu;
+package dk.dtu.backend;
 
 import java.net.DatagramSocket;
 import java.net.InetAddress;
