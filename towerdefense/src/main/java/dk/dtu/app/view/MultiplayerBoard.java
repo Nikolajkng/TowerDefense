@@ -13,8 +13,10 @@ import javafx.stage.Stage;
 public class MultiplayerBoard extends Application{
 
     static Stage boardStage = new Stage();
+    GridPane leftPane = new GridPane();
+    GridPane rightPane = new GridPane();
     int sizeX = 1400;
-    int sizeY = 900;
+    int sizeY = 900;    //MyButton cell = new MyButton(0);
     Button btn = new Button("hello");
     Button btn2 = new Button("byebye");
     Button btn3 = new Button("333");
@@ -30,8 +32,6 @@ public class MultiplayerBoard extends Application{
         
         // Application layout
         BorderPane borderPane = new BorderPane();
-        GridPane leftPane = new GridPane();
-        GridPane rightPane = new GridPane();
         SplitPane splitPane = new SplitPane(leftPane, rightPane);
         VBox leftVbox = new VBox();
         VBox rightVbox = new VBox();
@@ -41,7 +41,9 @@ public class MultiplayerBoard extends Application{
         borderPane.setRight(rightVbox);
         borderPane.setCenter(splitPane);
         leftPane.setAlignment(Pos.CENTER);
+        leftPane.setPrefSize(sizeX/4, sizeY/4);
         rightPane.setAlignment(Pos.CENTER);
+        rightPane.setPrefSize(sizeX/4, sizeY/4);
 
         // Size of panes
         leftVbox.setPrefWidth(sizeX/8);
@@ -62,9 +64,16 @@ public class MultiplayerBoard extends Application{
         leftVbox.getChildren().addAll(btn3);
         rightVbox.getChildren().addAll(btn4);
 
-
+        // Creating boards for the two players
+        Board.createPlayerBoard(leftPane);
+        Board.createPlayerBoard(rightPane);
+        
 
     }
+
+
+
+
 
 
 
