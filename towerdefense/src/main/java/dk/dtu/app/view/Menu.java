@@ -51,12 +51,15 @@ public class Menu extends Application{
         testBtn.setOnAction(this::multiplayerBoard);
 
 
-        // Definer baggrundsbilledet og dens egenskaber
-        Image image = new Image(new File("towerdefense/src/main/java/dk/dtu/app/view/billeder/TowerDefensev3.png").toURI().toURL().toString());
+        // Changed this one - it works
+        Image image = new Image(getClass().getResource("/dk/dtu/app/view/billeder/TowerDefensev3.png").toExternalForm());
+
+        // Rest of your code remains the same
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(sizeX);
         imageView.setFitHeight(sizeY);
         imageView.setPreserveRatio(true);
+
          // Opret og konfigurer knappen
         // Opret en StackPane og tilføj ImageView og Button
         StackPane stackPane = new StackPane();
