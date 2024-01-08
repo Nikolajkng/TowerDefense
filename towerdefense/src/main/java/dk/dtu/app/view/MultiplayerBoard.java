@@ -36,19 +36,22 @@ public class MultiplayerBoard extends Application{
         VBox leftVbox = new VBox();
         VBox rightVbox = new VBox();
 
+        // Positions of panes
         borderPane.setLeft(leftVbox);
         borderPane.setRight(rightVbox);
         borderPane.setCenter(splitPane);
+        leftPane.setAlignment(Pos.CENTER);
+        rightPane.setAlignment(Pos.CENTER);
 
+        // Size of panes
         leftVbox.setPrefWidth(sizeX/8);
         rightVbox.setPrefWidth(sizeX/8);
 
+        // Fix the divider in the splitPane
+        leftPane.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.49));
+        rightPane.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.49));
 
-        leftPane.setAlignment(Pos.CENTER);
-        rightPane.setAlignment(Pos.CENTER);
-        leftPane.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.5));
-        rightPane.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.5));
-
+        // Scene setup
         Scene scene = new Scene(borderPane, sizeX, sizeY);
         boardStage.setScene(scene);
         
