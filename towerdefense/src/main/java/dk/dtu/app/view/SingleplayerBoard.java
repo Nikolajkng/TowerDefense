@@ -54,6 +54,6 @@ public class SingleplayerBoard extends Application{
 
         leftVbox.getChildren().addAll(btn3);
 
-        Board.createPlayerBoard(pane,86);
+        Board.createPlayerBoard(pane,86,14,10);
             }  
         }       

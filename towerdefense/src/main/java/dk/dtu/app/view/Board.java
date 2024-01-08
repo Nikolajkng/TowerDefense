@@ -5,14 +5,13 @@ import javafx.scene.layout.GridPane;
 
 public class Board {
     // Creating the player boards
-    public static void createPlayerBoard(GridPane myBoard, int cellSize) {
+    public static void createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY) {
         
         MyButton[][] board = new MyButton[1400][900];
-        int numOfCells = 10;
         int buttonSize = cellSize;
 
-        for(int x = 0; x < numOfCells+4; x++){
-            for(int y = 0; y < numOfCells; y++){
+        for(int x = 0; x < numOfCellsX; x++){
+            for(int y = 0; y < numOfCellsY; y++){
                 // Create a new button which represents each cell on the board
                 MyButton cell = new MyButton(0);
                 cell.setPrefSize(buttonSize, buttonSize);
