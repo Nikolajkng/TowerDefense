@@ -47,7 +47,11 @@ public class Menu extends Application{
         exitBtn.setText("Exit");
         exitBtn.setOnAction(this::closeProgram);
 
-    
+        Button testBtn = new Button();
+        testBtn.setText("Nikos test knap");
+        testBtn.setOnAction(this::multiplayerBoard);
+
+
         // Definer baggrundsbilledet og dens egenskaber
         Image image = new Image(new File("towerdefense/src/main/java/dk/dtu/app/view/billeder/TowerDefensev3.png").toURI().toURL().toString());
         ImageView imageView = new ImageView(image);
@@ -75,6 +79,7 @@ public class Menu extends Application{
         multiplayerBtn.setStyle(buttonStyle);
         rulesBtn.setStyle(buttonStyle);
         exitBtn.setStyle(buttonStyle);
+        testBtn.setStyle(buttonStyle);
 
         String hoverStyle = "-fx-scale-x: 1.1; -fx-scale-y: 1.1;"; // Gør knappen 10% større i både x- og y-retningen
 
@@ -90,6 +95,11 @@ public class Menu extends Application{
         exitBtn.setStyle(buttonStyle);
         exitBtn.setOnMouseEntered(e -> exitBtn.setStyle(buttonStyle + hoverStyle));
         exitBtn.setOnMouseExited(e -> exitBtn.setStyle(buttonStyle));
+
+        testBtn.setStyle(buttonStyle);
+        testBtn.setOnMouseEntered(e -> testBtn.setStyle(buttonStyle + hoverStyle));
+        testBtn.setOnMouseExited(e -> testBtn.setStyle(buttonStyle));
+
 
     
         // Opret Scene med StackPane og sæt den til Stage
