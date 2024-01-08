@@ -35,15 +35,17 @@ public class MultiplayerBoard extends Application{
         VBox rightVbox = new VBox();
 
         // Positions of panes
+        splitPane.setStyle("-fx-padding: 0 0.75em 0 0.75em;");
         borderPane.setLeft(leftVbox);
         borderPane.setRight(rightVbox);
         borderPane.setCenter(splitPane);
-        leftPane.setAlignment(Pos.CENTER);
+        leftPane.setAlignment(Pos.CENTER_LEFT);
         leftPane.setPrefSize(sizeX/4, sizeY/4);
-        rightPane.setAlignment(Pos.CENTER);
+        rightPane.setAlignment(Pos.CENTER_RIGHT);
         rightPane.setPrefSize(sizeX/4, sizeY/4);
 
         // Size of panes
+        splitPane.setDividerPosition(0, 0.5);
         leftVbox.setPrefWidth(sizeX/8);
         rightVbox.setPrefWidth(sizeX/8);
 
@@ -63,7 +65,7 @@ public class MultiplayerBoard extends Application{
         // Creating boards for the two players
         Board.createPlayerBoard(leftPane,100,10, 14);
         Board.createPlayerBoard(rightPane,100,10,14);
-        
+
 
     }
 
