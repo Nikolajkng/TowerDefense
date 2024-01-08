@@ -1,5 +1,5 @@
 package dk.dtu.Figures;
 
-public class Tower1 {
+public class Enemy1GUI {
     
 }
