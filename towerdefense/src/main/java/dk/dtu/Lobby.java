@@ -4,44 +4,58 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Lobby extends Application{
 
-private int counter = 0;
+    private int counter = 0;
+    private int sizeX = 800;
+    private int sizeY = 600;
     private Button button = new Button();
+    private Button button2 = new Button();
 
     @Override
     public void start(Stage primaryStage) {
+
+        // Application layout
         primaryStage.setTitle("Hello World!");
-        this.button.setText("Im a counter! Click ME!!!");
-        this.button.setOnAction(this::handleClick);
-        StackPane root = new StackPane();
-        root.getChildren().add(this.button);
-        Scene scene = new Scene(root, 300, 250);
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKey);
+        Pane rootPane = new Pane();
+        rootPane.getChildren().addAll(
+            button,
+            button2);
+
+        Scene scene = new Scene(rootPane, sizeX, sizeY);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+
+        // Buttons
+        button.setText("Im a counter! Click ME!!!");
+        button.setOnAction(this::decrementAction);
+        button.setLayoutX((sizeX/2 - button.getWidth()) - 100);
+        button.setLayoutY(100);
+
+
+        button2.setText("Im button2! Click ME!!!");
+        button2.setOnAction(this::incrementAction);
+        button2.setLayoutX((sizeX/2 - button.getWidth()) + 100);
+        button2.setLayoutY(100);
+
+
     }
 
-    private void handleClick(ActionEvent event) {
-        this.counter++;
-        this.button.setText("" + this.counter);
+    // Button interaction and functions
+    private void incrementAction (ActionEvent event) {
+        counter++;
+        button.setText("" + this.counter);
         System.out.println("You have clicked "+counter+" times!");
     }
 
-    private void handleKey(KeyEvent event) {
-        if (event.getCode() == KeyCode.UP) {
-            this.counter++;
-        } else if (event.getCode() == KeyCode.DOWN) {
-            this.counter--;
-        } else {
-            return;
-        }
-        this.button.setText("" + this.counter);
+    private void decrementAction (ActionEvent event) {
+        counter--;
+        button.setText("" + this.counter);
+        System.out.println("You have clicked "+counter+" times!");
     }
     
 }
