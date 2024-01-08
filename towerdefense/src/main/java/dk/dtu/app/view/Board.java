@@ -1,6 +1,5 @@
 package dk.dtu.app.view;
 
-import dk.dtu.app.controller.*;
 import javafx.scene.layout.GridPane;
 
 public class Board {
@@ -13,6 +12,17 @@ public class Board {
                 // Create a new button which represents each cell on the board
                 MyButton cell = new MyButton(0);
                 cell.setPrefSize(cellSize, cellSize);
+
+                // Background
+				if (numOfCellsX % 2 == 0 && numOfCellsY % 2 == 0) {
+					cell.setStyle("-fx-base: #8B4513"); // Button color 1
+				} else {
+					cell.setStyle("-fx-base: #D2B48C;"); // Button color 2
+				}
+				if (numOfCellsX % 2 != 0 && numOfCellsY % 2 != 0) {
+					cell.setStyle("-fx-base: #8B4513"); // Button color 1
+				}
+
                 // Add the button to the grid and a corresponding coordinate position
                 myBoard.add(cell, x, y);
                 board[x][y] = cell;
