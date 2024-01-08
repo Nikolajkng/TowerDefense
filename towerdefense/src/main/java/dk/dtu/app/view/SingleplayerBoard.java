@@ -55,49 +55,5 @@ public class SingleplayerBoard extends Application{
         leftVbox.getChildren().addAll(btn3);
 
         Board.createPlayerBoard(pane);
-        
-        /*for (int row = 0; row < gridSize; row++) {
-			for (int column = 0; column < gridSize; column++) {
-				MyButton myButton = new MyButton(0);
-				myButton.setPrefSize(btnSize, btnSize); // Size of one cell
-
-				// Background
-				if (column % 2 == 0 && row % 2 == 0) {
-					myButton.setStyle("-fx-base: #8B4513"); // Button color 1
-				} else {
-					myButton.setStyle("-fx-base: #D2B48C;"); // Button color 2
-				}
-				if (column % 2 != 0 && row % 2 != 0) {
-					myButton.setStyle("-fx-base: #8B4513"); // Button color 1
-				}
-
-				pane.add(myButton, row, column);
-				buttons2D[row][column] = myButton; // Add coordinates and accessibility to all buttons.*/
-
-                /*ScaleTransition exitButten = new ScaleTransition(Duration.millis(300), btn4);
-                exitButten.setFromX(1);
-                exitButten.setFromY(1);
-                exitButten.setToX(1.1);
-                exitButten.setToY(1.1);
-        
-                ScaleTransition exitShrink = new ScaleTransition(Duration.millis(200), btn4);
-                exitShrink.setFromX(1.1);
-                exitShrink.setFromY(1.1);
-                exitShrink.setToX(1);
-                exitShrink.setToY(1);
-
-                btn4.setOnMouseEntered(e -> exitButten.playFromStart());
-                btn4.setOnMouseExited(e -> exitShrink.playFromStart());*/
-
-		    /*rightVbox.getChildren().addAll(btn4);
-		    btn4.setLayoutX(rightVbox.getWidth() / 2);
-		    btn4.setLayoutY(rightVbox.getHeight() / 2);
-		    btn4.setStyle("-fx-background-color: #33CC66;"
-				+ " -fx-background-radius: 50;"
-				+ " -fx-border-color: Black;"
-				+ " -fx-border-radius: 50;"
-				+ " -fx-text-fill : black;"
-				+ " -fx-border-width: 2;"
-				+ " -fx-font-size : 20px");*/
             }  
         }       
