@@ -53,7 +53,6 @@ public class SingleplayerBoard extends Application{
         boardStage.setScene(scene);
 
         leftVbox.getChildren().addAll(btn3);
-        rightVbox.getChildren().addAll(btn4);
         
         for (int row = 0; row < gridSize; row++) {
 			for (int column = 0; column < gridSize; column++) {
@@ -73,18 +72,32 @@ public class SingleplayerBoard extends Application{
 				pane.add(myButton, row, column);
 				buttons2D[row][column] = myButton; // Add coordinates and accessibility to all buttons.
 
-		ScaleTransition startButten = new ScaleTransition(Duration.millis(300), btn4);
-		startButten.setFromX(1);
-		startButten.setFromY(1);
-		startButten.setToX(1.1);
-		startButten.setToY(1.1);
+                /*ScaleTransition exitButten = new ScaleTransition(Duration.millis(300), btn4);
+                exitButten.setFromX(1);
+                exitButten.setFromY(1);
+                exitButten.setToX(1.1);
+                exitButten.setToY(1.1);
+        
+                ScaleTransition exitShrink = new ScaleTransition(Duration.millis(200), btn4);
+                exitShrink.setFromX(1.1);
+                exitShrink.setFromY(1.1);
+                exitShrink.setToX(1);
+                exitShrink.setToY(1);
 
-		ScaleTransition startShrink = new ScaleTransition(Duration.millis(200), btn4);
-		startShrink.setFromX(1.1);
-		startShrink.setFromY(1.1);
-		startShrink.setToX(1);
-		startShrink.setToY(1);
-    }  
-}
+                btn4.setOnMouseEntered(e -> exitButten.playFromStart());
+                btn4.setOnMouseExited(e -> exitShrink.playFromStart());*/
+
+		    /*rightVbox.getChildren().addAll(btn4);
+		    btn4.setLayoutX(rightVbox.getWidth() / 2);
+		    btn4.setLayoutY(rightVbox.getHeight() / 2);
+		    btn4.setStyle("-fx-background-color: #33CC66;"
+				+ " -fx-background-radius: 50;"
+				+ " -fx-border-color: Black;"
+				+ " -fx-border-radius: 50;"
+				+ " -fx-text-fill : black;"
+				+ " -fx-border-width: 2;"
+				+ " -fx-font-size : 20px");*/
+            }  
+        }       
     }
 }
