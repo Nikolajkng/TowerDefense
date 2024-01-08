@@ -20,7 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MainMenu extends Application{
+public class Menu extends Application{
 
     private int sizeX = 700;
     private int sizeY = 700;
