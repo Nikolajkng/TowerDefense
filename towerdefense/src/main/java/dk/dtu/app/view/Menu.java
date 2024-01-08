@@ -1,6 +1,5 @@
 package dk.dtu.app.view;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import javafx.scene.layout.StackPane;
 import javafx.application.Application;
