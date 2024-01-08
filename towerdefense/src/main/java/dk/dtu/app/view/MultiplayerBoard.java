@@ -11,7 +11,7 @@ public class MultiplayerBoard extends Application{
     int sizeX = 800;
     int sizeY = 600;
     static Stage boardStage = new Stage();
-    Button btn = new Button("hej");
+    Button btn = new Button("hello");
 
 
     @Override
