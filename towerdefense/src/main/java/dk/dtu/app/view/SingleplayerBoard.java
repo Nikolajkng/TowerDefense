@@ -53,8 +53,10 @@ public class SingleplayerBoard extends Application{
         boardStage.setScene(scene);
 
         leftVbox.getChildren().addAll(btn3);
+
+        Board.createPlayerBoard(pane);
         
-        for (int row = 0; row < gridSize; row++) {
+        /*for (int row = 0; row < gridSize; row++) {
 			for (int column = 0; column < gridSize; column++) {
 				MyButton myButton = new MyButton(0);
 				myButton.setPrefSize(btnSize, btnSize); // Size of one cell
@@ -70,7 +72,7 @@ public class SingleplayerBoard extends Application{
 				}
 
 				pane.add(myButton, row, column);
-				buttons2D[row][column] = myButton; // Add coordinates and accessibility to all buttons.
+				buttons2D[row][column] = myButton; // Add coordinates and accessibility to all buttons.*/
 
                 /*ScaleTransition exitButten = new ScaleTransition(Duration.millis(300), btn4);
                 exitButten.setFromX(1);
@@ -99,5 +101,3 @@ public class SingleplayerBoard extends Application{
 				+ " -fx-font-size : 20px");*/
             }  
         }       
-    }
-}
