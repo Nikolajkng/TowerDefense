@@ -1,20 +1,12 @@
     package dk.dtu.app.view;
 
-    import javafx.scene.layout.Background;
-    import javafx.scene.layout.BackgroundImage;
-    import javafx.scene.layout.BackgroundPosition;
-    import javafx.scene.layout.BackgroundRepeat;
-    import javafx.scene.layout.BackgroundSize;
-
     import java.net.MalformedURLException;
-
     import javafx.application.Application;
     import javafx.event.ActionEvent;
     import javafx.geometry.Pos;
     import javafx.scene.Scene;
     import javafx.scene.control.Button;
     import javafx.scene.control.TextInputDialog;
-    import javafx.scene.image.Image;
     import javafx.scene.layout.VBox;
     import javafx.stage.Stage;
 
