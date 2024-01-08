@@ -1,12 +1,22 @@
 package dk.dtu;
 
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
 import org.jspace.SequentialSpace;
 import org.jspace.SpaceRepository;
 
 public class Server {
-    public static void main(String[] args) {
+    private static String ip;
+    public static void main(String[] args) throws UnknownHostException, SocketException {
+        try (final DatagramSocket socket = new DatagramSocket()) {
+            socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
+            ip = socket.getLocalAddress().getHostAddress();
+            
+        }
 
-        String ip = "192.168.0.167"; // Tror der skal vælges en computer der fast er serveren
         int port = 55000;
         String gate_uri = "tcp://"+ ip + ":" + port + "/?keep";
         
