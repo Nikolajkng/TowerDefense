@@ -26,7 +26,7 @@ public class Menu extends Application{
     public Button testBtn = new Button("Nikos test knap"); // Til test af multiplayer boardet.
     private Button exitBtn = new Button();
     private Button rulesBtn = new Button(); 
-    private Stage mainMenuStage = new Stage();
+    public static Stage mainMenuStage = new Stage();
 
     @Override
     public void start(Stage primaryStage) throws MalformedURLException {
@@ -126,14 +126,17 @@ public class Menu extends Application{
         SingleplayerBoard.boardStage.show();
     }
 
-    private void multiplayerMenu(ActionEvent event){
+    private void multiplayerMenu(ActionEvent event) {
         MultiplayerMenu multiplayerMenu = new MultiplayerMenu();
-        multiplayerMenu.start(MultiplayerMenu.boardStage);
 
-        // Show the new MultiplayerBoard stage
+        // Start the MultiplayerMenu stage
+        try {
+            multiplayerMenu.start(MultiplayerMenu.boardStage);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
         MultiplayerMenu.boardStage.show();
-
-        // Close the current MainMenu stage
         mainMenuStage.close();
     }
     
@@ -161,7 +164,7 @@ public class Menu extends Application{
     }
 
     public void openProgram (ActionEvent event){
-        mainMenuStage.start(mainMenuStage);
+        System.out.println("Open MultiplayerMenu");
     }
 
 

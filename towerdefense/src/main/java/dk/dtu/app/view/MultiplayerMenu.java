@@ -24,13 +24,13 @@ public class MultiplayerMenu extends Application{
     private Button backButton = new Button("Back to Menu");
     private Button joinButton = new Button("Join Game");
     private Button hostButton = new Button("Host Game");
-    private Stage myStage = new Stage();
+    public static Stage boardStage = new Stage();
 
     @Override
     public void start(Stage primaryStage) throws MalformedURLException {
-         myStage = primaryStage;
+         boardStage = primaryStage;
         // Application layout
-        myStage.setTitle("Multiplayer Menu");
+        boardStage.setTitle("Multiplayer Menu");
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(10);
@@ -49,7 +49,7 @@ public class MultiplayerMenu extends Application{
         
         
         Scene scene = new Scene(vbox, sizeX, sizeY);
-        myStage.setScene(scene);
+        boardStage.setScene(scene);
 
        
         String hoverStyle = "-fx-scale-x: 1.1; -fx-scale-y: 1.1;"; // Gør knappen 10% større i både x- og y-retningen
@@ -71,7 +71,7 @@ public class MultiplayerMenu extends Application{
         backButton.setOnAction(this::backToMenu);
 
         // Show the stage
-        myStage.show();
+        boardStage.show();
                 
         // Background of the Menu
         BackgroundImage backgroundImage = new BackgroundImage(
@@ -95,17 +95,13 @@ public class MultiplayerMenu extends Application{
         // Code here:
         
     }
-    
 
     private void backToMenu (ActionEvent event) {
-        Menu menu = new Menu();
-        menu.start(Menu.myStage);
-
-        // Show the new MultiplayerBoard stage
-        Menu.myStage.show();
+        System.out.println("Back to Menu...");
 
         // Close the current MainMenu stage
-        myStage.close();
+        Menu.mainMenuStage.show();
+        boardStage.close();
     }
     
     
