@@ -47,13 +47,26 @@ public class MainMenu extends Application{
     }
 
     // Button interaction and functions
-    private void startSingleplayerGame (ActionEvent event) {
-        SingleplayerBoard.boardStage.show();
+    private void startSingleplayerGame(ActionEvent event) {
+        SingleplayerBoard singleplayerBoard = new SingleplayerBoard();
+        singleplayerBoard.start(SingleplayerBoard.boardStage);
+    
+        // Close the current MainMenu stage
         mainMenuStage.close();
+    
+        // Show the new SingleplayerBoard stage
+        SingleplayerBoard.boardStage.show();
     }
+    
 
     private void multiplayerMenu (ActionEvent event) {
+        MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
+        multiplayerBoard.start(MultiplayerBoard.boardStage);
+
+        // Show the new MultiplayerBoard stage
         MultiplayerBoard.boardStage.show();
+
+        // Close the current MainMenu stage
         mainMenuStage.close();
     }
 
