@@ -31,7 +31,6 @@ public class SingleplayerBoard extends Application {
     @Override
     public void start(Stage stage) {
         boardStage = stage;
-        boardStage.setMaximized(true);
         boardStage.setTitle("Single Player Board");
 
         borderPane.setLeft(leftVbox);
