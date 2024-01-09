@@ -9,7 +9,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -32,19 +31,19 @@ public class MultiplayerBoard extends Application {
 
         // Application layout
         BorderPane borderPane = new BorderPane();
-        //SplitPane splitPane = new SplitPane(leftPane, rightPane);
-        HBox splitPane = new HBox(leftPane, rightPane);
+        //centerPane centerPane = new centerPane(leftPane, rightPane);
+        HBox centerPane = new HBox(leftPane, rightPane);
         VBox leftVbox = new VBox();
         VBox rightVbox = new VBox();
         HBox bottomHUD = new HBox();
         HBox topBar = new HBox();
 
         // Positions of panes
-        splitPane.setAlignment(Pos.CENTER);
-        splitPane.setSpacing(100);
+        centerPane.setAlignment(Pos.CENTER);
+        centerPane.setSpacing(100);
         borderPane.setLeft(leftVbox);
         borderPane.setRight(rightVbox);
-        borderPane.setCenter(splitPane);
+        borderPane.setCenter(centerPane);
         borderPane.setBottom(bottomHUD);
         borderPane.setTop(topBar);
         // leftPane.setAlignment(Pos.BOTTOM_LEFT);
@@ -53,16 +52,16 @@ public class MultiplayerBoard extends Application {
         // rightPane.setPrefSize(sizeX / 4, sizeY / 4);
 
         // Size of panes
-        HBox.setHgrow(splitPane, Priority.ALWAYS);
-        splitPane.setFillHeight(true);
+        HBox.setHgrow(centerPane, Priority.ALWAYS);
+        centerPane.setFillHeight(true);
         leftVbox.setPrefWidth(sizeX / 8 - 25);
         rightVbox.setPrefWidth(sizeX / 8 - 25);
         bottomHUD.setPrefHeight(sizeY/8+50);
         topBar.setPrefHeight(sizeY/8+50);
 
-        // Fix the divider in the splitPane
-        leftPane.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.49));
-        rightPane.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.49));
+        // Fix the divider in the centerPane
+        leftPane.maxWidthProperty().bind(centerPane.widthProperty().multiply(0.49));
+        rightPane.maxWidthProperty().bind(centerPane.widthProperty().multiply(0.49));
 
         // Scene setup
         Scene scene = new Scene(borderPane, sizeX, sizeY);
