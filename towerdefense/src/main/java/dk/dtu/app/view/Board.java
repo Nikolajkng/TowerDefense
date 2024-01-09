@@ -10,7 +10,7 @@ public class Board {
     public static String action = "";
     // Creating the player boards
     public static MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY,
-            int value, int startX, int startY) {
+            int value) {
         MyButton[][] board = new MyButton[1400][900];
         int x;
         int y;
@@ -20,11 +20,12 @@ public class Board {
         int[] pathY = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 7, 6, 5, 4, 3, 2, 1, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 7, 6, 5, 4, 4, 4, 4, 4, 4 };
 
         // Create the gameboard
-        for (x = startX; x < numOfCellsX; x++) {
-            for (y = startY; y < numOfCellsY; y++) {
+        for (x = 0; x < numOfCellsX; x++) {
+            for (y = 0; y < numOfCellsY; y++) {
                 // Create a new button which represents each cell on the board
                 MyButton cell = new MyButton(value);
                 cell.setPrefSize(cellSize, cellSize);
+
 
                 boolean isPath = false;
                 for (int i = 0; i < pathX.length; i++){
@@ -52,9 +53,18 @@ public class Board {
                 board[x][y].setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent e) {
-                        clickInfo(board, finalX, finalY);
-                        if(true){Tower.placeTower(finalX, finalY);}
-                        PlayerInfoExchange.sendAction(finalX, finalY, action);
+                        if(isLegalClick(board)){
+                            clickInfo(board, finalX, finalY);
+                            if(true){Tower.placeTower(finalX, finalY);}
+                            PlayerInfoExchange.sendAction(finalX, finalY, action);
+                        } else System.out.println("Illegal click");
+                        
+                    }
+
+                    private boolean isLegalClick(MyButton[][] board) {
+                        if (board[finalX][finalY].getValue() != -1) {
+                            return true;
+                        } else return false;
                     }
                 });
             }
