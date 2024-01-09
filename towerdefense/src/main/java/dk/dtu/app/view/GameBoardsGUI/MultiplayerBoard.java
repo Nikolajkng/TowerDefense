@@ -25,9 +25,9 @@ public class MultiplayerBoard extends Application {
     int sizeY = 1000; // MyButton cell = new MyButton(0);
     Button btn3 = new Button("333");
     Button btn4 = new Button("4444");
-    Button towerBtn1 = new Button("20");
-    Button towerBtn2 = new Button("30");
-    Button towerBtn3 = new Button("40");
+    Button towerBtn1 = new Button("Tower1 $0");
+    Button towerBtn2 = new Button("Tower2 $0");
+    Button towerBtn3 = new Button("Tower3 $0");
     
 
     // Program start
