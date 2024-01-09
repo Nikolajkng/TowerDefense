@@ -1,11 +1,13 @@
 package dk.dtu.app.view;
 
 import dk.dtu.app.controller.*;
+import dk.dtu.backend.PlayerInfoExchange;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.GridPane;
 
 public class Board {
+    public static String action = "";
     // Creating the player boards
     public static MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY,
             int value) {
@@ -32,7 +34,8 @@ public class Board {
                     @Override
                     public void handle(ActionEvent e) {
                         clickInfo(board, finalX, finalY);
-                        Tower.placeTower(finalX, finalY);
+                        if(true){Tower.placeTower(finalX, finalY);}
+                        PlayerInfoExchange.playerSendMessage(finalX, finalY, action);
                     }
                 });
             }
