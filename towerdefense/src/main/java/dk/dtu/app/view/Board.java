@@ -15,7 +15,10 @@ public class Board {
 
                 // Background
 				if (numOfCellsX % 2 == 0 && numOfCellsY % 2 == 0) {
-					cell.setStyle("-fx-base: #8B4513"); // Button color 1
+					cell.setStyle("-fx-background-color: linear-gradient(to bottom, green, #33CC66);"
+                    + "-fx-border-color: black;"
+                    + " -fx-border-width: 1;"
+                   ); // Button color 1
 				} else {
 					cell.setStyle("-fx-base: #D2B48C;"); // Button color 2
 				}
