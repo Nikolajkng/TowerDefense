@@ -69,7 +69,11 @@ public class MultiplayerMenu extends Application {
         // Buttons
         joinButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-               PlayerConnection.joinGame(e);
+               try {
+                PlayerConnection.joinGame(e);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
             }
         });
         

@@ -137,7 +137,7 @@ public class Menu extends Application{
     }
     
 
-    private void multiplayerBoard (ActionEvent event) {
+    public void multiplayerBoard (ActionEvent event) {
         MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
         multiplayerBoard.start(MultiplayerBoard.boardStage);
 

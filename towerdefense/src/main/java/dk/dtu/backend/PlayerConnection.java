@@ -3,7 +3,8 @@ package dk.dtu.backend;
 import java.io.IOException;
 
 import org.jspace.*;
-
+import dk.dtu.app.view.*;
+import dk.dtu.app.view.MultiplayerBoard;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextInputDialog;
 
@@ -13,7 +14,6 @@ public class PlayerConnection {
     public static void hostGame(ActionEvent event) {
         System.out.println("Hosting game...");
         Server.hostNewGame();
-        System.out.println("efter hostnewGame()");
         try {
 
             Server.room.put("join", "player1");
@@ -23,9 +23,13 @@ public class PlayerConnection {
             Server.room.get(new ActualField ("join"), new ActualField("player2"));
             System.out.println("Player 2 has now joined the room");
 
-            // Game start when true
+            // Start game - if player 2 has joined
+            System.out.println("Starting game...");
+            gameStart();
+
 
         } catch (InterruptedException e) {
+            System.out.println("Error: Player 2 did not join the room");
             e.printStackTrace();
         }
 
@@ -44,6 +48,14 @@ public class PlayerConnection {
             System.out.println("Connecting to room at: " + URIformat);
             RemoteSpace myRoom = new RemoteSpace(URIformat);
             myRoom.put("join", "player2");
+
+            // Start game
+            System.out.println("Starting game...");
+            gameStart();
+
+
+
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,6 +64,12 @@ public class PlayerConnection {
 
 
 
+    private static void gameStart(){
+        System.out.println("Game starting...");
+        // Close the current MainMenu stage
+        MultiplayerMenu.boardStage.close();
+        MultiplayerBoard.boardStage.show();
+    }
 
     private static void showTextInputDialog() {
         TextInputDialog dialog = new TextInputDialog();

@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public class MultiplayerBoard extends Application{
 
-    static Stage boardStage = new Stage();
+    public static Stage boardStage = new Stage();
     GridPane leftPane = new GridPane();
     GridPane rightPane = new GridPane();
     int sizeX = 1400;
