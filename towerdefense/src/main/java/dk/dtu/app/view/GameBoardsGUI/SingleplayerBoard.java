@@ -47,11 +47,11 @@ public class SingleplayerBoard extends Application {
 
         //Visual of the sides 
         leftVbox.setPrefWidth(sizeX / 8);
-        leftVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_3.png');"
+        leftVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: contain;");
         rightVbox.setPrefWidth(sizeX / 8);
-        rightVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_3.png');"
+        rightVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: contain;");
         
@@ -107,18 +107,36 @@ public class SingleplayerBoard extends Application {
 }
 
 private Button createRoundButton() {
-    // Create a circle to be used as the button's shape
-    Circle circle = new Circle(50);
-    circle.setStyle("-fx-fill: #ffffff; -fx-stroke: #000000;"); // Customize fill and stroke color
+   // Create a circle to be used as the button's shape
+   Circle circle = new Circle(50);
+   //circle.setStyle("-fx-fill: #ffffff; -fx-stroke: #000000;"); // Customize fill and stroke color
 
-    // Create a button and set the round shape and heart-shaped icon as its graphic
-    Button roundButton = new Button();
-    roundButton.setShape(circle);
-    roundButton.setStyle("-fx-background-color: transparent;"); // Set transparent background
-    roundButton.setMinSize(100, 100); // Set the size of the button
+   // Create a button and set the round shape as its graphic
+   Button roundButton = new Button();
+   roundButton.setShape(circle);
+   //roundButton.setStyle("-fx-background-color: transparent;"); // Set transparent background
+   roundButton.setMinSize(100, 100); // Set the size of the button
 
-    return roundButton;
+   // Set hover effects
+   String buttonStyle = "-fx-fill: #ffffff; -fx-stroke: #000000;-fx-text-fill: white; -fx-background-color: transparent; "
+           + "-fx-font-size: 1.5em;"
+           + "-fx-background-image: url('/dk/dtu/app/view/Images/46.png');"
+                           + "-fx-background-repeat: repeat;" 
+                           + "-fx-background-size: cover;";
+
+   String hoverStyle = "-fx-scale-x: 1.1; -fx-scale-y: 1.1;"; // Make the button 10% larger in both x and y directions
+
+   roundButton.setOnMouseEntered(e -> {
+       roundButton.setStyle(buttonStyle + hoverStyle);
+       // Additional actions or changes when mouse enters the button area
+   });
+
+   roundButton.setOnMouseExited(e -> {
+       roundButton.setStyle(buttonStyle);
+       // Additional actions or changes when mouse exits the button area
+   });
+
+   return roundButton;
 }
-
 
 }
