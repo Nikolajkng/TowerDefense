@@ -1,38 +1,51 @@
 package dk.dtu.app.view;
 
+import dk.dtu.app.controller.MyButton;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 
-public class SingleplayerBoard extends Application{
+public class SingleplayerBoard extends Application {
 
-    int sizeX = 800;
-    int sizeY = 600;
     static Stage boardStage = new Stage();
-    Button btn = new Button("hej");
+    int sizeX = 1400;
+    int sizeY = 900;
+    Button btn3 = new Button("Tower");
+    Button btn4 = new Button("EXIT");
 
+    static Circle Tower;
+    static MyButton placedTowerbButton;
+
+    // Application layout
+    BorderPane borderPane = new BorderPane();
+    GridPane pane = new GridPane();
+
+    VBox leftVbox = new VBox();
+    VBox rightVbox = new VBox();
 
     @Override
     public void start(Stage stage) {
         boardStage = stage;
+        boardStage.setMaximized(true);
+        boardStage.setTitle("Single Player Board");
 
-        // Application layout
-        boardStage.setTitle("Singleplayer Board");
-        GridPane board = new GridPane();
-        board.getChildren().addAll(
-            btn
-        );
+        borderPane.setLeft(leftVbox);
+        borderPane.setRight(rightVbox);
+        borderPane.setCenter(pane);
 
-        Scene scene = new Scene(board, sizeX, sizeY);
+        leftVbox.setPrefWidth(sizeX / 8);
+        rightVbox.setPrefWidth(sizeX / 8);
+
+        Scene scene = new Scene(borderPane, sizeX, sizeY);
         boardStage.setScene(scene);
 
+        leftVbox.getChildren().addAll(btn3);
 
-
+        Board.createPlayerBoard(pane, 86, 14, 10, 0);
     }
-
-
-
-    
 }
