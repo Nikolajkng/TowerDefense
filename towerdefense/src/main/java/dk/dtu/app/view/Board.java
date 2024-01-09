@@ -10,10 +10,10 @@ public class Board {
     public static String action = "";
     // Creating the player boards
     public static MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY,
-            int value) {
+            int value, int startX, int startY) {
         MyButton[][] board = new MyButton[1400][900];
-        int x = 0;
-        int y = 0;
+        int x = startX;
+        int y = startY;
 
         int[] pathX = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 9, 10, 10, 10, 10, 10, 11, 12, 13 };
                 
