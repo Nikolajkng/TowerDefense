@@ -44,9 +44,6 @@ public class SingleplayerBoard extends Application{
         leftVbox.setPrefWidth(sizeX/8);
         rightVbox.setPrefWidth(sizeX/8);
 
-         /*pane.setAlignment(Pos.CENTER);
-        pane.setStyle("-fx-background-color: #8B4513;");*/
-
         Scene scene = new Scene(borderPane, sizeX, sizeY);
         boardStage.setScene(scene);
 
@@ -54,10 +51,4 @@ public class SingleplayerBoard extends Application{
 
         Board.createPlayerBoard(pane,86,14,10);
             }  
-
-        public static void placeTower(MyButton placedTowerButton){
-            Tower = new Circle(5);
-            Tower.setFill(Color.WHITE);
-            placeTower(Board.board[0][1]);
-        }
         }       
