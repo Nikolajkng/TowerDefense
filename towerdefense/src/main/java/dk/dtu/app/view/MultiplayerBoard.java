@@ -47,10 +47,10 @@ public class MultiplayerBoard extends Application {
         borderPane.setCenter(splitPane);
         borderPane.setBottom(bottomHUD);
         borderPane.setTop(topBar);
-        leftPane.setAlignment(Pos.BOTTOM_LEFT);
-        leftPane.setPrefSize(sizeX / 4, sizeY / 4);
-        rightPane.setAlignment(Pos.BOTTOM_RIGHT);
-        rightPane.setPrefSize(sizeX / 4, sizeY / 4);
+        // leftPane.setAlignment(Pos.BOTTOM_LEFT);
+        // leftPane.setPrefSize(sizeX / 4, sizeY / 4);
+        // rightPane.setAlignment(Pos.BOTTOM_RIGHT);
+        // rightPane.setPrefSize(sizeX / 4, sizeY / 4);
 
         // Size of panes
         HBox.setHgrow(splitPane, Priority.ALWAYS);
