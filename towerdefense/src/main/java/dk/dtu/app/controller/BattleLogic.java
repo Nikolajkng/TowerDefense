@@ -2,12 +2,18 @@ package dk.dtu.app.controller;
 
 import org.jspace.SequentialSpace;
 
-import dk.dtu.Enemies.Enemy1;
-
 public class BattleLogic {
     SequentialSpace space;
-    int startingCoordinateX;
-    int startingCoordinateY;
+    private int startingCoordinateX;
+    private int startingCoordinateY;
+
+    public int getStartingCoordinateX() {
+        return startingCoordinateX;
+    }
+
+    public int getStartingCoordinateY() {
+        return startingCoordinateY;
+    }
 
     public BattleLogic(SequentialSpace space, int x, int y) {
         this.space = space;
@@ -15,18 +21,9 @@ public class BattleLogic {
         startingCoordinateY = y;
     }
 
-    public void battle(int[] enemies) throws InterruptedException {
-        int numOfDifferentEnemies = enemies.length;
-        
-        for (int i = 0; i < numOfDifferentEnemies; i++) {
-
-            for (int j = 0; j < enemies[i]; j++) {
-                new Thread(new Enemy1(startingCoordinateX, startingCoordinateY, space, j)).start();
-                Thread.sleep(500);
-            }
-        }
-        
-
+    public void battle(int[] enemies) {
+        new Thread( new EnemyMach(space, startingCoordinateX, startingCoordinateY, enemies)).start();
+        new Thread( new TowerPlacer(space, startingCoordinateX, startingCoordinateY));
     }
 
 }

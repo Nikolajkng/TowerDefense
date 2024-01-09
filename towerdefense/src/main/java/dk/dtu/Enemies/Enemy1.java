@@ -4,7 +4,7 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.Space;
 
-import dk.dtu.Enemy_movement;
+import dk.dtu.app.controller.Enemy_movement;
 import dk.dtu.app.controller.MyButton;
 
 public class Enemy1 extends Enemy_movement implements Runnable {

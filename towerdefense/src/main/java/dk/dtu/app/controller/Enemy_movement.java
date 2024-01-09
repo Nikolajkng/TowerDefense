@@ -1,10 +1,8 @@
-package dk.dtu;
+package dk.dtu.app.controller;
 
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.Space;
-
-import dk.dtu.app.controller.MyButton;
 
 public class Enemy_movement {
     private int coordinateX;
