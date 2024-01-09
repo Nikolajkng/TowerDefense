@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.jspace.*;
 import dk.dtu.app.view.*;
-import dk.dtu.app.view.MultiplayerBoard;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextInputDialog;
 
@@ -67,6 +66,8 @@ public class PlayerConnection {
     private static void gameStart(){
         System.out.println("Game starting...");
         // Close the current MainMenu stage
+        MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
+        multiplayerBoard.start(MultiplayerBoard.boardStage);
         MultiplayerMenu.boardStage.close();
         MultiplayerBoard.boardStage.show();
     }
