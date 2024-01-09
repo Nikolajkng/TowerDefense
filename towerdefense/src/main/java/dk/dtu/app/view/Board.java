@@ -22,19 +22,6 @@ public class Board {
                 MyButton cell = new MyButton(0);
                 cell.setPrefSize(cellSize, cellSize);
 
-                // Background
-				/*if (numOfCellsX % 2 == 0 && numOfCellsY % 2 == 0) {
-					cell.setStyle("-fx-background-color: linear-gradient(to bottom, green, #33CC66);"
-                    + "-fx-border-color: black;"
-                    + " -fx-border-width: 1;"
-                   ); // Button color 1
-				} else {
-					cell.setStyle("-fx-base: #A52A2A;"); // Button color 2
-				}
-				if (numOfCellsX % 2 != 0 && numOfCellsY % 2 != 0) {
-					cell.setStyle("-fx-base: #A52A2A"); // Button color 1
-				}*/
-
                 boolean isPath = false;
                 for (int i = 0; i < pathX.length; i++){
                     if ( x == pathX[i] && y == pathY[i]){ //checks the coordinate of the path 
