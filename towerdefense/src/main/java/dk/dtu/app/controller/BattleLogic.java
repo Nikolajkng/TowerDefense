@@ -18,7 +18,6 @@ public class BattleLogic {
     public void battle(int[] enemies) throws InterruptedException {
         int numOfDifferentEnemies = enemies.length;
         
-
         for (int i = 0; i < numOfDifferentEnemies; i++) {
 
             for (int j = 0; j < enemies[i]; j++) {
@@ -26,6 +25,8 @@ public class BattleLogic {
                 Thread.sleep(500);
             }
         }
+        
+
     }
 
 }

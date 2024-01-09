@@ -1,8 +1,5 @@
 package dk.dtu.Enemies;
 
-import java.lang.reflect.Array;
-import java.util.concurrent.TimeUnit;
-
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.Space;
