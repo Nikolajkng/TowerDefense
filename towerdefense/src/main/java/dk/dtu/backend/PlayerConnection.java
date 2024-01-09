@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TextInputDialog;
 
 public class PlayerConnection{
-
+    public static String inputIP = "";
 
     public static void joinGame(ActionEvent event) {
         System.out.println("Joining game...");
@@ -16,8 +16,9 @@ public class PlayerConnection{
         dialog.setContentText("Enter Ipv4 address of Host:");
 
         // Show the dialog and wait for the user's response
-        dialog.showAndWait().ifPresent(userIP -> {
-            System.out.println("Entered IP is: " + userIP);
+        dialog.showAndWait().ifPresent(input -> {
+            inputIP = input;
+            System.out.println("Entered IP is: " + inputIP);
             // Process the userIP here:
 
         });
@@ -26,7 +27,9 @@ public class PlayerConnection{
 
     public static void hostGame(ActionEvent event) {
         System.out.println("Hosting game...");
+
         // Code here:
+        
 
     }
 }
