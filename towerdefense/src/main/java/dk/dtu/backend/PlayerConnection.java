@@ -59,6 +59,7 @@ public class PlayerConnection {
 
             // Start game
             gameStart();
+            PlayerInfoExchange.start(URIformat);
 
 
 
