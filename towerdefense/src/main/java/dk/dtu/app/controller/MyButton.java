@@ -4,6 +4,12 @@ import javafx.scene.control.Button;
 
 // Modified button class
     public class MyButton extends Button {
+
+
+        // values:
+        // 0 = Tower field
+        // 1 = Path
+        
         public int value;
 
         public MyButton(int value) {

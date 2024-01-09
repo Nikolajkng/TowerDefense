@@ -1,4 +1,4 @@
-package dk.dtu.app.view;
+package dk.dtu.app.view.GameBoardsGUI;
 
 import dk.dtu.app.controller.*;
 import dk.dtu.backend.PlayerInfoExchange;
@@ -12,8 +12,8 @@ public class Board {
     public static MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY,
             int value) {
         MyButton[][] board = new MyButton[1400][900];
-        int x = 0;
-        int y = 0;
+        int x;
+        int y;
 
         int[] pathX = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 9, 10, 10, 10, 10, 10, 11, 12, 13 };
                 
@@ -22,10 +22,10 @@ public class Board {
         // Create the gameboard
         for (x = 0; x < numOfCellsX; x++) {
             for (y = 0; y < numOfCellsY; y++) {
-                // Create a new button which represents each cell on the board
                 MyButton cell = new MyButton(value);
                 cell.setPrefSize(cellSize, cellSize);
 
+                // Creates a path where enemies will follow
                 boolean isPath = false;
                 for (int i = 0; i < pathX.length; i++){
                     if ( x == pathX[i] && y == pathY[i]){ //checks the coordinate of the path 
@@ -33,22 +33,13 @@ public class Board {
                         break;
                     }
                 }
-
                 if(isPath){
-                    /*cell.setStyle("-fx-background-color: #DEB887;" // Path color
-                    + "-fx-border-color: black;"
-                    + " -fx-border-width: 1;");*/
-
-                    cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/sand_tile.png');"
+                    cell.setValue(-1);
+                    cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/sand_tile.png');"
                     + "-fx-background-repeat: repeat;"
                     + "-fx-background-size: cover;");
-
                 } else {
-                    /*cell.setStyle("-fx-background-color: linear-gradient(to bottom, #33CC66, green);"
-                    + "-fx-border-color: black;"
-                    + " -fx-border-width: 1;");*/
-
-                     cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/grass_tile_3.png');"
+                     cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_3.png');"
                     + "-fx-background-repeat: repeat;"
                     + "-fx-background-size: cover;");
                 }
@@ -61,9 +52,16 @@ public class Board {
                 board[x][y].setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent e) {
-                        clickInfo(board, finalX, finalY);
-                        if(true){Tower.placeTower(finalX, finalY);}
-                        PlayerInfoExchange.playerSendMessage(finalX, finalY, action);
+                        if(isLegalClick(board)){
+                            clickInfo(board, finalX, finalY);
+                            if(true){Tower.placeTower(finalX, finalY, board);}
+                            PlayerInfoExchange.sendAction(finalX, finalY, action);
+                        } else System.out.println("Clicked on illegal tile");
+                        
+                    }
+
+                    private boolean isLegalClick(MyButton[][] board) {
+                        return board[finalX][finalY].getValue() != -1;
                     }
                 });
             }

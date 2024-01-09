@@ -1,9 +1,11 @@
 package dk.dtu.backend;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 import org.jspace.*;
-import dk.dtu.app.view.*;
+import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
+import dk.dtu.app.view.MenuGUI.MultiplayerMenu;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
@@ -12,7 +14,7 @@ import javafx.scene.control.Alert.AlertType;
 public class PlayerConnection {
     public static String inputIP = "";
 
-    public static void hostGame(ActionEvent event) {
+    public static void hostGame(ActionEvent event) throws UnknownHostException, IOException {
         Alert hostDialog = new Alert(AlertType.INFORMATION);
         System.out.println("Hosting game...");
         Server.hostNewGame();
@@ -32,6 +34,7 @@ public class PlayerConnection {
             // Start game - if player 2 has joined
             System.out.println("Starting game...");
             gameStart();
+            PlayerInfoExchange.start(Server.room_uri);
 
 
         } catch (InterruptedException e) {
@@ -57,6 +60,7 @@ public class PlayerConnection {
 
             // Start game
             gameStart();
+            PlayerInfoExchange.start(URIformat);
 
 
 

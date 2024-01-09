@@ -1,5 +1,7 @@
-package dk.dtu.app.view;
+package dk.dtu.app.view.MenuGUI;
 import dk.dtu.backend.*;
+
+import java.io.IOException;
 import java.net.MalformedURLException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -48,7 +50,7 @@ public class MultiplayerMenu extends Application {
 
         // Background image
         Image image = new Image(
-                getClass().getResource("/dk/dtu/app/view/billeder/TowerDefensev3.png").toExternalForm());
+                getClass().getResource("/dk/dtu/app/view/Images/TowerDefensev3.png").toExternalForm());
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(sizeX);
         imageView.setFitHeight(sizeY);
@@ -80,7 +82,11 @@ public class MultiplayerMenu extends Application {
 
         hostButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-               PlayerConnection.hostGame(e);
+               try {
+                PlayerConnection.hostGame(e);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             }
         });
         
