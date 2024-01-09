@@ -21,10 +21,12 @@ public class Board {
                 myBoard.add(cell, x, y);
                 board[x][y] = cell;
 
+                final int finalX = x;
+                final int finalY = y;
                 board[x][y].setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent e) {
-                        clickInfo(x, y);
+                        clickInfo(finalX, finalY);
                     }
                 });
             }
