@@ -6,6 +6,7 @@ import org.jspace.SpaceRepository;
 public class Server {
     private static String ip;
     public static SequentialSpace room = new SequentialSpace();
+    public static String room_uri = "";
 
 
     public static void hostNewGame(){
@@ -26,7 +27,7 @@ public class Server {
         server.add(spaceName, room);
 
         // Creating a gateway into the room via new URI
-        String room_uri = "tcp://"+ ip + ":" + port + "/" + spaceName + "?keep";
+        room_uri = "tcp://"+ ip + ":" + port + "/" + spaceName + "?keep";
         System.out.println("Room URI"+room_uri);
 
     }

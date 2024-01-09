@@ -54,7 +54,7 @@ public class Board {
                     public void handle(ActionEvent e) {
                         clickInfo(board, finalX, finalY);
                         if(true){Tower.placeTower(finalX, finalY);}
-                        PlayerInfoExchange.playerSendMessage(finalX, finalY, action);
+                        PlayerInfoExchange.sendAction(finalX, finalY, action);
                     }
                 });
             }
