@@ -59,19 +59,19 @@ public class SingleplayerBoard extends Application {
         boardStage.setScene(scene);
 
         //tower design
-        Tower1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/46.png');"
+        Tower1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
         + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover;");
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
         Tower1.setPrefSize(130, 130);
 
         Tower2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/46.png');"
         + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover;");
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
         Tower2.setPrefSize(130, 130);
 
-        Tower3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/46.png');"
+        Tower3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
         + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover;");
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
         Tower3.setPrefSize(130, 130);
 
         //Left side bar 
@@ -109,20 +109,16 @@ public class SingleplayerBoard extends Application {
 private Button createRoundButton() {
    // Create a circle to be used as the button's shape
    Circle circle = new Circle(50);
-   //circle.setStyle("-fx-fill: #ffffff; -fx-stroke: #000000;"); // Customize fill and stroke color
 
    // Create a button and set the round shape as its graphic
    Button roundButton = new Button();
    roundButton.setShape(circle);
-   //roundButton.setStyle("-fx-background-color: transparent;"); // Set transparent background
    roundButton.setMinSize(100, 100); // Set the size of the button
 
    // Set hover effects
-   String buttonStyle = "-fx-fill: #ffffff; -fx-stroke: #000000;-fx-text-fill: white; -fx-background-color: transparent; "
-           + "-fx-font-size: 1.5em;"
-           + "-fx-background-image: url('/dk/dtu/app/view/Images/46.png');"
-                           + "-fx-background-repeat: repeat;" 
-                           + "-fx-background-size: cover;";
+   String buttonStyle = "-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: cover; -fx-background-color: transparent;";
 
    String hoverStyle = "-fx-scale-x: 1.1; -fx-scale-y: 1.1;"; // Make the button 10% larger in both x and y directions
 
