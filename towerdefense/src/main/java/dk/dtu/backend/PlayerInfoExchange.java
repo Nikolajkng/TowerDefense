@@ -17,6 +17,7 @@ public class PlayerInfoExchange {
 
     public static void playerSendMessage(int x, int y, String action) {
         try {
+            System.out.println("X:"+ x +"Y: "+ y +" - Action:"+ action);
             playerInfoExchange.put(x,y, action);
             
 
