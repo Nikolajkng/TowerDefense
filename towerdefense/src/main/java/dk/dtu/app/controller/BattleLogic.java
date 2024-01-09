@@ -19,11 +19,11 @@ public class BattleLogic {
         this.space = space;
         startingCoordinateX = x;
         startingCoordinateY = y;
+        new Thread( new TowerPlacer(space, startingCoordinateX, startingCoordinateY));
     }
 
-    public void battle(int[] enemies) {
+    public void wave1(int[] enemies) {
         new Thread( new EnemyMach(space, startingCoordinateX, startingCoordinateY, enemies)).start();
-        new Thread( new TowerPlacer(space, startingCoordinateX, startingCoordinateY));
     }
 
 }
