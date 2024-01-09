@@ -9,6 +9,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -31,26 +32,28 @@ public class MultiplayerBoard extends Application {
 
         // Application layout
         BorderPane borderPane = new BorderPane();
-        SplitPane splitPane = new SplitPane(leftPane, rightPane);
+        //SplitPane splitPane = new SplitPane(leftPane, rightPane);
+        HBox splitPane = new HBox(leftPane, rightPane);
         VBox leftVbox = new VBox();
         VBox rightVbox = new VBox();
         HBox bottomHUD = new HBox();
         HBox topBar = new HBox();
 
         // Positions of panes
-        splitPane.setStyle("-fx-padding: 0 0.75em 0 0.75em;");
+        splitPane.setAlignment(Pos.CENTER);
+        splitPane.setSpacing(100);
         borderPane.setLeft(leftVbox);
         borderPane.setRight(rightVbox);
-        borderPane.setCenter(splitPane);
+        //borderPane.setCenter(splitPane);
+        borderPane.setCenter(new StackPane(splitPane));
         borderPane.setBottom(bottomHUD);
         borderPane.setTop(topBar);
-        leftPane.setAlignment(Pos.CENTER_LEFT);
+        leftPane.setAlignment(Pos.BOTTOM_LEFT);
         leftPane.setPrefSize(sizeX / 4, sizeY / 4);
-        rightPane.setAlignment(Pos.CENTER_RIGHT);
+        rightPane.setAlignment(Pos.BOTTOM_RIGHT);
         rightPane.setPrefSize(sizeX / 4, sizeY / 4);
 
         // Size of panes
-        splitPane.setDividerPosition(0, 0.5);
         leftVbox.setPrefWidth(sizeX / 8 - 25);
         rightVbox.setPrefWidth(sizeX / 8 - 25);
         bottomHUD.setPrefHeight(sizeY/8+50);
