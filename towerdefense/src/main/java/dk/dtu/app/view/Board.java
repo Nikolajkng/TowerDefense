@@ -7,7 +7,7 @@ import javafx.scene.layout.GridPane;
 
 public class Board {
     // Creating the player boards
-    public static void createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY, int value) {
+    public static MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY, int value) {
 
         MyButton[][] board = new MyButton[1400][900];
         int x = 0;
@@ -27,10 +27,12 @@ public class Board {
                     @Override
                     public void handle(ActionEvent e) {
                         clickInfo(board, finalX, finalY);
+                        Tower.placeTower(finalX, finalY);
                     }
                 });
             }
         }
+        return board;
     }
 
     private static void clickInfo(MyButton[][] board, int x, int y) {
@@ -38,4 +40,6 @@ public class Board {
         System.out.println("X: " + x + " Y: " + y);
         System.out.println("Value: " + board[x][y].getValue());
     }
+
+    
 }
