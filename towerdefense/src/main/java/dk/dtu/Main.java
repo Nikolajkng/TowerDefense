@@ -14,10 +14,11 @@ public class Main {
         //System.out.println("Starting server...");
        // Server.main(args);
 
-        // Launch the Lobby Application (start window)
+        // // Launch the Lobby Application (start window)
         System.out.println("Starting application...");
         Application.launch(Menu.class, args);
-        
+    
+
     }
 
 }
