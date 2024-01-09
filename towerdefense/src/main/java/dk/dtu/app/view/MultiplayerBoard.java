@@ -18,15 +18,14 @@ public class MultiplayerBoard extends Application {
     public static MyButton[][] rightBoard = new MyButton[0][0];
     GridPane leftPane = new GridPane();
     GridPane rightPane = new GridPane();
-    int sizeX = 1400;
-    int sizeY = 900; // MyButton cell = new MyButton(0);
+    int sizeX = 1600;
+    int sizeY = 1000; // MyButton cell = new MyButton(0);
     Button btn3 = new Button("333");
     Button btn4 = new Button("4444");
 
     @Override
     public void start(Stage stage) {
         boardStage = stage;
-        boardStage.setMaximized(true);
         boardStage.setTitle("Multiplayer Board");
 
         // Application layout
