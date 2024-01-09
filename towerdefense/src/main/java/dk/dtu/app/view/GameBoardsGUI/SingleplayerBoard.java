@@ -1,4 +1,4 @@
-package dk.dtu.app.view;
+package dk.dtu.app.view.GameBoardsGUI;
 
 import dk.dtu.app.controller.MyButton;
 import javafx.application.Application;
@@ -12,7 +12,7 @@ import javafx.scene.shape.Circle;
 
 public class SingleplayerBoard extends Application {
 
-    static Stage boardStage = new Stage();
+    public static Stage boardStage = new Stage();
     int sizeX = 1400;
     int sizeY = 900;
     Button btn3 = new Button("Tower");

@@ -1,4 +1,4 @@
-package dk.dtu.app.view;
+package dk.dtu.app.view.MenuGUI;
 import dk.dtu.backend.*;
 
 import java.io.IOException;
@@ -50,7 +50,7 @@ public class MultiplayerMenu extends Application {
 
         // Background image
         Image image = new Image(
-                getClass().getResource("/dk/dtu/app/view/billeder/TowerDefensev3.png").toExternalForm());
+                getClass().getResource("/dk/dtu/app/view/Images/TowerDefensev3.png").toExternalForm());
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(sizeX);
         imageView.setFitHeight(sizeY);

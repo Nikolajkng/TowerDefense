@@ -1,4 +1,4 @@
-package dk.dtu.app.view;
+package dk.dtu.app.view.GameBoardsGUI;
 
 import dk.dtu.app.controller.*;
 import dk.dtu.backend.PlayerInfoExchange;
@@ -35,11 +35,11 @@ public class Board {
                 }
                 if(isPath){
                     cell.setValue(-1);
-                    cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/sand_tile.png');"
+                    cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/sand_tile.png');"
                     + "-fx-background-repeat: repeat;"
                     + "-fx-background-size: cover;");
                 } else {
-                     cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/grass_tile_3.png');"
+                     cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_3.png');"
                     + "-fx-background-repeat: repeat;"
                     + "-fx-background-size: cover;");
                 }

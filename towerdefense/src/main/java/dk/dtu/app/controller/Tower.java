@@ -1,5 +1,5 @@
 package dk.dtu.app.controller;
-import dk.dtu.app.view.Board;
+import dk.dtu.app.view.GameBoardsGUI.Board;
 
 public class Tower {
     public static void placeTower(int x, int y, MyButton[][] board) {

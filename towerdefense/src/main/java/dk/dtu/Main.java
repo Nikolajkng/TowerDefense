@@ -2,7 +2,8 @@ package dk.dtu;
 
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import dk.dtu.app.view.Menu;
+
+import dk.dtu.app.view.MenuGUI.Menu;
 import dk.dtu.backend.*;
 import javafx.application.Application;
 
