@@ -3,6 +3,12 @@ package dk.dtu.app.view;
 import dk.dtu.app.controller.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 
 public class Board {
@@ -33,13 +39,22 @@ public class Board {
                 }
 
                 if(isPath){
-                    cell.setStyle("-fx-background-color: #DEB887;" // Path color
+                    /*cell.setStyle("-fx-background-color: #DEB887;" // Path color
                     + "-fx-border-color: black;"
-                    + " -fx-border-width: 1;");
+                    + " -fx-border-width: 1;");*/
+
+                    cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/sand_tile.png');"
+                    + "-fx-background-repeat: repeat;"
+                    + "-fx-background-size: cover;");
+
                 } else {
-                    cell.setStyle("-fx-background-color: linear-gradient(to bottom, green, #33CC66);"
+                    /*cell.setStyle("-fx-background-color: linear-gradient(to bottom, #33CC66, green);"
                     + "-fx-border-color: black;"
-                    + " -fx-border-width: 1;");
+                    + " -fx-border-width: 1;");*/
+
+                     cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/grass_tile_3.png');"
+                    + "-fx-background-repeat: repeat;"
+                    + "-fx-background-size: cover;");
                 }
 
                 // Add the button to the grid and a corresponding coordinate position
