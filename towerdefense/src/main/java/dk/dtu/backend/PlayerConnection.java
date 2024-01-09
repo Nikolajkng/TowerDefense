@@ -13,13 +13,13 @@ public class PlayerConnection {
     public static String inputIP = "";
 
     public static void hostGame(ActionEvent event) {
-        Alert dialog = new Alert(AlertType.INFORMATION);
+        Alert hostDialog = new Alert(AlertType.INFORMATION);
         System.out.println("Hosting game...");
         Server.hostNewGame();
-        dialog.setTitle("Hosting Game");
-        dialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
-        dialog.setContentText("Hosting a game on IP address: " + LocalAddressScript.getLocalAddress());
-        dialog.showAndWait();
+        hostDialog.setTitle("Hosting Game");
+        hostDialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
+        hostDialog.setContentText("Hosting a game on IP address: " + LocalAddressScript.getLocalAddress());
+        hostDialog.showAndWait();
         try {
 
             Server.room.put("join", "player1");
