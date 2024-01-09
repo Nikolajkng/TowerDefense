@@ -22,11 +22,10 @@ public class Board {
         // Create the gameboard
         for (x = 0; x < numOfCellsX; x++) {
             for (y = 0; y < numOfCellsY; y++) {
-                // Create a new button which represents each cell on the board
                 MyButton cell = new MyButton(value);
                 cell.setPrefSize(cellSize, cellSize);
 
-
+                // Creates a path where enemies will follow
                 boolean isPath = false;
                 for (int i = 0; i < pathX.length; i++){
                     if ( x == pathX[i] && y == pathY[i]){ //checks the coordinate of the path 
@@ -34,13 +33,11 @@ public class Board {
                         break;
                     }
                 }
-
                 if(isPath){
                     cell.setValue(-1);
                     cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/sand_tile.png');"
                     + "-fx-background-repeat: repeat;"
                     + "-fx-background-size: cover;");
-
                 } else {
                      cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/grass_tile_3.png');"
                     + "-fx-background-repeat: repeat;"
@@ -59,14 +56,12 @@ public class Board {
                             clickInfo(board, finalX, finalY);
                             if(true){Tower.placeTower(finalX, finalY, board);}
                             PlayerInfoExchange.sendAction(finalX, finalY, action);
-                        } else System.out.println("Illegal click");
+                        } else System.out.println("Clicked on illegal tile");
                         
                     }
 
                     private boolean isLegalClick(MyButton[][] board) {
-                        if (board[finalX][finalY].getValue() != -1) {
-                            return true;
-                        } else return false;
+                        return board[finalX][finalY].getValue() != -1;
                     }
                 });
             }
