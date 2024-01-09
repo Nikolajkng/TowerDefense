@@ -47,11 +47,11 @@ public class SingleplayerBoard extends Application {
 
         //Visual of the sides 
         leftVbox.setPrefWidth(sizeX / 8);
-        leftVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/grass_tile_1.png');"
+        leftVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_3.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: contain;");
         rightVbox.setPrefWidth(sizeX / 8);
-        rightVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/grass_tile_1.png');"
+        rightVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_3.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: contain;");
         
@@ -59,17 +59,17 @@ public class SingleplayerBoard extends Application {
         boardStage.setScene(scene);
 
         //tower design
-        Tower1.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/46.png');"
+        Tower1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/46.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover;");
         Tower1.setPrefSize(130, 130);
 
-        Tower2.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/46.png');"
+        Tower2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/46.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover;");
         Tower2.setPrefSize(130, 130);
 
-        Tower3.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/46.png');"
+        Tower3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/46.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover;");
         Tower3.setPrefSize(130, 130);
