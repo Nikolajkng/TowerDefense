@@ -1,4 +1,4 @@
-package dk.dtu;
+package dk.dtu.app.controller;
 
 import org.jspace.ActualField;
 import org.jspace.FormalField;
@@ -15,6 +15,33 @@ public class Enemy_movement {
         this.coordinateY = y;
         this.space = space;
         this.me = me;
+    }
+
+    public void choosePath(int[][] board) throws Exception {
+
+        if (board[coordinateX][coordinateY + 1] == 1) {
+            walkDown();
+            board[coordinateX][coordinateY + 1] = 2;
+        }
+
+        else if (board[coordinateX][coordinateY - 1] == 1) {
+            walkUp();
+            board[coordinateX][coordinateY - 1] = 2;
+        }
+
+        else if (board[coordinateX - 1][coordinateY] == 1) {
+            walkLeft();
+            board[coordinateX - 1][coordinateY] = 2;
+        }
+
+        else if (board[coordinateX + 1][coordinateY] == 1) {
+            walkRight();
+            board[coordinateX + 1][coordinateY] = 2;
+        }
+
+        else {
+            throw new Exception("Rabbit can't find a path");
+        }
     }
 
     public void walkDown() {

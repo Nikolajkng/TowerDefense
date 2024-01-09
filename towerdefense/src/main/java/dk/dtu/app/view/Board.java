@@ -70,7 +70,7 @@ public class Board {
                     public void handle(ActionEvent e) {
                         if(isLegalClick(board)){
                             clickInfo(board, finalX, finalY);
-                            if(true){Tower.placeTower(finalX, finalY);}
+                            if(true){Tower.placeTower(finalX, finalY, board);}
                             PlayerInfoExchange.sendAction(finalX, finalY, action);
                         } else System.out.println("Illegal click");
                         
