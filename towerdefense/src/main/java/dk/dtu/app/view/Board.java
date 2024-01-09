@@ -12,16 +12,16 @@ public class Board {
     public static MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY,
             int value, int startX, int startY) {
         MyButton[][] board = new MyButton[1400][900];
-        int x = startX;
-        int y = startY;
+        int x;
+        int y;
 
         int[] pathX = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 9, 10, 10, 10, 10, 10, 11, 12, 13 };
                 
         int[] pathY = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 7, 6, 5, 4, 3, 2, 1, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 7, 6, 5, 4, 4, 4, 4, 4, 4 };
 
         // Create the gameboard
-        for (x = 0; x < numOfCellsX; x++) {
-            for (y = 0; y < numOfCellsY; y++) {
+        for (x = startX; x < numOfCellsX; x++) {
+            for (y = startY; y < numOfCellsY; y++) {
                 // Create a new button which represents each cell on the board
                 MyButton cell = new MyButton(value);
                 cell.setPrefSize(cellSize, cellSize);
