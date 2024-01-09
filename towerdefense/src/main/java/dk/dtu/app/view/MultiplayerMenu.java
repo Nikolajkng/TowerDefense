@@ -1,12 +1,12 @@
 package dk.dtu.app.view;
-
+import dk.dtu.backend.*;
 import java.net.MalformedURLException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -67,41 +67,27 @@ public class MultiplayerMenu extends Application {
         backButton.setOnMouseExited(e -> backButton.setStyle(buttonStyle));
 
         // Buttons
-        joinButton.setOnAction(this::joinGame);
+        joinButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+               PlayerConnection.joinGame(e);
+            }
+        });
+        
 
-        hostButton.setOnAction(this::hostGame);
-
+        hostButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+               PlayerConnection.hostGame(e);
+            }
+        });
+        
         backButton.setOnAction(this::backToMenu);
 
         // Show the stage
         boardStage.show();
-
     }
 
     ////////////////////////////////////// Button interaction and functions //////////////////////////////////////
-    private void joinGame(ActionEvent event) {
-        System.out.println("Joining game...");
-
-        // Code here:
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Joining Game");
-        dialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
-        dialog.setContentText("Enter Ipv4 address:");
-
-        // Show the dialog and wait for the user's response
-        dialog.showAndWait().ifPresent(userIP -> {
-            System.out.println("Entered IP is: " + userIP);
-            // Process the userIP here:
-
-        });
-
-    }
-
-    private void hostGame(ActionEvent event) {
-        System.out.println("Hosting game...");
-        // Code here:
-
-    }
+    
 
     private void backToMenu(ActionEvent event) {
         System.out.println("Back to Menu...");
