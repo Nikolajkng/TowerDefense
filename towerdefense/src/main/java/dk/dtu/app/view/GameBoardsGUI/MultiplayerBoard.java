@@ -1,6 +1,7 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
 import dk.dtu.app.controller.MyButton;
+import dk.dtu.app.controller.TowerSelection;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,7 +18,9 @@ public class MultiplayerBoard extends Application {
     public static Stage boardStage = new Stage();
     public static MyButton[][] leftBoard = new MyButton[0][0];
     public static MyButton[][] rightBoard = new MyButton[0][0];
-
+    public static Button towerBtn1 = new Button("Tower1 $0");
+    public static Button towerBtn2 = new Button("Tower2 $0");
+    public static Button towerBtn3 = new Button("Tower3 $0");
     // Local field variables
     GridPane leftPane = new GridPane();
     GridPane rightPane = new GridPane();
@@ -25,9 +28,7 @@ public class MultiplayerBoard extends Application {
     int sizeY = 1000; // MyButton cell = new MyButton(0);
     Button btn3 = new Button("333");
     Button btn4 = new Button("4444");
-    Button towerBtn1 = new Button("Tower1 $0");
-    Button towerBtn2 = new Button("Tower2 $0");
-    Button towerBtn3 = new Button("Tower3 $0");
+
     
 
     // Program start
@@ -94,19 +95,8 @@ public class MultiplayerBoard extends Application {
         towerBtn3.setPrefSize(140, 100);
 
 
-        // Buttons funtionality (To be moved to controller folder later)
-        towerBtn1.setOnAction(e -> {
-            System.out.println("selected tower1");
-            Board.action = "tower1";
-        });
-        towerBtn2.setOnAction(e -> {
-            Board.action = "tower2";
-            System.out.println("selected tower2");
-        });
-        towerBtn3.setOnAction(e -> {
-            Board.action = "tower3";
-            System.out.println("selected tower3");
-        });
+        // Activate button functionality in Controller
+        TowerSelection.selectTower();
         
     
     }
