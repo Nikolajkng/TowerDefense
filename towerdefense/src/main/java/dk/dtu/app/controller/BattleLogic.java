@@ -15,15 +15,13 @@ public class BattleLogic {
         return startingCoordinateY;
     }
 
-    public BattleLogic(SequentialSpace space, int x, int y) {
+    public BattleLogic(SequentialSpace space) {
         this.space = space;
-        startingCoordinateX = x;
-        startingCoordinateY = y;
-        new Thread( new TowerPlacer(space, startingCoordinateX, startingCoordinateY));
+        new Thread( new TowerPlacer(space));
     }
 
     public void wave1(int[] enemies) {
-        new Thread( new EnemyMach(space, startingCoordinateX, startingCoordinateY, enemies)).start();
+        new Thread( new EnemyMach(space, enemies)).start();
     }
 
 }

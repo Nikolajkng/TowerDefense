@@ -8,8 +8,8 @@ public class EnemyMach extends BattleLogic implements Runnable {
 
     int[] enemies;
 
-    public EnemyMach(SequentialSpace space, int x, int y, int[] enemies) {
-        super(space, x, y);
+    public EnemyMach(SequentialSpace space, int[] enemies) {
+        super(space);
         this.enemies = enemies;
     }
     

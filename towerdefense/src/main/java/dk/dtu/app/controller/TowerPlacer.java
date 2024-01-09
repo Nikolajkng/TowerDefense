@@ -8,9 +8,8 @@ import dk.dtu.Towers.Tower1;
 
 public class TowerPlacer extends BattleLogic implements Runnable {
 
-    public TowerPlacer(SequentialSpace space, int x, int y) {
-        super(space, x, y);
-
+    public TowerPlacer(SequentialSpace space) {
+        super(space);
     }
 
     @Override
