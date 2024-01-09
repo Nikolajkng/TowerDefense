@@ -5,10 +5,10 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -44,8 +44,7 @@ public class MultiplayerBoard extends Application {
         splitPane.setSpacing(100);
         borderPane.setLeft(leftVbox);
         borderPane.setRight(rightVbox);
-        //borderPane.setCenter(splitPane);
-        borderPane.setCenter(new StackPane(splitPane));
+        borderPane.setCenter(splitPane);
         borderPane.setBottom(bottomHUD);
         borderPane.setTop(topBar);
         leftPane.setAlignment(Pos.BOTTOM_LEFT);
@@ -54,6 +53,8 @@ public class MultiplayerBoard extends Application {
         rightPane.setPrefSize(sizeX / 4, sizeY / 4);
 
         // Size of panes
+        HBox.setHgrow(splitPane, Priority.ALWAYS);
+        splitPane.setFillHeight(true);
         leftVbox.setPrefWidth(sizeX / 8 - 25);
         rightVbox.setPrefWidth(sizeX / 8 - 25);
         bottomHUD.setPrefHeight(sizeY/8+50);
