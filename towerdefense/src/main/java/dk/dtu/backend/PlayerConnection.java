@@ -49,7 +49,6 @@ public class PlayerConnection {
             myRoom.put("join", "player2");
 
             // Start game
-            System.out.println("Starting game...");
             gameStart();
 
 
@@ -58,7 +57,6 @@ public class PlayerConnection {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 

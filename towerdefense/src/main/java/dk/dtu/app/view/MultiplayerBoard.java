@@ -63,8 +63,8 @@ public class MultiplayerBoard extends Application{
         rightVbox.getChildren().addAll(btn4);
 
         // Creating boards for the two players
-        Board.createPlayerBoard(leftPane,100,10, 14);
-        Board.createPlayerBoard(rightPane,100,10,14);
+        Board.createPlayerBoard(leftPane,100,10, 14,0);
+        Board.createPlayerBoard(rightPane,100,10,14,-1);
 
 
     }
