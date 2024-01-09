@@ -1,5 +1,7 @@
 package dk.dtu.app.view;
 
+import javax.swing.text.View;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -7,6 +9,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 public class SingleplayerBoard extends Application{
    
@@ -15,6 +19,10 @@ public class SingleplayerBoard extends Application{
     int sizeY = 900;
     Button btn3 = new Button("Tower");
     Button btn4 = new Button("EXIT");
+
+    static Circle Tower;
+    static MyButton placedTowerbButton;
+    static MyButton[][] buttons2D = new MyButton[Board.numOfCellsX][Board.numOfCellsY];
 
      // Application layout
         BorderPane borderPane = new BorderPane();
@@ -46,4 +54,10 @@ public class SingleplayerBoard extends Application{
 
         Board.createPlayerBoard(pane,86,14,10);
             }  
+
+        public static void placeTower(MyButton placedTowerButton){
+            Tower = new Circle(5);
+            Tower.setFill(Color.WHITE);
+            placeTower(Board.board[0][1]);
+        }
         }       

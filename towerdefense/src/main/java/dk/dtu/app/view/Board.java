@@ -3,6 +3,10 @@ package dk.dtu.app.view;
 import javafx.scene.layout.GridPane;
 
 public class Board {
+    public static int numOfCellsX;
+    public static int numOfCellsY;
+    public static MyButton[][] board;
+
     // Creating the player boards
     public static void createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY) {
         
