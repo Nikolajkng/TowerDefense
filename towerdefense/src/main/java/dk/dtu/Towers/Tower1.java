@@ -2,9 +2,9 @@ package dk.dtu.Towers;
 
 import org.jspace.Space;
 
-import dk.dtu.Tower_logik;
+import dk.dtu.TowerLogik;
 
-public class Tower1 extends Tower_logik {
+public class Tower1 extends TowerLogik {
     private int damage;
     private int shootspeed;
     private int radius;

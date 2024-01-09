@@ -1,12 +1,16 @@
 package dk.dtu.Enemies;
 
+import java.lang.reflect.Array;
+import java.util.concurrent.TimeUnit;
+
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.Space;
 
 import dk.dtu.Enemy_movement;
+import dk.dtu.app.controller.MyButton;
 
-public class Enemy1 extends Enemy_movement {
+public class Enemy1 extends Enemy_movement implements Runnable {
 
     private int speed = 5;
     private int hp = 100;
@@ -26,6 +30,33 @@ public class Enemy1 extends Enemy_movement {
                 }
             }
         } catch (InterruptedException e) {
+        }
+    }
+
+    @Override
+    public void run() {
+        int numOfCellsX = 10;
+        int numOfCellsY = 14;
+        int[][] board = new int[numOfCellsX][numOfCellsY];
+        try {
+            Object[] obj = space.query(new ActualField("Board"), new FormalField(MyButton[][].class));
+            if (obj != null) {
+                for (int i = 0; i < numOfCellsX; i++) {
+                    for (int j = 0; j < numOfCellsY; j++) {
+                        board[i][j] = ((MyButton[][]) obj[1])[i][j].getValue();
+                    }
+                }
+            }
+        } catch (InterruptedException e) {
+        }
+
+        while (true) {
+            try {
+                Thread.sleep(2000 / speed);
+                super.choosePath(board);
+            } catch (Exception e) {
+            }
+
         }
     }
 }
