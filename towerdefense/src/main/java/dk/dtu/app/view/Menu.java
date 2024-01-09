@@ -1,14 +1,7 @@
 package dk.dtu.app.view;
 
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-
-import java.io.File;
 import java.net.MalformedURLException;
-
+import javafx.scene.layout.StackPane;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -16,46 +9,79 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Menu extends Application{
 
     private int sizeX = 700;
     private int sizeY = 700;
-    private Button singleplayerBtn = new Button();
-    private Button multiplayerBtn = new Button();
-    private Button exitBtn = new Button();
-    private Button rulesBtn = new Button(); 
-    private Stage mainMenuStage = new Stage();
+    public Button singleplayerBtn = new Button();
+    public Button multiplayerBtn = new Button();
+    public Button testBtn = new Button("Nikos test knap"); // Til test af multiplayer boardet.
+    public Button exitBtn = new Button();
+    public Button rulesBtn = new Button(); 
+    public static Stage mainMenuStage = new Stage();
 
     @Override
     public void start(Stage primaryStage) throws MalformedURLException {
          mainMenuStage = primaryStage;
         // Application layout
         mainMenuStage.setTitle("Main Menu");
-        VBox vbox = new VBox();
-        vbox.setAlignment(Pos.CENTER);
-        vbox.setSpacing(10);
 
+        // Buttons
+        Button singleplayerBtn = new Button();
+        singleplayerBtn.setText("Singleplayer");
+        singleplayerBtn.setOnAction(this::startSingleplayerGame);
+        
+        Button multiplayerBtn = new Button();
+        multiplayerBtn.setText("Multiplayer");
+        multiplayerBtn.setOnAction(this::multiplayerMenu);
+
+        Button rulesBtn = new Button();
+        rulesBtn.setText("Game Rules"); // Set text for the rules button
+        rulesBtn.setOnAction(this::showGameRules); 
+
+        Button exitBtn = new Button();
+        exitBtn.setText("Exit");
+        exitBtn.setOnAction(this::closeProgram);
+
+        Button testBtn = new Button();
+        testBtn.setText("Nikos test knap");
+        testBtn.setOnAction(this::multiplayerBoard);
+
+
+        // Changed this one - it works
+        Image image = new Image(getClass().getResource("/dk/dtu/app/view/billeder/TowerDefensev3.png").toExternalForm());
+
+        // Rest of your code remains the same
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(sizeX);
+        imageView.setFitHeight(sizeY);
+        imageView.setPreserveRatio(true);
+
+         // Opret og konfigurer knappen
+        // Opret en StackPane og tilføj ImageView og Button
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(imageView, singleplayerBtn, multiplayerBtn, rulesBtn, exitBtn, testBtn); // Knap oven på billedet
+        StackPane.setAlignment(singleplayerBtn, Pos.TOP_CENTER);
+        StackPane.setAlignment(multiplayerBtn, Pos.TOP_CENTER);
+        StackPane.setAlignment(rulesBtn, Pos.TOP_CENTER);
+        StackPane.setAlignment(exitBtn, Pos.TOP_CENTER);
+        StackPane.setMargin(singleplayerBtn, new javafx.geometry.Insets(200, 0, 0, 0));
+        StackPane.setMargin(multiplayerBtn, new javafx.geometry.Insets(260, 0, 0, 0));
+        StackPane.setMargin(rulesBtn, new javafx.geometry.Insets(320, 0, 0, 0));
+        StackPane.setMargin(exitBtn, new javafx.geometry.Insets(380, 0, 0, 0));
+        StackPane.setMargin(testBtn, new javafx.geometry.Insets(440, 0, 0, 0));
+        
         String buttonStyle = "-fx-background-color: #5DADE2; -fx-text-fill: white; "
-        + "-fx-font-size: 2em; -fx-min-width: 100px; -fx-min-height: 25px; "
+        + "-fx-font-size: 1.5em; -fx-min-width: 150px; -fx-min-height: 25px; "
         + "-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px;";
         singleplayerBtn.setStyle(buttonStyle);
         multiplayerBtn.setStyle(buttonStyle);
         rulesBtn.setStyle(buttonStyle);
         exitBtn.setStyle(buttonStyle);
-        vbox.getChildren().addAll(
-            singleplayerBtn,
-            multiplayerBtn,
-            rulesBtn,
-            exitBtn);
-        
-        Scene scene = new Scene(vbox, sizeX, sizeY);
-        mainMenuStage.setScene(scene);
+        testBtn.setStyle(buttonStyle);
 
-       
         String hoverStyle = "-fx-scale-x: 1.1; -fx-scale-y: 1.1;"; // Gør knappen 10% større i både x- og y-retningen
 
         singleplayerBtn.setOnMouseEntered(e -> singleplayerBtn.setStyle(buttonStyle + hoverStyle));
@@ -71,73 +97,16 @@ public class Menu extends Application{
         exitBtn.setOnMouseEntered(e -> exitBtn.setStyle(buttonStyle + hoverStyle));
         exitBtn.setOnMouseExited(e -> exitBtn.setStyle(buttonStyle));
 
-        // Buttons
-        singleplayerBtn.setText("Singleplayer");
-        singleplayerBtn.setOnAction(this::startSingleplayerGame);
+        testBtn.setStyle(buttonStyle);
+        testBtn.setOnMouseEntered(e -> testBtn.setStyle(buttonStyle + hoverStyle));
+        testBtn.setOnMouseExited(e -> testBtn.setStyle(buttonStyle));
 
-        multiplayerBtn.setText("Multiplayer");
-        multiplayerBtn.setOnAction(this::multiplayerMenu);
 
-        rulesBtn.setText("Game Rules"); // Set text for the rules button
-        rulesBtn.setOnAction(this::showGameRules); 
-
-        exitBtn.setText("Exit");
-        exitBtn.setOnAction(this::closeProgram);
-
+    
+        // Opret Scene med StackPane og sæt den til Stage
+        Scene scene2 = new Scene(stackPane, sizeX, sizeY);
+        mainMenuStage.setScene(scene2);
         mainMenuStage.show();
-                
-        // Definer baggrundsbilledet og dens egenskaber
-        BackgroundImage backgroundImage = new BackgroundImage(
-            new Image("file:TowerDefensev3.png", sizeX, sizeY, false, true),
-            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-            BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-
-        // Opret et Background-objekt med baggrundsbilledet
-        // ændre knappernes form og størrelse
-
-        singleplayerBtn.setOnMouseEntered(e -> singleplayerBtn.setStyle(buttonStyle + hoverStyle));
-        singleplayerBtn.setOnMouseExited(e -> singleplayerBtn.setStyle(buttonStyle));
-
-        multiplayerBtn.setOnMouseEntered(e -> multiplayerBtn.setStyle(buttonStyle + hoverStyle));
-        multiplayerBtn.setOnMouseExited(e -> multiplayerBtn.setStyle(buttonStyle));
-
-        rulesBtn.setOnMouseEntered(e -> rulesBtn.setStyle(buttonStyle + hoverStyle));
-        rulesBtn.setOnMouseExited(e -> rulesBtn.setStyle(buttonStyle));
-
-        exitBtn.setStyle(buttonStyle);
-        exitBtn.setOnMouseEntered(e -> exitBtn.setStyle(buttonStyle + hoverStyle));
-        exitBtn.setOnMouseExited(e -> exitBtn.setStyle(buttonStyle));
-
-        // Buttons
-        singleplayerBtn.setText("Singleplayer");
-        singleplayerBtn.setOnAction(this::startSingleplayerGame);
-
-        multiplayerBtn.setText("Multiplayer");
-        multiplayerBtn.setOnAction(this::multiplayerMenu);
-
-        rulesBtn.setText("Game Rules"); // Set text for the rules button
-        rulesBtn.setOnAction(this::showGameRules); 
-
-        exitBtn.setText("Exit");
-        exitBtn.setOnAction(this::closeProgram);
-
-        Background background = new Background(backgroundImage);
-
-        // Anvend baggrunden på din VBox (eller en anden layout-container)
-        vbox.setBackground(background);
-
-        // Buttons
-        singleplayerBtn.setText("Singleplayer");
-        singleplayerBtn.setOnAction(this::startSingleplayerGame);
-
-        multiplayerBtn.setText("Multiplayer");
-        multiplayerBtn.setOnAction(this::multiplayerMenu);
-
-        rulesBtn.setText("Game Rules"); // Set text for the rules button
-        rulesBtn.setOnAction(this::showGameRules); 
-
-        exitBtn.setText("Exit");
-        exitBtn.setOnAction(this::closeProgram);
 
     }
 
@@ -152,9 +121,23 @@ public class Menu extends Application{
         // Show the new SingleplayerBoard stage
         SingleplayerBoard.boardStage.show();
     }
+
+    private void multiplayerMenu(ActionEvent event) {
+        MultiplayerMenu multiplayerMenu = new MultiplayerMenu();
+
+        // Start the MultiplayerMenu stage
+        try {
+            multiplayerMenu.start(MultiplayerMenu.boardStage);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        MultiplayerMenu.boardStage.show();
+        mainMenuStage.close();
+    }
     
 
-    private void multiplayerMenu (ActionEvent event) {
+    private void multiplayerBoard (ActionEvent event) {
         MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
         multiplayerBoard.start(MultiplayerBoard.boardStage);
 
@@ -174,6 +157,10 @@ public class Menu extends Application{
 
     private void closeProgram (ActionEvent event) {
         System.exit(0);
+    }
+
+    public void openProgram (ActionEvent event){
+        System.out.println("Open MultiplayerMenu");
     }
 
 
