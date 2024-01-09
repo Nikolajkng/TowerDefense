@@ -26,15 +26,16 @@ public class Board {
                 board[x][y].setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent e) {
-                        clickInfo(finalX, finalY);
+                        clickInfo(board, finalX, finalY);
                     }
                 });
             }
         }
     }
 
-    private static void clickInfo(int x, int y) {
+    private static void clickInfo(MyButton[][] board, int x, int y) {
         System.out.println("Button clicked");
         System.out.println("X: " + x + " Y: " + y);
+        System.out.println("Value: " + board[x][y].getValue());
     }
 }
