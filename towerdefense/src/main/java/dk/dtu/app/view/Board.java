@@ -12,6 +12,7 @@ public class Board {
         
         MyButton[][] board = new MyButton[1400][900];
 
+        // path 1 
         int[] pathX = {1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 9, 10, 10, 10, 10, 10, 11, 12, 13};
         int[] pathY = {0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 7, 6, 5, 4, 3, 2, 1, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 7, 6, 5, 4, 4, 4, 4, 4, 4};
 
@@ -36,7 +37,7 @@ public class Board {
 
                 boolean isPath = false;
                 for (int i = 0; i < pathX.length; i++){
-                    if ( x == pathX[i] && y == pathY[i]){
+                    if ( x == pathX[i] && y == pathY[i]){ //checks the coordinate of the path 
                         isPath = true;
                         break;
                     }
