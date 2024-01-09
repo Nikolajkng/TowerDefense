@@ -9,14 +9,15 @@ public class PlayerInfoExchange {
     public static RemoteSpace playerInfoExchange;
 
     // Connects to remoteSpace for message passing
-    public static void startPlayerInfoExchange(String roomURI) throws UnknownHostException, IOException {
+    public static void start(String roomURI) throws UnknownHostException, IOException {
         System.out.println("PlayerInfoExchange connected");
         playerInfoExchange = new RemoteSpace(roomURI);
     }
 
 
-    public static void playerSendMessage(int x, int y, String action) {
+    public static void sendAction(int x, int y, String action) {
         try {
+            System.out.println("X:"+ x +"Y: "+ y +" - Action:"+ action);
             playerInfoExchange.put(x,y, action);
             
 

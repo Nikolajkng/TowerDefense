@@ -1,5 +1,7 @@
 package dk.dtu.app.view;
 import dk.dtu.backend.*;
+
+import java.io.IOException;
 import java.net.MalformedURLException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -80,7 +82,11 @@ public class MultiplayerMenu extends Application {
 
         hostButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-               PlayerConnection.hostGame(e);
+               try {
+                PlayerConnection.hostGame(e);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             }
         });
         

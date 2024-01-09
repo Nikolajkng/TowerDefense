@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -33,12 +34,16 @@ public class MultiplayerBoard extends Application {
         SplitPane splitPane = new SplitPane(leftPane, rightPane);
         VBox leftVbox = new VBox();
         VBox rightVbox = new VBox();
+        HBox bottomHUD = new HBox();
+        HBox topBar = new HBox();
 
         // Positions of panes
         splitPane.setStyle("-fx-padding: 0 0.75em 0 0.75em;");
         borderPane.setLeft(leftVbox);
         borderPane.setRight(rightVbox);
         borderPane.setCenter(splitPane);
+        borderPane.setBottom(bottomHUD);
+        borderPane.setTop(topBar);
         leftPane.setAlignment(Pos.CENTER_LEFT);
         leftPane.setPrefSize(sizeX / 4, sizeY / 4);
         rightPane.setAlignment(Pos.CENTER_RIGHT);
@@ -46,8 +51,10 @@ public class MultiplayerBoard extends Application {
 
         // Size of panes
         splitPane.setDividerPosition(0, 0.5);
-        leftVbox.setPrefWidth(sizeX / 8);
-        rightVbox.setPrefWidth(sizeX / 8);
+        leftVbox.setPrefWidth(sizeX / 8 - 25);
+        rightVbox.setPrefWidth(sizeX / 8 - 25);
+        bottomHUD.setPrefHeight(sizeY/8+50);
+        topBar.setPrefHeight(sizeY/8+50);
 
         // Fix the divider in the splitPane
         leftPane.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.49));
@@ -62,8 +69,8 @@ public class MultiplayerBoard extends Application {
         rightVbox.getChildren().addAll(btn4);
 
         // Creating boards for the two players
-        leftBoard = Board.createPlayerBoard(leftPane, 100, 10, 14, 0);
-        rightBoard = Board.createPlayerBoard(rightPane, 100, 10, 14, -1);
+        leftBoard = Board.createPlayerBoard(leftPane, 100, 14, 10, 0);
+        rightBoard = Board.createPlayerBoard(rightPane, 100, 14, 10, -1);
 
     }
 

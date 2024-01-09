@@ -13,8 +13,8 @@ import javafx.scene.shape.Circle;
 public class SingleplayerBoard extends Application {
 
     static Stage boardStage = new Stage();
-    int sizeX = 1600;
-    int sizeY = 1000;
+    int sizeX = 1400;
+    int sizeY = 900;
     Button btn3 = new Button("Tower");
     Button btn4 = new Button("EXIT");
 

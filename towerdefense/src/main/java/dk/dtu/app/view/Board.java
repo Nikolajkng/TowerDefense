@@ -4,6 +4,12 @@ import dk.dtu.app.controller.*;
 import dk.dtu.backend.PlayerInfoExchange;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 
 public class Board {
@@ -12,8 +18,8 @@ public class Board {
     public static MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY,
             int value) {
         MyButton[][] board = new MyButton[1400][900];
-        int x = 0;
-        int y = 0;
+        int x;
+        int y;
 
         int[] pathX = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 9, 10, 10, 10, 10, 10, 11, 12, 13 };
                 
@@ -26,6 +32,7 @@ public class Board {
                 MyButton cell = new MyButton(value);
                 cell.setPrefSize(cellSize, cellSize);
 
+
                 boolean isPath = false;
                 for (int i = 0; i < pathX.length; i++){
                     if ( x == pathX[i] && y == pathY[i]){ //checks the coordinate of the path 
@@ -35,13 +42,22 @@ public class Board {
                 }
 
                 if(isPath){
-                    cell.setStyle("-fx-background-color: #DEB887;" // Path color
+                    /*cell.setStyle("-fx-background-color: #DEB887;" // Path color
                     + "-fx-border-color: black;"
-                    + " -fx-border-width: 1;");
+                    + " -fx-border-width: 1;");*/
+
+                    cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/sand_tile.png');"
+                    + "-fx-background-repeat: repeat;"
+                    + "-fx-background-size: cover;");
+
                 } else {
-                    cell.setStyle("-fx-background-color: linear-gradient(to bottom, green, #33CC66);"
+                    /*cell.setStyle("-fx-background-color: linear-gradient(to bottom, #33CC66, green);"
                     + "-fx-border-color: black;"
-                    + " -fx-border-width: 1;");
+                    + " -fx-border-width: 1;");*/
+
+                     cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/billeder/grass_tile_3.png');"
+                    + "-fx-background-repeat: repeat;"
+                    + "-fx-background-size: cover;");
                 }
 
                 // Add the button to the grid and a corresponding coordinate position
@@ -52,9 +68,18 @@ public class Board {
                 board[x][y].setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent e) {
-                        clickInfo(board, finalX, finalY);
-                        if(true){Tower.placeTower(finalX, finalY);}
-                        PlayerInfoExchange.playerSendMessage(finalX, finalY, action);
+                        if(isLegalClick(board)){
+                            clickInfo(board, finalX, finalY);
+                            if(true){Tower.placeTower(finalX, finalY);}
+                            PlayerInfoExchange.sendAction(finalX, finalY, action);
+                        } else System.out.println("Illegal click");
+                        
+                    }
+
+                    private boolean isLegalClick(MyButton[][] board) {
+                        if (board[finalX][finalY].getValue() != -1) {
+                            return true;
+                        } else return false;
                     }
                 });
             }
