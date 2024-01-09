@@ -5,14 +5,21 @@ import java.io.IOException;
 import org.jspace.*;
 import dk.dtu.app.view.*;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert.AlertType;
 
 public class PlayerConnection {
     public static String inputIP = "";
 
     public static void hostGame(ActionEvent event) {
+        Alert hostDialog = new Alert(AlertType.INFORMATION);
         System.out.println("Hosting game...");
         Server.hostNewGame();
+        hostDialog.setTitle("Hosting Game");
+        hostDialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
+        hostDialog.setContentText("Hosting a game on IP address: " + LocalAddressScript.getLocalAddress());
+        hostDialog.showAndWait();
         try {
 
             Server.room.put("join", "player1");
