@@ -1,9 +1,10 @@
 package dk.dtu.app.controller;
+import dk.dtu.app.view.Board;
 import dk.dtu.app.view.MultiplayerBoard;
 
 public class Tower {
     public static void placeTower(int x, int y) {
-
+        Board.action = "placeTower";
 
         System.out.println("Placing tower at: " + x + ", " + y);
         // Code here:

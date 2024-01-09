@@ -13,8 +13,8 @@ import javafx.scene.shape.Circle;
 public class SingleplayerBoard extends Application {
 
     static Stage boardStage = new Stage();
-    int sizeX = 1400;
-    int sizeY = 900;
+    int sizeX = 1600;
+    int sizeY = 1000;
     Button btn3 = new Button("Tower");
     Button btn4 = new Button("EXIT");
 
@@ -31,7 +31,6 @@ public class SingleplayerBoard extends Application {
     @Override
     public void start(Stage stage) {
         boardStage = stage;
-        boardStage.setMaximized(true);
         boardStage.setTitle("Single Player Board");
 
         borderPane.setLeft(leftVbox);
