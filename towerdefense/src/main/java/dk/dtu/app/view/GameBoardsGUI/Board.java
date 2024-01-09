@@ -8,6 +8,7 @@ import javafx.scene.layout.GridPane;
 
 public class Board {
     public static String action = "";
+
     // Creating the player boards
     public static MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY,
             int value) {
@@ -47,21 +48,26 @@ public class Board {
                 // Add the button to the grid and a corresponding coordinate position
                 myBoard.add(cell, x, y);
                 board[x][y] = cell;
+
+                // Add action each button on board
                 final int finalX = x;
                 final int finalY = y;
                 board[x][y].setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent e) {
-                        if(isLegalClick(board)){
-                            clickInfo(board, finalX, finalY);
-                            if(true){Tower.placeTower(finalX, finalY, board);}
-                            PlayerInfoExchange.sendAction(finalX, finalY, action);
-                        } else System.out.println("Clicked on illegal tile");
-                        
-                    }
 
-                    private boolean isLegalClick(MyButton[][] board) {
-                        return board[finalX][finalY].getValue() != -1;
+                        // Check if player has clicked on a legal cell
+                        if(board[finalX][finalY].getValue() != -1){
+                            // Action when a cell is clicked on
+                            clickInfo(board, finalX, finalY);
+                            if(true){
+                                Tower.placeTower(finalX, finalY, board, action);
+                                PlayerInfoExchange.sendAction(finalX, finalY, action);
+                            }
+                        } else {
+                            System.out.println("Clicked on illegal tile");
+                        }
+                        
                     }
                 });
             }

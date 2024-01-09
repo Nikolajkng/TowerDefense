@@ -25,9 +25,9 @@ public class MultiplayerBoard extends Application {
     int sizeY = 1000; // MyButton cell = new MyButton(0);
     Button btn3 = new Button("333");
     Button btn4 = new Button("4444");
-    Button towerBtn1 = new Button("20");
-    Button towerBtn2 = new Button("30");
-    Button towerBtn3 = new Button("40");
+    Button towerBtn1 = new Button("Tower1 $0");
+    Button towerBtn2 = new Button("Tower2 $0");
+    Button towerBtn3 = new Button("Tower3 $0");
     
 
     // Program start
@@ -92,7 +92,21 @@ public class MultiplayerBoard extends Application {
         towerBtn1.setPrefSize(140, 100);
         towerBtn2.setPrefSize(140, 100);
         towerBtn3.setPrefSize(140, 100);
-    
+
+
+        // Buttons funtionality (To be moved to controller folder later)
+        towerBtn1.setOnAction(e -> {
+            System.out.println("selected tower1");
+            Board.action = "tower1";
+        });
+        towerBtn2.setOnAction(e -> {
+            Board.action = "tower2";
+            System.out.println("selected tower2");
+        });
+        towerBtn3.setOnAction(e -> {
+            Board.action = "tower3";
+            System.out.println("selected tower3");
+        });
         
     
     }
