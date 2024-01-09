@@ -92,7 +92,21 @@ public class MultiplayerBoard extends Application {
         towerBtn1.setPrefSize(140, 100);
         towerBtn2.setPrefSize(140, 100);
         towerBtn3.setPrefSize(140, 100);
-    
+
+
+        // Buttons funtionality (To be moved to controller folder later)
+        towerBtn1.setOnAction(e -> {
+            System.out.println("selected tower1");
+            Board.action = "tower1";
+        });
+        towerBtn2.setOnAction(e -> {
+            Board.action = "tower2";
+            System.out.println("selected tower2");
+        });
+        towerBtn3.setOnAction(e -> {
+            Board.action = "tower3";
+            System.out.println("selected tower3");
+        });
         
     
     }

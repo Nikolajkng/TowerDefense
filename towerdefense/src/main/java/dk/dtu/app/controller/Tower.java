@@ -2,8 +2,8 @@ package dk.dtu.app.controller;
 import dk.dtu.app.view.GameBoardsGUI.Board;
 
 public class Tower {
-    public static void placeTower(int x, int y, MyButton[][] board) {
-        Board.action = "placeTower";
+    public static void placeTower(int x, int y, MyButton[][] board, String action) {
+        Board.action = action;
 
         System.out.println("Placing tower at: " + x + ", " + y);
         // Code here:
