@@ -3,8 +3,6 @@ package dk.dtu.backend;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import org.jspace.ActualField;
-import org.jspace.FormalField;
 import org.jspace.RemoteSpace;
 
 public class PlayerInfoExchange {
