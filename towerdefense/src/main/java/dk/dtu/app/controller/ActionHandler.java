@@ -3,10 +3,8 @@ package dk.dtu.app.controller;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 
 public class ActionHandler {
-    public static MyButton[][] board;
 
-
-    public static void selectAction(Object[] actioninfo) {
+    public static void selectAction(Object[] actioninfo, MyButton[][] board) {
         System.out.println("I am inside ActionHandler");
         int x = (int) actioninfo[0];
         int y = (int) actioninfo[1];
