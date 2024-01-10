@@ -5,8 +5,13 @@ import org.jspace.SpaceRepository;
 
 public class Server {
     private static String ip;
-    public static SequentialSpace room = new SequentialSpace();
-    public static String room_uri = "";
+    public static SequentialSpace gameRoom = new SequentialSpace();
+    public static SequentialSpace P1P2room = new SequentialSpace();  // P1 sends, P2 receives
+    public static SequentialSpace P2P1room = new SequentialSpace();  // P2 sends, P1 receives
+    
+    public static String gameRoom_uri = "";
+    public static String P1P2_uri = "";
+    public static String P2P1_uri = "";
 
 
     public static void hostNewGame(){
@@ -22,13 +27,18 @@ public class Server {
         SpaceRepository server = new SpaceRepository();
         server.addGate(gate_uri);
 
-        // Creating a room inside the spacerepository
-        String spaceName = "Room";
-        server.add(spaceName, room);
+        // Creating a room inside the spacerepository;
+        server.add("GameRoom", gameRoom);
+        server.add("P1P2room",P1P2room);
+        server.add("P2P1room",P2P1room);
 
-        // Creating a gateway into the room via new URI
-        room_uri = "tcp://"+ ip + ":" + port + "/" + spaceName + "?keep";
-        System.out.println("Room URI"+room_uri);
+        // Creating gateways into the all the room in the SpaceRepository (Server)
+        gameRoom_uri = "tcp://"+ ip + ":" + port + "/GameRoom?keep";
+        P1P2_uri = "tcp://"+ ip + ":" + port + "/P1P2room?keep";
+        P2P1_uri = "tcp://"+ ip + ":" + port + "/P2P1room?keep";
+        System.out.println("gameRoom URI: " + gameRoom_uri);
+        System.out.println("P1P2room URI: " + P1P2_uri);
+        System.out.println("P2P1room URI: " + P2P1_uri);
 
     }
 

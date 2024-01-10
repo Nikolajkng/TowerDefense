@@ -1,6 +1,7 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
 import dk.dtu.app.controller.*;
+import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.PlayerInfoExchange;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,6 +9,7 @@ import javafx.scene.layout.GridPane;
 
 public class Board {
     public static String action = "";
+    public static String callsign = PlayerConnection.callsign;
 
     // Creating the player boards
     public static MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY,
@@ -62,7 +64,7 @@ public class Board {
                             clickInfo(board, finalX, finalY);
                             if(true){
                                 Tower.placeTower(finalX, finalY, board, action);
-                                PlayerInfoExchange.sendAction(finalX, finalY, action);
+                                PlayerInfoExchange.sendAction(finalX, finalY, action,callsign);
                             }
                         } else {
                             System.out.println("Clicked on illegal tile");
