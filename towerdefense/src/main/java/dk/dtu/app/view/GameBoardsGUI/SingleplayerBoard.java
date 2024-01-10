@@ -93,6 +93,7 @@ public class SingleplayerBoard extends Application {
         exitGame.setStyle(buttonStyle);
         exitGame.setOnMouseEntered(e -> exitGame.setStyle(buttonStyle + hoverStyle));
         exitGame.setOnMouseExited(e -> exitGame.setStyle(buttonStyle));
+        exitGame.setOnAction(this::exitGame);
 
         //Left side bar 
         leftVbox.getChildren().addAll(heartButton, Tower1, Tower2, Tower3, moneyTracker);
@@ -171,14 +172,8 @@ private Button createRoundButton(String imageUrl) {
 }
 
 private void exitGame(ActionEvent event) {
-        Menu menuboard = new Menu();
-        Menu.start(Menu.mainMenuStage);
-
-        // Close the current MainMenu stage
-        boardStage.close();
-
-        // Show the new SingleplayerBoard stage
-        Menu.mainMenuStage.show();
+    Menu.mainMenuStage.show();
+    boardStage.close();
     }
 
 }
