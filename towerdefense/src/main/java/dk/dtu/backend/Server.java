@@ -15,7 +15,7 @@ public class Server {
 
         // Gate URI into spaceRepository
         int port = 55000;
-        String gate_uri = "tcp://"+ ip + ":" + port + "/?keep";
+        String gate_uri = "http://"+ ip + ":" + port + "/?keep";
         System.out.println("Gate URI:"+gate_uri);
         
         //Creating a new spaceRepository
@@ -27,7 +27,7 @@ public class Server {
         server.add(spaceName, room);
 
         // Creating a gateway into the room via new URI
-        room_uri = "tcp://"+ ip + ":" + port + "/" + spaceName + "?keep";
+        room_uri = "http://"+ ip + ":" + port + "/" + spaceName + "?keep";
         System.out.println("Room URI"+room_uri);
 
     }
