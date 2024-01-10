@@ -10,6 +10,7 @@ public class Tower {
         // 1. Check if tower can be placed at x, y
         if(board[x][y].getValue() != -1){
             board[x][y].setText("X");
+            
 
         }
         // 2. If yes, place tower

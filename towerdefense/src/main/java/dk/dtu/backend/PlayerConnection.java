@@ -74,7 +74,7 @@ public class PlayerConnection {
     private static void gameStart(){
         System.out.println("Game starting...");
         // Close the current MainMenu stage
-        MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
+        MultiplayerBoard multiplayerBoard = new MultiplayerBoard(Server.room);
         multiplayerBoard.start(MultiplayerBoard.boardStage);
         MultiplayerMenu.boardStage.close();
         MultiplayerBoard.boardStage.show();

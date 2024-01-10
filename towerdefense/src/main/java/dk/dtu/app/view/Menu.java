@@ -1,6 +1,9 @@
 package dk.dtu.app.view;
 
 import java.net.MalformedURLException;
+
+import org.jspace.SequentialSpace;
+
 import javafx.scene.layout.StackPane;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -45,9 +48,9 @@ public class Menu extends Application{
         exitBtn.setText("Exit");
         exitBtn.setOnAction(this::closeProgram);
 
-        Button testBtn = new Button();
-        testBtn.setText("Nikos test knap");
-        testBtn.setOnAction(this::multiplayerBoard);
+        // Button testBtn = new Button();
+        // testBtn.setText("Nikos test knap");
+        // testBtn.setOnAction(this::multiplayerBoard);
 
 
         // Changed this one - it works
@@ -112,7 +115,7 @@ public class Menu extends Application{
 
     // Button interaction and functions
     private void startSingleplayerGame(ActionEvent event) {
-        SingleplayerBoard singleplayerBoard = new SingleplayerBoard();
+        SingleplayerBoard singleplayerBoard = new SingleplayerBoard(new SequentialSpace());
         singleplayerBoard.start(SingleplayerBoard.boardStage);
 
         // Close the current MainMenu stage
@@ -137,16 +140,16 @@ public class Menu extends Application{
     }
     
 
-    public void multiplayerBoard (ActionEvent event) {
-        MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
-        multiplayerBoard.start(MultiplayerBoard.boardStage);
+    // public void multiplayerBoard (ActionEvent event) {
+    //     MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
+    //     multiplayerBoard.start(MultiplayerBoard.boardStage);
 
-        // Show the new MultiplayerBoard stage
-        MultiplayerBoard.boardStage.show();
+    //     // Show the new MultiplayerBoard stage
+    //     MultiplayerBoard.boardStage.show();
 
-        // Close the current MainMenu stage
-        mainMenuStage.close();
-    }
+    //     // Close the current MainMenu stage
+    //     mainMenuStage.close();
+    // }
     
     private void showGameRules(ActionEvent event) {
         // Implement logic to display the game rules (e.g., in a dialog or separate screen)

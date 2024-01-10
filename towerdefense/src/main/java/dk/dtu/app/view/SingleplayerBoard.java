@@ -1,5 +1,7 @@
 package dk.dtu.app.view;
 
+import org.jspace.SequentialSpace;
+
 import dk.dtu.app.controller.MyButton;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,6 +13,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
 public class SingleplayerBoard extends Application {
+
+    SequentialSpace space;
+    
+    public SingleplayerBoard(SequentialSpace room){
+        this.space = room;
+    }
 
     static Stage boardStage = new Stage();
     int sizeX = 1400;
@@ -45,6 +53,7 @@ public class SingleplayerBoard extends Application {
 
         leftVbox.getChildren().addAll(btn3);
 
-        Board.createPlayerBoard(pane, 86, 14, 10, 0);
+        Board board = new Board(space);
+        board.createPlayerBoard(pane, 86, 14, 10, 0);
     }
 }

@@ -1,5 +1,11 @@
 package dk.dtu.app.view;
 
+import java.rmi.Remote;
+
+import org.jspace.RemoteSpace;
+import org.jspace.SequentialSpace;
+import org.jspace.Space;
+
 import dk.dtu.app.controller.MyButton;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -15,9 +21,15 @@ import javafx.stage.Stage;
 
 public class MultiplayerBoard extends Application {
 
+    protected SequentialSpace space;
+
+    public MultiplayerBoard(SequentialSpace room){
+        this.space = room;
+    }
+
     public static Stage boardStage = new Stage();
     public static MyButton[][] leftBoard = new MyButton[0][0];
-    public static MyButton[][] rightBoard = new MyButton[0][0];
+    public MyButton[][] rightBoard = new MyButton[0][0];
     GridPane leftPane = new GridPane();
     GridPane rightPane = new GridPane();
     int sizeX = 1600;
@@ -73,8 +85,9 @@ public class MultiplayerBoard extends Application {
         rightVbox.getChildren().addAll(btn4);
 
         // Creating boards for the two players
-        leftBoard = Board.createPlayerBoard(leftPane, 100, 14, 10, 0);
-        rightBoard = Board.createPlayerBoard(rightPane, 100, 14, 10, -1);
+        Board board = new Board(space);
+        leftBoard = board.createPlayerBoard(leftPane, 100, 14, 10, 0);
+        rightBoard = board.createPlayerBoard(rightPane, 100, 14, 10, -1);
 
     }
 

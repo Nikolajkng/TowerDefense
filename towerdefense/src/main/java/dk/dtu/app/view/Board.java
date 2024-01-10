@@ -1,6 +1,10 @@
 package dk.dtu.app.view;
 
+import org.jspace.SequentialSpace;
+import org.jspace.Space;
+
 import dk.dtu.app.controller.*;
+import dk.dtu.backend.LocalAddressScript;
 import dk.dtu.backend.PlayerInfoExchange;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,12 +12,20 @@ import javafx.scene.layout.GridPane;
 
 public class Board {
     public static String action = "";
+    protected SequentialSpace space;
     // Creating the player boards
-    public static MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY,
+
+    public Board(SequentialSpace space) {
+        this.space = space;
+        new Thread(new EnemyPlacement(this.space));
+    }
+
+    public MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY,
             int value) {
         MyButton[][] board = new MyButton[1400][900];
         int x;
         int y;
+        
 
         int[] pathX = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 9, 10, 10, 10, 10, 10, 11, 12, 13 };
                 
@@ -58,7 +70,14 @@ public class Board {
                         if(isLegalClick(board)){
                             clickInfo(board, finalX, finalY);
                             if(true){Tower.placeTower(finalX, finalY, board);}
-                            PlayerInfoExchange.sendAction(finalX, finalY, action);
+
+                            // Sender modstander info om at der er blevet placeret et tårn
+                            try {
+                                space.put("placeTower", LocalAddressScript.getLocalAddress(), finalX, finalY);
+                            } catch (InterruptedException e1) {}
+
+
+                            //PlayerInfoExchange.sendAction(finalX, finalY, action);
                         } else System.out.println("Illegal click");
                         
                     }
