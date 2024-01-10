@@ -105,8 +105,9 @@ public class MultiplayerBoard extends Application {
                 attackEnemy5btn);
 
         // Chat box setup
-        bottomHUD.getChildren().addAll(chatBox);
-        ChatGUI.createChatBox(chatBox);
+        Button sendBtn = new Button("Send Message");
+        bottomHUD.getChildren().addAll(chatBox,sendBtn);
+        ChatGUI.createChatBox(chatBox, sendBtn);
 
         // Button sizes
         int towerBtnWidth = 120;
