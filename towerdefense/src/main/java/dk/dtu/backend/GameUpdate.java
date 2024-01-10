@@ -11,6 +11,7 @@ public class GameUpdate implements Runnable {
     String uri = "";
     RemoteSpace clientRoom;
     SequentialSpace hostRoom;
+    public static String action;
 
     public GameUpdate(String uri, RemoteSpace room) throws UnknownHostException, IOException {
         this.uri = uri;
@@ -30,10 +31,11 @@ public class GameUpdate implements Runnable {
                             new FormalField(Integer.class),
                             new FormalField(String.class));
                     if (info != null) {
-                        Object[] action = clientRoom.get(new FormalField(Integer.class),
+                        Object[] actionInfo = clientRoom.get(new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(String.class));
-                        System.out.println("Received action: " + (String) action[2]);
+                        action = (String) actionInfo[2];
+                        System.out.println("Received action: " + (String) actionInfo[2]);
 
                     }
                 }
@@ -47,10 +49,11 @@ public class GameUpdate implements Runnable {
                             new FormalField(Integer.class),
                             new FormalField(String.class));
                     if (info != null) {
-                        Object[] action = hostRoom.get(new FormalField(Integer.class),
+                        Object[] actionInfo = hostRoom.get(new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(String.class));
-                        System.out.println("Received action: " + (String) action[2]);
+                        action = (String) actionInfo[2];
+                        System.out.println("Received action: " + (String) actionInfo[2]);
 
                     }
                 }
