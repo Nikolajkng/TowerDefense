@@ -9,12 +9,6 @@ public class ActionHandler {
         int x = (int) actioninfo[0];
         int y = (int) actioninfo[1];
         String action = (String) actioninfo[2];
-        System.out.println("-----------");
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println(action);
-        System.out.println("-----------");
-
 
         switch (action) {
             case "tower1":
