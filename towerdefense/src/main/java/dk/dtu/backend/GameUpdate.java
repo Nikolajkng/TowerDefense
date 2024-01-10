@@ -9,6 +9,7 @@ import org.jspace.SequentialSpace;
 
 import dk.dtu.app.controller.ActionHandler;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
+import javafx.application.Platform;
 
 public class GameUpdate implements Runnable {
     String uri = "";
@@ -42,8 +43,10 @@ public class GameUpdate implements Runnable {
                                 new FormalField(Integer.class),
                                 new FormalField(String.class));
                         System.out.println("Received action from Host: " + (String) actionInfo[2]);
-                        ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
-                        
+                        Platform.runLater(() -> {
+                            ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
+                        });
+                 
 
 
                     }
@@ -63,8 +66,9 @@ public class GameUpdate implements Runnable {
                                 new FormalField(Integer.class),
                                 new FormalField(String.class));
                         System.out.println("Received action from Client: " + (String) actionInfo[2]);
-                        ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
-                        
+                    Platform.runLater(() -> {
+                            ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
+                        });
 
 
                     }
