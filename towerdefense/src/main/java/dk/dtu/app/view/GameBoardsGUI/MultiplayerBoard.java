@@ -87,14 +87,9 @@ public class MultiplayerBoard extends Application {
         // Left vbox-menu setup:
         leftVbox.getChildren().addAll(towerBtn1, towerBtn2, towerBtn3, towerBtn4, towerBtn5);
 
-        // Chatbox:
-        Label msg1 = new Label("hej");
-        Label msg2 = new Label("farvel");
-        
+        // Chatbox:        
         bottomHUD.getChildren().addAll(chatBox);
-        chatBox.getChildren().addAll(msg1, msg2);
-        chatBox.setPrefSize(400, 100);
-        chatBox.setStyle("-fx-background-color: #D7E0E0");
+        ChatGUI.createChatBox(chatBox);
 
 
 
