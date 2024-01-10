@@ -21,13 +21,13 @@ public class SingleplayerBoard extends Application {
     public static Stage boardStage = new Stage();
     int sizeX = 1400;
     int sizeY = 900;
-    Button btn4 = new Button("EXIT");
+    Button exitGame = new Button("EXIT");
     Button heartButton = createHeartButton();
-    
+    Button moneyTracker = new Button("9969 $");
+
     Button Tower1 = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
     Button Tower2 = createRoundButton("/dk/dtu/app/view/Images/46.png");
     Button Tower3 = createRoundButton("/dk/dtu/app/view/Images/SYKT7E.gif");
-
 
     static MyButton placedTowerbButton;
 
@@ -76,15 +76,26 @@ public class SingleplayerBoard extends Application {
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
         Tower3.setPrefSize(130, 130);
 
+        exitGame.setStyle("-fx-background-color: #5DADE2; -fx-text-fill: white; "
+        + "-fx-font-size: 1.5em; -fx-min-width: 150px; -fx-min-height: 25px; "
+        + "-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px;");
+
+        Tower3.setStyle("-fx-background-size: cover; -fx-background-color: transparent; ");
+        Tower3.setPrefSize(130, 130);
+
         //Left side bar 
-        leftVbox.getChildren().addAll(heartButton, Tower1, Tower2, Tower3);
+        leftVbox.getChildren().addAll(heartButton, Tower1, Tower2, Tower3, moneyTracker);
         VBox.setMargin(Tower1, new Insets(10)); // Optional: Add margin around the button for better visibility
         leftVbox.setAlignment(Pos.TOP_CENTER);
         VBox.setMargin(heartButton, new javafx.geometry.Insets(40, 0, 0, 0));
         VBox.setMargin(Tower1, new javafx.geometry.Insets(45, 0, 0, 0));
         VBox.setMargin(Tower2, new javafx.geometry.Insets(45, 0, 0, 0));
         VBox.setMargin(Tower3, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(moneyTracker, new javafx.geometry.Insets(45, 0, 0, 0));
         
+        rightVbox.getChildren().addAll(exitGame);
+        rightVbox.setAlignment(Pos.BOTTOM_CENTER);
+        VBox.setMargin(exitGame, new javafx.geometry.Insets(0, 0, 80, 0));
 
         Board.createPlayerBoard(pane, 86, 14, 10, 0);
     }
