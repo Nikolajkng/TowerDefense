@@ -5,7 +5,7 @@ import java.net.UnknownHostException;
 
 import org.jspace.RemoteSpace;
 
-public class PlayerInfoExchange {
+public class ActionExchange {
     public static RemoteSpace P1P2room;
     public static RemoteSpace P2P1room;
     public static String callsign;

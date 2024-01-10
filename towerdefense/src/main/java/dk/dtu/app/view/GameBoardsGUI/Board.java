@@ -2,7 +2,7 @@ package dk.dtu.app.view.GameBoardsGUI;
 
 import dk.dtu.app.controller.*;
 import dk.dtu.backend.PlayerConnection;
-import dk.dtu.backend.PlayerInfoExchange;
+import dk.dtu.backend.ActionExchange;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.GridPane;
@@ -64,7 +64,7 @@ public class Board {
                             clickInfo(board, finalX, finalY);
                             if(true){
                                 Tower.placeTower(finalX, finalY, board, action);
-                                PlayerInfoExchange.sendAction(finalX, finalY, action,callsign);
+                                ActionExchange.sendAction(finalX, finalY, action,callsign);
                             }
                         } else {
                             System.out.println("Clicked on illegal tile");

@@ -38,7 +38,7 @@ public class PlayerConnection {
 
             // Start game - if player 2 has joined
             gameStart();
-            PlayerInfoExchange.start(Server.P1P2_uri, Server.P2P1_uri);
+            ActionExchange.start(Server.P1P2_uri, Server.P2P1_uri);
             new Thread(new GameUpdate(Server.P2P1room)).start();
             new Thread(new Chat(callsign)).start();
 
@@ -51,7 +51,7 @@ public class PlayerConnection {
 /////////////////////////////////////////////////////// Client ///////////////////////////////////////////////////////////
     public static void joinGame(ActionEvent event) throws InterruptedException {
         System.out.println("Joining game...");
-        callsign = "client";
+        callsign = "Client";
 
         // Code here:
         showTextInputDialog();
@@ -71,16 +71,15 @@ public class PlayerConnection {
 
             // Start game
             gameStart();
-            PlayerInfoExchange.start(P1P2_uri, P2P1_uri);
+            ActionExchange.start(P1P2_uri, P2P1_uri);
             new Thread(new GameUpdate(P1P2_uri, P1P2room)).start();
-            ;
             new Thread(new Chat(callsign)).start();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// Start game by opening multiplayer board for both player /////////////////////////////////////////////////////////////
     private static void gameStart() throws UnknownHostException, IOException {
         System.out.println("Game has started!");
         // Close the current MainMenu stage
@@ -89,6 +88,7 @@ public class PlayerConnection {
         MultiplayerMenu.boardStage.close();
         MultiplayerBoard.boardStage.show();
     }
+///////////////////////////////////////////////////// Function that captures clients inputIP (host ip) /////////////////////////////////////////////////////////////
 
     private static void showTextInputDialog() {
         TextInputDialog dialog = new TextInputDialog();

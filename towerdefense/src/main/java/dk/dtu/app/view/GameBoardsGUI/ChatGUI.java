@@ -20,41 +20,37 @@ public class ChatGUI {
     public static List<Label> messageList = new ArrayList<>();
     private static RemoteSpace chatRoom;
 
-
-    public static void createChatBox(ScrollPane scrollPane, VBox chatBox, Button sendBtn, TextField chatField) throws UnknownHostException, IOException {
-        chatRoom = new RemoteSpace("tcp://"+PlayerConnection.inputIP+":55000/chatRoom?keep");
+    public static void createChatBox(ScrollPane scrollPane, VBox chatBox, Button sendBtn, TextField chatField)
+            throws UnknownHostException, IOException {
+        chatRoom = new RemoteSpace("tcp://" + PlayerConnection.inputIP + ":55000/ChatRoom?keep");
 
         // Chat box content: When player click "Send Message"
         sendBtn.setOnAction(e -> {
-            if (!chatField.getText().isEmpty()){
-            // User message input
-            String userMessage = chatField.getText();
-            messageList.add(new Label(PlayerConnection.callsign +": "+ userMessage));
-            messageList.get(messageCount).setStyle("-fx-background-color: #ADDFFF");
-            chatBox.getChildren().addAll(messageList.get(messageCount));
-            messageCount++;
+            if (!chatField.getText().isEmpty()) {
+                // User message input
+                String userMessage = chatField.getText();
+                messageList.add(new Label(PlayerConnection.callsign + ": " + userMessage));
+                messageList.get(messageCount).setStyle("-fx-background-color: #ADDFFF");
+                chatBox.getChildren().addAll(messageList.get(messageCount));
+                messageCount++;
 
-            // Auto clear Textfield after user send message
-            chatField.setText("");
+                // Auto clear Textfield after user send message
+                chatField.setText("");
 
-            // Auto scroll to bottom
-            scrollPane.setVvalue(1.0);
+                // Auto scroll to bottom
+                scrollPane.setVvalue(1.0);
 
-            // Send message to chatRoom
-            try {
-                chatRoom.put(PlayerConnection.callsign, userMessage);
-            } catch (InterruptedException e1) {
-                // 
-                e1.printStackTrace();
-            }
-
-
-
+                // Send message to chatRoom
+                try {
+                    chatRoom.put(PlayerConnection.callsign, userMessage);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
 
             } else {
                 System.out.println("Please enter a message");
             }
-       });     
+        });
 
     }
 }
