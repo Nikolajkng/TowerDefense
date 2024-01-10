@@ -14,7 +14,8 @@ public class ActionHandler {
     public static void selectAction(Object[] actioninfo) {
         int x = (int) actionInfo[0];
         int y = (int) actionInfo[1];
-        switch ((String) actionInfo[2]) {
+        String action = (String) actionInfo[2];
+        switch (action) {
             case "tower1":
                 board[x][y].setText("X");
                 board[x][y].setValue(-1);
