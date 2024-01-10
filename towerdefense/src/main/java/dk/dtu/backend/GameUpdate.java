@@ -1,34 +1,37 @@
 package dk.dtu.backend;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import org.jspace.FormalField;
 import org.jspace.RemoteSpace;
 import org.jspace.SequentialSpace;
 
 public class GameUpdate implements Runnable {
     String uri = "";
-    RemoteSpace room;
-    SequentialSpace room2;
+    RemoteSpace clientRoom;
+    SequentialSpace hostRoom;
 
-    public GameUpdate(String uri, RemoteSpace room) {
+    public GameUpdate(String uri, RemoteSpace room) throws UnknownHostException, IOException {
         this.uri = uri;
-        this.room = room;
+        this.clientRoom = new RemoteSpace(uri);
     }
 
     public GameUpdate(String uri, SequentialSpace room) {
         this.uri = uri;
-        this.room2 = room;
+        this.hostRoom = room;
     }
 
     @Override
     public void run() {
-        if (room != null) {
+        if (clientRoom != null) {
             try {
                 while (true) {
-                    Object[] info = room.queryp(new FormalField(Integer.class),
+                    Object[] info = clientRoom.queryp(new FormalField(Integer.class),
                             new FormalField(Integer.class),
                             new FormalField(String.class));
                     if (info != null) {
-                        Object[] action = room.get(new FormalField(Integer.class),
+                        Object[] action = clientRoom.get(new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(String.class));
                         System.out.println("Received action: " + (String) action[2]);
@@ -41,11 +44,11 @@ public class GameUpdate implements Runnable {
         } else {
             try {
                 while (true) {
-                    Object[] info = room2.queryp(new FormalField(Integer.class),
+                    Object[] info = hostRoom.queryp(new FormalField(Integer.class),
                             new FormalField(Integer.class),
                             new FormalField(String.class));
                     if (info != null) {
-                        Object[] action = room2.get(new FormalField(Integer.class),
+                        Object[] action = hostRoom.get(new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(String.class));
                         System.out.println("Received action: " + (String) action[2]);
