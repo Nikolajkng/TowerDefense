@@ -1,5 +1,8 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import javafx.application.Application;
@@ -49,7 +52,7 @@ public class MultiplayerBoard extends Application {
 
     // Program start
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws UnknownHostException, IOException {
 
         // Stage setup
         boardStage = stage;

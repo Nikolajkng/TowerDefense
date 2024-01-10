@@ -1,6 +1,8 @@
 package dk.dtu.app.view.MenuGUI;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.UnknownHostException;
 
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.app.view.GameBoardsGUI.SingleplayerBoard;
@@ -50,7 +52,13 @@ public class Menu extends Application{
 
         Button testBtn = new Button();
         testBtn.setText("Nikos test knap");
-        testBtn.setOnAction(this::multiplayerBoard);
+        testBtn.setOnAction(event -> {
+            try {
+                multiplayerBoard(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
 
         // Changed this one - it works
@@ -140,7 +148,7 @@ public class Menu extends Application{
     }
     
 
-    public void multiplayerBoard (ActionEvent event) {
+    public void multiplayerBoard (ActionEvent event) throws UnknownHostException, IOException {
         MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
         multiplayerBoard.start(MultiplayerBoard.boardStage);
 
