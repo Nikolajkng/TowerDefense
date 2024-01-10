@@ -1,15 +1,19 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
+import org.kordamp.ikonli.javafx.FontIcon;
+
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MultiplayerBoard extends Application {
@@ -21,6 +25,10 @@ public class MultiplayerBoard extends Application {
     public static Button towerBtn1 = new Button("Tower1 $0");
     public static Button towerBtn2 = new Button("Tower2 $0");
     public static Button towerBtn3 = new Button("Tower3 $0");
+    public static Label healthP1 = new Label("100");
+    public static Label healthP2 = new Label("100");
+    public static Label topTitle = new Label("RABBIT HUNTER");
+
     // Local field variables
     GridPane leftPane = new GridPane();
     GridPane rightPane = new GridPane();
@@ -28,8 +36,6 @@ public class MultiplayerBoard extends Application {
     int sizeY = 1000; // MyButton cell = new MyButton(0);
     Button btn3 = new Button("333");
     Button btn4 = new Button("4444");
-
-    
 
     // Program start
     @Override
@@ -48,14 +54,12 @@ public class MultiplayerBoard extends Application {
         HBox topBar = new HBox();
 
         // Color of background of Panes
-        String myColor = "90EE90"; 
+        String myColor = "90EE90";
         centerPane.setStyle("-fx-background-color: #" + myColor);
         leftVbox.setStyle("-fx-background-color: #" + myColor);
         rightVbox.setStyle("-fx-background-color: #" + myColor);
         bottomHUD.setStyle("-fx-background-color: #" + myColor);
         topBar.setStyle("-fx-background-color: #" + myColor);
-
-
 
         // Positions of all panes
         centerPane.setAlignment(Pos.CENTER);
@@ -68,39 +72,36 @@ public class MultiplayerBoard extends Application {
         bottomHUD.setAlignment(Pos.BOTTOM_CENTER);
         bottomHUD.setSpacing(10);
 
-
         // Size of boxPanes
         leftVbox.setPrefWidth(sizeX / 8 - 25);
         rightVbox.setPrefWidth(sizeX / 8 - 25);
-        bottomHUD.setPrefHeight(sizeY/8 + 25);
-        topBar.setPrefHeight(sizeY/8 + 25);
+        bottomHUD.setPrefHeight(sizeY / 8 + 25);
+        topBar.setPrefHeight(sizeY / 8 + 25);
 
-        
         // Scene setup
         Scene scene = new Scene(borderPane, sizeX, sizeY);
         boardStage.setScene(scene);
 
+        // Topbar alignment
+        topBar.setPrefSize(140, 100);
+        topBar.getChildren().addAll(healthP1, topTitle, healthP2);
+        topBar.setSpacing(300);
+        healthP1.setAlignment(Pos.BOTTOM_LEFT);
+        healthP2.setAlignment(Pos.BOTTOM_RIGHT);
+        topBar.setAlignment(Pos.CENTER);
 
-        // Position of buttons
-        bottomHUD.getChildren().addAll(towerBtn1, towerBtn2, towerBtn3);
-        leftVbox.getChildren().addAll(btn3);
-        rightVbox.getChildren().addAll(btn4);
-
-        // Button functionality
-        towerBtn1.setPrefSize(140, 100);
-        towerBtn2.setPrefSize(140, 100);
-        towerBtn3.setPrefSize(140, 100);
-
+        // Health styling
+        healthP1.setStyle("-fx-background-color: #ffffff; -fx-font-size: 40; -fx-text-fill: #ff0000");
+        healthP2.setStyle("-fx-background-color: #ffffff; -fx-font-size: 40; -fx-text-fill: #ff0000");
+        topTitle.setStyle("-fx-font-size: 60; -fx-text-fill: #ff9966");
+        
         // Creating boards for two players
         leftBoard = Board.createPlayerBoard(leftPane, 100, 14, 10, 0);
         rightBoard = Board.createPlayerBoard(rightPane, 100, 14, 10, -1);
 
-
         // Activate button functionality in Controller
         TowerSelection.selectTower();
-        
-    
-    }
 
+    }
 
 }
