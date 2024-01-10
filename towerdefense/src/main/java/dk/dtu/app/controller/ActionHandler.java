@@ -8,8 +8,7 @@ public class ActionHandler {
 
 
     public static void selectAction(Object[] actioninfo) {
-
-
+        System.out.println("I am inside ActionHandler");
         int x = (int) actionInfo[0];
         int y = (int) actionInfo[1];
         String action = (String) actionInfo[2];
