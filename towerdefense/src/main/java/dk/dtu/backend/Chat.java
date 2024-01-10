@@ -25,18 +25,18 @@ public class Chat implements Runnable {
             RemoteSpace chatRoom = new RemoteSpace("tcp://" + PlayerConnection.inputIP + ":55000/chatRoom?keep");
             if(callsign == "Host"){
                 while(true){
-                    String[] message = (String[]) chatRoom.get(new ActualField("client"), new FormalField(String.class));
-                    System.out.println("Client: " + message[1]);
+                    Object[] message = chatRoom.get(new ActualField("client"), new FormalField(String.class));
+                    System.out.println("Client: " + (String) message[1]);
                     Platform.runLater(() -> {
-                        ChatGUI.messageList.add(new Label("Player 2: "+ message[1]));
+                        ChatGUI.messageList.add(new Label("Player 2: "+ (String) message[1]));
                     });
                 }
             } else if(callsign == "client"){
                 while(true){
-                    String[] message = (String[]) chatRoom.get(new ActualField("Host"), new FormalField(String.class));
-                    System.out.println("Host: " + message[1]);
+                    Object[] message = chatRoom.get(new ActualField("Host"), new FormalField(String.class));
+                    System.out.println("Host: " + (String) message[1]);
                 Platform.runLater(() -> {
-                        ChatGUI.messageList.add(new Label("Player 1: "+ message[1]));
+                        ChatGUI.messageList.add(new Label("Player 1: "+ (String) message[1]));
                     });                }
             }
 
