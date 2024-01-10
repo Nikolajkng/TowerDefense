@@ -17,8 +17,7 @@ public class GameUpdate implements Runnable {
         this.clientRoom = new RemoteSpace(uri);
     }
 
-    public GameUpdate(String uri, SequentialSpace room) {
-        this.uri = uri;
+    public GameUpdate(SequentialSpace room) {
         this.hostRoom = room;
     }
 

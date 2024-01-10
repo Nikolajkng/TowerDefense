@@ -37,7 +37,7 @@ public class PlayerConnection {
             // Start game - if player 2 has joined
             gameStart();
             PlayerInfoExchange.start(Server.P1P2_uri, Server.P2P1_uri);
-            new Thread(new GameUpdate(Server.gameRoom_uri, Server.P2P1room)).start();
+            new Thread(new GameUpdate(Server.P2P1room)).start();
 
 
         } catch (InterruptedException e) {
@@ -72,7 +72,7 @@ public class PlayerConnection {
             // Start game
             gameStart();
             PlayerInfoExchange.start(P1P2_uri, P2P1_uri);
-            new Thread(new GameUpdate(gameRoom_uri, P1P2room)).start();
+            new Thread(new GameUpdate(P1P2_uri, P1P2room)).start();
 
 
 
