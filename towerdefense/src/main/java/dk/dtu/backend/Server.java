@@ -29,8 +29,8 @@ public class Server {
 
         // Creating a room inside the spacerepository;
         server.add("GameRoom", gameRoom);
-        server.add("P1P2room",P1P2room);
-        server.add("P2P1room",P2P1room);
+        server.add("P1P2room", P1P2room);
+        server.add("P2P1room", P2P1room);
 
         // Creating gateways into the all the room in the SpaceRepository (Server)
         gameRoom_uri = "tcp://"+ ip + ":" + port + "/GameRoom?keep";

@@ -1,10 +1,5 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.kordamp.ikonli.javafx.Icon;
-
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import javafx.application.Application;
@@ -14,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -47,7 +43,6 @@ public class MultiplayerBoard extends Application {
     private GridPane rightPane = new GridPane();
     private int sizeX = 1600;
     private int sizeY = 1000; // MyButton cell = new MyButton(0);
-    private VBox chatBox = new VBox(5);
     private Image healthIcon = new Image(getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
     private ImageView showHealthIcon1 = new ImageView(healthIcon);
     private ImageView showHealthIcon2 = new ImageView(healthIcon);
@@ -106,14 +101,20 @@ public class MultiplayerBoard extends Application {
                 attackEnemy5btn);
 
         // Chat box setup
-        Button sendBtn = new Button("Send Message");
+        VBox chatModule = new VBox(5);
         ScrollPane scrollPane = new ScrollPane();
+        VBox chatBox = new VBox(5);
+        Button sendBtn = new Button("Send Message");
+        TextField chatField = new TextField();
         scrollPane.setContent(chatBox);
         scrollPane.setFitToWidth(true);
         scrollPane.setPrefHeight(100);
         scrollPane.setStyle("-fx-background-color: #D7E0E0");
-        bottomHUD.getChildren().addAll(scrollPane,sendBtn);
-        ChatGUI.createChatBox(scrollPane, chatBox, sendBtn);
+
+        // Position of chat panes
+        bottomHUD.getChildren().addAll(chatModule);
+        chatModule.getChildren().addAll(scrollPane, new HBox(chatField, sendBtn));
+        ChatGUI.createChatBox(scrollPane, chatBox, sendBtn, chatField);
 
         // Button sizes
         int towerBtnWidth = 120;
