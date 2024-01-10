@@ -29,7 +29,7 @@ public class MultiplayerBoard extends Application {
     // Global field variables
     public static Stage boardStage = new Stage();
     public static MyButton[][] leftBoard = new MyButton[0][0];
-    public MyButton[][] rightBoard = new MyButton[0][0];
+    public MyButton[][] rightBoard = new MyButton[14][10];
     public static Button towerBtn1 = new Button("Tower1 $0");
     public static Button towerBtn2 = new Button("Tower2 $0");
     public static Button towerBtn3 = new Button("Tower3 $0");
