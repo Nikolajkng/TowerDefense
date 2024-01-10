@@ -6,12 +6,15 @@ public class ActionHandler {
     public static Object[] actionInfo;
     public static MyButton[][] board;
 
-    public ActionHandler(Object[] actionInfo) {
-        ActionHandler.actionInfo = actionInfo;
-        ActionHandler.board = MultiplayerBoard.rightBoard;
-    }
 
     public static void selectAction(Object[] actioninfo) {
+
+        if(actioninfo == null){
+            System.out.println("null");
+        } else {
+            System.out.println("not null");
+        }
+
         int x = (int) actionInfo[0];
         int y = (int) actionInfo[1];
         String action = (String) actionInfo[2];
