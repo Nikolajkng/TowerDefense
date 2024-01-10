@@ -1,7 +1,9 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
 import dk.dtu.app.controller.MyButton;
+import dk.dtu.app.view.MenuGUI.Menu;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -82,9 +84,15 @@ public class SingleplayerBoard extends Application {
         + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
         moneyTracker.setPrefSize(130, 130);
 
-        exitGame.setStyle("-fx-background-color: #5DADE2; -fx-text-fill: white; " 
-                        + "-fx-font-size: 1.5em; -fx-min-width: 150px; -fx-min-height: 25px; " 
-                        + "-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        String buttonStyle = "-fx-background-color: #5DADE2; -fx-text-fill: white; "
+        + "-fx-font-size: 1.5em; -fx-min-width: 150px; -fx-min-height: 25px; "
+        + "-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px;";
+    
+        String hoverStyle = "-fx-scale-x: 1.1; -fx-scale-y: 1.1;"; // Gør knappen 10% større i både x- og y-retningen
+
+        exitGame.setStyle(buttonStyle);
+        exitGame.setOnMouseEntered(e -> exitGame.setStyle(buttonStyle + hoverStyle));
+        exitGame.setOnMouseExited(e -> exitGame.setStyle(buttonStyle));
 
         //Left side bar 
         leftVbox.getChildren().addAll(heartButton, Tower1, Tower2, Tower3, moneyTracker);
@@ -161,5 +169,16 @@ private Button createRoundButton(String imageUrl) {
 
    return roundButton;
 }
+
+private void exitGame(ActionEvent event) {
+        Menu menuboard = new Menu();
+        Menu.start(Menu.mainMenuStage);
+
+        // Close the current MainMenu stage
+        boardStage.close();
+
+        // Show the new SingleplayerBoard stage
+        Menu.mainMenuStage.show();
+    }
 
 }
