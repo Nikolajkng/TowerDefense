@@ -7,6 +7,8 @@ import org.jspace.FormalField;
 import org.jspace.RemoteSpace;
 import org.jspace.SequentialSpace;
 
+import dk.dtu.app.controller.ActionHandler;
+
 public class GameUpdate implements Runnable {
     String uri = "";
     RemoteSpace clientRoom;
@@ -24,23 +26,31 @@ public class GameUpdate implements Runnable {
 
     @Override
     public void run() {
+
+        // What client receives from the host
         if (clientRoom != null) {
             try {
                 while (true) {
-                    Object[] info = clientRoom.queryp(new FormalField(Integer.class),
+                    Object[] info = clientRoom.queryp(
+                            new FormalField(Integer.class),
                             new FormalField(Integer.class),
                             new FormalField(String.class));
                     if (info != null) {
-                        actionInfo = clientRoom.get(new FormalField(Integer.class),
+                        actionInfo = clientRoom.get(
+                                new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(String.class));
-                        System.out.println("Received action: " + (String) actionInfo[2]);
+                        System.out.println("Received action from Host: " + (String) actionInfo[2]);
+                        ActionHandler.selectAction(actionInfo);
+                        
+
 
                     }
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        // What the host receives from the client
         } else {
             try {
                 while (true) {
@@ -51,7 +61,10 @@ public class GameUpdate implements Runnable {
                         actionInfo = hostRoom.get(new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(String.class));
-                        System.out.println("Received action: " + (String) actionInfo[2]);
+                        System.out.println("Received action from Client: " + (String) actionInfo[2]);
+                        ActionHandler.selectAction(actionInfo);
+                        
+
 
                     }
                 }
