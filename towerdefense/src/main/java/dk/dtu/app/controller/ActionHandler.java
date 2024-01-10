@@ -1,6 +1,5 @@
 package dk.dtu.app.controller;
 
-import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 
 public class ActionHandler {
 
@@ -12,16 +11,13 @@ public class ActionHandler {
 
         switch (action) {
             case "tower1":
-                board[x][y].setText("X");
-                board[x][y].setValue(-1);
+                Tower.placeTower(x, y, board, action);
                 break;
             case "tower2":
-                board[x][y].setText("0");
-                board[x][y].setValue(-1);
+                Tower.placeTower(x, y, board, action);
                 break;
             case "tower3":
-                board[x][y].setText("±");
-                board[x][y].setValue(-1);
+                Tower.placeTower(x, y, board, action);
                 break;
         }
 
