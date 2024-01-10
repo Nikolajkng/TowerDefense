@@ -28,6 +28,7 @@ public class MultiplayerMenu extends Application {
         boardStage = primaryStage;
         // Application layout
         boardStage.setTitle("Multiplayer Menu");
+        boardStage.setResizable(false);
         StackPane stackPane = new StackPane();
         StackPane.setAlignment(joinButton, Pos.TOP_CENTER);
         StackPane.setAlignment(hostButton, Pos.TOP_CENTER);

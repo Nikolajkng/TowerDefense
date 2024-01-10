@@ -9,11 +9,11 @@ import org.jspace.RemoteSpace;
 import dk.dtu.app.controller.BoardLogic.ChatController;
 import javafx.application.Platform;
 
-public class Chat implements Runnable {
+public class ChatServer implements Runnable {
     String callsign;
     RemoteSpace chatRoom;
 
-    public Chat(String callsign) throws UnknownHostException, IOException {
+    public ChatServer(String callsign) throws UnknownHostException, IOException {
         this.callsign = callsign;
         this.chatRoom = new RemoteSpace("tcp://" + PlayerConnection.inputIP + ":55000/ChatRoom?keep");
 

@@ -40,7 +40,7 @@ public class PlayerConnection {
             gameStart();
             ActionExchange.start(Server.P1P2_uri, Server.P2P1_uri);
             new Thread(new GameUpdate(Server.P2P1room)).start();
-            new Thread(new Chat(callsign)).start();
+            new Thread(new ChatServer(callsign)).start();
 
         } catch (InterruptedException e) {
             System.out.println("Error: Player 2 did not join the room");
@@ -73,7 +73,7 @@ public class PlayerConnection {
             gameStart();
             ActionExchange.start(P1P2_uri, P2P1_uri);
             new Thread(new GameUpdate(P1P2_uri, P1P2room)).start();
-            new Thread(new Chat(callsign)).start();
+            new Thread(new ChatServer(callsign)).start();
 
         } catch (IOException e) {
             e.printStackTrace();

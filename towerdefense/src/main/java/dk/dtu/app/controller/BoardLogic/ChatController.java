@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.jspace.RemoteSpace;
 
+import dk.dtu.app.view.GameBoardsGUI.ChatGUI;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.PlayerConnection;
 import javafx.scene.control.Label;
@@ -52,10 +53,17 @@ public class ChatController {
     }
 
     public static void updateChatBox(String userMessage) {
-                messageList.add(new Label(PlayerConnection.callsign + ": " + userMessage));
-                messageList.get(messageCount).setStyle("-fx-background-color: #ADDFFF");
-                MultiplayerBoard.chatBox.getChildren().addAll(messageList.get(messageCount));
-                messageCount++;
+        if(PlayerConnection.callsign == "Host"){
+            messageList.add(new Label("Host: " + userMessage));
+            messageList.get(messageCount).setStyle("-fx-background-color: #FFB6C1");
+            ChatGUI.chatBox.getChildren().addAll(messageList.get(messageCount));
+            messageCount++;
+        } else if(PlayerConnection.callsign == "Client"){
+            messageList.add(new Label("Player 1: " + userMessage));
+            messageList.get(messageCount).setStyle("-fx-background-color: #ADDFFF");
+            ChatGUI.chatBox.getChildren().addAll(messageList.get(messageCount));
+            messageCount++;
+        }
 
     }
 }

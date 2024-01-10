@@ -42,7 +42,7 @@ public class MultiplayerBoard extends Application {
     public static Label healthP1 = new Label("100");
     public static Label healthP2 = new Label("100");
     public static Label topTitle = new Label("RABBIT HUNTER");
-    public static VBox chatBox = new VBox();
+    public static HBox bottomHUD = new HBox();
 
     // Local field variables
     private GridPane leftPane = new GridPane();
@@ -67,7 +67,6 @@ public class MultiplayerBoard extends Application {
         HBox centerPane = new HBox(leftPane, rightPane);
         VBox leftVbox = new VBox();
         VBox rightVbox = new VBox();
-        HBox bottomHUD = new HBox();
         HBox topBar = new HBox();
 
         // Color of background of Panes
@@ -106,20 +105,7 @@ public class MultiplayerBoard extends Application {
         rightVbox.getChildren().addAll(attackEnemy1btn, attackEnemy2btn, attackEnemy3btn, attackEnemy4btn,
                 attackEnemy5btn);
 
-        // Chat box setup
-        VBox chatModule = new VBox(5);
-        ScrollPane scrollPane = new ScrollPane();
-        TextField chatField = new TextField();
-        chatBox = new VBox(5);
-        scrollPane.setContent(chatBox);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setPrefHeight(100);
-        scrollPane.setStyle("-fx-background-color: #D7E0E0");
 
-        // Position of chat panes
-        bottomHUD.getChildren().addAll(chatModule);
-        chatModule.getChildren().addAll(scrollPane, new HBox(chatField));
-        ChatController.createChatBox(scrollPane, chatBox, chatField);
 
         // Button sizes
         int towerBtnWidth = 120;
@@ -172,6 +158,9 @@ public class MultiplayerBoard extends Application {
 
         // Activate button functionality in Controller
         TowerSelection.selectTower();
+
+        // Chat box setup
+        ChatGUI.createChatGUI();;
 
     }
 

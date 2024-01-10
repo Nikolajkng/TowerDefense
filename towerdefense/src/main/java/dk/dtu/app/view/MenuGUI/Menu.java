@@ -30,6 +30,7 @@ public class Menu extends Application{
     @Override
     public void start(Stage primaryStage) throws MalformedURLException {
          mainMenuStage = primaryStage;
+         mainMenuStage.setResizable(false);
         // Application layout
         mainMenuStage.setTitle("Main Menu");
 
