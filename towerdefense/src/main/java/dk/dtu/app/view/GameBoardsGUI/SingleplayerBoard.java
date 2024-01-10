@@ -23,9 +23,11 @@ public class SingleplayerBoard extends Application {
     int sizeY = 900;
     Button btn4 = new Button("EXIT");
     Button heartButton = createHeartButton();
-    Button Tower1 = createRoundButton();
-    Button Tower2 = createRoundButton();
-    Button Tower3 = createRoundButton();
+    
+    Button Tower1 = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
+    Button Tower2 = createRoundButton("/dk/dtu/app/view/Images/46.png");
+    Button Tower3 = createRoundButton("/dk/dtu/app/view/Images/SYKT7E.gif");
+
 
     static MyButton placedTowerbButton;
 
@@ -106,7 +108,7 @@ public class SingleplayerBoard extends Application {
        return heartButton;
 }
 
-private Button createRoundButton() {
+private Button createRoundButton(String imageUrl) {
    // Create a circle to be used as the button's shape
    Circle circle = new Circle(50);
 
@@ -116,7 +118,7 @@ private Button createRoundButton() {
    roundButton.setMinSize(100, 100); // Set the size of the button
 
    // Set hover effects
-   String buttonStyle = "-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+   String buttonStyle = "-fx-background-image: url('"+ imageUrl +"');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent;";
 
