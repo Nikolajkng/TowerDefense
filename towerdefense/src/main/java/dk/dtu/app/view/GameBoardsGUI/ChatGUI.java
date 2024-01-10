@@ -22,8 +22,7 @@ public class ChatGUI {
 
 
     public static void createChatBox(ScrollPane scrollPane, VBox chatBox, Button sendBtn, TextField chatField) throws UnknownHostException, IOException {
-        String ip = LocalAddressScript.getLocalAddress();
-        chatRoom = new RemoteSpace("tcp://"+ip+":55000/chatRoom?keep");
+        chatRoom = new RemoteSpace("tcp://"+PlayerConnection.inputIP+":55000/chatRoom?keep");
 
         // Chat box content: When player click "Send Message"
         sendBtn.setOnAction(e -> {
