@@ -1,13 +1,13 @@
-package dk.dtu.app.view.GameBoardsGUI;
+package dk.dtu.app.controller.BoardLogic;
 
 import dk.dtu.app.controller.*;
 import dk.dtu.backend.PlayerConnection;
-import dk.dtu.backend.PlayerInfoExchange;
+import dk.dtu.backend.ActionExchange;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.GridPane;
 
-public class Board {
+public class BoardController {
     public static String action = "";
     public static String callsign = PlayerConnection.callsign;
 
@@ -60,11 +60,11 @@ public class Board {
 
                         // Check if player has clicked on a legal cell
                         if(board[finalX][finalY].getValue() != -1){
-                            // Action when a cell is clicked on
                             clickInfo(board, finalX, finalY);
+                            // "if wish to place tower, then execute Tower.placeTower action"
                             if(true){
                                 Tower.placeTower(finalX, finalY, board, action);
-                                PlayerInfoExchange.sendAction(finalX, finalY, action,callsign);
+                                ActionExchange.sendAction(finalX, finalY, action,callsign);
                             }
                         } else {
                             System.out.println("Clicked on illegal tile");

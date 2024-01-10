@@ -5,7 +5,7 @@ import java.net.UnknownHostException;
 
 import org.jspace.RemoteSpace;
 
-public class PlayerInfoExchange {
+public class ActionExchange {
     public static RemoteSpace P1P2room;
     public static RemoteSpace P2P1room;
     public static String callsign;
@@ -19,7 +19,7 @@ public class PlayerInfoExchange {
     public static void sendAction(int x, int y, String action, String callsign) {
         if (callsign == "Host") {
         try {
-            System.out.println("X: " + x + " Y: " + y + " - Selected following: " + action);
+            System.out.println(callsign + " has selected following: " + action);
             P1P2room.put(x, y, action);
 
         } catch (InterruptedException e) {
@@ -27,8 +27,8 @@ public class PlayerInfoExchange {
         }
     } else {
          try {
-            System.out.println("X: " + x + " Y: " + y + " - Selected following: " + action);
-            P2P1room.put(x, y, action);
+           System.out.println(callsign + " has selected following: " + action);            
+           P2P1room.put(x, y, action);
 
         } catch (InterruptedException e) {
             e.printStackTrace();
