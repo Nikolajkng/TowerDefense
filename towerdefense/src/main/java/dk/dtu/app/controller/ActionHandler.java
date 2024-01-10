@@ -9,7 +9,7 @@ public class ActionHandler {
         ActionHandler.actionInfo = actionInfo;
     }
 
-    public void selectAction(String actioninfo) {
+    public static void selectAction(Object[] actioninfo) {
         switch ((String) actionInfo[2]) {
             case "tower1":
                 break;
