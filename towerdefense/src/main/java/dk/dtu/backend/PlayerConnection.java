@@ -34,7 +34,7 @@ public class PlayerConnection {
             // Start game - if player 2 has joined
             gameStart();
             PlayerInfoExchange.start(Server.room_uri);
-            PlayerInfoExchange.receiveActions();
+            new Thread(new GameUpdate(Server.room_uri, Server.room)).start();
 
 
         } catch (InterruptedException e) {
@@ -61,7 +61,7 @@ public class PlayerConnection {
             // Start game
             gameStart();
             PlayerInfoExchange.start(URIformat);
-            PlayerInfoExchange.receiveActions();
+            new Thread(new GameUpdate(URIformat, myRoom)).start();
 
 
 
