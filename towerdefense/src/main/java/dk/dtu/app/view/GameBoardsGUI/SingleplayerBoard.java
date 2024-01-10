@@ -27,8 +27,6 @@ public class SingleplayerBoard extends Application {
     Button Tower2 = createRoundButton("/dk/dtu/app/view/Images/giphy.gif");
     Button Tower3 = createRoundButton("/dk/dtu/app/view/Images/SYKT7E.gif");
 
-    static MyButton placedTowerbButton;
-
     // Application layout
     BorderPane borderPane = new BorderPane();
     GridPane pane = new GridPane();
