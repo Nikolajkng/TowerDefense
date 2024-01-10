@@ -6,15 +6,12 @@ import java.net.UnknownHostException;
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
-import dk.dtu.app.controller.BoardLogic.ChatController;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -48,7 +45,7 @@ public class MultiplayerBoard extends Application {
     private GridPane leftPane = new GridPane();
     private GridPane rightPane = new GridPane();
     private int sizeX = 1600;
-    private int sizeY = 1000; // MyButton cell = new MyButton(0);
+    private int sizeY = 1000; 
     private Image healthIcon = new Image(getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
     private ImageView showHealthIcon1 = new ImageView(healthIcon);
     private ImageView showHealthIcon2 = new ImageView(healthIcon);
@@ -95,7 +92,7 @@ public class MultiplayerBoard extends Application {
         // Size of boxPanes
         leftVbox.setPrefWidth(sizeX / 8 - 25);
         rightVbox.setPrefWidth(sizeX / 8 - 25);
-        bottomHUD.setPrefHeight(sizeY / 8 + 25);
+        bottomHUD.setPrefHeight(sizeY / 8 + 35);
         topBar.setPrefHeight(sizeY / 8 + 25);
 
         // Left vbox-menu setup:
@@ -153,13 +150,13 @@ public class MultiplayerBoard extends Application {
         rightSide.setMaxHeight(40);
 
         // Creating boards for two players
-        leftBoard = BoardController.createPlayerBoard(leftPane, 100, 14, 10, 0);
-        rightBoard = BoardController.createPlayerBoard(rightPane, 100, 14, 10, -1);
+        leftBoard = BoardController.createPlayerBoard(leftPane, 90, 14, 10, 0);
+        rightBoard = BoardController.createPlayerBoard(rightPane, 90, 14, 10, -1);
 
         // Activate button functionality in Controller
         TowerSelection.selectTower();
 
-        // Chat box setup
+        // Start construction of chat GUI
         ChatGUI.createChatGUI();;
 
     }

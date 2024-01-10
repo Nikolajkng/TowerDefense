@@ -6,7 +6,6 @@ import java.net.UnknownHostException;
 import org.jspace.*;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.app.view.MenuGUI.MultiplayerMenu;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
@@ -67,7 +66,7 @@ public class PlayerConnection {
 
             // Create two remoteSpaces for message passing between player 1 and player 2
             RemoteSpace P1P2room = new RemoteSpace(P1P2_uri);
-            RemoteSpace P2P1room = new RemoteSpace(P2P1_uri);
+            //RemoteSpace P2P1room = new RemoteSpace(P2P1_uri);
 
             // Start game
             gameStart();

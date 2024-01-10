@@ -8,7 +8,6 @@ import java.util.List;
 import org.jspace.RemoteSpace;
 
 import dk.dtu.app.view.GameBoardsGUI.ChatGUI;
-import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.PlayerConnection;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
