@@ -42,6 +42,7 @@ public class MultiplayerBoard extends Application {
     public static Label healthP1 = new Label("100");
     public static Label healthP2 = new Label("100");
     public static Label topTitle = new Label("RABBIT HUNTER");
+    public static VBox chatBox = new VBox();
 
     // Local field variables
     private GridPane leftPane = new GridPane();
@@ -108,9 +109,8 @@ public class MultiplayerBoard extends Application {
         // Chat box setup
         VBox chatModule = new VBox(5);
         ScrollPane scrollPane = new ScrollPane();
-        VBox chatBox = new VBox(5);
-        Button sendBtn = new Button("Send");
         TextField chatField = new TextField();
+        chatBox = new VBox(5);
         scrollPane.setContent(chatBox);
         scrollPane.setFitToWidth(true);
         scrollPane.setPrefHeight(100);
@@ -118,8 +118,8 @@ public class MultiplayerBoard extends Application {
 
         // Position of chat panes
         bottomHUD.getChildren().addAll(chatModule);
-        chatModule.getChildren().addAll(scrollPane, new HBox(chatField, sendBtn));
-        ChatController.createChatBox(scrollPane, chatBox, sendBtn, chatField);
+        chatModule.getChildren().addAll(scrollPane, new HBox(chatField));
+        ChatController.createChatBox(scrollPane, chatBox, chatField);
 
         // Button sizes
         int towerBtnWidth = 120;
