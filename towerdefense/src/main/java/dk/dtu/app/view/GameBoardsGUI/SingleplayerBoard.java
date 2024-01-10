@@ -1,5 +1,7 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
+import org.jspace.SequentialSpace;
+
 import dk.dtu.app.controller.MyButton;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -17,6 +19,11 @@ import javafx.scene.shape.SVGPath;
 import javafx.scene.shape.Shape;
 
 public class SingleplayerBoard extends Application {
+
+    SequentialSpace space;
+    public SingleplayerBoard(SequentialSpace space) {
+        this.space = space;
+    }
 
     public static Stage boardStage = new Stage();
     int sizeX = 1400;
@@ -83,8 +90,8 @@ public class SingleplayerBoard extends Application {
         VBox.setMargin(Tower2, new javafx.geometry.Insets(45, 0, 0, 0));
         VBox.setMargin(Tower3, new javafx.geometry.Insets(45, 0, 0, 0));
         
-
-        Board.createPlayerBoard(pane, 86, 14, 10, 0);
+        Board board = new Board(space);
+        board.createPlayerBoard(pane, 86, 14, 10, 0);
     }
 
     private Button createHeartButton() {

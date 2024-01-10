@@ -4,7 +4,7 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 
-import dk.dtu.app.view.MultiplayerBoard;
+import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.LocalAddressScript;
 
 public class EnemyPlacement extends MultiplayerBoard implements Runnable {
@@ -15,9 +15,11 @@ public class EnemyPlacement extends MultiplayerBoard implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("kører enemy placement");
         while (true) {
             try {
                 Object[] obj = space.get(new ActualField("placeTower"), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
+                System.out.println("fandt en placeTower tuple");
                 if (obj != null){
                     String opponentIP = (String) obj[1];
                     if (opponentIP != LocalAddressScript.getLocalAddress()){

@@ -16,8 +16,9 @@ public class Board {
     // Creating the player boards
 
     public Board(SequentialSpace space) {
+        System.out.println("konstruere et board");
         this.space = space;
-        new Thread(new EnemyPlacement(this.space));
+        new Thread(new EnemyPlacement(this.space)).start();;
     }
 
     public MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY,

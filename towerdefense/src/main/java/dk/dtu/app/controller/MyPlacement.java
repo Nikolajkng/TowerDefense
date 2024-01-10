@@ -4,7 +4,7 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 
-import dk.dtu.app.view.MultiplayerBoard;
+import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.LocalAddressScript;
 
 public class MyPlacement extends MultiplayerBoard implements Runnable {
