@@ -8,11 +8,13 @@ import org.kordamp.ikonli.javafx.Icon;
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -46,6 +48,8 @@ public class MultiplayerBoard extends Application {
     private int sizeY = 1000; // MyButton cell = new MyButton(0);
     private VBox chatBox = new VBox(5);
     private Image healthIcon = new Image(getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
+    private ImageView showHealthIcon1 = new ImageView(healthIcon);
+    private ImageView showHealthIcon2 = new ImageView(healthIcon);
 
     // Program start
     @Override
@@ -124,16 +128,30 @@ public class MultiplayerBoard extends Application {
 
         // Topbar alignment
         topBar.setPrefSize(140, 100);
-        topBar.getChildren().addAll(healthP1, topTitle, healthP2);
+        showHealthIcon1.setFitWidth(50);
+        showHealthIcon1.setFitHeight(50);
+        showHealthIcon2.setFitWidth(50);
+        showHealthIcon2.setFitHeight(50);
+        HBox leftSide = new HBox(healthP1, showHealthIcon1);
+        HBox rightSide = new HBox(healthP2, showHealthIcon2);
+        topBar.getChildren().addAll(leftSide, topTitle, rightSide);
         topBar.setSpacing(150);
-        healthP1.setAlignment(Pos.BOTTOM_LEFT);
-        healthP2.setAlignment(Pos.BOTTOM_RIGHT);
         topBar.setAlignment(Pos.CENTER);
+        leftSide.setSpacing(10);
+        rightSide.setSpacing(10);
+        leftSide.setAlignment(Pos.BOTTOM_LEFT);
+        rightSide.setAlignment(Pos.BOTTOM_RIGHT);
 
         // Health styling
-        healthP1.setStyle("-fx-background-color: #ffffff; -fx-font-size: 40; -fx-text-fill: #ff0000");
-        healthP2.setStyle("-fx-background-color: #ffffff; -fx-font-size: 40; -fx-text-fill: #ff0000");
+        healthP1.setStyle("-fx-font-size: 40; -fx-text-fill: #ff0000");
+        healthP2.setStyle("-fx-font-size: 40; -fx-text-fill: #ff0000");
         topTitle.setStyle("-fx-font-size: 60; -fx-text-fill: #ff9966");
+        leftSide.setStyle("-fx-border-color: #00e600; -fx-border-width: 7; -fx-border-radius: 20");
+        rightSide.setStyle("-fx-border-color: #00e600; -fx-border-width: 7; -fx-border-radius: 20");
+        leftSide.setPadding(new Insets(10));
+        leftSide.setMaxHeight(40);
+        rightSide.setPadding(new Insets(10));
+        rightSide.setMaxHeight(40);
 
         // Creating boards for two players
         leftBoard = Board.createPlayerBoard(leftPane, 100, 14, 10, 0);
