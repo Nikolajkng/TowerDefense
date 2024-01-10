@@ -2,19 +2,16 @@ package dk.dtu.app.controller;
 
 import dk.dtu.backend.*;
 
-public class ActionHandler implements Runnable {
+public class ActionHandler {
     public static Object[] actionInfo;
 
     public ActionHandler(Object[] actionInfo) {
-        this.actionInfo = actionInfo;
+        ActionHandler.actionInfo = actionInfo;
     }
 
-    @Override
-    public void run() {
-
+    public void selectAction(String actioninfo) {
         switch ((String) actionInfo[2]) {
             case "tower1":
-
                 break;
             case "tower2":
                 break;
