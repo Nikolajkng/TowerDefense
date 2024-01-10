@@ -19,6 +19,7 @@ public class PlayerConnection {
     ///////////////////////////////////////////////// Server /////////////////////////////////////////////////////////////////////
     public static void hostGame(ActionEvent event) throws UnknownHostException, IOException {
         Alert hostDialog = new Alert(AlertType.INFORMATION);
+        inputIP = LocalAddressScript.getLocalAddress();
         callsign = "Host";
         System.out.println("Hosting game...");
         Server.hostNewGame();
