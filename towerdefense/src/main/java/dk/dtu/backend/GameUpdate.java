@@ -21,45 +21,42 @@ public class GameUpdate implements Runnable {
 
     @Override
     public void run() {
-        if(room != null) {
+        if (room != null) {
             try {
-            while (true) {
-                Object[] info = room.queryp(new FormalField(Integer.class),
-                        new FormalField(Integer.class),
-                        new FormalField(String.class));
-                if (info != null) {
-                    Object[] action = room.get(new FormalField(Integer.class),
+                while (true) {
+                    Object[] info = room.queryp(new FormalField(Integer.class),
                             new FormalField(Integer.class),
                             new FormalField(String.class));
-                    System.out.println("Received action: " + (String) action[2]);
+                    if (info != null) {
+                        Object[] action = room.get(new FormalField(Integer.class),
+                                new FormalField(Integer.class),
+                                new FormalField(String.class));
+                        System.out.println("Received action: " + (String) action[2]);
 
+                    }
                 }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (
-        InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } else {
             try {
-            while (true) {
-                Object[] info = room2.queryp(new FormalField(Integer.class),
-                        new FormalField(Integer.class),
-                        new FormalField(String.class));
-                if (info != null) {
-                    Object[] action = room2.get(new FormalField(Integer.class),
+                while (true) {
+                    Object[] info = room2.queryp(new FormalField(Integer.class),
                             new FormalField(Integer.class),
                             new FormalField(String.class));
-                    System.out.println("Received action: " + (String) action[2]);
+                    if (info != null) {
+                        Object[] action = room2.get(new FormalField(Integer.class),
+                                new FormalField(Integer.class),
+                                new FormalField(String.class));
+                        System.out.println("Received action: " + (String) action[2]);
 
+                    }
                 }
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
-        } catch (
-        InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
-        }
-        
+
     }
-    
 }
