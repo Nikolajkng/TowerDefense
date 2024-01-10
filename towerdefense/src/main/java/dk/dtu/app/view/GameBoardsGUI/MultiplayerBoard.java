@@ -21,6 +21,9 @@ public class MultiplayerBoard extends Application {
     public static Button towerBtn1 = new Button("Tower1 $0");
     public static Button towerBtn2 = new Button("Tower2 $0");
     public static Button towerBtn3 = new Button("Tower3 $0");
+    public static Button towerBtn4 = new Button("Tower4 $0");
+    public static Button towerBtn5 = new Button("Tower5 $0");
+    
     // Local field variables
     GridPane leftPane = new GridPane();
     GridPane rightPane = new GridPane();
@@ -38,6 +41,7 @@ public class MultiplayerBoard extends Application {
         // Stage setup
         boardStage = stage;
         boardStage.setTitle("Multiplayer Board");
+        boardStage.setResizable(false);
 
         // Application layout
         BorderPane borderPane = new BorderPane();
@@ -60,14 +64,18 @@ public class MultiplayerBoard extends Application {
         // Positions of all panes
         centerPane.setAlignment(Pos.CENTER);
         centerPane.setSpacing(100);
+        
         borderPane.setLeft(leftVbox);
         borderPane.setRight(rightVbox);
         borderPane.setCenter(centerPane);
         borderPane.setBottom(bottomHUD);
         borderPane.setTop(topBar);
+        
         bottomHUD.setAlignment(Pos.BOTTOM_CENTER);
-        bottomHUD.setSpacing(10);
 
+
+        leftVbox.setAlignment(Pos.TOP_CENTER);
+        leftVbox.setSpacing(30);
 
         // Size of boxPanes
         leftVbox.setPrefWidth(sizeX / 8 - 25);
@@ -81,15 +89,22 @@ public class MultiplayerBoard extends Application {
         boardStage.setScene(scene);
 
 
-        // Position of buttons
-        bottomHUD.getChildren().addAll(towerBtn1, towerBtn2, towerBtn3);
-        leftVbox.getChildren().addAll(btn3);
-        rightVbox.getChildren().addAll(btn4);
+        
+        // Left vbox-menu setup:
+        leftVbox.getChildren().addAll(towerBtn1, towerBtn2, towerBtn3, towerBtn4, towerBtn5);
 
-        // Button functionality
-        towerBtn1.setPrefSize(140, 100);
-        towerBtn2.setPrefSize(140, 100);
-        towerBtn3.setPrefSize(140, 100);
+        // Bottom hbox-bar setup:
+
+
+        // Button sizes
+        int towerBtnWidth = 120;
+        int towerBtnHeight = 100;
+        towerBtn1.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn2.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn3.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn4.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn5.setPrefSize(towerBtnWidth, towerBtnHeight);
+
 
         // Creating boards for two players
         leftBoard = Board.createPlayerBoard(leftPane, 100, 14, 10, 0);
