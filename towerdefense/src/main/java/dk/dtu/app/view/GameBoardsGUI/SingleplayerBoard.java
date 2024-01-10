@@ -23,7 +23,7 @@ public class SingleplayerBoard extends Application {
     int sizeY = 900;
     Button exitGame = new Button("EXIT");
     Button heartButton = createHeartButton();
-    Button moneyTracker = new Button("9969 $");
+    Button moneyTracker = new Button();
 
     Button Tower1 = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
     Button Tower2 = createRoundButton("/dk/dtu/app/view/Images/46.png");
@@ -76,7 +76,11 @@ public class SingleplayerBoard extends Application {
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
         Tower3.setPrefSize(130, 130);
 
-        moneyTracker.setStyle("-fx-background-size: cover; -fx-background-color: transparent; ");
+        moneyTracker.setText("9969");
+        moneyTracker.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/coin.png');"
+        + "-fx-background-size: cover; -fx-background-color: transparent; "
+        + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+        moneyTracker.setPrefSize(130, 130);
 
         exitGame.setStyle("-fx-background-color: #5DADE2; -fx-text-fill: white; " 
                         + "-fx-font-size: 1.5em; -fx-min-width: 150px; -fx-min-height: 25px; " 
