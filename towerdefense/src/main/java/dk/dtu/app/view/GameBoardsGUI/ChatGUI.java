@@ -43,6 +43,7 @@ public class ChatGUI {
                 // Send message to chatRoom
                 try {
                     chatRoom.put(PlayerConnection.callsign, userMessage);
+                    System.out.println("Invoked chatRoom.put ("+PlayerConnection.callsign+", "+userMessage+")");
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }

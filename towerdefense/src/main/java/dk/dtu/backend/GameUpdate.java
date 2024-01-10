@@ -42,7 +42,7 @@ public class GameUpdate implements Runnable {
                                 new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(String.class));
-                        System.out.println("Received action from Host: " + (String) actionInfo[2]);
+                        System.out.println("Received action from Host (" + (String) actionInfo[2] + ") successfully!");
                         Platform.runLater(() -> {
                             ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
                         });
@@ -63,7 +63,7 @@ public class GameUpdate implements Runnable {
                         actionInfo = hostRoom.get(new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(String.class));
-                        System.out.println("Received action from Client: " + (String) actionInfo[2]);
+                        System.out.println("Received action from Client (" + (String) actionInfo[2]+") successfully!");
                         Platform.runLater(() -> {
                             ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
                         });

@@ -19,7 +19,7 @@ public class ActionExchange {
     public static void sendAction(int x, int y, String action, String callsign) {
         if (callsign == "Host") {
         try {
-            System.out.println("X: " + x + " Y: " + y + " - Selected following: " + action);
+            System.out.println(callsign + " has selected following: " + action);
             P1P2room.put(x, y, action);
 
         } catch (InterruptedException e) {
@@ -27,8 +27,8 @@ public class ActionExchange {
         }
     } else {
          try {
-            System.out.println("X: " + x + " Y: " + y + " - Selected following: " + action);
-            P2P1room.put(x, y, action);
+           System.out.println(callsign + " has selected following: " + action);            
+           P2P1room.put(x, y, action);
 
         } catch (InterruptedException e) {
             e.printStackTrace();
