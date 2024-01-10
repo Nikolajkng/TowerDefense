@@ -46,15 +46,13 @@ public class GameUpdate implements Runnable {
                         Platform.runLater(() -> {
                             ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
                         });
-                 
-
 
                     }
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        // What the host receives from the client
+            // What the host receives from the client
         } else {
             try {
                 while (true) {
@@ -66,10 +64,9 @@ public class GameUpdate implements Runnable {
                                 new FormalField(Integer.class),
                                 new FormalField(String.class));
                         System.out.println("Received action from Client: " + (String) actionInfo[2]);
-                    Platform.runLater(() -> {
+                        Platform.runLater(() -> {
                             ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
                         });
-
 
                     }
                 }
