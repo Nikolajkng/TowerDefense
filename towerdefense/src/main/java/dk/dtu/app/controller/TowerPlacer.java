@@ -4,7 +4,7 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 
-import dk.dtu.Towers.Tower1;
+import dk.dtu.Towers.Tower1;fa
 
 public class TowerPlacer extends BattleLogic implements Runnable {
 
