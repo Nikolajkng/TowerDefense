@@ -80,9 +80,6 @@ public class MultiplayerBoard extends Application {
         Scene scene = new Scene(borderPane, sizeX, sizeY);
         boardStage.setScene(scene);
 
-        // Creating boards for two players
-        leftBoard = Board.createPlayerBoard(leftPane, 100, 14, 10, 0);
-        rightBoard = Board.createPlayerBoard(rightPane, 100, 14, 10, -1);
 
         // Position of buttons
         bottomHUD.getChildren().addAll(towerBtn1, towerBtn2, towerBtn3);
@@ -93,6 +90,10 @@ public class MultiplayerBoard extends Application {
         towerBtn1.setPrefSize(140, 100);
         towerBtn2.setPrefSize(140, 100);
         towerBtn3.setPrefSize(140, 100);
+
+        // Creating boards for two players
+        leftBoard = Board.createPlayerBoard(leftPane, 100, 14, 10, 0);
+        rightBoard = Board.createPlayerBoard(rightPane, 100, 14, 10, -1);
 
 
         // Activate button functionality in Controller
