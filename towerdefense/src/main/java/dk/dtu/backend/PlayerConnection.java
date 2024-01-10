@@ -49,7 +49,7 @@ public class PlayerConnection {
 
         // Code here:
         showTextInputDialog();
-        String URIformat = "http://" + inputIP + ":55000/Room?keep";
+        String URIformat = "tcp://" + inputIP + ":55000/Room?keep";
 
         // Connect to the room
         try {
