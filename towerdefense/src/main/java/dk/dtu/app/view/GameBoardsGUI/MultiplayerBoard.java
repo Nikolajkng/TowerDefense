@@ -37,15 +37,11 @@ public class MultiplayerBoard extends Application {
     public static Label topTitle = new Label("RABBIT HUNTER");
 
     // Local field variables
-    GridPane leftPane = new GridPane();
-    GridPane rightPane = new GridPane();
-    int sizeX = 1600;
-    int sizeY = 1000; // MyButton cell = new MyButton(0);
-    Button btn3 = new Button("333");
-    Button btn4 = new Button("4444");
-
+    private GridPane leftPane = new GridPane();
+    private GridPane rightPane = new GridPane();
+    private int sizeX = 1600;
+    private int sizeY = 1000; // MyButton cell = new MyButton(0);
     private VBox chatBox = new VBox(5);
-    private List<Label> messages = new ArrayList<>();
 
     // Program start
     @Override
