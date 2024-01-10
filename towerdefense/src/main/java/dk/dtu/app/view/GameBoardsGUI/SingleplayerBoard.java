@@ -76,12 +76,11 @@ public class SingleplayerBoard extends Application {
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
         Tower3.setPrefSize(130, 130);
 
-        exitGame.setStyle("-fx-background-color: #5DADE2; -fx-text-fill: white; "
-        + "-fx-font-size: 1.5em; -fx-min-width: 150px; -fx-min-height: 25px; "
-        + "-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        moneyTracker.setStyle("-fx-background-size: cover; -fx-background-color: transparent; ");
 
-        Tower3.setStyle("-fx-background-size: cover; -fx-background-color: transparent; ");
-        Tower3.setPrefSize(130, 130);
+        exitGame.setStyle("-fx-background-color: #5DADE2; -fx-text-fill: white; " 
+                        + "-fx-font-size: 1.5em; -fx-min-width: 150px; -fx-min-height: 25px; " 
+                        + "-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px;");
 
         //Left side bar 
         leftVbox.getChildren().addAll(heartButton, Tower1, Tower2, Tower3, moneyTracker);
@@ -116,7 +115,18 @@ public class SingleplayerBoard extends Application {
        heartButton.setStyle("-fx-background-color: transparent;"); // Set transparent background
        heartButton.setMinSize(110, 110); // Set the size of the button
 
-       return heartButton;
+       String buttonText = "25"; // Replace this with your desired text
+    javafx.scene.text.Text text = new javafx.scene.text.Text(buttonText);
+    text.setStyle("-fx-fill: white; -fx-font-size: 20px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+
+    // Create a StackPane to overlay the text over the heart shape
+    StackPane stackPane = new StackPane();
+    stackPane.getChildren().addAll(heartShape, text);
+
+    // Set the StackPane as the graphic for the button
+    heartButton.setGraphic(stackPane);
+
+    return heartButton;
 }
 
 private Button createRoundButton(String imageUrl) {
