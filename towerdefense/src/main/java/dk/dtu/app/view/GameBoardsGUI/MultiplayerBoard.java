@@ -3,6 +3,8 @@ package dk.dtu.app.view.GameBoardsGUI;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.kordamp.ikonli.javafx.Icon;
+
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import javafx.application.Application;
@@ -10,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -43,6 +46,7 @@ public class MultiplayerBoard extends Application {
     int sizeY = 1000; // MyButton cell = new MyButton(0);
     Button btn3 = new Button("333");
     Button btn4 = new Button("4444");
+    Image healthIcon = new Image(getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
 
     private VBox chatBox = new VBox(5);
     private List<Label> messages = new ArrayList<>();
@@ -97,7 +101,8 @@ public class MultiplayerBoard extends Application {
         leftVbox.getChildren().addAll(towerBtn1, towerBtn2, towerBtn3, towerBtn4, towerBtn5);
 
         // Right vbox-menu setup
-        rightVbox.getChildren().addAll(attackEnemy1btn,attackEnemy2btn,attackEnemy3btn,attackEnemy4btn,attackEnemy5btn);
+        rightVbox.getChildren().addAll(attackEnemy1btn, attackEnemy2btn, attackEnemy3btn, attackEnemy4btn,
+                attackEnemy5btn);
 
         // Chat box setup
         bottomHUD.getChildren().addAll(chatBox);
