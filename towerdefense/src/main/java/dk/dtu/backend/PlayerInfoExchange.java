@@ -29,14 +29,10 @@ public class PlayerInfoExchange {
 
     public static void receiveActions() {
         try {
-            Object[] info = playerInfoExchange.queryp(new FormalField(Integer.class), new FormalField(Integer.class),
-                    new FormalField(String.class));
-            if (info != null) {
-                while (true) {
-                    Object[] action = playerInfoExchange.get(new FormalField(Integer.class), new FormalField(Integer.class),
-                    new FormalField(String.class));
-                System.out.println("Received action: " +  (String) action[2]);
-                }
+            while (true) {
+                Object[] action = playerInfoExchange.get(new FormalField(Integer.class), new FormalField(Integer.class),
+                        new FormalField(String.class));
+                System.out.println("Received action: " + (String) action[2]);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
