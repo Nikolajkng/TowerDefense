@@ -23,7 +23,6 @@ public class Chat implements Runnable {
         while(true){
         try {
             RemoteSpace chatRoom = new RemoteSpace("tcp://" + PlayerConnection.inputIP + ":55000/chatRoom?keep");
-            System.out.println(PlayerConnection.inputIP);
             if(callsign == "Host"){
                 while(true){
                     String[] message = (String[]) chatRoom.get(new ActualField("client"), new FormalField(String.class));
