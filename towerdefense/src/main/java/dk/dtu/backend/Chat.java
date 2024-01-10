@@ -20,6 +20,7 @@ public class Chat implements Runnable {
 
     @Override
     public void run() {
+        while(true){
         try {
             RemoteSpace chatRoom = new RemoteSpace("tcp://" + PlayerConnection.inputIP + ":55000/chatRoom?keep");
             if(callsign == "Host"){
@@ -45,5 +46,5 @@ public class Chat implements Runnable {
         }
         System.out.println("Chat started");
     }
-
+    }
 }
