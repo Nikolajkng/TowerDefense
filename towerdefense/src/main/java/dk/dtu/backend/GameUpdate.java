@@ -48,7 +48,7 @@ public class GameUpdate implements Runnable {
                             new FormalField(Integer.class),
                             new FormalField(String.class));
                     if (info != null) {
-                        Object[] action = hostRoom.get(new FormalField(Integer.class),
+                        Object[] action = hostRoom.query(new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(String.class));
                         System.out.println("Received action: " + (String) action[2]);
