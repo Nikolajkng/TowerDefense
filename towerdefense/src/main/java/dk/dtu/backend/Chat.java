@@ -21,7 +21,7 @@ public class Chat implements Runnable {
     @Override
     public void run() {
         try {
-            RemoteSpace chatRoom = new RemoteSpace("tcp://" + LocalAddressScript.getLocalAddress() + ":55000/chatRoom?keep");
+            RemoteSpace chatRoom = new RemoteSpace("tcp://" + PlayerConnection.inputIP + ":55000/chatRoom?keep");
             if(callsign == "Host"){
                 while(true){
                     String[] message = (String[]) chatRoom.get(new ActualField("client"), new FormalField(String.class));
