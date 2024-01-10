@@ -1,9 +1,11 @@
-package dk.dtu.app.view;
+package dk.dtu.app.view.MenuGUI;
 
 import java.net.MalformedURLException;
 
 import org.jspace.SequentialSpace;
 
+import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
+import dk.dtu.app.view.GameBoardsGUI.SingleplayerBoard;
 import javafx.scene.layout.StackPane;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -54,7 +56,7 @@ public class Menu extends Application{
 
 
         // Changed this one - it works
-        Image image = new Image(getClass().getResource("/dk/dtu/app/view/billeder/TowerDefensev3.png").toExternalForm());
+        Image image = new Image(getClass().getResource("/dk/dtu/app/view/Images/TowerDefensev3.png").toExternalForm());
 
         // Rest of your code remains the same
         ImageView imageView = new ImageView(image);

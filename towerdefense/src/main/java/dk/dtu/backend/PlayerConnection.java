@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 
 import org.jspace.*;
-import dk.dtu.app.view.*;
+import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
+import dk.dtu.app.view.MenuGUI.MultiplayerMenu;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
@@ -31,7 +32,6 @@ public class PlayerConnection {
             System.out.println("Player 2 has now joined the room");
 
             // Start game - if player 2 has joined
-            System.out.println("Starting game...");
             gameStart();
             PlayerInfoExchange.start(Server.room_uri);
 
@@ -72,7 +72,7 @@ public class PlayerConnection {
 
 
     private static void gameStart(){
-        System.out.println("Game starting...");
+        System.out.println("Game has started!");
         // Close the current MainMenu stage
         MultiplayerBoard multiplayerBoard = new MultiplayerBoard(Server.room);
         multiplayerBoard.start(MultiplayerBoard.boardStage);
