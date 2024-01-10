@@ -1,6 +1,7 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
-import org.kordamp.ikonli.javafx.FontIcon;
+import java.util.ArrayList;
+import java.util.List;
 
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
@@ -36,6 +37,11 @@ public class MultiplayerBoard extends Application {
     int sizeY = 1000; // MyButton cell = new MyButton(0);
     Button btn3 = new Button("333");
     Button btn4 = new Button("4444");
+    public static Button towerBtn4 = new Button("Tower4 $0");
+    public static Button towerBtn5 = new Button("Tower5 $0");
+    private VBox chatBox = new VBox(5);
+    private List<Label> messages = new ArrayList<>();
+    
 
     // Program start
     @Override
@@ -44,6 +50,7 @@ public class MultiplayerBoard extends Application {
         // Stage setup
         boardStage = stage;
         boardStage.setTitle("Multiplayer Board");
+        boardStage.setResizable(false);
 
         // Application layout
         BorderPane borderPane = new BorderPane();
@@ -64,19 +71,46 @@ public class MultiplayerBoard extends Application {
         // Positions of all panes
         centerPane.setAlignment(Pos.CENTER);
         centerPane.setSpacing(100);
+        
         borderPane.setLeft(leftVbox);
         borderPane.setRight(rightVbox);
         borderPane.setCenter(centerPane);
         borderPane.setBottom(bottomHUD);
         borderPane.setTop(topBar);
         bottomHUD.setAlignment(Pos.BOTTOM_CENTER);
-        bottomHUD.setSpacing(10);
+        leftVbox.setAlignment(Pos.TOP_CENTER);
+        leftVbox.setSpacing(30);
 
         // Size of boxPanes
         leftVbox.setPrefWidth(sizeX / 8 - 25);
         rightVbox.setPrefWidth(sizeX / 8 - 25);
         bottomHUD.setPrefHeight(sizeY / 8 + 25);
         topBar.setPrefHeight(sizeY / 8 + 25);
+
+                
+        // Left vbox-menu setup:
+        leftVbox.getChildren().addAll(towerBtn1, towerBtn2, towerBtn3, towerBtn4, towerBtn5);
+
+        // Chatbox:
+        Label msg1 = new Label("hej");
+        Label msg2 = new Label("farvel");
+        
+        bottomHUD.getChildren().addAll(chatBox);
+        chatBox.getChildren().addAll(msg1, msg2);
+        chatBox.setPrefSize(400, 100);
+        chatBox.setStyle("-fx-background-color: #D7E0E0");
+
+
+
+        // Button sizes
+        int towerBtnWidth = 120;
+        int towerBtnHeight = 100;
+        towerBtn1.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn2.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn3.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn4.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn5.setPrefSize(towerBtnWidth, towerBtnHeight);
+
 
         // Scene setup
         Scene scene = new Scene(borderPane, sizeX, sizeY);
@@ -85,7 +119,7 @@ public class MultiplayerBoard extends Application {
         // Topbar alignment
         topBar.setPrefSize(140, 100);
         topBar.getChildren().addAll(healthP1, topTitle, healthP2);
-        topBar.setSpacing(300);
+        topBar.setSpacing(150);
         healthP1.setAlignment(Pos.BOTTOM_LEFT);
         healthP2.setAlignment(Pos.BOTTOM_RIGHT);
         topBar.setAlignment(Pos.CENTER);
