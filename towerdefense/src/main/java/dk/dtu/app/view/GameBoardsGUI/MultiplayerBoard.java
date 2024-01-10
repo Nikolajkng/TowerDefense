@@ -13,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -106,8 +107,13 @@ public class MultiplayerBoard extends Application {
 
         // Chat box setup
         Button sendBtn = new Button("Send Message");
-        bottomHUD.getChildren().addAll(chatBox,sendBtn);
-        ChatGUI.createChatBox(chatBox, sendBtn);
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(chatBox);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPrefHeight(100);
+        scrollPane.setStyle("-fx-background-color: #D7E0E0");
+        bottomHUD.getChildren().addAll(scrollPane,sendBtn);
+        ChatGUI.createChatBox(scrollPane, chatBox, sendBtn);
 
         // Button sizes
         int towerBtnWidth = 120;
