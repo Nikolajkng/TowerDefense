@@ -9,15 +9,17 @@ public class ActionHandler {
 
     public static void selectAction(Object[] actioninfo) {
 
-        if(actioninfo == null){
-            System.out.println("null");
-        } else {
-            System.out.println("not null");
-        }
 
         int x = (int) actionInfo[0];
         int y = (int) actionInfo[1];
         String action = (String) actionInfo[2];
+        System.out.println("-----------");
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println(action);
+        System.out.println("-----------");
+
+
         switch (action) {
             case "tower1":
                 board[x][y].setText("X");
