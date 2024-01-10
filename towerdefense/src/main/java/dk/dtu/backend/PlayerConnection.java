@@ -13,9 +13,12 @@ import javafx.scene.control.Alert.AlertType;
 
 public class PlayerConnection {
     public static String inputIP = "";
+    public static String callsign;
+
 
     public static void hostGame(ActionEvent event) throws UnknownHostException, IOException {
         Alert hostDialog = new Alert(AlertType.INFORMATION);
+        callsign = "Host";
         System.out.println("Hosting game...");
         Server.hostNewGame();
         hostDialog.setTitle("Hosting Game");
@@ -24,17 +27,17 @@ public class PlayerConnection {
         hostDialog.showAndWait();
         try {
 
-            Server.room.put("join", "player1");
+            Server.gameRoom.put("join", "player1");
             System.out.println("Player 1 has joined the room");
 
              // Waiting on player 2 to join room
-            Server.room.get(new ActualField ("join"), new ActualField("player2"));
+            Server.gameRoom.get(new ActualField ("join"), new ActualField("player2"));
             System.out.println("Player 2 has now joined the room");
 
             // Start game - if player 2 has joined
             gameStart();
-            PlayerInfoExchange.start(Server.room_uri);
-            new Thread(new GameUpdate(Server.room_uri, Server.room)).start();
+            PlayerInfoExchange.start(Server.P1P2_uri, Server.P2P1_uri);
+            new Thread(new GameUpdate(Server.gameRoom_uri, Server.P2P1room)).start();
 
 
         } catch (InterruptedException e) {
@@ -47,21 +50,29 @@ public class PlayerConnection {
     
     public static void joinGame(ActionEvent event) throws InterruptedException {
         System.out.println("Joining game...");
+        callsign = "client";
 
         // Code here:
         showTextInputDialog();
-        String URIformat = "tcp://" + inputIP + ":55000/Room?keep";
-
+        String gameRoom_uri = "tcp://" + inputIP + ":55000/GameRoom?keep";
+        String P1P2_uri = "tcp://" + inputIP + ":55000/P1P2room?keep";
+        String P2P1_uri = "tcp://" + inputIP + ":55000/P2P1room?keep";
+       
         // Connect to the room
         try {
-            System.out.println("Connecting to room at: " + URIformat);
-            RemoteSpace myRoom = new RemoteSpace(URIformat);
-            myRoom.put("join", "player2");
+            System.out.println("Connecting to room at: " + gameRoom_uri);
+            RemoteSpace gameRoom = new RemoteSpace(gameRoom_uri);
+            gameRoom.put("join", "player2");
+
+            // Create two remoteSpaces for message passing between player 1 and player 2
+            RemoteSpace P1P2room = new RemoteSpace(P1P2_uri);
+            RemoteSpace P2P1room = new RemoteSpace(P2P1_uri);
+
 
             // Start game
             gameStart();
-            PlayerInfoExchange.start(URIformat);
-            new Thread(new GameUpdate(URIformat, myRoom)).start();
+            PlayerInfoExchange.start(P1P2_uri, P2P1_uri);
+            new Thread(new GameUpdate(gameRoom_uri, P1P2room)).start();
 
 
 
