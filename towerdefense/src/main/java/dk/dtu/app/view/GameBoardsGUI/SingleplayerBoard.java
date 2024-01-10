@@ -24,11 +24,11 @@ public class SingleplayerBoard extends Application {
     int sizeX = 1400;
     int sizeY = 900;
     Button exitGame = new Button("EXIT");
-    Button heartButton = createHeartButton();
+    Button heartButton = new Button();
     Button moneyTracker = new Button();
 
     Button Tower1 = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
-    Button Tower2 = createRoundButton("/dk/dtu/app/view/Images/46.png");
+    Button Tower2 = createRoundButton("/dk/dtu/app/view/Images/giphy.gif");
     Button Tower3 = createRoundButton("/dk/dtu/app/view/Images/SYKT7E.gif");
 
     static MyButton placedTowerbButton;
@@ -68,7 +68,7 @@ public class SingleplayerBoard extends Application {
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
         Tower1.setPrefSize(130, 130);
 
-        Tower2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/46.png');"
+        Tower2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
         Tower2.setPrefSize(130, 130);
@@ -77,6 +77,13 @@ public class SingleplayerBoard extends Application {
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
         Tower3.setPrefSize(130, 130);
+
+        heartButton.setText("25");
+        heartButton.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/heart.png');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: cover; -fx-background-color: transparent; "
+        + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+        heartButton.setPrefSize(140, 140);
 
         moneyTracker.setText("9969");
         moneyTracker.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/coin.png');"
@@ -99,7 +106,7 @@ public class SingleplayerBoard extends Application {
         leftVbox.getChildren().addAll(heartButton, Tower1, Tower2, Tower3, moneyTracker);
         VBox.setMargin(Tower1, new Insets(10)); // Optional: Add margin around the button for better visibility
         leftVbox.setAlignment(Pos.TOP_CENTER);
-        VBox.setMargin(heartButton, new javafx.geometry.Insets(40, 0, 0, 0));
+        VBox.setMargin(heartButton, new javafx.geometry.Insets(20, 0, 0, 0));
         VBox.setMargin(Tower1, new javafx.geometry.Insets(45, 0, 0, 0));
         VBox.setMargin(Tower2, new javafx.geometry.Insets(45, 0, 0, 0));
         VBox.setMargin(Tower3, new javafx.geometry.Insets(45, 0, 0, 0));
@@ -111,36 +118,6 @@ public class SingleplayerBoard extends Application {
 
         Board.createPlayerBoard(pane, 86, 14, 10, 0);
     }
-
-    private Button createHeartButton() {
-       // Create an SVG path representing a heart shape
-       SVGPath heartShape = new SVGPath();
-       heartShape.setContent("M 10,30 "
-                           + "A 20,20 0,0,1 50,30 "
-                           + "A 20,20 0,0,1 90,30 "
-                           + "Q 90,60 50,90 "
-                           + "Q 10,60 10,30 Z");
-       heartShape.setStyle("-fx-fill: red; -fx-stroke: red; "); // Customize the color
-    
-       // Create a button and set the heart-shaped background
-       Button heartButton = new Button();
-       heartButton.setGraphic(heartShape);
-       heartButton.setStyle("-fx-background-color: transparent;"); // Set transparent background
-       heartButton.setMinSize(110, 110); // Set the size of the button
-
-       String buttonText = "25"; // Replace this with your desired text
-    javafx.scene.text.Text text = new javafx.scene.text.Text(buttonText);
-    text.setStyle("-fx-fill: white; -fx-font-size: 20px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
-
-    // Create a StackPane to overlay the text over the heart shape
-    StackPane stackPane = new StackPane();
-    stackPane.getChildren().addAll(heartShape, text);
-
-    // Set the StackPane as the graphic for the button
-    heartButton.setGraphic(stackPane);
-
-    return heartButton;
-}
 
 private Button createRoundButton(String imageUrl) {
    // Create a circle to be used as the button's shape
