@@ -3,15 +3,14 @@ package dk.dtu.app.controller;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 
 public class ActionHandler {
-    public static Object[] actionInfo;
     public static MyButton[][] board;
 
 
     public static void selectAction(Object[] actioninfo) {
         System.out.println("I am inside ActionHandler");
-        int x = (int) actionInfo[0];
-        int y = (int) actionInfo[1];
-        String action = (String) actionInfo[2];
+        int x = (int) actioninfo[0];
+        int y = (int) actioninfo[1];
+        String action = (String) actioninfo[2];
         System.out.println("-----------");
         System.out.println(x);
         System.out.println(y);
