@@ -4,7 +4,6 @@ package dk.dtu.app.controller;
 public class ActionHandler {
 
     public static void selectAction(Object[] actioninfo, MyButton[][] board) {
-        System.out.println("I am inside ActionHandler");
         int x = (int) actioninfo[0];
         int y = (int) actioninfo[1];
         String action = (String) actioninfo[2];

@@ -1,5 +1,6 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
+import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.view.MenuGUI.Menu;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -111,7 +112,7 @@ public class SingleplayerBoard extends Application {
         rightVbox.setAlignment(Pos.BOTTOM_CENTER);
         VBox.setMargin(exitGame, new javafx.geometry.Insets(0, 0, 80, 0));
 
-        Board.createPlayerBoard(pane, 86, 14, 10, 0);
+        BoardController.createPlayerBoard(pane, 86, 14, 10, 0);
     }
 
    // Create a circle to be used as the button's shape

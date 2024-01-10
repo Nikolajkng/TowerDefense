@@ -40,10 +40,13 @@ public class Server {
         P1P2_uri = "tcp://"+ ip + ":" + port + "/P1P2room?keep";
         P2P1_uri = "tcp://"+ ip + ":" + port + "/P2P1room?keep";
         chatRoom_uri =  "tcp://"+ ip + ":" + port + "/ChatRoom?keep";
+
+        System.out.println("------ URI info ------");
         System.out.println("gameRoom URI: " + gameRoom_uri);
         System.out.println("P1P2room URI: " + P1P2_uri);
         System.out.println("P2P1room URI: " + P2P1_uri);
-
+        System.out.println("ChatRoom URI: " + chatRoom_uri);
+        System.out.println("---------------------");
     }
 
 }

@@ -34,7 +34,7 @@ public class PlayerConnection {
 
             // Waiting on player 2 to join room
             Server.gameRoom.get(new ActualField("join"), new ActualField("player2"));
-            System.out.println("Player 2 has now joined the room");
+            System.out.println("Player 2 has joined the room");
 
             // Start game - if player 2 has joined
             gameStart();
@@ -53,7 +53,7 @@ public class PlayerConnection {
         System.out.println("Joining game...");
         callsign = "Client";
 
-        // Code here:
+        // Retrieves the IP address of the host:
         showTextInputDialog();
         String gameRoom_uri = "tcp://" + inputIP + ":55000/GameRoom?keep";
         String P1P2_uri = "tcp://" + inputIP + ":55000/P1P2room?keep";
@@ -88,7 +88,7 @@ public class PlayerConnection {
         MultiplayerMenu.boardStage.close();
         MultiplayerBoard.boardStage.show();
     }
-///////////////////////////////////////////////////// Function that captures clients inputIP (host ip) /////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// Function that retrieves clients inputIP (host ip) /////////////////////////////////////////////////////////////
 
     private static void showTextInputDialog() {
         TextInputDialog dialog = new TextInputDialog();

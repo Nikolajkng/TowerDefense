@@ -5,6 +5,7 @@ import java.net.UnknownHostException;
 
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
+import dk.dtu.app.controller.BoardLogic.BoardController;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -165,8 +166,8 @@ public class MultiplayerBoard extends Application {
         rightSide.setMaxHeight(40);
 
         // Creating boards for two players
-        leftBoard = Board.createPlayerBoard(leftPane, 100, 14, 10, 0);
-        rightBoard = Board.createPlayerBoard(rightPane, 100, 14, 10, -1);
+        leftBoard = BoardController.createPlayerBoard(leftPane, 100, 14, 10, 0);
+        rightBoard = BoardController.createPlayerBoard(rightPane, 100, 14, 10, -1);
 
         // Activate button functionality in Controller
         TowerSelection.selectTower();

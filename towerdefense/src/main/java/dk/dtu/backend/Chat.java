@@ -2,14 +2,11 @@ package dk.dtu.backend;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.rmi.Remote;
-
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.RemoteSpace;
 
 import dk.dtu.app.view.GameBoardsGUI.ChatGUI;
-import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
