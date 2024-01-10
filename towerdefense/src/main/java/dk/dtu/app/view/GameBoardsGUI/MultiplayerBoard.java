@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
+import dk.dtu.app.controller.BoardLogic.ChatController;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -108,7 +109,7 @@ public class MultiplayerBoard extends Application {
         VBox chatModule = new VBox(5);
         ScrollPane scrollPane = new ScrollPane();
         VBox chatBox = new VBox(5);
-        Button sendBtn = new Button("Send Message");
+        Button sendBtn = new Button("Send");
         TextField chatField = new TextField();
         scrollPane.setContent(chatBox);
         scrollPane.setFitToWidth(true);
@@ -118,7 +119,7 @@ public class MultiplayerBoard extends Application {
         // Position of chat panes
         bottomHUD.getChildren().addAll(chatModule);
         chatModule.getChildren().addAll(scrollPane, new HBox(chatField, sendBtn));
-        ChatGUI.createChatBox(scrollPane, chatBox, sendBtn, chatField);
+        ChatController.createChatBox(scrollPane, chatBox, sendBtn, chatField);
 
         // Button sizes
         int towerBtnWidth = 120;

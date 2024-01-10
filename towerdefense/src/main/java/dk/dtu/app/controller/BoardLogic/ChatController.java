@@ -1,4 +1,4 @@
-package dk.dtu.app.view.GameBoardsGUI;
+package dk.dtu.app.controller.BoardLogic;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -15,7 +15,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-public class ChatGUI {
+public class ChatController {
     private static int messageCount = 0;
     public static List<Label> messageList = new ArrayList<>();
     private static RemoteSpace chatRoom;
@@ -23,6 +23,37 @@ public class ChatGUI {
     public static void createChatBox(ScrollPane scrollPane, VBox chatBox, Button sendBtn, TextField chatField)
             throws UnknownHostException, IOException {
         chatRoom = new RemoteSpace("tcp://" + PlayerConnection.inputIP + ":55000/ChatRoom?keep");
+
+
+
+        // Added feature: Press Enter to send message
+        chatField.setOnAction(e -> {
+            if (!chatField.getText().isEmpty()) {
+                // User message input
+                String userMessage = chatField.getText();
+                messageList.add(new Label(PlayerConnection.callsign + ": " + userMessage));
+                messageList.get(messageCount).setStyle("-fx-background-color: #ADDFFF");
+                chatBox.getChildren().addAll(messageList.get(messageCount));
+                messageCount++;
+
+                // Auto clear Textfield after user send message
+                chatField.setText("");
+
+                // Auto scroll to bottom
+                scrollPane.setVvalue(1.0);
+
+                // Send message to chatRoom
+                try {
+                    chatRoom.put(PlayerConnection.callsign, userMessage);
+                    System.out.println("Invoked chatRoom.put("+PlayerConnection.callsign+", "+userMessage+")");
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+
+            } else {
+                System.out.println("Cannot send empty message");
+            }
+        });
 
         // Chat box content: When player click "Send Message"
         sendBtn.setOnAction(e -> {
@@ -43,13 +74,13 @@ public class ChatGUI {
                 // Send message to chatRoom
                 try {
                     chatRoom.put(PlayerConnection.callsign, userMessage);
-                    System.out.println("Invoked chatRoom.put ("+PlayerConnection.callsign+", "+userMessage+")");
+                    System.out.println("HoInvoked chatRoom.put("+PlayerConnection.callsign+", "+userMessage+")");
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
 
             } else {
-                System.out.println("Please enter a message");
+                System.out.println("cannot send empty message");
             }
         });
 
