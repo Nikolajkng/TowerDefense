@@ -1,11 +1,15 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -25,13 +29,12 @@ public class MultiplayerBoard extends Application {
     public static Button towerBtn5 = new Button("Tower5 $0");
     
     // Local field variables
-    GridPane leftPane = new GridPane();
-    GridPane rightPane = new GridPane();
-    int sizeX = 1600;
-    int sizeY = 1000; // MyButton cell = new MyButton(0);
-    Button btn3 = new Button("333");
-    Button btn4 = new Button("4444");
-
+    private GridPane leftPane = new GridPane();
+    private GridPane rightPane = new GridPane();
+    private int sizeX = 1600;
+    private int sizeY = 1000; 
+    private VBox chatBox = new VBox(5);
+    private List<Label> messages = new ArrayList<>();
     
 
     // Program start
@@ -70,10 +73,7 @@ public class MultiplayerBoard extends Application {
         borderPane.setCenter(centerPane);
         borderPane.setBottom(bottomHUD);
         borderPane.setTop(topBar);
-        
         bottomHUD.setAlignment(Pos.BOTTOM_CENTER);
-
-
         leftVbox.setAlignment(Pos.TOP_CENTER);
         leftVbox.setSpacing(30);
 
@@ -83,17 +83,19 @@ public class MultiplayerBoard extends Application {
         bottomHUD.setPrefHeight(sizeY/8 + 25);
         topBar.setPrefHeight(sizeY/8 + 25);
 
-        
-        // Scene setup
-        Scene scene = new Scene(borderPane, sizeX, sizeY);
-        boardStage.setScene(scene);
-
-
-        
+                
         // Left vbox-menu setup:
         leftVbox.getChildren().addAll(towerBtn1, towerBtn2, towerBtn3, towerBtn4, towerBtn5);
 
-        // Bottom hbox-bar setup:
+        // Chatbox:
+        Label msg1 = new Label("hej");
+        Label msg2 = new Label("farvel");
+        
+        bottomHUD.getChildren().addAll(chatBox);
+        chatBox.getChildren().addAll(msg1, msg2);
+        chatBox.setPrefSize(400, 100);
+        chatBox.setStyle("-fx-background-color: #D7E0E0");
+
 
 
         // Button sizes
@@ -104,6 +106,11 @@ public class MultiplayerBoard extends Application {
         towerBtn3.setPrefSize(towerBtnWidth, towerBtnHeight);
         towerBtn4.setPrefSize(towerBtnWidth, towerBtnHeight);
         towerBtn5.setPrefSize(towerBtnWidth, towerBtnHeight);
+
+
+        // Scene setup
+        Scene scene = new Scene(borderPane, sizeX, sizeY);
+        boardStage.setScene(scene);
 
 
         // Creating boards for two players
