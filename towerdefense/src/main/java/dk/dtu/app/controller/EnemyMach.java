@@ -2,7 +2,7 @@ package dk.dtu.app.controller;
 
 import org.jspace.SequentialSpace;
 
-import dk.dtu.Enemies.Enemy1;
+import dk.dtu.Enemies.Enemy_Bunny;
 
 public class EnemyMach extends BattleLogic implements Runnable {
 
@@ -21,7 +21,7 @@ public class EnemyMach extends BattleLogic implements Runnable {
         for (int i = 0; i < numOfDifferentEnemies; i++) {
 
             for (int j = 0; j < enemies[i]; j++) {
-                new Thread(new Enemy1(super.getStartingCoordinateX(), super.getStartingCoordinateY(), space, j)).start();
+                new Thread(new Enemy_Bunny(super.getStartingCoordinateX(), super.getStartingCoordinateY(), space, j)).start();
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {}

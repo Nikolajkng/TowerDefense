@@ -1,4 +1,4 @@
-package dk.dtu.Figures;
+package dk.dtu.app.view.Figures;
 
 import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
