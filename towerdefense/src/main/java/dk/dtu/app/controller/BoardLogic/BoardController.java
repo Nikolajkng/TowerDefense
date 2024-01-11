@@ -64,7 +64,7 @@ public class BoardController {
                             // "if wish to place tower, then execute Tower.placeTower action"
                             if(true){
                                 Tower.placeTower(finalX, finalY, board, action);
-                                ActionExchange.sendAction(finalX, finalY, action,callsign);
+                                ActionExchange.sendAction(finalX, finalY, action, callsign);
                             }
                         } else {
                             System.out.println("Clicked on illegal tile");
