@@ -3,6 +3,8 @@ package dk.dtu.app.controller.BoardLogic;
 import dk.dtu.app.controller.*;
 import dk.dtu.app.controller.Tower.ActionType;
 import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
+import dk.dtu.app.view.Figures.PlaceTower;
+import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.ActionSender;
 import javafx.event.ActionEvent;
@@ -68,10 +70,12 @@ public class BoardController {
                         if(board[finalX][finalY].getValue() == pathValue){
                             Enemy1_BunnyGUI.placeBunny(cell);
                         }
-                        if(board[finalX][finalY].getValue() != illegalValue || board[finalX][finalY].getValue() != pathValue){
+                        if(board[finalX][finalY].getValue() != -2){
+                            
                             clickInfo(board, finalX, finalY);
                             // "if wish to place tower, then execute Tower.placeTower action"
                             if(true){
+                                Tower1GUI.placePlant1(cell);
                                 Tower.placeTower(finalX, finalY, board, type);
                                 ActionSender.sendAction(finalX, finalY, type, callsign);
                             }

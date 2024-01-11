@@ -1,11 +1,15 @@
 package dk.dtu.app.view.Figures;
 
+import dk.dtu.app.controller.MyButton;
 import javafx.application.Application;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class Tower1GUI extends Application {
+
     public static Button plant = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
 
     @Override
@@ -42,6 +46,13 @@ public class Tower1GUI extends Application {
         
         return roundButton;
     }
-
     
+    public static void placePlant1(MyButton clickedButton) {
+        Circle plant = new Circle(25);
+
+        Image plantGif = new Image("/dk/dtu/app/view/Images/ZdPH.gif",false);
+        plant.setFill(new ImagePattern(plantGif));
+
+        clickedButton.setGraphic(plant);
+    }
 }
