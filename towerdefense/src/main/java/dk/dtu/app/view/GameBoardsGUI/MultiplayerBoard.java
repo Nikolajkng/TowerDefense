@@ -40,12 +40,11 @@ public class MultiplayerBoard extends Application {
     public static Label healthP2 = new Label("100");
     public static Label topTitle = new Label("RABBIT HUNTER");
     public static HBox bottomHUD = new HBox();
-
+    public static final int sizeX = 1400;
+    private static final int sizeY = 900; 
     // Local field variables
     private GridPane leftPane = new GridPane();
     private GridPane rightPane = new GridPane();
-    private int sizeX = 1400;
-    private int sizeY = 900; 
     private Image healthIcon = new Image(getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
     private ImageView showHealthIcon1 = new ImageView(healthIcon);
     private ImageView showHealthIcon2 = new ImageView(healthIcon);
