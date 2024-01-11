@@ -9,11 +9,11 @@ import org.jspace.RemoteSpace;
 import dk.dtu.app.controller.BoardLogic.ChatController;
 import javafx.application.Platform;
 
-public class ChatServer implements Runnable {
+public class ChatReceiver implements Runnable {
     String callsign;
     RemoteSpace chatRoom;
 
-    public ChatServer(String callsign) throws UnknownHostException, IOException {
+    public ChatReceiver(String callsign) throws UnknownHostException, IOException {
         this.callsign = callsign;
         this.chatRoom = new RemoteSpace("tcp://" + PlayerConnection.inputIP + ":55000/ChatRoom?keep");
 
@@ -39,8 +39,6 @@ public class ChatServer implements Runnable {
                     System.out.println("Received message from Client: " + (String) message[1]);
                     Platform.runLater(() -> {
                         ChatController.updateChatBox((String) message[1]);
-                        // ChatController.messageList.add(new Label("Player 2: " + (String)
-                        // message[1]));
                     });
                 }
             } else if (callsign == "Client") {
@@ -49,16 +47,13 @@ public class ChatServer implements Runnable {
                     System.out.println("Received message from Host: " + (String) message[1]);
                     Platform.runLater(() -> {
                         ChatController.updateChatBox((String) message[1]);
-
-                        // ChatController.messageList.add(new Label("Player 1: " + (String)
-                        // message[1]));
                     });
                 }
             }
 
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("listenForMessages Error: Could not receive message");
+
         }
-        System.out.println("Chat started");
     }
 }
