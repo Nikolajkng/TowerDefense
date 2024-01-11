@@ -2,14 +2,16 @@ package dk.dtu.app.controller;
 
 import org.jspace.ActualField;
 import org.jspace.FormalField;
-import org.jspace.SequentialSpace;
+import org.jspace.Space;
 
 import dk.dtu.Towers.Tower1;
 
-public class TowerPlacer extends BattleLogic implements Runnable {
+public class TowerPlacer implements Runnable {
 
-    public TowerPlacer(SequentialSpace space) {
-        super(space);
+    Space space;
+
+    public TowerPlacer(Space space) {
+        this.space = space;
     }
 
     @Override

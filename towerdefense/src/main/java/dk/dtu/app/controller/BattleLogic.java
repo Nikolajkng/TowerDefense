@@ -1,27 +1,20 @@
 package dk.dtu.app.controller;
 
-import org.jspace.SequentialSpace;
+import org.jspace.Space;
 
 public class BattleLogic {
-    SequentialSpace space;
+    private Space space;
     private int startingCoordinateX;
     private int startingCoordinateY;
 
-    public int getStartingCoordinateX() {
-        return startingCoordinateX;
-    }
-
-    public int getStartingCoordinateY() {
-        return startingCoordinateY;
-    }
-
-    public BattleLogic(SequentialSpace space) {
+    public BattleLogic(Space space) {
         this.space = space;
         new Thread( new TowerPlacer(space));
+        System.out.println("Started battle logik");
     }
 
     public void waves(int[] enemies) {
-        new Thread( new EnemyMach(space, enemies)).start();
+        new Thread( new EnemyMach(space, enemies, startingCoordinateX, startingCoordinateY)).start();
     }
 
 }

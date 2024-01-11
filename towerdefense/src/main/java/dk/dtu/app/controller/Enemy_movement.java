@@ -5,8 +5,8 @@ import org.jspace.FormalField;
 import org.jspace.Space;
 
 public class Enemy_movement {
-    private int coordinateX;
-    private int coordinateY;
+    protected int coordinateX;
+    protected int coordinateY;
     protected Space space;
     protected int me;
 
