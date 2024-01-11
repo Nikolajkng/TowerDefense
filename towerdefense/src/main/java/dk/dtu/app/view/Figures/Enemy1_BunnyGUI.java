@@ -9,7 +9,7 @@ import javafx.scene.shape.Circle;
 
 public class Enemy1_BunnyGUI {
     public static void placeBunny(MyButton clickedButton) {
-        Circle bunny = new Circle(30);
+        Circle bunny = new Circle(25);
 
         Image bunnyGif = new Image("/dk/dtu/app/view/Images/bunny.gif",false);
         bunny.setFill(new ImagePattern(bunnyGif));
