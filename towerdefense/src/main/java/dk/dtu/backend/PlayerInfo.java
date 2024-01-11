@@ -8,9 +8,7 @@ public class PlayerInfo {
     public static void lifeTracker(){
 
         for (Life = 10; Life < 0; Life++){
-            if (){
 
-            }
 
         }
         
@@ -19,9 +17,7 @@ public class PlayerInfo {
 
     public static void moneyTracker(){
         for (Money = 100; Money < 0; Money++){
-            if (){
-                
-            }
+
 
          //return Money;
         }
