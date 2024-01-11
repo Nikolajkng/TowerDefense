@@ -12,10 +12,17 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 
 public class PlayerConnection {
+    // Global fields
     public static String inputIP = "";
     public static String callsign;
 
-    ///////////////////////////////////////////////// Server /////////////////////////////////////////////////////////////////////
+    // Local fields
+    protected static Thread hostActionListenerThread;
+    protected static Thread hostChatListenerThread;
+    protected static Thread clientActionListenerThread;
+    protected static Thread clientChatListenerThread;
+
+    ///////////////////////////////////////////////// HOST /////////////////////////////////////////////////////////////////////
     public static void hostGame(ActionEvent event) throws UnknownHostException, IOException {
         Alert hostDialog = new Alert(AlertType.INFORMATION);
         inputIP = LocalAddressScript.getLocalAddress();
@@ -36,10 +43,12 @@ public class PlayerConnection {
             System.out.println("Player 2 has joined the room");
 
             // Start game - if player 2 has joined
-            gameStart();
+            showMultiPlayerBoard();
             ActionSender.start(Server.P1P2_uri, Server.P2P1_uri);
-            new Thread(new ActionReceiver(Server.P2P1room)).start();
-            new Thread(new ChatServer(callsign)).start();
+            hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room));
+            hostChatListenerThread = new Thread(new ChatReceiver(callsign));
+            hostActionListenerThread.start();
+            hostChatListenerThread.start();
 
         } catch (InterruptedException e) {
             System.out.println("Error: Player 2 did not join the room");
@@ -47,8 +56,9 @@ public class PlayerConnection {
         }
 
     }
-    
-/////////////////////////////////////////////////////// Client ///////////////////////////////////////////////////////////
+
+
+    /////////////////////////////////////////////////////// CLIENT ///////////////////////////////////////////////////////////
     public static void joinGame(ActionEvent event) throws InterruptedException {
         System.out.println("Joining game...");
         callsign = "Client";
@@ -70,18 +80,23 @@ public class PlayerConnection {
             //RemoteSpace P2P1room = new RemoteSpace(P2P1_uri);
 
             // Start game
-            gameStart();
+            showMultiPlayerBoard();
             ActionSender.start(P1P2_uri, P2P1_uri);
-            new Thread(new ActionReceiver(P1P2_uri, P1P2room)).start();
-            new Thread(new ChatServer(callsign)).start();
+            clientActionListenerThread = new Thread(new ActionReceiver(P1P2_uri, P1P2room));
+            clientChatListenerThread = new Thread(new ChatReceiver(callsign));
+            clientActionListenerThread.start();
+            clientChatListenerThread.start();
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
+            
         }
     }
 
 ///////////////////////////////////////////////////// Start game by opening multiplayer board for both player /////////////////////////////////////////////////////////////
-    private static void gameStart() throws UnknownHostException, IOException {
+    private static void showMultiPlayerBoard() throws UnknownHostException, IOException {
         System.out.println("Game has started!");
         // Close the current MainMenu stage
         MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
@@ -103,4 +118,5 @@ public class PlayerConnection {
         });
 
     }
+
 }
