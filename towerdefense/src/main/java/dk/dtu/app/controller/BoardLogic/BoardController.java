@@ -40,7 +40,7 @@ public class BoardController {
                     }
                 }
                 if(isPath){
-                    cell.setValue(-1);
+                    cell.setValue(-2);
                     cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/sand_tile.png');"
                     + "-fx-background-repeat: repeat;"
                     + "-fx-background-size: cover;");

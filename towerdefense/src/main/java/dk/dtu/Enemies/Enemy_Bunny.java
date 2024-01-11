@@ -7,12 +7,12 @@ import org.jspace.Space;
 import dk.dtu.app.controller.Enemy_movement;
 import dk.dtu.app.controller.MyButton;
 
-public class Enemy1 extends Enemy_movement implements Runnable {
+public class Enemy_Bunny extends Enemy_movement implements Runnable {
 
     private int speed = 5;
     private int hp = 100;
 
-    public Enemy1(int x, int y, Space space, int me) {
+    public Enemy_Bunny(int x, int y, Space space, int me) {
         super(x, y, space, me);
     }
 
@@ -32,8 +32,8 @@ public class Enemy1 extends Enemy_movement implements Runnable {
 
     @Override
     public void run() {
-        int numOfCellsX = 10;
-        int numOfCellsY = 14;
+        int numOfCellsX = 14;
+        int numOfCellsY = 10;
         int[][] board = new int[numOfCellsX][numOfCellsY];
         try {
             Object[] obj = space.query(new ActualField("Board"), new FormalField(MyButton[][].class));
