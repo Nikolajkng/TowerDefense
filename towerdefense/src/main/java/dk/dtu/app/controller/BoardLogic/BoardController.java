@@ -59,8 +59,7 @@ public class BoardController {
                     public void handle(ActionEvent e) {
 
                         // Check if player has clicked on a legal cell
-                        //if(board[finalX][finalY].getValue() != -1){
-                            if(true){
+                        if(board[finalX][finalY].getValue() != -1){
                             clickInfo(board, finalX, finalY);
                             // "if wish to place tower, then execute Tower.placeTower action"
                             if(true){
