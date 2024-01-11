@@ -44,8 +44,8 @@ public class MultiplayerBoard extends Application {
     // Local field variables
     private GridPane leftPane = new GridPane();
     private GridPane rightPane = new GridPane();
-    private int sizeX = 1600;
-    private int sizeY = 1000; 
+    private int sizeX = 1400;
+    private int sizeY = 800; 
     private Image healthIcon = new Image(getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
     private ImageView showHealthIcon1 = new ImageView(healthIcon);
     private ImageView showHealthIcon2 = new ImageView(healthIcon);
