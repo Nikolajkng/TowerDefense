@@ -1,21 +1,25 @@
 package dk.dtu.app.controller;
 
+import dk.dtu.app.controller.Tower.ActionType;
+
 public class ActionHandler {
 
     public static void selectAction(Object[] actioninfo, MyButton[][] board) {
         System.out.println("Selecting action: " + actioninfo[2]);
         int x = (int) actioninfo[0];
         int y = (int) actioninfo[1];
-        String action = (String) actioninfo[2];
+        Tower.ActionType action = (ActionType) actioninfo[2];
 
         switch (action) {
-            case "tower1":
+            case NONE:
+                break;
+            case TOWER1:
                 Tower.placeTower(x, y, board, action);
                 break;
-            case "tower2":
+            case TOWER2:
                 Tower.placeTower(x, y, board, action);
                 break;
-            case "tower3":
+            case TOWER3:
                 Tower.placeTower(x, y, board, action);
                 break;
         }

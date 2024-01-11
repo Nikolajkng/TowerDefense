@@ -2,21 +2,28 @@ package dk.dtu.app.controller;
 
 public class Tower {
 
-    public static void placeTower(int x, int y, MyButton[][] board, String action) {
+    public enum ActionType {
+        NONE,
+        TOWER1,
+        TOWER2,
+        TOWER3,
+    }
 
-        System.out.println("Placing tower at: (" + x + ", " + y + ") with action: " + action);
+    public static void placeTower(int x, int y, MyButton[][] board, Tower.ActionType type) {
 
-        if (action == "tower1") {
+        System.out.println("Placing tower at: (" + x + ", " + y + ") with action: " + type);
+
+        if (type == ActionType.TOWER1) {
             board[x][y].setText("X");
             board[x][y].setValue(-1);
         }
         else
-        if (action.equals("tower2")) {
+        if (type == ActionType.TOWER2) {
             board[x][y].setText("O");
             board[x][y].setValue(-1);
         }
         else
-        if (action == "tower3") {
+        if (type == ActionType.TOWER3) {
             board[x][y].setText("±");
             board[x][y].setValue(-1);
         } else {
