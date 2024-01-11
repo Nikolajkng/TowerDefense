@@ -8,6 +8,8 @@ import org.jspace.RemoteSpace;
 import org.jspace.SequentialSpace;
 
 import dk.dtu.app.controller.ActionHandler;
+import dk.dtu.app.controller.Tower;
+import dk.dtu.app.controller.Tower.ActionType;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import javafx.application.Platform;
 
@@ -36,16 +38,17 @@ public class GameUpdate implements Runnable {
                     Object[] info = clientRoom.queryp(
                             new FormalField(Integer.class),
                             new FormalField(Integer.class),
-                            new FormalField(String.class));
+                            new FormalField(Tower.ActionType.class));
                     if (info != null) {
                         actionInfo = clientRoom.get(
                                 new FormalField(Integer.class),
                                 new FormalField(Integer.class),
-                                new FormalField(String.class));
-                        System.out.println("Received action from Host (" + (String) actionInfo[2] + ") successfully!");
+                                new FormalField(Tower.ActionType.class));
+                        System.out.println("Received action from Host (" + (ActionType) actionInfo[2] + ") successfully!");
                         Platform.runLater(() -> {
                             ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
                         });
+                        System.out.println("Placed tower");
 
                     }
                 }
@@ -58,12 +61,12 @@ public class GameUpdate implements Runnable {
                 while (true) {
                     Object[] info = hostRoom.queryp(new FormalField(Integer.class),
                             new FormalField(Integer.class),
-                            new FormalField(String.class));
+                            new FormalField(Tower.ActionType.class));
                     if (info != null) {
                         actionInfo = hostRoom.get(new FormalField(Integer.class),
                                 new FormalField(Integer.class),
-                                new FormalField(String.class));
-                        System.out.println("Received action from Client (" + (String) actionInfo[2]+") successfully!");
+                                new FormalField(Tower.ActionType.class));
+                        System.out.println("Received action from Client (" + (ActionType) actionInfo[2]+") successfully!");
                         Platform.runLater(() -> {
                             ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
                         });

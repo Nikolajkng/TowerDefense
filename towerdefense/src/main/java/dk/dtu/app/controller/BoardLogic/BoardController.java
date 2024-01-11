@@ -1,6 +1,7 @@
 package dk.dtu.app.controller.BoardLogic;
 
 import dk.dtu.app.controller.*;
+import dk.dtu.app.controller.Tower.ActionType;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.ActionExchange;
 import javafx.event.ActionEvent;
@@ -10,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class BoardController {
-    public static String action = "";
+    public static Tower.ActionType type = ActionType.NONE;
     public static String callsign = PlayerConnection.callsign;
 
     // Creating the player boards
@@ -77,8 +78,8 @@ public class BoardController {
                             clickInfo(board, finalX, finalY);
                             // "if wish to place tower, then execute Tower.placeTower action"
                             if(true){
-                                Tower.placeTower(finalX, finalY, board, action);
-                                ActionExchange.sendAction(finalX, finalY, action,callsign);
+                                Tower.placeTower(finalX, finalY, board, type);
+                                ActionExchange.sendAction(finalX, finalY, type, callsign);
                             }
                         } else {
                             System.out.println("Clicked on illegal tile");

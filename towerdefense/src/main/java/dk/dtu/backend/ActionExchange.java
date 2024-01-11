@@ -5,6 +5,8 @@ import java.net.UnknownHostException;
 
 import org.jspace.RemoteSpace;
 
+import dk.dtu.app.controller.Tower;
+
 public class ActionExchange {
     public static RemoteSpace P1P2room;
     public static RemoteSpace P2P1room;
@@ -16,19 +18,19 @@ public class ActionExchange {
         P2P1room = new RemoteSpace(P2P1uri);
     }
 
-    public static void sendAction(int x, int y, String action, String callsign) {
+    public static void sendAction(int x, int y, Tower.ActionType type, String callsign) {
         if (callsign == "Host") {
         try {
-            System.out.println(callsign + " has selected following: " + action);
-            P1P2room.put(x, y, action);
+            System.out.println(callsign + " has selected following: " + type);
+            P1P2room.put(x, y, type);
 
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     } else {
          try {
-           System.out.println(callsign + " has selected following: " + action);            
-           P2P1room.put(x, y, action);
+           System.out.println(callsign + " has selected following: " + type);            
+           P2P1room.put(x, y, type);
 
         } catch (InterruptedException e) {
             e.printStackTrace();

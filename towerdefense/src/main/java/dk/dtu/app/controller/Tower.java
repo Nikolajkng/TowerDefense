@@ -1,27 +1,34 @@
 package dk.dtu.app.controller;
 
-
 public class Tower {
-    public static void placeTower(int x, int y, MyButton[][] board, String action) {
 
-        System.out.println("Placing tower at: (" + x + ", " + y+")");
-        // Check if tower can be placed at x, y
-        if(board[x][y].getValue() != -1 && action != null){
-            if(action == "tower1"){
-                board[x][y].setText("X");
-                board[x][y].setValue(-1);
-            };
-            if(action == "tower2"){
-                board[x][y].setText("O");
-                board[x][y].setValue(-1); 
-            };
-            if(action == "tower3"){
-                board[x][y].setText("±");
-                board[x][y].setValue(-1); 
-            };
+    public enum ActionType {
+        NONE,
+        TOWER1,
+        TOWER2,
+        TOWER3,
+    }
 
-        } else {
-            System.out.println("Tower cannot be placed here");
+    public static void placeTower(int x, int y, MyButton[][] board, Tower.ActionType type) {
+
+        System.out.println("Placing tower at: (" + x + ", " + y + ") with action: " + type);
+
+        if (type == ActionType.TOWER1) {
+            board[x][y].setText("X");
+            board[x][y].setValue(-1);
         }
-    }   
+        else
+        if (type == ActionType.TOWER2) {
+            board[x][y].setText("O");
+            board[x][y].setValue(-1);
+        }
+        else
+        if (type == ActionType.TOWER3) {
+            board[x][y].setText("±");
+            board[x][y].setValue(-1);
+        } else {
+            System.out.println("stor fed pijk");
+        }
+
+    }
 }
