@@ -18,25 +18,27 @@ public class Enemy_movement {
     }
 
     public void choosePath(int[][] board) throws Exception {
+        int pathTile = -2;
+        int walkedTile = 2; // To prevent going back
 
-        if (board[coordinateX][coordinateY + 1] == 1) {
+        if (board[coordinateX][coordinateY + 1] == pathTile) {
             walkDown();
-            board[coordinateX][coordinateY + 1] = 2;
+            board[coordinateX][coordinateY + 1] = walkedTile;
         }
 
-        else if (board[coordinateX][coordinateY - 1] == 1) {
+        else if (board[coordinateX][coordinateY - 1] == pathTile) {
             walkUp();
-            board[coordinateX][coordinateY - 1] = 2;
+            board[coordinateX][coordinateY - 1] = walkedTile;
         }
 
-        else if (board[coordinateX - 1][coordinateY] == 1) {
+        else if (board[coordinateX - 1][coordinateY] == pathTile) {
             walkLeft();
-            board[coordinateX - 1][coordinateY] = 2;
+            board[coordinateX - 1][coordinateY] = walkedTile;
         }
 
-        else if (board[coordinateX + 1][coordinateY] == 1) {
+        else if (board[coordinateX + 1][coordinateY] == pathTile) {
             walkRight();
-            board[coordinateX + 1][coordinateY] = 2;
+            board[coordinateX + 1][coordinateY] = walkedTile;
         }
 
         else {
