@@ -113,18 +113,6 @@ public class SingleplayerBoard extends Application {
         rightVbox.getChildren().addAll(exitGame);
         rightVbox.setAlignment(Pos.BOTTOM_CENTER);
         VBox.setMargin(exitGame, new javafx.geometry.Insets(0, 0, 80, 0));
-
-
-        //load the enemie
-        String gifPath = "file:///C:/dk/dtu/app/view/Images/bunny.gif'";
-        Image gifImage = new Image(gifPath);
-
-        ImageView gifView = new ImageView(gifImage);
-        gifView.setFitWidth(10);
-        gifView.setFitHeight(10);
-
-        //add enemie to the gridpane at cell (0,0)
-        pane.add(gifView, 0, 1);
         
         BoardController.createPlayerBoard(pane, 86, 14, 10, 0);
     }

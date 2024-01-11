@@ -5,6 +5,8 @@ import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.ActionExchange;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class BoardController {
@@ -41,6 +43,18 @@ public class BoardController {
                     cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/sand_tile.png');"
                     + "-fx-background-repeat: repeat;"
                     + "-fx-background-size: cover;");
+
+                    //load the enemie
+                    String gifPath = "file:///C:/dk/dtu/app/view/Images/bunny.gif'";
+                    Image gifImage = new Image(gifPath);
+
+                    ImageView gifView = new ImageView(gifImage);
+                    gifView.setFitWidth(10);
+                    gifView.setFitHeight(10);
+
+                    //add enemie to the gridpane at cell (0,1)
+                    myBoard.add(gifView, 0, 1);
+
                 } else {
                      cell.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_3.png');"
                     + "-fx-background-repeat: repeat;"
