@@ -64,6 +64,7 @@ public class MultiplayerBoard extends Application {
         VBox leftVbox = new VBox();
         VBox rightVbox = new VBox();
         HBox topBar = new HBox();
+        borderPane.setMaxSize(sizeY, sizeX);
 
         // Color of background of Panes
         String myColor = "90EE90";
