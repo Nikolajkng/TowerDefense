@@ -6,7 +6,7 @@ public class Tower {
 
         System.out.println("Placing tower at: (" + x + ", " + y+") with action: " + action);
         // Check if tower can be placed at x, y
-        if(board[x][y].getValue() != -1){
+        if(true){
             if(action == "tower1"){
                 board[x][y].setText("X");
                 board[x][y].setValue(-1);
