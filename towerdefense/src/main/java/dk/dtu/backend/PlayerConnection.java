@@ -47,6 +47,7 @@ public class PlayerConnection {
         }
 
     }
+    
 /////////////////////////////////////////////////////// Client ///////////////////////////////////////////////////////////
     public static void joinGame(ActionEvent event) throws InterruptedException {
         System.out.println("Joining game...");
@@ -78,6 +79,7 @@ public class PlayerConnection {
             e.printStackTrace();
         }
     }
+
 ///////////////////////////////////////////////////// Start game by opening multiplayer board for both player /////////////////////////////////////////////////////////////
     private static void gameStart() throws UnknownHostException, IOException {
         System.out.println("Game has started!");
@@ -87,8 +89,8 @@ public class PlayerConnection {
         MultiplayerMenu.boardStage.close();
         MultiplayerBoard.boardStage.show();
     }
-///////////////////////////////////////////////////// Function that retrieves clients inputIP (host ip) /////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////// Function that retrieves clients inputIP (host ip) /////////////////////////////////////////////////////////////
     private static void showTextInputDialog() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Joining Game");

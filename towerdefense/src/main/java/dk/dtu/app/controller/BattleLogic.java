@@ -20,7 +20,7 @@ public class BattleLogic {
         new Thread( new TowerPlacer(space));
     }
 
-    public void wave1(int[] enemies) {
+    public void waves(int[] enemies) {
         new Thread( new EnemyMach(space, enemies)).start();
     }
 
