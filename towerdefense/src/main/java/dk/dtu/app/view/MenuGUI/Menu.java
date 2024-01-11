@@ -22,7 +22,6 @@ public class Menu extends Application{
     private int sizeY = 700;
     public Button singleplayerBtn = new Button();
     public Button multiplayerBtn = new Button();
-    public Button testBtn = new Button("Nikos test knap"); // Til test af multiplayer boardet.
     public Button exitBtn = new Button();
     public Button rulesBtn = new Button(); 
     public static Stage mainMenuStage = new Stage();
@@ -51,16 +50,6 @@ public class Menu extends Application{
         exitBtn.setText("Exit");
         exitBtn.setOnAction(this::closeProgram);
 
-        Button testBtn = new Button();
-        testBtn.setText("Nikos test knap");
-        testBtn.setOnAction(event -> {
-            try {
-                multiplayerBoard(event);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
 
         // Changed this one - it works
         Image image = new Image(getClass().getResource("/dk/dtu/app/view/Images/TowerDefensev3.png").toExternalForm());
@@ -74,7 +63,7 @@ public class Menu extends Application{
          // Opret og konfigurer knappen
         // Opret en StackPane og tilføj ImageView og Button
         StackPane stackPane = new StackPane();
-        stackPane.getChildren().addAll(imageView, singleplayerBtn, multiplayerBtn, rulesBtn, exitBtn, testBtn); // Knap oven på billedet
+        stackPane.getChildren().addAll(imageView, singleplayerBtn, multiplayerBtn, rulesBtn, exitBtn); // Knap oven på billedet
         StackPane.setAlignment(singleplayerBtn, Pos.TOP_CENTER);
         StackPane.setAlignment(multiplayerBtn, Pos.TOP_CENTER);
         StackPane.setAlignment(rulesBtn, Pos.TOP_CENTER);
@@ -83,7 +72,6 @@ public class Menu extends Application{
         StackPane.setMargin(multiplayerBtn, new javafx.geometry.Insets(260, 0, 0, 0));
         StackPane.setMargin(rulesBtn, new javafx.geometry.Insets(320, 0, 0, 0));
         StackPane.setMargin(exitBtn, new javafx.geometry.Insets(380, 0, 0, 0));
-        StackPane.setMargin(testBtn, new javafx.geometry.Insets(440, 0, 0, 0));
         
         String buttonStyle = "-fx-background-color: #5DADE2; -fx-text-fill: white; "
         + "-fx-font-size: 1.5em; -fx-min-width: 150px; -fx-min-height: 25px; "
@@ -92,7 +80,6 @@ public class Menu extends Application{
         multiplayerBtn.setStyle(buttonStyle);
         rulesBtn.setStyle(buttonStyle);
         exitBtn.setStyle(buttonStyle);
-        testBtn.setStyle(buttonStyle);
 
         String hoverStyle = "-fx-scale-x: 1.1; -fx-scale-y: 1.1;"; // Gør knappen 10% større i både x- og y-retningen
 
@@ -108,11 +95,6 @@ public class Menu extends Application{
         exitBtn.setStyle(buttonStyle);
         exitBtn.setOnMouseEntered(e -> exitBtn.setStyle(buttonStyle + hoverStyle));
         exitBtn.setOnMouseExited(e -> exitBtn.setStyle(buttonStyle));
-
-        testBtn.setStyle(buttonStyle);
-        testBtn.setOnMouseEntered(e -> testBtn.setStyle(buttonStyle + hoverStyle));
-        testBtn.setOnMouseExited(e -> testBtn.setStyle(buttonStyle));
-
 
     
         // Opret Scene med StackPane og sæt den til Stage

@@ -1,9 +1,7 @@
 package dk.dtu.app.view.Figures;
 
 import dk.dtu.app.controller.MyButton;
-import dk.dtu.app.controller.BoardLogic.BoardController;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
