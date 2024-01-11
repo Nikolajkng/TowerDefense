@@ -46,6 +46,7 @@ public class GameUpdate implements Runnable {
                         Platform.runLater(() -> {
                             ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
                         });
+                        System.out.println("Placed tower");
 
                     }
                 }
