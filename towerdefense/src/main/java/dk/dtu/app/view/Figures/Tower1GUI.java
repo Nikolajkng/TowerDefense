@@ -1,33 +1,25 @@
 package dk.dtu.app.view.Figures;
 
+import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
-public class Tower1GUI {
-    Button Tower1 = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
-    Button Tower2 = createRoundButton("/dk/dtu/app/view/Images/giphy.gif");
-    Button Tower3 = createRoundButton("/dk/dtu/app/view/Images/SYKT7E.gif");
+public class Tower1GUI extends Application {
+    public static Button plant = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
 
-    public void tower(){
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
          //tower design
-        Tower1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+        plant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        Tower1.setPrefSize(130, 130);
-
-        Tower2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        Tower2.setPrefSize(130, 130);
-
-        Tower3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        Tower3.setPrefSize(130, 130);
+        plant.setPrefSize(130, 130);
     }
 
      // Create a circle to be used as the button's shape
-    private Button createRoundButton(String imageUrl) {
+    public static Button createRoundButton(String imageUrl) {
         Circle circle = new Circle(50);
         
         Button roundButton = new Button();
@@ -50,5 +42,6 @@ public class Tower1GUI {
         
         return roundButton;
     }
+
     
 }

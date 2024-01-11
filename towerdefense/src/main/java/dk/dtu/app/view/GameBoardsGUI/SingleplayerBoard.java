@@ -1,6 +1,9 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
+import java.beans.EventHandler;
+
 import dk.dtu.app.controller.BoardLogic.BoardController;
+import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.app.view.MenuGUI.Menu;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -23,7 +26,7 @@ public class SingleplayerBoard extends Application {
     Button heartButton = new Button();
     Button moneyTracker = new Button();
 
-    Button Tower1 = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
+    Button plant = Tower1GUI.plant;
     Button Tower2 = createRoundButton("/dk/dtu/app/view/Images/giphy.gif");
     Button Tower3 = createRoundButton("/dk/dtu/app/view/Images/SYKT7E.gif");
 
@@ -56,11 +59,22 @@ public class SingleplayerBoard extends Application {
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: contain;");
 
-        //tower design
-        Tower1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+        Tower1GUI.plant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        Tower1.setPrefSize(130, 130);
+        Tower1GUI.plant.setPrefSize(130, 130);
+
+        /*Tower1GUI.setOnDragDetected(new EventHandler<DragEvent>() {
+            public void handle(MouseEvent event) {
+                Dragboard db = source.startDragAndDrop(TransferMode.ANY);
+
+                ClipboardContent content = new ClipboardContent();
+                content.putString(soruce.getText());
+                db.setContent(content);
+
+                event.consume();
+            }
+        } ); */
 
         Tower2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
         + "-fx-background-repeat: repeat;"
@@ -98,11 +112,11 @@ public class SingleplayerBoard extends Application {
         exitGame.setOnAction(this::exitGame);
 
         //Left side bar 
-        leftVbox.getChildren().addAll(heartButton, Tower1, Tower2, Tower3, moneyTracker);
-        VBox.setMargin(Tower1, new Insets(10)); // Optional: Add margin around the button for better visibility
+        leftVbox.getChildren().addAll(heartButton, Tower1GUI.plant, Tower2, Tower3, moneyTracker);
+        VBox.setMargin(Tower1GUI.plant, new Insets(10)); // Optional: Add margin around the button for better visibility
         leftVbox.setAlignment(Pos.TOP_CENTER);
         VBox.setMargin(heartButton, new javafx.geometry.Insets(20, 0, 0, 0));
-        VBox.setMargin(Tower1, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(Tower1GUI.plant, new javafx.geometry.Insets(45, 0, 0, 0));
         VBox.setMargin(Tower2, new javafx.geometry.Insets(45, 0, 0, 0));
         VBox.setMargin(Tower3, new javafx.geometry.Insets(45, 0, 0, 0));
         VBox.setMargin(moneyTracker, new javafx.geometry.Insets(45, 0, 0, 0));
