@@ -7,7 +7,7 @@ import org.jspace.RemoteSpace;
 
 import dk.dtu.app.controller.Tower;
 
-public class ActionExchange {
+public class ActionSender {
     public static RemoteSpace P1P2room;
     public static RemoteSpace P2P1room;
     public static String callsign;

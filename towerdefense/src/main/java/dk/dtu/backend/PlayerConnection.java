@@ -37,8 +37,8 @@ public class PlayerConnection {
 
             // Start game - if player 2 has joined
             gameStart();
-            ActionExchange.start(Server.P1P2_uri, Server.P2P1_uri);
-            new Thread(new GameUpdate(Server.P2P1room)).start();
+            ActionSender.start(Server.P1P2_uri, Server.P2P1_uri);
+            new Thread(new ActionReceiver(Server.P2P1room)).start();
             new Thread(new ChatServer(callsign)).start();
 
         } catch (InterruptedException e) {
@@ -70,8 +70,8 @@ public class PlayerConnection {
 
             // Start game
             gameStart();
-            ActionExchange.start(P1P2_uri, P2P1_uri);
-            new Thread(new GameUpdate(P1P2_uri, P1P2room)).start();
+            ActionSender.start(P1P2_uri, P2P1_uri);
+            new Thread(new ActionReceiver(P1P2_uri, P1P2room)).start();
             new Thread(new ChatServer(callsign)).start();
 
         } catch (IOException e) {

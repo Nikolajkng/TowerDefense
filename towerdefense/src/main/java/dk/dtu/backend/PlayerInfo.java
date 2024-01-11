@@ -2,8 +2,8 @@ package dk.dtu.backend;
 
 public class PlayerInfo {
     
-    int Life = 10;
-    int Money = 100;
+    int life = 10;
+    int money = 100;
 
     public static void lifeTracker(){
 

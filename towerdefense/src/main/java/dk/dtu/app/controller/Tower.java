@@ -27,7 +27,7 @@ public class Tower {
             board[x][y].setText("±");
             board[x][y].setValue(-1);
         } else {
-            System.out.println("stor fed pijk");
+            System.out.println("No tower selected");
         }
 
     }
