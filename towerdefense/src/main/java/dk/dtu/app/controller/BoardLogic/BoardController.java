@@ -1,18 +1,25 @@
 package dk.dtu.app.controller.BoardLogic;
 
+import javax.swing.text.View;
+
 import dk.dtu.app.controller.*;
 import dk.dtu.app.controller.Tower.ActionType;
+import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.ActionSender;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
+import javafx.scene.shape.Circle;
 
 public class BoardController {
     public static Tower.ActionType type = ActionType.NONE;
     public static String callsign = PlayerConnection.callsign;
+    static Circle bunny;
 
     // Creating the player boards
     public static MyButton[][] createPlayerBoard(GridPane myBoard, int cellSize, int numOfCellsX, int numOfCellsY,
@@ -62,6 +69,9 @@ public class BoardController {
                     public void handle(ActionEvent e) {
 
                         // Check if player has clicked on a legal cell
+                        if(board[finalX][finalY].getValue() == -2){
+                            Enemy1_BunnyGUI.placeBunny(cell);
+                        }
                         if(board[finalX][finalY].getValue() != -1){
                             clickInfo(board, finalX, finalY);
                             // "if wish to place tower, then execute Tower.placeTower action"
@@ -75,6 +85,7 @@ public class BoardController {
                         
                     }
                 });
+
             }
 
         }
@@ -86,4 +97,8 @@ public class BoardController {
         System.out.println("X: " + x + " Y: " + y);
         System.out.println("Value: " + board[x][y].getValue());
     }
+
+
 }
+
+    
