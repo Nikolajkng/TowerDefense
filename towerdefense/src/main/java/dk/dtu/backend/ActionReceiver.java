@@ -9,7 +9,6 @@ import org.jspace.SequentialSpace;
 
 import dk.dtu.app.controller.Action;
 import dk.dtu.app.controller.ActionHandler;
-import dk.dtu.app.controller.Tower;
 import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import javafx.application.Platform;
