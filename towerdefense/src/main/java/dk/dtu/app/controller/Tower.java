@@ -11,15 +11,15 @@ public class Tower {
 
         if (type == ActionType.TOWER1) {
             Tower1GUI.placePlant1(board[x][y]);
-            board[x][y].setText("X");
+            // board[x][y].setText("X");
             board[x][y].setValue(-1);
         } else if (type == ActionType.TOWER2) {
             Tower1GUI.placePlant1(board[x][y]);
-            board[x][y].setText("O");
+            // board[x][y].setText("O");
             board[x][y].setValue(-1);
         } else if (type == ActionType.TOWER3) {
             Tower1GUI.placePlant1(board[x][y]);
-            board[x][y].setText("±");
+            // board[x][y].setText("±");
             board[x][y].setValue(-1);
         } else {
             System.out.println("No tower selected");
