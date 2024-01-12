@@ -18,5 +18,13 @@ public class TowerSelection {
             BoardController.type = ActionType.TOWER3;
             System.out.println("selected tower3");
         });
+        MultiplayerBoard.towerBtn4.setOnAction(e -> {
+            BoardController.type = ActionType.TOWER4;
+            System.out.println("selected tower4");
+        });
+        MultiplayerBoard.towerBtn5.setOnAction(e -> {
+            BoardController.type = ActionType.TOWER5;
+            System.out.println("selected tower5");
+        });
     }
 }
