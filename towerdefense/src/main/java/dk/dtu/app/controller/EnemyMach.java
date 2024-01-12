@@ -38,7 +38,7 @@ public class EnemyMach implements Runnable {
                     enemy_Bunny.run();
                 });
                 try {
-                    future.get(500, TimeUnit.MILLISECONDS);
+                    future.wait(2000);
                 } catch (Exception e) {
                 }
             }

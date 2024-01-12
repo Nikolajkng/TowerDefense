@@ -7,6 +7,8 @@ import org.jspace.Space;
 public class Enemy_movement {
     protected int coordinateX;
     protected int coordinateY;
+    private int endCoordinatesX = 13;
+    private int endCoordinatesY = 4;
     protected Space space;
     protected int me;
 
@@ -26,17 +28,19 @@ public class Enemy_movement {
         boolean downOK = true;
         boolean directionchosen = false;
 
+
+
         // Border control
         if (coordinateX - 1 < 0) {
             leftOK = false;
         }
-        if (coordinateX + 1 > 14) {
+        if (coordinateX + 1 > 13) {
             rightOK = false;
         }
         if (coordinateY - 1 < 0) {
             upOK = false;
         }
-        if (coordinateY + 1 > 10) {
+        if (coordinateY + 1 > 9) {
             downOK = false;
         }
         if (downOK && !directionchosen) {
@@ -77,6 +81,12 @@ public class Enemy_movement {
 
         if (!directionchosen) {
             throw new Exception("Rabbit can't find a path");
+        }
+
+        if (coordinateX == endCoordinatesX && coordinateY == endCoordinatesY){
+            // code til at miste liv
+
+            System.out.println(me + " reached the end");
         }
     }
 

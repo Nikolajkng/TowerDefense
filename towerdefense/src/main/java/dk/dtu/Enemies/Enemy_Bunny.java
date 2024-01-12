@@ -62,6 +62,7 @@ public class Enemy_Bunny extends Enemy_movement {
                 CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
                     try {
                         System.out.println("trying to choose a path");
+                        gui.removeBunny(((MyButton[][]) objtest[1])[coordinateX][coordinateY]);
                         super.choosePath(board);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -70,7 +71,7 @@ public class Enemy_Bunny extends Enemy_movement {
                     gui.placeBunny(((MyButton[][]) objtest[1])[coordinateX][coordinateY]);
                 });
                 try {
-                    future.get(1500/speed, TimeUnit.MILLISECONDS);
+                    future.wait(2000/speed);
                 } catch (Exception e) {
                 }
 

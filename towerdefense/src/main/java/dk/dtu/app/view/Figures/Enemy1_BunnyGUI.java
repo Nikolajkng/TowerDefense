@@ -17,6 +17,13 @@ public class Enemy1_BunnyGUI {
             clickedButton.setGraphic(bunny);
         });
     }
+    
+    public void removeBunny(MyButton clickedButton) {
+        Platform.runLater(() -> {
+            clickedButton.setGraphic(null);
+        });
+    }
+
 
 //public static void startPosBunny(){
 //    bunny(BoardController.board())
