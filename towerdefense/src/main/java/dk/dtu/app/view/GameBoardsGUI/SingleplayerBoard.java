@@ -120,7 +120,6 @@ public class SingleplayerBoard extends Application {
         
         BoardController.createPlayerBoard(board, 0);
     
-
         TowerSelection.selectTower();
     }
     
