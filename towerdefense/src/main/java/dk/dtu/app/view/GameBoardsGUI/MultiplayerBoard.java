@@ -66,41 +66,7 @@ public class MultiplayerBoard extends Application {
         boardStage = stage;
         boardStage.setTitle("Multiplayer Board");
         boardStage.setResizable(false);
-        boardStage.setOnCloseRequest(event -> {
-
-            Menu.mainMenuStage.show();
-            if (callsign == "Host") {
-                try {
-                    ChatController.chatRoom.put("lost connection", callsign);
-                    System.out.println(callsign + " lost connection");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                PlayerConnection.hostChatListenerThread.interrupt();
-                // try {
-                // Server.P2P1room.put("lost connection");
-                // } catch (InterruptedException e) {
-                // e.printStackTrace();
-                // }
-                PlayerConnection.hostActionListenerThread.interrupt();
-            } else {
-                try {
-                    ChatController.chatRoom.put("lost connection", callsign);
-                    System.out.println(callsign + " lost connection");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                PlayerConnection.clientChatListenerThread.interrupt();
-                // try {
-                // Server.P1P2room.put("lost connection");
-                // } catch (InterruptedException e) {
-                // e.printStackTrace();
-                // }
-                PlayerConnection.clientActionListenerThread.interrupt();
-            }
-
-
-        });
+        handleClosedApplication();
 
         // Application layout
         BorderPane borderPane = new BorderPane();
@@ -109,65 +75,6 @@ public class MultiplayerBoard extends Application {
         VBox rightVbox = new VBox();
         HBox topBar = new HBox();
         borderPane.setMaxSize(sizeY, sizeX);
-
-        // Color of background of Panes
-
-        centerPane.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: contain;");
-        leftVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: contain;");
-        rightVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: contain;");
-        bottomHUD.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: contain;");
-        topBar.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: contain;");
-
-        // Tower design
-        towerBtn1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-        towerBtn2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-        towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-        towerBtn4.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-        towerBtn5.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-        // Enemy design
-        attackEnemy1btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        attackEnemy2btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-        attackEnemy3btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-        attackEnemy4btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-        attackEnemy5btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
         // Positions of all panes
         centerPane.setAlignment(Pos.CENTER);
@@ -215,6 +122,28 @@ public class MultiplayerBoard extends Application {
         attackEnemy3btn.setPrefSize(towerBtnWidth, towerBtnHeight);
         attackEnemy4btn.setPrefSize(towerBtnWidth, towerBtnHeight);
         attackEnemy5btn.setPrefSize(towerBtnWidth, towerBtnHeight);
+
+
+        // Color of background of Panes
+        centerPane.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
+        leftVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
+        rightVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
+        bottomHUD.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
+        topBar.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
+
+        // Design of buttons
+        colorAllButtons();
+        
 
         // Scene setup
         Scene scene = new Scene(borderPane, sizeX, sizeY);
@@ -270,6 +199,87 @@ public class MultiplayerBoard extends Application {
         // Start construction of chat GUI
         ChatGUI.createChatGUI();
         ;
+
+    }
+
+    private void handleClosedApplication() {
+        boardStage.setOnCloseRequest(event -> {
+
+            Menu.mainMenuStage.show();
+            if (callsign == "Host") {
+                try {
+                    ChatController.chatRoom.put("lost connection", callsign);
+                    System.out.println(callsign + " lost connection");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                PlayerConnection.hostChatListenerThread.interrupt();
+                // try {
+                // Server.P2P1room.put("lost connection");
+                // } catch (InterruptedException e) {
+                // e.printStackTrace();
+                // }
+                PlayerConnection.hostActionListenerThread.interrupt();
+            } else {
+                try {
+                    ChatController.chatRoom.put("lost connection", callsign);
+                    System.out.println(callsign + " lost connection");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                PlayerConnection.clientChatListenerThread.interrupt();
+                // try {
+                // Server.P1P2room.put("lost connection");
+                // } catch (InterruptedException e) {
+                // e.printStackTrace();
+                // }
+                PlayerConnection.clientActionListenerThread.interrupt();
+            }
+
+
+        });
+    }
+
+    private void colorAllButtons() {
+        towerBtn1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+towerBtn2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+towerBtn4.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+towerBtn5.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+// Enemy design
+attackEnemy1btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
+attackEnemy2btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+attackEnemy3btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+attackEnemy4btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+attackEnemy5btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
     }
 
