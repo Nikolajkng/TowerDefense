@@ -21,6 +21,14 @@ public class Tower {
             Tower1GUI.placePlant1(board[x][y]);
             // board[x][y].setText("±");
             board[x][y].setValue(-1);
+        } else if (type == ActionType.TOWER4) {
+            Tower1GUI.placePlant1(board[x][y]);
+            // board[x][y].setText("±");
+            board[x][y].setValue(-1);
+        } else if (type == ActionType.TOWER5) {
+            Tower1GUI.placePlant1(board[x][y]);
+            // board[x][y].setText("±");
+            board[x][y].setValue(-1);
         } else {
             System.out.println("No tower selected");
         }
