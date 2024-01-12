@@ -10,6 +10,7 @@ import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
 import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.app.view.Figures.Tower_HunterGUI;
 import dk.dtu.app.view.Figures.Tower_KillerPlant;
+import dk.dtu.backend.PlayerInfo;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -38,8 +39,8 @@ public class MultiplayerBoard extends Application {
     public static Button attackEnemy3btn = new Button("Attack enemy");
     public static Button attackEnemy4btn = new Button("Attack enemy");
     public static Button attackEnemy5btn = new Button("Attack enemy");*/
-    public static Label healthP1 = new Label("100");
-    public static Label healthP2 = new Label("100");
+    public static Label healthP1 = new Label("" + PlayerInfo.getLife());
+    public static Label healthP2 = new Label("" + PlayerInfo.getLife());
     public static Label topTitle = new Label("RABBIT HUNTER");
     public static HBox bottomHUD = new HBox();
     public static final int sizeX = 1400;
