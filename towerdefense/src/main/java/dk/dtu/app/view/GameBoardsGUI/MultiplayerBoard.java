@@ -79,6 +79,57 @@ public class MultiplayerBoard extends Application {
         HBox topBar = new HBox();
         borderPane.setMaxSize(sizeY, sizeX);
 
+        // Color of background of Panes
+
+        centerPane.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
+        leftVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
+        rightVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
+        bottomHUD.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
+        topBar.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
+
+        // Tower design
+        towerBtn1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/carrot-tower1-game.png');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+        towerBtn2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/carrot-tower2-game.pngf');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+        towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/carrot-tower3-game.png');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+        // Enemy design
+        attackEnemy1btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+        attackEnemy2btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+        attackEnemy3btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+        attackEnemy4btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+        attackEnemy5btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
         // Positions of all panes
         centerPane.setAlignment(Pos.CENTER);
         centerPane.setSpacing(100);

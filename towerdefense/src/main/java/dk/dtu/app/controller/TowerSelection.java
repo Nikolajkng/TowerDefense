@@ -8,15 +8,15 @@ import dk.dtu.app.view.Figures.Tower3GUI;
 public class TowerSelection {
     public static void selectTower(){
         // Buttons funtionality (To be moved to controller folder later)
-        Tower1GUI.plant.setOnAction(e -> {
+        Tower1GUI.tower1.setOnAction(e -> {
             System.out.println("selected tower1");
             BoardController.type = ActionType.TOWER1;
         });
-       Tower2GUI.hunter.setOnAction(e -> {
+       Tower2GUI.tower2.setOnAction(e -> {
             BoardController.type = ActionType.TOWER2;
             System.out.println("selected tower2");
         });
-        Tower3GUI.killerPlant.setOnAction(e -> {
+        Tower3GUI.tower3.setOnAction(e -> {
             BoardController.type = ActionType.TOWER3;
             System.out.println("selected tower3");
         });

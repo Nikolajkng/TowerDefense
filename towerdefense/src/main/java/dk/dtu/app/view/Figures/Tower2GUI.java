@@ -11,13 +11,13 @@ import javafx.stage.Stage;
 
 public class Tower2GUI extends Application {
 
-    public static Button tower2 = createRoundButton("/dk/dtu/app/view/Images/giphy.gif");
+    public static Button tower2 = createRoundButton("/dk/dtu/app/view/Images/carrot-tower2-game.png");
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
          //tower design
-        tower2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
+        tower2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/carrot-tower2-game.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
         tower2.setPrefSize(130, 130);
@@ -51,7 +51,7 @@ public class Tower2GUI extends Application {
     public static void placeTower2(MyButton clickedButton) {
         Rectangle tower2 = new Rectangle(45, 45);
 
-        Image tower2Image = new Image("/dk/dtu/app/view/Images/giphy.gif",false);
+        Image tower2Image = new Image("/dk/dtu/app/view/Images/carrot-tower2-game.png",false);
         tower2.setFill(new ImagePattern(tower2Image));
 
         clickedButton.setGraphic(tower2);
