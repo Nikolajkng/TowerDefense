@@ -38,7 +38,7 @@ public class ChatReceiver implements Runnable {
         if (callsign == "Host") {
             while (true) {
                 try {
-                    Object[] end = chatRoom.query(new ActualField("lost connection"), new ActualField("Client"));
+                    Object[] end = chatRoom.queryp(new ActualField("lost connection"), new ActualField("Client"));
                     if (end != null) {
                         Menu.mainMenuStage.show();
                         PlayerConnection.hostChatListenerThread.interrupt();
@@ -60,9 +60,11 @@ public class ChatReceiver implements Runnable {
         } else if (callsign == "Client") {
             while (true) {
                 try {
-                    Object[] end = chatRoom.query(new ActualField("lost connection"), new ActualField("Host"));
+                    Object[] end = chatRoom.queryp(new ActualField("lost connection"), new ActualField("Host"));
                     if (end != null) {
-                        Menu.mainMenuStage.show();
+                        Platform.runLater(() -> {
+                            Menu.mainMenuStage.show();
+                        });
                         PlayerConnection.hostChatListenerThread.interrupt();
                         PlayerConnection.hostActionListenerThread.interrupt();
                     }
