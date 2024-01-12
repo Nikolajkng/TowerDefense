@@ -23,7 +23,7 @@ public class PlayerInfo implements Runnable {
     public static void lifeTracker(Space space){
 
         try {
-            Object[] object = space.get(new FormalField(Integer.class), new ActualField("Terminate"));
+            Object[] object = space.get(new ActualField("finish"));
             if (object != null){
                 life -= (Integer) object[0];
                 if (life <= 0) {

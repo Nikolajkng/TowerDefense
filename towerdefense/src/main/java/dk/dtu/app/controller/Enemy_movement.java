@@ -9,6 +9,9 @@ public class Enemy_movement {
     private int coordinateY;
     protected Space space;
     protected int me;
+    int endCoordinateX;
+    int endCoordinateY;
+
 
     public Enemy_movement(int x, int y, Space space, int me) {
         this.coordinateX = x;
@@ -39,6 +42,9 @@ public class Enemy_movement {
         else if (board[coordinateX + 1][coordinateY] == pathTile) {
             walkRight();
             board[coordinateX + 1][coordinateY] = walkedTile;
+        }
+        if (coordinateX == endCoordinateX && coordinateY == endCoordinateY){
+            space.put("finish");
         }
 
         else {
