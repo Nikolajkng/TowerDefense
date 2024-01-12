@@ -105,7 +105,7 @@ public class SingleplayerBoard extends Application {
         exitGame.setOnAction(this::exitGame);
 
         //Left side bar 
-        leftVbox.getChildren().addAll(heartButton, Tower1GUI.tower1, Tower2GUI.tower2, Tower3GUI.tower3, coinButton);
+        leftVbox.getChildren().addAll(heartButton, tower1bButton, tower2bButton, tower3bButton, coinButton);
         leftVbox.setAlignment(Pos.TOP_CENTER);
         VBox.setMargin(heartButton, new javafx.geometry.Insets(20, 0, 0, 0));
         VBox.setMargin(tower1bButton, new javafx.geometry.Insets(45, 0, 0, 0));

@@ -296,11 +296,11 @@ public class MultiplayerBoard extends Application {
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
-towerBtn2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
+        towerBtn2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
-towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
+        towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
