@@ -1,7 +1,6 @@
 package dk.dtu.backend;
 
 import org.jspace.ActualField;
-import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 import org.jspace.Space;
 
@@ -39,7 +38,7 @@ public class PlayerInfo implements Runnable {
     public static int getLife() {
         return life;
     }
-    
+
     public static void moneyTracker(){
            
     }
