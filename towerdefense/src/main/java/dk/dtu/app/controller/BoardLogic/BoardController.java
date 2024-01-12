@@ -34,6 +34,7 @@ public class BoardController {
             for (y = 0; y < numOftilesY; y++) {
                 MyButton tile = new MyButton(value);
                 tile.setPrefSize(tileSize, tileSize);
+                tile.setMaxSize(tileSize, tileSize);
 
                 // Creates a path where enemies will follow
                 boolean isPath = false;
