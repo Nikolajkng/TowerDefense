@@ -151,8 +151,8 @@ public class MultiplayerBoard extends Application {
         rightSide.setMaxHeight(40);
 
         // Creating boards for two players
-        leftBoard = BoardController.createPlayerBoard(leftPane, 90, 14, 10, 0);
-        rightBoard = BoardController.createPlayerBoard(rightPane, 90, 14, 10, -1);
+        leftBoard = BoardController.createPlayerBoard(leftPane, 90, 12, 10, 0);
+        rightBoard = BoardController.createPlayerBoard(rightPane, 90, 12, 10, -1);
 
         // Activate button functionality in Controller
         TowerSelection.selectTower();
