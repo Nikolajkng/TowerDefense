@@ -53,6 +53,9 @@ public class ActionReceiver implements Runnable {
                     }
                 }
             } catch (InterruptedException e) {
+                Platform.runLater(() -> {
+                MultiplayerBoard.boardStage.close();
+            });
                 e.printStackTrace();
             }
             // What the host receives from the client
