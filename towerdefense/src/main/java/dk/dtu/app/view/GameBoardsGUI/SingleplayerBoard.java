@@ -27,9 +27,9 @@ public class SingleplayerBoard extends Application {
     int sizeY = 900;
     Button exitGame = new Button("EXIT");
     Button heartButton = new Button();
-    Button plant = Tower1GUI.plant;
-    Button hunter = Tower2GUI.hunter;
-    Button killerPlant = Tower3GUI.killerPlant;
+    Button plant = Tower1GUI.tower1;
+    Button hunter = Tower2GUI.tower2;
+    Button killerPlant = Tower3GUI.tower3;
     MyPane board = new MyPane();
 
     // Application layout
@@ -105,7 +105,7 @@ public class SingleplayerBoard extends Application {
         exitGame.setOnAction(this::exitGame);
 
         //Left side bar 
-        leftVbox.getChildren().addAll(heartButton, Tower1GUI.plant, Tower2GUI.hunter, Tower3GUI.killerPlant, coinButton);
+        leftVbox.getChildren().addAll(heartButton, Tower1GUI.tower1, Tower2GUI.tower2, Tower3GUI.tower3, coinButton);
         leftVbox.setAlignment(Pos.TOP_CENTER);
         VBox.setMargin(heartButton, new javafx.geometry.Insets(20, 0, 0, 0));
         VBox.setMargin(plant, new javafx.geometry.Insets(45, 0, 0, 0));

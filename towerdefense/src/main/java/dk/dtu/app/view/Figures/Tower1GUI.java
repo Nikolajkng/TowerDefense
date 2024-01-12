@@ -10,16 +10,16 @@ import javafx.stage.Stage;
 
 public class Tower1GUI extends Application {
 
-    public static Button tower1 = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
+    public static Button tower1 = createRoundButton("/dk/dtu/app/view/Images/carrot-tower1-game.png");
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
          //tower design
-        Tower1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+        tower1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/carrot-tower1-game.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        Tower1.setPrefSize(130, 130);
+        tower1.setPrefSize(130, 130);
     }
 
      // Create a circle to be used as the button's shape
@@ -49,7 +49,7 @@ public class Tower1GUI extends Application {
     
     public static void placeTower1(int x, int y, MyPane board) {
         Circle Tower1 = new Circle(50);
-        Image tower1Image = new Image("/dk/dtu/app/view/Images/ZdPH.gif",false);
+        Image tower1Image = new Image("/dk/dtu/app/view/Images/carrot-tower1-game.png",false);
         Tower1.setLayoutX(x);
         Tower1.setLayoutY(y);
         Tower1.setFill(new ImagePattern(tower1Image));

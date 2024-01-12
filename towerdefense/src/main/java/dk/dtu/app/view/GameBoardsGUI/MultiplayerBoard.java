@@ -132,23 +132,15 @@ public class MultiplayerBoard extends Application {
                 + "-fx-background-size: contain;");
 
         // Tower design
-        towerBtn1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+        towerBtn1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/carrot-tower1-game.png');"
                 + "-fx-background-repeat: repeat;"
                 + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
-        towerBtn2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
+        towerBtn2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/carrot-tower2-game.pngf');"
                 + "-fx-background-repeat: repeat;"
                 + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
-        towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-        towerBtn4.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
-                + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-        towerBtn5.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
+        towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/carrot-tower3-game.png');"
                 + "-fx-background-repeat: repeat;"
                 + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
