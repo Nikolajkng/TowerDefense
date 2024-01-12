@@ -5,7 +5,7 @@ import java.net.UnknownHostException;
 
 import org.jspace.RemoteSpace;
 
-import dk.dtu.app.controller.Tower;
+import dk.dtu.app.controller.Action;
 
 public class ActionSender {
     public static RemoteSpace P1P2room;
@@ -18,7 +18,7 @@ public class ActionSender {
         P2P1room = new RemoteSpace(P2P1uri);
     }
 
-    public static void sendAction(int x, int y, Tower.ActionType type, String callsign) {
+    public static void sendAction(int x, int y, Action.ActionType type, String callsign) {
         if (callsign == "Host") {
         try {
             System.out.println(callsign + " has selected following: " + type);

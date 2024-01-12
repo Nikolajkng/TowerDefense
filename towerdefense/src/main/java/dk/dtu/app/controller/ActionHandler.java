@@ -1,6 +1,6 @@
 package dk.dtu.app.controller;
 
-import dk.dtu.app.controller.Tower.ActionType;
+import dk.dtu.app.controller.Action.ActionType;
 
 public class ActionHandler {
 
@@ -8,7 +8,7 @@ public class ActionHandler {
         System.out.println("Selecting action: " + actioninfo[2]);
         int x = (int) actioninfo[0];
         int y = (int) actioninfo[1];
-        Tower.ActionType action = (ActionType) actioninfo[2];
+        Action.ActionType action = (ActionType) actioninfo[2];
 
         switch (action) {
             case NONE:

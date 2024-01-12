@@ -1,15 +1,12 @@
 package dk.dtu.app.controller;
 
+import dk.dtu.app.controller.Action.ActionType;
+
 public class Tower {
 
-    public enum ActionType {
-        NONE,
-        TOWER1,
-        TOWER2,
-        TOWER3,
-    }
 
-    public static void placeTower(int x, int y, MyButton[][] board, Tower.ActionType type) {
+
+    public static void placeTower(int x, int y, MyButton[][] board, Action.ActionType type) {
 
         System.out.println("Placing tower at: (" + x + ", " + y + ") with action: " + type);
 
