@@ -25,7 +25,14 @@ public class BoardController {
                 board.getHashMap().put(pixelCoordinate, value);
             }
         }
-
+        // Create a simple linear path with value -2
+        int pathLength = Math.min(boardSizeX, boardSizeY); // Assuming square board
+        for (int i = 0; i < pathLength; i++) {
+            int x = i;
+            int y = boardSizeY / 2; // Adjust the y-coordinate as needed
+            String pixelCoordinate = String.format("%d,%d", x, y);
+            board.getHashMap().put(pixelCoordinate, pathValue);
+        }
         // Set onclick for Panes
         board.setOnMouseClicked(event -> {
             int clickX = (int) event.getX();
