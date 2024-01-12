@@ -1,7 +1,5 @@
 package dk.dtu.app.controller.BoardLogic;
 
-import java.util.Map;
-
 import dk.dtu.app.controller.*;
 import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.backend.ActionSender;
@@ -58,6 +56,14 @@ public class BoardController {
         });
 
         return board;
+    }
+
+
+
+    private static void getClickInfo(int x, int y, MyPane board) {
+        String pixelCoordinate = String.format("%d,%d", x, y);
+        System.out.println("Clicked at coordinates: (" + x + ", " + y + ")");
+        System.out.println("Value at coordinates (" + x + ", " + y + "): " + board.getHashMap().get(pixelCoordinate));
     }
 
     private static void constructPath(int boardSizeX, int boardSizeY, MyPane board) {
@@ -168,12 +174,6 @@ public class BoardController {
                 }
             }
         }
-    }
-
-    private static void getClickInfo(int x, int y, MyPane board) {
-        String pixelCoordinate = String.format("%d,%d", x, y);
-        System.out.println("Clicked at coordinates: (" + x + ", " + y + ")");
-        System.out.println("Value at coordinates (" + x + ", " + y + "): " + board.getHashMap().get(pixelCoordinate));
     }
 
 }

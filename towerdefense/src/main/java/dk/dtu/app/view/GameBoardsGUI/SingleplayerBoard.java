@@ -1,6 +1,5 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
-import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.app.view.MenuGUI.Menu;
 import javafx.application.Application;
