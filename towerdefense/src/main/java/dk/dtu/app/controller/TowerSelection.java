@@ -4,7 +4,6 @@ import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.app.view.Figures.Tower_HunterGUI;
 import dk.dtu.app.view.Figures.Tower_KillerPlant;
-import dk.dtu.app.view.GameBoardsGUI.*;
 
 public class TowerSelection {
     public static void selectTower(){
