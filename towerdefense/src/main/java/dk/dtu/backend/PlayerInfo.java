@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 public class PlayerInfo implements Runnable {
     
     static int life = 100;
+
     private static Stage loserStage;
     int money = 100;
     SequentialSpace space;
@@ -25,7 +26,7 @@ public class PlayerInfo implements Runnable {
         try {
             Object[] object = space.get(new ActualField("finish"));
             if (object != null){
-                life -= (Integer) object[0];
+                life --;
                 if (life <= 0) {
                     new LostAlertGUI().start(loserStage);
                 }
@@ -33,16 +34,18 @@ public class PlayerInfo implements Runnable {
         } catch (InterruptedException e) {
         }
 
-
     }
 
+    public static int getLife() {
+        return life;
+    }
+    
     public static void moneyTracker(){
            
     }
 
     @Override
     public void run() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'run'");
+        
     }
 }

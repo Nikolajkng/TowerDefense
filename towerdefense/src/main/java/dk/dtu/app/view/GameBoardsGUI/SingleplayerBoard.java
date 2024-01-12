@@ -6,6 +6,7 @@ import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.app.view.Figures.Tower_HunterGUI;
 import dk.dtu.app.view.Figures.Tower_KillerPlant;
 import dk.dtu.app.view.MenuGUI.Menu;
+import dk.dtu.backend.PlayerInfo;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -75,7 +76,7 @@ public class SingleplayerBoard extends Application {
         killerPlant.setPrefSize(130, 130);
 
         //Other buttons design
-        heartButton.setText("25");
+        heartButton.setText("" + PlayerInfo.getLife());
         heartButton.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/heart.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; "
