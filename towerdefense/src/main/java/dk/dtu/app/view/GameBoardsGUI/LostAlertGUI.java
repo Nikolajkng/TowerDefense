@@ -2,8 +2,6 @@ package dk.dtu.app.view.GameBoardsGUI;
 
 import java.io.File;
 
-import javax.swing.text.View;
-
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.geometry.Pos;

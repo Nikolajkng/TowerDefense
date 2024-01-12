@@ -87,7 +87,7 @@ public class SingleplayerBoard extends Application {
         ImageView imageView = new ImageView(coin);
         imageView.setFitWidth(40);
         imageView.setFitHeight(40);
-        Button coinButton = new Button("" + PlayerInfo.getLife(), imageView);
+        Button coinButton = new Button("" + PlayerInfo.getMoney(), imageView);
         coinButton.setStyle("-fx-background-size: cover; -fx-background-color: transparent; "
         + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
         coinButton.setPrefSize(140, 140);
