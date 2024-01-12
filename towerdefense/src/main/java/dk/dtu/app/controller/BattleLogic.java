@@ -2,6 +2,8 @@ package dk.dtu.app.controller;
 
 import org.jspace.SequentialSpace;
 
+import dk.dtu.backend.PlayerInfo;
+
 public class BattleLogic {
     SequentialSpace space;
     private int startingCoordinateX;
@@ -18,6 +20,7 @@ public class BattleLogic {
     public BattleLogic(SequentialSpace space) {
         this.space = space;
         new Thread( new TowerPlacer(space));
+        new Thread( new PlayerInfo(space));
     }
 
     public void waves(int[] enemies) {

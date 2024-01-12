@@ -1,25 +1,44 @@
 package dk.dtu.backend;
 
-public class PlayerInfo {
+import org.jspace.ActualField;
+import org.jspace.FormalField;
+import org.jspace.SequentialSpace;
+import org.jspace.Space;
+
+public class PlayerInfo implements Runnable {
     
-    static int Life;
-    static int Money;
+    static int life = 100;
+    int money = 100;
+    SequentialSpace space;
 
-    public static void lifeTracker(){
+    public PlayerInfo(SequentialSpace space) {
+        this.space = space;
 
-        for (Life = 10; Life < 0; Life++){
+    }
 
+    public static void lifeTracker(Space space){
 
+        try {
+            Object[] object = space.get(new FormalField(Integer.class), new ActualField("Terminate"));
+            if (object != null){
+                life -= (Integer) object[0];
+                if (life <= 0) {
+                    
+                }
+            }
+        } catch (InterruptedException e) {
         }
-        
-        //return Life;
+
+
     }
 
     public static void moneyTracker(){
-        for (Money = 100; Money < 0; Money++){
+           
+    }
 
-
-         //return Money;
-        }
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'run'");
     }
 }
