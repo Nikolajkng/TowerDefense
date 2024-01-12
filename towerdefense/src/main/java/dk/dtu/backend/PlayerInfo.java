@@ -5,9 +5,13 @@ import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 import org.jspace.Space;
 
+import dk.dtu.app.view.GameBoardsGUI.LostAlertGUI;
+import javafx.stage.Stage;
+
 public class PlayerInfo implements Runnable {
     
     static int life = 100;
+    private static Stage loserStage;
     int money = 100;
     SequentialSpace space;
 
@@ -23,7 +27,7 @@ public class PlayerInfo implements Runnable {
             if (object != null){
                 life -= (Integer) object[0];
                 if (life <= 0) {
-                    
+                    new LostAlertGUI().start(loserStage);
                 }
             }
         } catch (InterruptedException e) {
