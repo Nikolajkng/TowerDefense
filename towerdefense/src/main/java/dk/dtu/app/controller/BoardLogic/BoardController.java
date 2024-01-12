@@ -67,6 +67,8 @@ public class BoardController {
                     && board.getHashMap().get(String.format("%d,%d", clickX, clickY)) != -2) {
                 Tower.placeTower(clickX, clickY, board, type);
                 ActionSender.sendAction(clickX, clickY, type, callsign);
+            } else {
+                System.out.println("Illegal placement");
             }
         });
 
