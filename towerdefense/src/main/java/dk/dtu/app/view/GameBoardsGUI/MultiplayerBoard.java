@@ -3,14 +3,23 @@ package dk.dtu.app.view.GameBoardsGUI;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+import org.jspace.ActualField;
+
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
+
+import dk.dtu.app.controller.BoardLogic.ChatController;
+import dk.dtu.app.view.MenuGUI.Menu;
+import dk.dtu.backend.PlayerConnection;
+import dk.dtu.backend.Server;
+
 import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
 import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.app.view.Figures.Tower_HunterGUI;
 import dk.dtu.app.view.Figures.Tower_KillerPlant;
 import dk.dtu.backend.PlayerInfo;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -44,13 +53,18 @@ public class MultiplayerBoard extends Application {
     public static Label topTitle = new Label("RABBIT HUNTER");
     public static HBox bottomHUD = new HBox();
     public static final int sizeX = 1400;
-    private static final int sizeY = 900; 
+    private static final int sizeY = 900;
     // Local field variables
     private GridPane leftPane = new GridPane();
     private GridPane rightPane = new GridPane();
     private Image healthIcon = new Image(getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
     private ImageView showHealthIcon1 = new ImageView(healthIcon);
     private ImageView showHealthIcon2 = new ImageView(healthIcon);
+    private String callsign;
+
+    public MultiplayerBoard(String callsign) {
+        this.callsign = callsign;
+    }
 
     // Program start
     @Override
@@ -62,7 +76,40 @@ public class MultiplayerBoard extends Application {
         boardStage.setResizable(false);
         boardStage.setMaximized(true);
         boardStage.setOnCloseRequest(event -> {
+
+            Menu.mainMenuStage.show();
+            if (callsign == "Host") {
+                try {
+                    ChatController.chatRoom.put("lost connection", callsign);
+                    System.out.println(callsign + " lost connection");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                PlayerConnection.hostChatListenerThread.interrupt();
+                // try {
+                //     Server.P2P1room.put("lost connection");
+                // } catch (InterruptedException e) {
+                //     e.printStackTrace();
+                // }
+                PlayerConnection.hostActionListenerThread.interrupt();
+            } else {
+                try {
+                    ChatController.chatRoom.put("lost connection", callsign);
+                    System.out.println(callsign + " lost connection");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                PlayerConnection.clientChatListenerThread.interrupt();
+                // try {
+                //     Server.P1P2room.put("lost connection");
+                // } catch (InterruptedException e) {
+                //     e.printStackTrace();
+                // }
+                PlayerConnection.clientActionListenerThread.interrupt();
+            }
+
             System.exit(0);
+
         });
 
         // Application layout
@@ -141,8 +188,9 @@ public class MultiplayerBoard extends Application {
         VBox.setMargin(killerPlant, new javafx.geometry.Insets(20, 0, 0, 0));
         
         // Right vbox-menu setup
-        rightVbox.getChildren().addAll(attackEnemy1btn/* , attackEnemy2btn, attackEnemy3btn, attackEnemy4btn,
-                attackEnemy5btn*/);
+
+        rightVbox.getChildren().addAll(attackEnemy1btn, attackEnemy2btn, attackEnemy3btn, attackEnemy4btn,
+                attackEnemy5btn);
 
 
         // Button sizes
@@ -196,7 +244,8 @@ public class MultiplayerBoard extends Application {
         TowerSelection.selectTower();
 
         // Start construction of chat GUI
-        ChatGUI.createChatGUI();;
+        ChatGUI.createChatGUI();
+        ;
 
     }
 

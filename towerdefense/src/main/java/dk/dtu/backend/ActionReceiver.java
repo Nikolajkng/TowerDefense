@@ -3,6 +3,7 @@ package dk.dtu.backend;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.RemoteSpace;
 import org.jspace.SequentialSpace;
@@ -11,12 +12,13 @@ import dk.dtu.app.controller.Action;
 import dk.dtu.app.controller.ActionHandler;
 import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
+import dk.dtu.app.view.MenuGUI.Menu;
 import javafx.application.Platform;
 
 public class ActionReceiver implements Runnable {
     String uri = "";
     RemoteSpace clientRoom;
-    SequentialSpace hostRoom;
+    public SequentialSpace hostRoom;
     public static Object[] actionInfo;
 
     public ActionReceiver(String uri, RemoteSpace room) throws UnknownHostException, IOException {
@@ -44,7 +46,8 @@ public class ActionReceiver implements Runnable {
                                 new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(Action.ActionType.class));
-                        System.out.println("Received action from Host (" + (ActionType) actionInfo[2] + ") successfully!");
+                        System.out.println(
+                                "Received action from Host (" + (ActionType) actionInfo[2] + ") successfully!");
                         Platform.runLater(() -> {
                             ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
                         });
@@ -53,6 +56,10 @@ public class ActionReceiver implements Runnable {
                     }
                 }
             } catch (InterruptedException e) {
+                PlayerConnection.clientActionListenerThread.interrupt();
+                Platform.runLater(() -> {
+                    MultiplayerBoard.boardStage.close();
+                });
                 e.printStackTrace();
             }
             // What the host receives from the client
@@ -66,7 +73,8 @@ public class ActionReceiver implements Runnable {
                         actionInfo = hostRoom.get(new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(Action.ActionType.class));
-                        System.out.println("Received action from Client (" + (ActionType) actionInfo[2]+") successfully!");
+                        System.out.println(
+                                "Received action from Client (" + (ActionType) actionInfo[2] + ") successfully!");
                         Platform.runLater(() -> {
                             ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
                         });
@@ -74,6 +82,9 @@ public class ActionReceiver implements Runnable {
                     }
                 }
             } catch (InterruptedException e) {
+                Platform.runLater(() -> {
+                    MultiplayerBoard.boardStage.close();
+                });
             }
         }
 
