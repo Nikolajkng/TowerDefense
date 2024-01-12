@@ -19,8 +19,8 @@ public class BoardController {
         board.setStyle("-fx-background-color: #FFFFFF");
 
         // Assign each pixel a value from paramter
-        for (int x = 1; x < boardSizeX; x++) {
-            for (int y = 1; y < boardSizeY; y++) {
+        for (int x = 0; x < boardSizeX; x++) {
+            for (int y = 0; y < boardSizeY; y++) {
                 String pixelCoordinate = String.format("%d,%d", x, y);
                 board.getHashMap().put(pixelCoordinate, value);
 
