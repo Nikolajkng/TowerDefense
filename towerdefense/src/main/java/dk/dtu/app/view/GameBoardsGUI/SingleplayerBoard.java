@@ -3,6 +3,8 @@ package dk.dtu.app.view.GameBoardsGUI;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.view.Figures.Tower1GUI;
+import dk.dtu.app.view.Figures.Tower_HunterGUI;
+import dk.dtu.app.view.Figures.Tower_KillerPlant;
 import dk.dtu.app.view.MenuGUI.Menu;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -27,8 +29,8 @@ public class SingleplayerBoard extends Application {
     Button heartButton = new Button();
 
     Button plant = Tower1GUI.plant;
-    Button Tower2 = createRoundButton("/dk/dtu/app/view/Images/giphy.gif");
-    Button Tower3 = createRoundButton("/dk/dtu/app/view/Images/SYKT7E.gif");
+    Button Tower2 = Tower_HunterGUI.hunter;
+    Button Tower3 = Tower_KillerPlant.killerPlant;
 
     // Application layout
     BorderPane borderPane = new BorderPane();
