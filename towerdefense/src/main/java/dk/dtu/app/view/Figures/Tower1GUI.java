@@ -1,6 +1,6 @@
 package dk.dtu.app.view.Figures;
 
-import dk.dtu.app.controller.MyButton;
+import dk.dtu.app.controller.BoardLogic.MyPane;
 import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -48,12 +48,14 @@ public class Tower1GUI extends Application {
         return roundButton;
     }
     
-    public static void placePlant1(MyButton clickedButton) {
-         Rectangle plant = new Rectangle(45, 45);
-
+    public static void placePlant1(int x, int y, MyPane board) {
+        Circle plant = new Circle(50);
         Image plantGif = new Image("/dk/dtu/app/view/Images/ZdPH.gif",false);
+        plant.setLayoutX(x);
+        plant.setLayoutY(y);
         plant.setFill(new ImagePattern(plantGif));
-
-        clickedButton.setGraphic(plant);
+        board.getChildren().add(plant);
     }
+
+
 }

@@ -3,13 +3,11 @@ package dk.dtu.app.view.GameBoardsGUI;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 
 import dk.dtu.backend.Server;
-
 
 import dk.dtu.app.controller.BoardLogic.ChatController;
 import dk.dtu.app.view.MenuGUI.Menu;
@@ -21,6 +19,7 @@ import dk.dtu.app.view.Figures.Tower_HunterGUI;
 import dk.dtu.app.view.Figures.Tower_KillerPlant;
 import dk.dtu.backend.PlayerInfo;
 
+import dk.dtu.app.controller.BoardLogic.MyPane;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -30,7 +29,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -39,11 +37,15 @@ public class MultiplayerBoard extends Application {
 
     // Global field variables
     public static Stage boardStage = new Stage();
-    public static MyButton[][] leftBoard = new MyButton[0][0];
-    public static MyButton[][] rightBoard = new MyButton[0][0];
-    public static Button plant = Tower1GUI.plant;
-    public static Button hunter = Tower_HunterGUI.hunter;
-    public static Button killerPlant = Tower_KillerPlant.killerPlant;
+    public static MyPane leftPane = new MyPane();
+    public static MyPane rightPane = new MyPane();
+    public static MyPane leftBoard = new MyPane();
+    public static MyPane rightBoard = new MyPane();
+    public static Button towerBtn1 = new Button("Tower1 $0");
+    public static Button towerBtn2 = new Button("Tower2 $0");
+    public static Button towerBtn3 = new Button("Tower3 $0");
+    public static Button towerBtn4 = new Button("Tower4 $0");
+    public static Button towerBtn5 = new Button("Tower5 $0");
     public static Button attackEnemy1btn = new Button("Attack enemy");
     public static Button attackEnemy2btn = new Button("Attack enemy");
     public static Button attackEnemy3btn = new Button("Attack enemy");
@@ -56,8 +58,7 @@ public class MultiplayerBoard extends Application {
     public static final int sizeX = 1400;
     private static final int sizeY = 900;
     // Local field variables
-    private GridPane leftPane = new GridPane();
-    private GridPane rightPane = new GridPane();
+
     private Image healthIcon = new Image(getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
     private ImageView showHealthIcon1 = new ImageView(healthIcon);
     private ImageView showHealthIcon2 = new ImageView(healthIcon);
@@ -88,9 +89,9 @@ public class MultiplayerBoard extends Application {
                 }
                 PlayerConnection.hostChatListenerThread.interrupt();
                 // try {
-                //     Server.P2P1room.put("lost connection");
+                // Server.P2P1room.put("lost connection");
                 // } catch (InterruptedException e) {
-                //     e.printStackTrace();
+                // e.printStackTrace();
                 // }
                 PlayerConnection.hostActionListenerThread.interrupt();
             } else {
@@ -102,9 +103,9 @@ public class MultiplayerBoard extends Application {
                 }
                 PlayerConnection.clientChatListenerThread.interrupt();
                 // try {
-                //     Server.P1P2room.put("lost connection");
+                // Server.P1P2room.put("lost connection");
                 // } catch (InterruptedException e) {
-                //     e.printStackTrace();
+                // e.printStackTrace();
                 // }
                 PlayerConnection.clientActionListenerThread.interrupt();
             }
@@ -115,51 +116,70 @@ public class MultiplayerBoard extends Application {
 
         // Application layout
         BorderPane borderPane = new BorderPane();
-        HBox centerPane = new HBox(leftPane, rightPane);
+        HBox centerPane = new HBox(); // For the leftboard and rightboard
         VBox leftVbox = new VBox();
         VBox rightVbox = new VBox();
         HBox topBar = new HBox();
         borderPane.setMaxSize(sizeY, sizeX);
 
         // Color of background of Panes
-    
+
         centerPane.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: contain;");
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
         leftVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: contain;");
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
         rightVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: contain;");
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
         bottomHUD.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: contain;");
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
         topBar.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: contain;");
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: contain;");
 
-        //Tower design 
-        plant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        plant.setPrefSize(130, 130);
+        // Tower design
+        towerBtn1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
-        hunter.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        hunter.setPrefSize(130, 130);
+        towerBtn2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
-        killerPlant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        killerPlant.setPrefSize(130, 130);
+        towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
-        //Enemie design 
+        towerBtn4.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+        towerBtn5.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+        // Enemy design
         attackEnemy1btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        attackEnemy1btn.setPrefSize(130, 130);
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+        attackEnemy2btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+        attackEnemy3btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+        attackEnemy4btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+
+        attackEnemy5btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+                + "-fx-background-repeat: repeat;"
+                + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
         // Positions of all panes
         centerPane.setAlignment(Pos.CENTER);
@@ -183,28 +203,30 @@ public class MultiplayerBoard extends Application {
         topBar.setPrefHeight(sizeY / 8 + 25);
 
         // Left vbox-menu setup:
-        leftVbox.getChildren().addAll(plant, hunter, killerPlant);
-        VBox.setMargin(plant, new javafx.geometry.Insets(20, 0, 0, 0));
-        VBox.setMargin(hunter, new javafx.geometry.Insets(20, 0, 0, 0));
-        VBox.setMargin(killerPlant, new javafx.geometry.Insets(20, 0, 0, 0));
-        
-        // Right vbox-menu setup
+        leftVbox.getChildren().addAll(towerBtn1, towerBtn2, towerBtn3, towerBtn4, towerBtn5);
+        VBox.setMargin(towerBtn1, new javafx.geometry.Insets(20, 0, 0, 0));
+        VBox.setMargin(towerBtn2, new javafx.geometry.Insets(20, 0, 0, 0));
+        VBox.setMargin(towerBtn3, new javafx.geometry.Insets(20, 0, 0, 0));
+        VBox.setMargin(towerBtn4, new javafx.geometry.Insets(20, 0, 0, 0));
+        VBox.setMargin(towerBtn5, new javafx.geometry.Insets(20, 0, 0, 0));
 
+        // Right vbox-menu setup
         rightVbox.getChildren().addAll(attackEnemy1btn, attackEnemy2btn, attackEnemy3btn, attackEnemy4btn,
                 attackEnemy5btn);
-
 
         // Button sizes
         int towerBtnWidth = 120;
         int towerBtnHeight = 100;
-        plant.setPrefSize(towerBtnWidth, towerBtnHeight);
-        hunter.setPrefSize(towerBtnWidth, towerBtnHeight);
-        killerPlant.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn1.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn2.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn3.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn4.setPrefSize(towerBtnWidth, towerBtnHeight);
+        towerBtn5.setPrefSize(towerBtnWidth, towerBtnHeight);
         attackEnemy1btn.setPrefSize(towerBtnWidth, towerBtnHeight);
-        /*attackEnemy2btn.setPrefSize(towerBtnWidth, towerBtnHeight);
+        attackEnemy2btn.setPrefSize(towerBtnWidth, towerBtnHeight);
         attackEnemy3btn.setPrefSize(towerBtnWidth, towerBtnHeight);
         attackEnemy4btn.setPrefSize(towerBtnWidth, towerBtnHeight);
-        attackEnemy5btn.setPrefSize(towerBtnWidth, towerBtnHeight);*/
+        attackEnemy5btn.setPrefSize(towerBtnWidth, towerBtnHeight);
 
         // Scene setup
         Scene scene = new Scene(borderPane, sizeX, sizeY);
@@ -227,26 +249,32 @@ public class MultiplayerBoard extends Application {
         rightSide.setAlignment(Pos.BOTTOM_RIGHT);
 
         // Health styling
-        healthP1.setStyle("-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
-        healthP2.setStyle("-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
-        topTitle.setStyle("-fx-fill: white; -fx-font-size: 60px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
-        //leftSide.setStyle("-fx-border-color: #00e600; -fx-border-width: 7; -fx-border-radius: 20");
-        //rightSide.setStyle("-fx-border-color: #00e600; -fx-border-width: 7; -fx-border-radius: 20");
+        healthP1.setStyle(
+                "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+        healthP2.setStyle(
+                "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+        topTitle.setStyle(
+                "-fx-fill: white; -fx-font-size: 60px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+        // leftSide.setStyle("-fx-border-color: #00e600; -fx-border-width: 7;
+        // -fx-border-radius: 20");
+        // rightSide.setStyle("-fx-border-color: #00e600; -fx-border-width: 7;
+        // -fx-border-radius: 20");
         leftSide.setPadding(new Insets(10));
         leftSide.setMaxHeight(40);
         rightSide.setPadding(new Insets(10));
         rightSide.setMaxHeight(40);
 
         // Creating boards for two players
+        leftBoard = BoardController.createPlayerBoard(leftPane, 1);
+        rightBoard = BoardController.createPlayerBoard(rightPane, -1);
+        centerPane.getChildren().addAll(leftBoard, rightBoard);
 
-        leftBoard = BoardController.createPlayerBoard(leftPane, 90, 14, 10, 0);
+        // Peters TEST:
         try {
-            Server.gameRoom.put("MyBoard",leftBoard);
+            Server.gameRoom.put("MyBoard", leftBoard);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        rightBoard = BoardController.createPlayerBoard(rightPane, 90, 14, 10, -1);
-
 
         // Activate button functionality in Controller
         TowerSelection.selectTower();

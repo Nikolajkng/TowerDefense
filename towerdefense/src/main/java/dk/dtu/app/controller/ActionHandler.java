@@ -1,10 +1,11 @@
 package dk.dtu.app.controller;
 
 import dk.dtu.app.controller.Action.ActionType;
+import dk.dtu.app.controller.BoardLogic.MyPane;
 
 public class ActionHandler {
 
-    public static void selectAction(Object[] actioninfo, MyButton[][] board) {
+    public static void selectAction(Object[] actioninfo, MyPane board) {
         System.out.println("Selecting action: " + actioninfo[2]);
         int x = (int) actioninfo[0];
         int y = (int) actioninfo[1];
