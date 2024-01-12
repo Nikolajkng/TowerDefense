@@ -17,10 +17,10 @@ public class PlayerConnection {
     public static String callsign;
 
     // Local fields
-    protected static Thread hostActionListenerThread;
-    protected static Thread hostChatListenerThread;
-    protected static Thread clientActionListenerThread;
-    protected static Thread clientChatListenerThread;
+    public static Thread hostActionListenerThread;
+    public static Thread hostChatListenerThread;
+    public static Thread clientActionListenerThread;
+    public static Thread clientChatListenerThread;
 
     ///////////////////////////////////////////////// HOST /////////////////////////////////////////////////////////////////////
     public static void hostGame(ActionEvent event) throws UnknownHostException, IOException {

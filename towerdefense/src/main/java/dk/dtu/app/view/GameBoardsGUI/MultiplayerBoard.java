@@ -7,6 +7,7 @@ import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.view.MenuGUI.Menu;
+import dk.dtu.backend.PlayerConnection;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -61,6 +62,10 @@ public class MultiplayerBoard extends Application {
         boardStage.setMaximized(true);
         boardStage.setOnCloseRequest(event -> {
             Menu.mainMenuStage.show();
+            PlayerConnection.hostChatListenerThread.interrupt();
+            PlayerConnection.clientChatListenerThread.interrupt();
+            PlayerConnection.hostActionListenerThread.interrupt();
+            PlayerConnection.clientActionListenerThread.interrupt();
         });
 
         // Application layout
