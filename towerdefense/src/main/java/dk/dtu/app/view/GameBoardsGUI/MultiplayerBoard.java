@@ -3,11 +3,15 @@ package dk.dtu.app.view.GameBoardsGUI;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+import org.jspace.ActualField;
+
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
+import dk.dtu.app.controller.BoardLogic.ChatController;
 import dk.dtu.app.view.MenuGUI.Menu;
 import dk.dtu.backend.PlayerConnection;
+import dk.dtu.backend.Server;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -50,6 +54,11 @@ public class MultiplayerBoard extends Application {
     private Image healthIcon = new Image(getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
     private ImageView showHealthIcon1 = new ImageView(healthIcon);
     private ImageView showHealthIcon2 = new ImageView(healthIcon);
+    private String callsign;
+
+    public MultiplayerBoard(String callsign) {
+        this.callsign = callsign;
+    }
 
     // Program start
     @Override
@@ -62,8 +71,33 @@ public class MultiplayerBoard extends Application {
         boardStage.setMaximized(true);
         boardStage.setOnCloseRequest(event -> {
             Menu.mainMenuStage.show();
-            PlayerConnection.hostChatListenerThread.interrupt();
-            PlayerConnection.hostActionListenerThread.interrupt();
+            if (callsign == "host") {
+                try {
+                    ChatController.chatRoom.put("lost connection");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                PlayerConnection.hostChatListenerThread.interrupt();
+                // try {
+                //     Server.P2P1room.put("lost connection");
+                // } catch (InterruptedException e) {
+                //     e.printStackTrace();
+                // }
+                PlayerConnection.hostActionListenerThread.interrupt();
+            } else {
+                try {
+                    ChatController.chatRoom.put("lost connection");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                PlayerConnection.clientChatListenerThread.interrupt();
+                // try {
+                //     Server.P1P2room.put("lost connection");
+                // } catch (InterruptedException e) {
+                //     e.printStackTrace();
+                // }
+                PlayerConnection.clientActionListenerThread.interrupt();
+            }
         });
 
         // Application layout

@@ -99,7 +99,7 @@ public class PlayerConnection {
     private static void showMultiPlayerBoard() throws UnknownHostException, IOException {
         System.out.println("Game has started!");
         // Close the current MainMenu stage
-        MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
+        MultiplayerBoard multiplayerBoard = new MultiplayerBoard(callsign);
         multiplayerBoard.start(MultiplayerBoard.boardStage);
         MultiplayerMenu.boardStage.close();
         MultiplayerBoard.boardStage.show();

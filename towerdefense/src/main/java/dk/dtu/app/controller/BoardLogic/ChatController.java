@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 public class ChatController {
     private static int messageCount = 0;
     public static List<Label> messageList = new ArrayList<>();
-    private static RemoteSpace chatRoom;
+    public static RemoteSpace chatRoom;
 
     public static void createChatBox(ScrollPane scrollPane, VBox chatBox, TextField chatField)
             throws UnknownHostException, IOException {

@@ -131,16 +131,16 @@ public class Menu extends Application{
     }
     
 
-    public void multiplayerBoard (ActionEvent event) throws UnknownHostException, IOException {
-        MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
-        multiplayerBoard.start(MultiplayerBoard.boardStage);
+    // public void multiplayerBoard (ActionEvent event) throws UnknownHostException, IOException {
+    //     MultiplayerBoard multiplayerBoard = new MultiplayerBoard();
+    //     multiplayerBoard.start(MultiplayerBoard.boardStage);
 
-        // Show the new MultiplayerBoard stage
-        MultiplayerBoard.boardStage.show();
+    //     // Show the new MultiplayerBoard stage
+    //     MultiplayerBoard.boardStage.show();
 
-        // Close the current MainMenu stage
-        mainMenuStage.close();
-    }
+    //     // Close the current MainMenu stage
+    //     mainMenuStage.close();
+    // }
     
     private void showGameRules(ActionEvent event) {
         // Implement logic to display the game rules (e.g., in a dialog or separate screen)
