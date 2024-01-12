@@ -13,7 +13,8 @@ public class BoardController {
     public static String callsign = PlayerConnection.callsign;
     public static int pathValue = -2;
     public static int illegalValue = -1;
-    //public static Map<String, Integer> coordinatesValues = new HashMap<>();
+    
+    // public static Map<String, Integer> coordinatesValues = new HashMap<>();
 
     // Creating the player boards
     public static MyPane createPlayerBoardValues(MyPane board, int boardSizeX, int boardSizeY, int value) {
@@ -27,20 +28,38 @@ public class BoardController {
                 board.getHashMap().put(pixelCoordinate, value);
             }
         }
-        // Create a simple linear path with value -2
+
+
+        boolean[][] pathArray = new boolean[boardSizeX][boardSizeY];
         int pathLength = Math.min(boardSizeX, boardSizeY); // Assuming square board
-        for (int i = 0; i < pathLength; i++) {
-            int x = i;
+        int pathThickness = 20;
+        for (int row = 0; row < pathLength; row++) {
+            int x = row;
             int y = boardSizeY / 2; // Adjust the y-coordinate as needed
-            String pixelCoordinate = String.format("%d,%d", x, y);
-            board.getHashMap().put(pixelCoordinate, pathValue);
-               
-            // Add a rectangle to visually represent the path
-            Rectangle pathRectangle = new Rectangle(x, y, 1, 1);
-            pathRectangle.setFill(Color.RED); // Adjust the color as needed
-            board.getChildren().add(pathRectangle);
+        
+            // Set the path pixels in the boolean array
+            for (int col = 0; col < pathThickness; col++) {
+                int adjustedY = y - pathThickness / 2 + col;
+                if (adjustedY >= 0 && adjustedY < boardSizeY) {
+                    pathArray[x][adjustedY] = true;
+                }
+            }
         }
         
+        // Set the path pixels on MyPane
+        for (int x = 0; x < boardSizeX; x++) {
+            for (int y = 0; y < boardSizeY; y++) {
+                if (pathArray[x][y]) {
+                    String pixelCoordinate = String.format("%d,%d", x, y);
+                    board.getHashMap().put(pixelCoordinate, pathValue);
+        
+                    // Add a rectangle to visually represent the path
+                    Rectangle pathRectangle = new Rectangle(x, y, 1, 1);
+                    pathRectangle.setFill(Color.RED); // Adjust the color as needed
+                    board.getChildren().add(pathRectangle);
+                }
+            }
+        }
         // Set onclick for Panes
         board.setOnMouseClicked(event -> {
             int clickX = (int) event.getX();
