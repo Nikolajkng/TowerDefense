@@ -23,13 +23,7 @@ public class BoardController {
             for (int y = 0; y < boardSizeY; y++) {
                 String pixelCoordinate = String.format("%d,%d", x, y);
                 board.getHashMap().put(pixelCoordinate, value);
-
             }
-        }
-        for (Map.Entry<String, Integer> entry : board.getHashMap().entrySet()) {
-            String mapKey = entry.getKey();
-            Integer mapValue = entry.getValue();
-            System.out.println("Following was found in Hashmap:["+ mapKey + ": " + mapValue+"]");
         }
 
         // Set onclick for Panes
