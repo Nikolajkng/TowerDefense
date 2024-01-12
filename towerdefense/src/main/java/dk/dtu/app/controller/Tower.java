@@ -1,30 +1,27 @@
 package dk.dtu.app.controller;
 
+import dk.dtu.app.controller.Action.ActionType;
+import dk.dtu.app.view.Figures.Tower1GUI;
+import dk.dtu.app.view.Figures.Tower_HunterGUI;
+import dk.dtu.app.view.Figures.Tower_KillerPlant;
+
 public class Tower {
 
-    public enum ActionType {
-        NONE,
-        TOWER1,
-        TOWER2,
-        TOWER3,
-    }
-
-    public static void placeTower(int x, int y, MyButton[][] board, Tower.ActionType type) {
+    public static void placeTower(int x, int y, MyButton[][] board, Action.ActionType type) {
 
         System.out.println("Placing tower at: (" + x + ", " + y + ") with action: " + type);
 
         if (type == ActionType.TOWER1) {
-            board[x][y].setText("X");
+            Tower1GUI.placePlant1(board[x][y]);
+            // board[x][y].setText("X");
             board[x][y].setValue(-1);
-        }
-        else
-        if (type == ActionType.TOWER2) {
-            board[x][y].setText("O");
+        } else if (type == ActionType.TOWER2) {
+            Tower_HunterGUI.placeHunter(board[x][y]);
+            // board[x][y].setText("O");
             board[x][y].setValue(-1);
-        }
-        else
-        if (type == ActionType.TOWER3) {
-            board[x][y].setText("±");
+        } else if (type == ActionType.TOWER3) {
+            Tower_KillerPlant.placeKillerPlant(board[x][y]);
+            // board[x][y].setText("±");
             board[x][y].setValue(-1);
         } else {
             System.out.println("No tower selected");

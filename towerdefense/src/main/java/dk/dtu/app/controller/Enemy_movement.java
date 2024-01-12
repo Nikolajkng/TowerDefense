@@ -11,6 +11,9 @@ public class Enemy_movement {
     private int endCoordinatesY = 4;
     protected Space space;
     protected int me;
+    int endCoordinateX;
+    int endCoordinateY;
+
 
     public Enemy_movement(int x, int y, Space space, int me) {
         this.coordinateX = x;
@@ -68,6 +71,9 @@ public class Enemy_movement {
                 System.out.println("path chosen: Left");
                 directionchosen = true;
             }
+        }
+        if (coordinateX == endCoordinateX && coordinateY == endCoordinateY){
+            space.put("finish");
         }
 
         if (rightOK && !directionchosen) {

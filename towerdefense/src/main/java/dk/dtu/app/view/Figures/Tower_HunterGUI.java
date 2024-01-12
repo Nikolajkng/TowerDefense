@@ -9,18 +9,18 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class Tower1GUI extends Application {
+public class Tower_HunterGUI extends Application {
 
-    public static Button plant = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
+    public static Button hunter = createRoundButton("/dk/dtu/app/view/Images/giphy.gif");
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
          //tower design
-        plant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+        hunter.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        plant.setPrefSize(130, 130);
+        hunter.setPrefSize(130, 130);
     }
 
      // Create a circle to be used as the button's shape
@@ -48,12 +48,12 @@ public class Tower1GUI extends Application {
         return roundButton;
     }
     
-    public static void placePlant1(MyButton clickedButton) {
-         Rectangle plant = new Rectangle(45, 45);
+    public static void placeHunter(MyButton clickedButton) {
+        Rectangle hunter = new Rectangle(45, 45);
 
-        Image plantGif = new Image("/dk/dtu/app/view/Images/ZdPH.gif",false);
-        plant.setFill(new ImagePattern(plantGif));
+        Image hunterGif = new Image("/dk/dtu/app/view/Images/giphy.gif",false);
+        hunter.setFill(new ImagePattern(hunterGif));
 
-        clickedButton.setGraphic(plant);
+        clickedButton.setGraphic(hunter);
     }
 }

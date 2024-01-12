@@ -9,18 +9,18 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class Tower1GUI extends Application {
+public class Tower_KillerPlant extends Application {
 
-    public static Button plant = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
+    public static Button killerPlant = createRoundButton("/dk/dtu/app/view/Images/SYKT7E.gif");
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
          //tower design
-        plant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+        killerPlant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        plant.setPrefSize(130, 130);
+        killerPlant.setPrefSize(130, 130);
     }
 
      // Create a circle to be used as the button's shape
@@ -48,10 +48,10 @@ public class Tower1GUI extends Application {
         return roundButton;
     }
     
-    public static void placePlant1(MyButton clickedButton) {
+    public static void placeKillerPlant(MyButton clickedButton) {
          Rectangle plant = new Rectangle(45, 45);
 
-        Image plantGif = new Image("/dk/dtu/app/view/Images/ZdPH.gif",false);
+        Image plantGif = new Image("/dk/dtu/app/view/Images/SYKT7E.gif",false);
         plant.setFill(new ImagePattern(plantGif));
 
         clickedButton.setGraphic(plant);

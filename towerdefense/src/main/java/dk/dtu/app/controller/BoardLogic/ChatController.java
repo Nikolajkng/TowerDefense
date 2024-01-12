@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 public class ChatController {
     private static int messageCount = 0;
     public static List<Label> messageList = new ArrayList<>();
-    private static RemoteSpace chatRoom;
+    public static RemoteSpace chatRoom;
 
     public static void createChatBox(ScrollPane scrollPane, VBox chatBox, TextField chatField)
             throws UnknownHostException, IOException {
@@ -28,7 +28,7 @@ public class ChatController {
             if (!chatField.getText().isEmpty()) {
                 // User message input
                 String userMessage = chatField.getText();
-                updateChatBox(userMessage);
+                updateChatBox(PlayerConnection.callsign,userMessage);
 
                 // Auto clear Textfield after user send message
                 chatField.setText("");
@@ -51,14 +51,14 @@ public class ChatController {
 
     }
 
-    public static void updateChatBox(String userMessage) {
-        if(PlayerConnection.callsign == "Host"){
+    public static void updateChatBox(String callsign,String userMessage) {
+        if(callsign == "Host"){
             messageList.add(new Label("Host: " + userMessage));
             messageList.get(messageCount).setStyle("-fx-background-color: #FFB6C1");
             ChatGUI.chatBox.getChildren().addAll(messageList.get(messageCount));
             messageCount++;
-        } else if(PlayerConnection.callsign == "Client"){
-            messageList.add(new Label("Player 1: " + userMessage));
+        } else if(callsign == "Client"){
+            messageList.add(new Label("Client: " + userMessage));
             messageList.get(messageCount).setStyle("-fx-background-color: #ADDFFF");
             ChatGUI.chatBox.getChildren().addAll(messageList.get(messageCount));
             messageCount++;

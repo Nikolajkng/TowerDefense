@@ -1,6 +1,6 @@
 package dk.dtu.app.controller;
 
-import dk.dtu.app.controller.Tower.ActionType;
+import dk.dtu.app.controller.Action.ActionType;
 
 public class ActionHandler {
 
@@ -8,7 +8,7 @@ public class ActionHandler {
         System.out.println("Selecting action: " + actioninfo[2]);
         int x = (int) actioninfo[0];
         int y = (int) actioninfo[1];
-        Tower.ActionType action = (ActionType) actioninfo[2];
+        Action.ActionType action = (ActionType) actioninfo[2];
 
         switch (action) {
             case NONE:
@@ -21,6 +21,22 @@ public class ActionHandler {
                 break;
             case TOWER3:
                 Tower.placeTower(x, y, board, action);
+                break;
+            case TOWER4:
+                Tower.placeTower(x, y, board, action);
+                break;
+            case TOWER5:
+                Tower.placeTower(x, y, board, action);
+                break;
+            case ENEMY1:
+                break;
+            case ENEMY2:
+                break;
+            case ENEMY3:
+                break;
+            case ENEMY4:
+                break;
+            case ENEMY5:
                 break;
         }
     }

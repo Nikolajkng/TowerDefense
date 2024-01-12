@@ -1,21 +1,23 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
-import java.beans.EventHandler;
-
+import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.view.Figures.Tower1GUI;
+import dk.dtu.app.view.Figures.Tower_HunterGUI;
+import dk.dtu.app.view.Figures.Tower_KillerPlant;
 import dk.dtu.app.view.MenuGUI.Menu;
+import dk.dtu.backend.PlayerInfo;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 
 public class SingleplayerBoard extends Application {
 
@@ -24,11 +26,10 @@ public class SingleplayerBoard extends Application {
     int sizeY = 900;
     Button exitGame = new Button("EXIT");
     Button heartButton = new Button();
-    Button moneyTracker = new Button();
 
     Button plant = Tower1GUI.plant;
-    Button Tower2 = createRoundButton("/dk/dtu/app/view/Images/giphy.gif");
-    Button Tower3 = createRoundButton("/dk/dtu/app/view/Images/SYKT7E.gif");
+    Button hunter = Tower_HunterGUI.hunter;
+    Button killerPlant = Tower_KillerPlant.killerPlant;
 
     // Application layout
     BorderPane borderPane = new BorderPane();
@@ -59,46 +60,37 @@ public class SingleplayerBoard extends Application {
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: contain;");
 
-        Tower1GUI.plant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+        plant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        Tower1GUI.plant.setPrefSize(130, 130);
+        plant.setPrefSize(130, 130);
 
-        /*Tower1GUI.setOnDragDetected(new EventHandler<DragEvent>() {
-            public void handle(MouseEvent event) {
-                Dragboard db = source.startDragAndDrop(TransferMode.ANY);
-
-                ClipboardContent content = new ClipboardContent();
-                content.putString(soruce.getText());
-                db.setContent(content);
-
-                event.consume();
-            }
-        } ); */
-
-        Tower2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
+        hunter.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        Tower2.setPrefSize(130, 130);
+        hunter.setPrefSize(130, 130);
 
-        Tower3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
+        killerPlant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        Tower3.setPrefSize(130, 130);
+        killerPlant.setPrefSize(130, 130);
 
         //Other buttons design
-        heartButton.setText("25");
+        heartButton.setText("" + PlayerInfo.getLife());
         heartButton.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/heart.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; "
         + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
         heartButton.setPrefSize(140, 140);
 
-        moneyTracker.setText("9969");
-        moneyTracker.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/coin.png');"
-        + "-fx-background-size: cover; -fx-background-color: transparent; "
+        Image coin = new Image("/dk/dtu/app/view/Images/coin.png");
+        ImageView imageView = new ImageView(coin);
+        imageView.setFitWidth(40);
+        imageView.setFitHeight(40);
+        Button coinButton = new Button("" + PlayerInfo.getMoney(), imageView);
+        coinButton.setStyle("-fx-background-size: cover; -fx-background-color: transparent; "
         + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
-        moneyTracker.setPrefSize(130, 130);
+        coinButton.setPrefSize(140, 140);
 
         //Effect for the buttons
         String buttonStyle = "-fx-background-color: #5DADE2; -fx-text-fill: white; "
@@ -112,14 +104,13 @@ public class SingleplayerBoard extends Application {
         exitGame.setOnAction(this::exitGame);
 
         //Left side bar 
-        leftVbox.getChildren().addAll(heartButton, Tower1GUI.plant, Tower2, Tower3, moneyTracker);
-        VBox.setMargin(Tower1GUI.plant, new Insets(10)); // Optional: Add margin around the button for better visibility
+        leftVbox.getChildren().addAll(heartButton, Tower1GUI.plant, Tower_HunterGUI.hunter, Tower_KillerPlant.killerPlant, coinButton);
         leftVbox.setAlignment(Pos.TOP_CENTER);
         VBox.setMargin(heartButton, new javafx.geometry.Insets(20, 0, 0, 0));
-        VBox.setMargin(Tower1GUI.plant, new javafx.geometry.Insets(45, 0, 0, 0));
-        VBox.setMargin(Tower2, new javafx.geometry.Insets(45, 0, 0, 0));
-        VBox.setMargin(Tower3, new javafx.geometry.Insets(45, 0, 0, 0));
-        VBox.setMargin(moneyTracker, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(plant, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(hunter, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(killerPlant, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(coinButton, new javafx.geometry.Insets(45, 0, 0, 0));
         
         //Right side bar
         rightVbox.getChildren().addAll(exitGame);
@@ -127,31 +118,8 @@ public class SingleplayerBoard extends Application {
         VBox.setMargin(exitGame, new javafx.geometry.Insets(0, 0, 80, 0));
         
         BoardController.createPlayerBoard(pane, 86, 14, 10, 0);
-    }
 
-   // Create a circle to be used as the button's shape
-    private Button createRoundButton(String imageUrl) {
-        Circle circle = new Circle(50);
-        
-        Button roundButton = new Button();
-        roundButton.setShape(circle);
-        roundButton.setMinSize(100, 100); // Set the size of the button
-
-        // Set hover effects
-        String buttonStyle = "-fx-background-image: url('"+ imageUrl +"');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover; -fx-background-color: transparent;";
-        String hoverStyle = "-fx-scale-x: 1.1; -fx-scale-y: 1.1;"; // Make the button 10% larger in both x and y directions
-        
-        roundButton.setOnMouseEntered(e -> {
-            roundButton.setStyle(buttonStyle + hoverStyle);
-        });
-        
-        roundButton.setOnMouseExited(e -> {
-            roundButton.setStyle(buttonStyle);
-        });
-        
-        return roundButton;
+        TowerSelection.selectTower();
     }
     
     private void exitGame(ActionEvent event) {

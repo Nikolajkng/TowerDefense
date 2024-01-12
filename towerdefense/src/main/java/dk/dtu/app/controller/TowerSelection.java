@@ -1,20 +1,22 @@
 package dk.dtu.app.controller;
 import dk.dtu.app.controller.BoardLogic.BoardController;
-import dk.dtu.app.controller.Tower.ActionType;
-import dk.dtu.app.view.GameBoardsGUI.*;
+import dk.dtu.app.controller.Action.ActionType;
+import dk.dtu.app.view.Figures.Tower1GUI;
+import dk.dtu.app.view.Figures.Tower_HunterGUI;
+import dk.dtu.app.view.Figures.Tower_KillerPlant;
 
 public class TowerSelection {
     public static void selectTower(){
         // Buttons funtionality (To be moved to controller folder later)
-        MultiplayerBoard.towerBtn1.setOnAction(e -> {
+        Tower1GUI.plant.setOnAction(e -> {
             System.out.println("selected tower1");
             BoardController.type = ActionType.TOWER1;
         });
-        MultiplayerBoard.towerBtn2.setOnAction(e -> {
+       Tower_HunterGUI.hunter.setOnAction(e -> {
             BoardController.type = ActionType.TOWER2;
             System.out.println("selected tower2");
         });
-        MultiplayerBoard.towerBtn3.setOnAction(e -> {
+        Tower_KillerPlant.killerPlant.setOnAction(e -> {
             BoardController.type = ActionType.TOWER3;
             System.out.println("selected tower3");
         });
