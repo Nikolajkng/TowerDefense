@@ -1,6 +1,7 @@
 package dk.dtu.app.view.Figures;
 
 import dk.dtu.app.controller.MyButton;
+import dk.dtu.app.controller.BoardLogic.MyPane;
 import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -11,13 +12,13 @@ import javafx.stage.Stage;
 
 public class Tower3GUI extends Application {
 
-    public static Button tower3 = createRoundButton("/dk/dtu/app/view/Images/carrot-tower3-game.png");
+    public static Button tower3 = createRoundButton("/dk/dtu/app/view/Images/tower3.png");
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
          //tower design
-        tower3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/carrot-tower3-game.png');"
+        tower3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tower3.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
         tower3.setPrefSize(130, 130);
@@ -48,12 +49,12 @@ public class Tower3GUI extends Application {
         return roundButton;
     }
     
-    public static void placeTower3(MyButton clickedButton) {
-         Rectangle tower3 = new Rectangle(45, 45);
-
-        Image tower3Image = new Image("/dk/dtu/app/view/Images/carrot-tower3-game.png",false);
-        tower3.setFill(new ImagePattern(tower3Image));
-
-        clickedButton.setGraphic(tower3);
+    public static void placeTower3(int x, int y, MyPane board) {
+        Circle Tower3 = new Circle(50);
+        Image tower3Image = new Image("/dk/dtu/app/view/Images/tower3.png",false);
+        Tower3.setLayoutX(x);
+        Tower3.setLayoutY(y);
+        Tower3.setFill(new ImagePattern(tower3Image));
+        board.getChildren().add(Tower3);
     }
 }

@@ -27,9 +27,9 @@ public class SingleplayerBoard extends Application {
     int sizeY = 900;
     Button exitGame = new Button("EXIT");
     Button heartButton = new Button();
-    Button plant = Tower1GUI.tower1;
-    Button hunter = Tower2GUI.tower2;
-    Button killerPlant = Tower3GUI.tower3;
+    Button tower1bButton = Tower1GUI.tower1;
+    Button tower2bButton = Tower2GUI.tower2;
+    Button tower3bButton = Tower3GUI.tower3;
     MyPane board = new MyPane();
 
     // Application layout
@@ -61,20 +61,20 @@ public class SingleplayerBoard extends Application {
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: contain;");
 
-        plant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+        tower1bButton.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tower1.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        plant.setPrefSize(130, 130);
+        tower1bButton.setPrefSize(130, 130);
 
-        hunter.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
+        tower2bButton.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tower2.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        hunter.setPrefSize(130, 130);
+        tower2bButton.setPrefSize(130, 130);
 
-        killerPlant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
+        tower3bButton.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tower3.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        killerPlant.setPrefSize(130, 130);
+        tower3bButton.setPrefSize(130, 130);
 
         //Other buttons design
         heartButton.setText("" + PlayerInfo.getLife());
@@ -108,9 +108,9 @@ public class SingleplayerBoard extends Application {
         leftVbox.getChildren().addAll(heartButton, Tower1GUI.tower1, Tower2GUI.tower2, Tower3GUI.tower3, coinButton);
         leftVbox.setAlignment(Pos.TOP_CENTER);
         VBox.setMargin(heartButton, new javafx.geometry.Insets(20, 0, 0, 0));
-        VBox.setMargin(plant, new javafx.geometry.Insets(45, 0, 0, 0));
-        VBox.setMargin(hunter, new javafx.geometry.Insets(45, 0, 0, 0));
-        VBox.setMargin(killerPlant, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(tower1bButton, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(tower2bButton, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(tower3bButton, new javafx.geometry.Insets(45, 0, 0, 0));
         VBox.setMargin(coinButton, new javafx.geometry.Insets(45, 0, 0, 0));
         
         //Right side bar

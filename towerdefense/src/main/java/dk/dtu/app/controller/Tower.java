@@ -3,6 +3,8 @@ package dk.dtu.app.controller;
 import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.view.Figures.Tower1GUI;
+import dk.dtu.app.view.Figures.Tower2GUI;
+import dk.dtu.app.view.Figures.Tower3GUI;
 
 public class Tower {
     static final int illegalValue = -1;
@@ -22,7 +24,7 @@ public class Tower {
                 System.out.println("Key not found in HashMap");
             }
         } else if (type == ActionType.TOWER2) {
-            Tower1GUI.placeTower1(x, y, board);
+            Tower2GUI.placeTower2(x, y, board);
             // Change the coordinates value to -1
             if (board.getHashMap().containsKey(pixelCoordinate)) {
                 board.getHashMap().remove(pixelCoordinate);
@@ -34,7 +36,7 @@ public class Tower {
                 System.out.println("Key not found in HashMap");
             }
         } else if (type == ActionType.TOWER3) {
-            Tower1GUI.placeTower1(x, y, board);
+            Tower3GUI.placeTower3(x, y, board);
             // Change the coordinates value to -1
             if (board.getHashMap().containsKey(pixelCoordinate)) {
                 board.getHashMap().remove(pixelCoordinate);
