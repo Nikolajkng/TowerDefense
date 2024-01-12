@@ -29,8 +29,8 @@ public class SingleplayerBoard extends Application {
     Button heartButton = new Button();
 
     Button plant = Tower1GUI.plant;
-    Button Tower2 = Tower_HunterGUI.hunter;
-    Button Tower3 = Tower_KillerPlant.killerPlant;
+    Button hunter = Tower_HunterGUI.hunter;
+    Button killerPlant = Tower_KillerPlant.killerPlant;
 
     // Application layout
     BorderPane borderPane = new BorderPane();
@@ -61,32 +61,20 @@ public class SingleplayerBoard extends Application {
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: contain;");
 
-        Tower1GUI.plant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+        plant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        Tower1GUI.plant.setPrefSize(130, 130);
+        plant.setPrefSize(130, 130);
 
-        /*Tower1GUI.setOnDragDetected(new EventHandler<DragEvent>() {
-            public void handle(MouseEvent event) {
-                Dragboard db = source.startDragAndDrop(TransferMode.ANY);
-
-                ClipboardContent content = new ClipboardContent();
-                content.putString(soruce.getText());
-                db.setContent(content);
-
-                event.consume();
-            }
-        } ); */
-
-        Tower2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
+        hunter.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        Tower2.setPrefSize(130, 130);
+        hunter.setPrefSize(130, 130);
 
-        Tower3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
+        killerPlant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        Tower3.setPrefSize(130, 130);
+        killerPlant.setPrefSize(130, 130);
 
         //Other buttons design
         heartButton.setText("25");
@@ -117,13 +105,12 @@ public class SingleplayerBoard extends Application {
         exitGame.setOnAction(this::exitGame);
 
         //Left side bar 
-        leftVbox.getChildren().addAll(heartButton, Tower1GUI.plant, Tower2, Tower3, coinButton);
-        VBox.setMargin(Tower1GUI.plant, new Insets(10)); // Optional: Add margin around the button for better visibility
+        leftVbox.getChildren().addAll(heartButton, Tower1GUI.plant, Tower_HunterGUI.hunter, Tower_KillerPlant.killerPlant, coinButton);
         leftVbox.setAlignment(Pos.TOP_CENTER);
         VBox.setMargin(heartButton, new javafx.geometry.Insets(20, 0, 0, 0));
-        VBox.setMargin(Tower1GUI.plant, new javafx.geometry.Insets(45, 0, 0, 0));
-        VBox.setMargin(Tower2, new javafx.geometry.Insets(45, 0, 0, 0));
-        VBox.setMargin(Tower3, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(plant, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(hunter, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(killerPlant, new javafx.geometry.Insets(45, 0, 0, 0));
         VBox.setMargin(coinButton, new javafx.geometry.Insets(45, 0, 0, 0));
         
         //Right side bar
@@ -134,31 +121,6 @@ public class SingleplayerBoard extends Application {
         BoardController.createPlayerBoard(pane, 86, 14, 10, 0);
 
         TowerSelection.selectTower();
-    }
-
-   // Create a circle to be used as the button's shape
-    private Button createRoundButton(String imageUrl) {
-        Circle circle = new Circle(50);
-        
-        Button roundButton = new Button();
-        roundButton.setShape(circle);
-        roundButton.setMinSize(100, 100); // Set the size of the button
-
-        // Set hover effects
-        String buttonStyle = "-fx-background-image: url('"+ imageUrl +"');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover; -fx-background-color: transparent;";
-        String hoverStyle = "-fx-scale-x: 1.1; -fx-scale-y: 1.1;"; // Make the button 10% larger in both x and y directions
-        
-        roundButton.setOnMouseEntered(e -> {
-            roundButton.setStyle(buttonStyle + hoverStyle);
-        });
-        
-        roundButton.setOnMouseExited(e -> {
-            roundButton.setStyle(buttonStyle);
-        });
-        
-        return roundButton;
     }
     
     private void exitGame(ActionEvent event) {
