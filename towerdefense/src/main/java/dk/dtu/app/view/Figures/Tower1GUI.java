@@ -51,7 +51,11 @@ public class Tower1GUI extends Application {
     public static void placePlant1(int x, int y, MyPane board) {
          Rectangle plant = new Rectangle(45, 45);
         Image plantGif = new Image("/dk/dtu/app/view/Images/ZdPH.gif",false);
+        plant.setLayoutX(x);
+        plant.setLayoutY(y);
         plant.setFill(new ImagePattern(plantGif));
         board.getChildren().add(plant);
     }
+
+
 }

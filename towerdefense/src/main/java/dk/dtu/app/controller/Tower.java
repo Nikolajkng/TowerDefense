@@ -12,7 +12,6 @@ public class Tower {
         String pixelCoordinate = String.format("%d,%d", x, y);
         if (type == ActionType.TOWER1) {
             Tower1GUI.placePlant1(x, y, board);
-
             // Change the coordinates value to -1
             if (board.getHashMap().containsKey(pixelCoordinate)) {
                 board.getHashMap().remove(pixelCoordinate);
