@@ -1,25 +1,66 @@
 package dk.dtu.backend;
 
-public class PlayerInfo {
+import org.jspace.ActualField;
+import org.jspace.SequentialSpace;
+import org.jspace.Space;
+
+import dk.dtu.app.view.GameBoardsGUI.LostAlertGUI;
+import javafx.stage.Stage;
+
+public class PlayerInfo implements Runnable {
     
-    static int Life;
-    static int Money;
+    static int life = 100;
 
-    public static void lifeTracker(){
+    private static Stage loserStage;
+    static int money = 100;
 
-        for (Life = 10; Life < 0; Life++){
+    SequentialSpace space;
 
+    public PlayerInfo(SequentialSpace space) {
+        this.space = space;
 
-        }
-        
-        //return Life;
     }
 
-    public static void moneyTracker(){
-        for (Money = 100; Money < 0; Money++){
+    public static void lifeTracker(Space space){
 
-
-         //return Money;
+        try {
+            Object[] object = space.get(new ActualField("finish"));
+            if (object != null){
+                life --;
+                if (life <= 0) {
+                    new LostAlertGUI().start(loserStage);
+                }
+            }
+        } catch (InterruptedException e) {
         }
+
+    }
+
+    public static int getLife() {
+        return life;
+    }
+
+    public static void moneyTracker(Space space){
+          
+        try {
+            Object[] object2 = space.get(new ActualField("Terminate"));
+            if (object2 != null){
+                money ++;
+                if (money <= 0) {
+                    new LostAlertGUI().start(loserStage);
+                }
+            }
+        } catch (InterruptedException e) {
+        }
+        
+    }
+
+    public static int getMoney() {
+        return money;
+    }
+
+    @Override
+    public void run() {
+        
     }
 }

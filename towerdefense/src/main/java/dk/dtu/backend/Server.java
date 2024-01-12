@@ -42,7 +42,7 @@ public class Server {
         chatRoom_uri =  "tcp://"+ ip + ":" + port + "/ChatRoom?keep";
 
         System.out.println("------ URI info ------");
-        System.out.println("gameRoom URI: " + gameRoom_uri);
+        System.out.println("GameRoom URI: " + gameRoom_uri);
         System.out.println("P1P2room URI: " + P1P2_uri);
         System.out.println("P2P1room URI: " + P2P1_uri);
         System.out.println("ChatRoom URI: " + chatRoom_uri);

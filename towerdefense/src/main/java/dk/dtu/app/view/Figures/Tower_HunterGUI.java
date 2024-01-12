@@ -1,4 +1,5 @@
 package dk.dtu.app.view.Figures;
+
 import dk.dtu.app.controller.MyButton;
 import javafx.application.Application;
 import javafx.scene.control.Button;
@@ -8,18 +9,18 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class Enemy1_BunnyGUI extends Application {
+public class Tower_HunterGUI extends Application {
 
-    public static Button bunny = createRoundButton("/dk/dtu/app/view/Images/bunny.gif");
+    public static Button hunter = createRoundButton("/dk/dtu/app/view/Images/giphy.gif");
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
          //tower design
-        bunny.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+        hunter.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        bunny.setPrefSize(130, 130);
+        hunter.setPrefSize(130, 130);
     }
 
      // Create a circle to be used as the button's shape
@@ -46,17 +47,13 @@ public class Enemy1_BunnyGUI extends Application {
         
         return roundButton;
     }
-    public static void placeBunny(MyButton clickedButton) {
-        Rectangle bunny = new Rectangle(45, 45);
-
-         Image bunnyGif = new Image("/dk/dtu/app/view/Images/bunny.gif",false);
-         bunny.setFill(new ImagePattern(bunnyGif));
-
-        clickedButton.setGraphic(bunny);
-    }
-
-//public static void startPosBunny(){
-//    bunny(BoardController.board())
-//}
     
+    public static void placeHunter(MyButton clickedButton) {
+        Rectangle hunter = new Rectangle(45, 45);
+
+        Image hunterGif = new Image("/dk/dtu/app/view/Images/giphy.gif",false);
+        hunter.setFill(new ImagePattern(hunterGif));
+
+        clickedButton.setGraphic(hunter);
+    }
 }
