@@ -1,8 +1,6 @@
 package dk.dtu.app.controller;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
-
 import org.jspace.Space;
 
 import dk.dtu.Enemies.Enemy_Bunny;

@@ -3,7 +3,6 @@ package dk.dtu.backend;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.RemoteSpace;
 import org.jspace.SequentialSpace;
@@ -12,7 +11,6 @@ import dk.dtu.app.controller.Action;
 import dk.dtu.app.controller.ActionHandler;
 import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
-import dk.dtu.app.view.MenuGUI.Menu;
 import javafx.application.Platform;
 
 public class ActionReceiver implements Runnable {

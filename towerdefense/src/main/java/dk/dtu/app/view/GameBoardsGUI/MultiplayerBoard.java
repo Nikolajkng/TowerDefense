@@ -2,23 +2,13 @@ package dk.dtu.app.view.GameBoardsGUI;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-
-import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
-
 import dk.dtu.backend.Server;
-
 import dk.dtu.app.controller.BoardLogic.ChatController;
 import dk.dtu.app.view.MenuGUI.Menu;
 import dk.dtu.backend.PlayerConnection;
-
-import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
-import dk.dtu.app.view.Figures.Tower1GUI;
-import dk.dtu.app.view.Figures.Tower_HunterGUI;
-import dk.dtu.app.view.Figures.Tower_KillerPlant;
 import dk.dtu.backend.PlayerInfo;
-
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import javafx.application.Application;
 import javafx.geometry.Insets;

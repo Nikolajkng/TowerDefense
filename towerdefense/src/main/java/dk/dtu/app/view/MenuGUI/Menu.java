@@ -1,10 +1,6 @@
 package dk.dtu.app.view.MenuGUI;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.UnknownHostException;
-
-import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.app.view.GameBoardsGUI.SingleplayerBoard;
 import javafx.scene.layout.StackPane;
 import javafx.application.Application;
