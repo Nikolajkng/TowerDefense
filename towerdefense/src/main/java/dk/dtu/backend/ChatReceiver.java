@@ -42,7 +42,6 @@ public class ChatReceiver implements Runnable {
                         ChatController.updateChatBox((String) message[1]);
                     });
                 } catch (InterruptedException e) {
-                    PlayerConnection.hostChatListenerThread.interrupt();
                     Platform.runLater(() -> {
                         MultiplayerBoard.boardStage.close();
                     });

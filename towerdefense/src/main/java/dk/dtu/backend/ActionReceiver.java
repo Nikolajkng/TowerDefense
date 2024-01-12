@@ -80,7 +80,6 @@ public class ActionReceiver implements Runnable {
                     }
                 }
             } catch (InterruptedException e) {
-                PlayerConnection.hostActionListenerThread.interrupt();
                 Platform.runLater(() -> {
                     MultiplayerBoard.boardStage.close();
                 });
