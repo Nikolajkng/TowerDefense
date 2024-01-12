@@ -69,7 +69,7 @@ public class BoardController {
                         if(board[finalX][finalY].getValue() == pathValue){
                             Enemy1_BunnyGUI.placeBunny(tile);
                         }
-                        if(board[finalX][finalY].getValue() != -2){
+                        if(board[finalX][finalY].getValue() != pathValue && board[finalX][finalY].getValue() != illegalValue){
                             
                             clickInfo(board, finalX, finalY);
                             // "if wish to place tower, then execute Tower.placeTower action"
