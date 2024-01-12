@@ -4,6 +4,7 @@ import java.util.Map;
 
 import dk.dtu.app.controller.*;
 import dk.dtu.app.controller.Action.ActionType;
+import dk.dtu.backend.ActionSender;
 import dk.dtu.backend.PlayerConnection;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -65,7 +66,7 @@ public class BoardController {
             int clickX = (int) event.getX();
             int clickY = (int) event.getY();
             getClickInfo(clickX, clickY, board);
-
+            ActionSender.sendAction(clickX, clickY, type, callsign);
         });
 
         return board;
