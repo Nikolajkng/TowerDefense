@@ -44,7 +44,7 @@ public class MultiplayerBoard extends Application {
     public static Button plant = Tower1GUI.plant;
     public static Button hunter = Tower_HunterGUI.hunter;
     public static Button killerPlant = Tower_KillerPlant.killerPlant;
-    public static Button attackEnemy1btn = Enemy1_BunnyGUI.bunny;
+    public static Button attackEnemy1btn = new Button("Attack enemy");
     public static Button attackEnemy2btn = new Button("Attack enemy");
     public static Button attackEnemy3btn = new Button("Attack enemy");
     public static Button attackEnemy4btn = new Button("Attack enemy");
