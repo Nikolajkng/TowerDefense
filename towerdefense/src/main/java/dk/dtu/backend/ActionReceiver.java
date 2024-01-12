@@ -44,7 +44,8 @@ public class ActionReceiver implements Runnable {
                                 new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(Action.ActionType.class));
-                        System.out.println("Received action from Host (" + (ActionType) actionInfo[2] + ") successfully!");
+                        System.out.println(
+                                "Received action from Host (" + (ActionType) actionInfo[2] + ") successfully!");
                         Platform.runLater(() -> {
                             ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
                         });
@@ -53,9 +54,10 @@ public class ActionReceiver implements Runnable {
                     }
                 }
             } catch (InterruptedException e) {
+                PlayerConnection.clientActionListenerThread.interrupt();
                 Platform.runLater(() -> {
-                MultiplayerBoard.boardStage.close();
-            });
+                    MultiplayerBoard.boardStage.close();
+                });
                 e.printStackTrace();
             }
             // What the host receives from the client
@@ -69,7 +71,8 @@ public class ActionReceiver implements Runnable {
                         actionInfo = hostRoom.get(new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(Action.ActionType.class));
-                        System.out.println("Received action from Client (" + (ActionType) actionInfo[2]+") successfully!");
+                        System.out.println(
+                                "Received action from Client (" + (ActionType) actionInfo[2] + ") successfully!");
                         Platform.runLater(() -> {
                             ActionHandler.selectAction(actionInfo, MultiplayerBoard.rightBoard);
                         });
@@ -77,6 +80,10 @@ public class ActionReceiver implements Runnable {
                     }
                 }
             } catch (InterruptedException e) {
+                PlayerConnection.hostActionListenerThread.interrupt();
+                Platform.runLater(() -> {
+                    MultiplayerBoard.boardStage.close();
+                });
             }
         }
 

@@ -33,30 +33,40 @@ public class ChatReceiver implements Runnable {
     }
 
     private void listenForMessages() {
-        try {
-            if (callsign == "Host") {
-                while (true) {
+        if (callsign == "Host") {
+            while (true) {
+                try {
                     Object[] message = chatRoom.get(new ActualField("Client"), new FormalField(String.class));
                     System.out.println("Received message from Client: " + (String) message[1]);
                     Platform.runLater(() -> {
                         ChatController.updateChatBox((String) message[1]);
                     });
+                } catch (InterruptedException e) {
+                    PlayerConnection.hostChatListenerThread.interrupt();
+                    Platform.runLater(() -> {
+                        MultiplayerBoard.boardStage.close();
+                    });
+                    e.printStackTrace();
                 }
-            } else if (callsign == "Client") {
-                while (true) {
+
+            }
+        } else if (callsign == "Client") {
+            while (true) {
+                try {
                     Object[] message = chatRoom.get(new ActualField("Host"), new FormalField(String.class));
                     System.out.println("Received message from Host: " + (String) message[1]);
                     Platform.runLater(() -> {
                         ChatController.updateChatBox((String) message[1]);
                     });
+                } catch (InterruptedException e) {
+                    PlayerConnection.clientChatListenerThread.interrupt();
+                    Platform.runLater(() -> {
+                        MultiplayerBoard.boardStage.close();
+                    });
+                    e.printStackTrace();
                 }
-            }
 
-        } catch (InterruptedException e) {
-            System.out.println("listenForMessages Error: Could not receive message");
-            Platform.runLater(() -> {
-                MultiplayerBoard.boardStage.close();
-            });
+            }
         }
     }
 }
