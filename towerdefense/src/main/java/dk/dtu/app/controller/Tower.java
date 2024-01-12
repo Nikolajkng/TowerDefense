@@ -2,6 +2,8 @@ package dk.dtu.app.controller;
 
 import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.app.view.Figures.Tower1GUI;
+import dk.dtu.app.view.Figures.Tower_HunterGUI;
+import dk.dtu.app.view.Figures.Tower_KillerPlant;
 
 public class Tower {
 
@@ -14,19 +16,11 @@ public class Tower {
             // board[x][y].setText("X");
             board[x][y].setValue(-1);
         } else if (type == ActionType.TOWER2) {
-            Tower1GUI.placePlant1(board[x][y]);
+            Tower_HunterGUI.placeHunter(board[x][y]);
             // board[x][y].setText("O");
             board[x][y].setValue(-1);
         } else if (type == ActionType.TOWER3) {
-            Tower1GUI.placePlant1(board[x][y]);
-            // board[x][y].setText("±");
-            board[x][y].setValue(-1);
-        } else if (type == ActionType.TOWER4) {
-            Tower1GUI.placePlant1(board[x][y]);
-            // board[x][y].setText("±");
-            board[x][y].setValue(-1);
-        } else if (type == ActionType.TOWER5) {
-            Tower1GUI.placePlant1(board[x][y]);
+            Tower_KillerPlant.placeKillerPlant(board[x][y]);
             // board[x][y].setText("±");
             board[x][y].setValue(-1);
         } else {

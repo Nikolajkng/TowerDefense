@@ -1,5 +1,6 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
+import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.app.view.MenuGUI.Menu;
@@ -9,6 +10,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -22,7 +25,6 @@ public class SingleplayerBoard extends Application {
     int sizeY = 900;
     Button exitGame = new Button("EXIT");
     Button heartButton = new Button();
-    Button moneyTracker = new Button();
 
     Button plant = Tower1GUI.plant;
     Button Tower2 = createRoundButton("/dk/dtu/app/view/Images/giphy.gif");
@@ -92,11 +94,14 @@ public class SingleplayerBoard extends Application {
         + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
         heartButton.setPrefSize(140, 140);
 
-        moneyTracker.setText("9969");
-        moneyTracker.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/coin.png');"
-        + "-fx-background-size: cover; -fx-background-color: transparent; "
+        Image coin = new Image("/dk/dtu/app/view/Images/coin.png");
+        ImageView imageView = new ImageView(coin);
+        imageView.setFitWidth(40);
+        imageView.setFitHeight(40);
+        Button coinButton = new Button("100", imageView);
+        coinButton.setStyle("-fx-background-size: cover; -fx-background-color: transparent; "
         + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
-        moneyTracker.setPrefSize(130, 130);
+        coinButton.setPrefSize(140, 140);
 
         //Effect for the buttons
         String buttonStyle = "-fx-background-color: #5DADE2; -fx-text-fill: white; "
@@ -110,14 +115,14 @@ public class SingleplayerBoard extends Application {
         exitGame.setOnAction(this::exitGame);
 
         //Left side bar 
-        leftVbox.getChildren().addAll(heartButton, Tower1GUI.plant, Tower2, Tower3, moneyTracker);
+        leftVbox.getChildren().addAll(heartButton, Tower1GUI.plant, Tower2, Tower3, coinButton);
         VBox.setMargin(Tower1GUI.plant, new Insets(10)); // Optional: Add margin around the button for better visibility
         leftVbox.setAlignment(Pos.TOP_CENTER);
         VBox.setMargin(heartButton, new javafx.geometry.Insets(20, 0, 0, 0));
         VBox.setMargin(Tower1GUI.plant, new javafx.geometry.Insets(45, 0, 0, 0));
         VBox.setMargin(Tower2, new javafx.geometry.Insets(45, 0, 0, 0));
         VBox.setMargin(Tower3, new javafx.geometry.Insets(45, 0, 0, 0));
-        VBox.setMargin(moneyTracker, new javafx.geometry.Insets(45, 0, 0, 0));
+        VBox.setMargin(coinButton, new javafx.geometry.Insets(45, 0, 0, 0));
         
         //Right side bar
         rightVbox.getChildren().addAll(exitGame);
@@ -125,6 +130,8 @@ public class SingleplayerBoard extends Application {
         VBox.setMargin(exitGame, new javafx.geometry.Insets(0, 0, 80, 0));
         
         BoardController.createPlayerBoard(pane, 86, 14, 10, 0);
+
+        TowerSelection.selectTower();
     }
 
    // Create a circle to be used as the button's shape
