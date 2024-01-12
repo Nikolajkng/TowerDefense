@@ -9,18 +9,18 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class Tower_HunterGUI extends Application {
+public class Tower3GUI extends Application {
 
-    public static Button hunter = createRoundButton("/dk/dtu/app/view/Images/giphy.gif");
+    public static Button tower3 = createRoundButton("/dk/dtu/app/view/Images/SYKT7E.gif");
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
          //tower design
-        hunter.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/giphy.gif');"
+        tower3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        hunter.setPrefSize(130, 130);
+        tower3.setPrefSize(130, 130);
     }
 
      // Create a circle to be used as the button's shape
@@ -48,12 +48,12 @@ public class Tower_HunterGUI extends Application {
         return roundButton;
     }
     
-    public static void placeHunter(MyButton clickedButton) {
-        Rectangle hunter = new Rectangle(45, 45);
+    public static void placeTower3(MyButton clickedButton) {
+         Rectangle tower3 = new Rectangle(45, 45);
 
-        Image hunterGif = new Image("/dk/dtu/app/view/Images/giphy.gif",false);
-        hunter.setFill(new ImagePattern(hunterGif));
+        Image tower3Image = new Image("/dk/dtu/app/view/Images/SYKT7E.gif",false);
+        tower3.setFill(new ImagePattern(tower3Image));
 
-        clickedButton.setGraphic(hunter);
+        clickedButton.setGraphic(tower3);
     }
 }

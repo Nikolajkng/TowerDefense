@@ -2,8 +2,8 @@ package dk.dtu.app.controller;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.app.view.Figures.Tower1GUI;
-import dk.dtu.app.view.Figures.Tower_HunterGUI;
-import dk.dtu.app.view.Figures.Tower_KillerPlant;
+import dk.dtu.app.view.Figures.Tower2GUI;
+import dk.dtu.app.view.Figures.Tower3GUI;
 
 public class TowerSelection {
     public static void selectTower(){
@@ -12,11 +12,11 @@ public class TowerSelection {
             System.out.println("selected tower1");
             BoardController.type = ActionType.TOWER1;
         });
-       Tower_HunterGUI.hunter.setOnAction(e -> {
+       Tower2GUI.hunter.setOnAction(e -> {
             BoardController.type = ActionType.TOWER2;
             System.out.println("selected tower2");
         });
-        Tower_KillerPlant.killerPlant.setOnAction(e -> {
+        Tower3GUI.killerPlant.setOnAction(e -> {
             BoardController.type = ActionType.TOWER3;
             System.out.println("selected tower3");
         });
