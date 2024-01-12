@@ -33,7 +33,7 @@ public class BoardController {
         // Set the path pixels in the boolean array
         boolean[][] pathArray = new boolean[boardSizeX][boardSizeY];
         int pathThickness = 20;
-        for (int row = 0; row < 190; row++) {
+        for (int row = 0; row < 160; row++) {
             int x = row;
             int y = boardSizeY / 2;
                     for (int col = 0; col < pathThickness; col++) {
