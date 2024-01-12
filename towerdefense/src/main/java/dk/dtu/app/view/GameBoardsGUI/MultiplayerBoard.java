@@ -58,6 +58,9 @@ public class MultiplayerBoard extends Application {
         boardStage.setTitle("Multiplayer Board");
         boardStage.setResizable(false);
         boardStage.setMaximized(true);
+        boardStage.setOnCloseRequest(event -> {
+            System.exit(0);
+        });
 
         // Application layout
         BorderPane borderPane = new BorderPane();
