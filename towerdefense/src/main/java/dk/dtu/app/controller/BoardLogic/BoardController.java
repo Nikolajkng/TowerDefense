@@ -5,6 +5,8 @@ import java.util.Map;
 import dk.dtu.app.controller.*;
 import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.backend.PlayerConnection;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class BoardController {
     public static Action.ActionType type = ActionType.NONE;
@@ -32,7 +34,13 @@ public class BoardController {
             int y = boardSizeY / 2; // Adjust the y-coordinate as needed
             String pixelCoordinate = String.format("%d,%d", x, y);
             board.getHashMap().put(pixelCoordinate, pathValue);
+               
+            // Add a rectangle to visually represent the path
+            Rectangle pathRectangle = new Rectangle(x, y, 1, 1);
+            pathRectangle.setFill(Color.RED); // Adjust the color as needed
+            board.getChildren().add(pathRectangle);
         }
+        
         // Set onclick for Panes
         board.setOnMouseClicked(event -> {
             int clickX = (int) event.getX();
