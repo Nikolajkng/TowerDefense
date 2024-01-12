@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Tower1GUI extends Application {
@@ -48,7 +49,8 @@ public class Tower1GUI extends Application {
     }
     
     public static void placePlant1(MyButton clickedButton) {
-        Circle plant = new Circle(25);
+        //Circle plant = new Circle(15);
+         Rectangle plant = new Rectangle(45, 45);
 
         Image plantGif = new Image("/dk/dtu/app/view/Images/ZdPH.gif",false);
         plant.setFill(new ImagePattern(plantGif));

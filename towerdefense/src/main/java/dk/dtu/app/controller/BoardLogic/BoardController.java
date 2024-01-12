@@ -67,10 +67,11 @@ public class BoardController {
                     @Override
                     public void handle(ActionEvent e) {
 
-                        // Check if player has clicked on a legal tile
+                        // Ensures that enemies can only be placed on Path-tiles
                         if (board[finalX][finalY].getValue() == pathValue) {
                             Enemy1_BunnyGUI.placeBunny(tile);
                         }
+                        // Check if player has clicked on a legal tile: (Own Board-tiles and not on path-tiles)
                         if (board[finalX][finalY].getValue() != pathValue
                                 && board[finalX][finalY].getValue() != illegalValue) {
 
