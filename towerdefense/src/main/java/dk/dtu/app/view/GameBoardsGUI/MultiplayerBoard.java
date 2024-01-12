@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
+import dk.dtu.backend.Server;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -151,6 +152,11 @@ public class MultiplayerBoard extends Application {
 
         // Creating boards for two players
         leftBoard = BoardController.createPlayerBoard(leftPane, 90, 14, 10, 0);
+        try {
+            Server.gameRoom.put("MyBoard",leftBoard);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         rightBoard = BoardController.createPlayerBoard(rightPane, 90, 14, 10, -1);
 
         // Activate button functionality in Controller

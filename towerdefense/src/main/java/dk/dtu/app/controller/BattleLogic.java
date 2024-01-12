@@ -4,8 +4,8 @@ import org.jspace.Space;
 
 public class BattleLogic {
     private Space space;
-    private int startingCoordinateX;
-    private int startingCoordinateY;
+    private int startingCoordinateX = 1;
+    private int startingCoordinateY = 0;
 
     public BattleLogic(Space space) {
         this.space = space;

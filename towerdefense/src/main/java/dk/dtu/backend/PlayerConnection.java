@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import org.jspace.*;
 
 import dk.dtu.app.controller.BattleLogic;
+import dk.dtu.app.controller.Waves.Wave1;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.app.view.MenuGUI.MultiplayerMenu;
 import javafx.event.ActionEvent;
@@ -91,7 +92,7 @@ public class PlayerConnection {
         MultiplayerMenu.boardStage.close();
         MultiplayerBoard.boardStage.show();
         BattleLogic battleLogic = new BattleLogic(Server.gameRoom);
-        battleLogic.waves(new int[10]);
+        battleLogic.waves(new Wave1().enemies);
     }
 
 ///////////////////////////////////////////////////// Function that retrieves clients inputIP (host ip) /////////////////////////////////////////////////////////////

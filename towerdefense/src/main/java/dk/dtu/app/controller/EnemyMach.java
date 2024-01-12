@@ -1,5 +1,8 @@
 package dk.dtu.app.controller;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+
 import org.jspace.Space;
 
 import dk.dtu.Enemies.Enemy_Bunny;
@@ -24,13 +27,17 @@ public class EnemyMach implements Runnable {
         for (int i = 0; i < numOfDifferentEnemies; i++) {
 
             for (int j = 0; j < enemies[i]; j++) {
-                Enemy_Bunny enemy_Bunny = new Enemy_Bunny(startingCoordinateX, startingCoordinateY, space, j);
-                enemy_Bunny.run();
+                final int finalJ = j;
+                CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+                    Enemy_Bunny enemy_Bunny = new Enemy_Bunny(startingCoordinateX, startingCoordinateY, space, finalJ);
+                    enemy_Bunny.run();
+                });
                 try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
+                    future.get(500, TimeUnit.MILLISECONDS);
+                } catch (Exception e) {
                 }
             }
+            System.out.println("created all of these enemies");
         }
     }
 }
