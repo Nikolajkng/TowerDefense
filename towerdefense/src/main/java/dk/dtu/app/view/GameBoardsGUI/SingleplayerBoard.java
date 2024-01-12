@@ -4,8 +4,8 @@ import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.view.Figures.Tower1GUI;
-import dk.dtu.app.view.Figures.Tower_HunterGUI;
-import dk.dtu.app.view.Figures.Tower_KillerPlant;
+import dk.dtu.app.view.Figures.Tower2GUI;
+import dk.dtu.app.view.Figures.Tower3GUI;
 import dk.dtu.app.view.MenuGUI.Menu;
 import dk.dtu.backend.PlayerInfo;
 import javafx.application.Application;
@@ -28,8 +28,8 @@ public class SingleplayerBoard extends Application {
     Button exitGame = new Button("EXIT");
     Button heartButton = new Button();
     Button plant = Tower1GUI.plant;
-    Button hunter = Tower_HunterGUI.hunter;
-    Button killerPlant = Tower_KillerPlant.killerPlant;
+    Button hunter = Tower2GUI.hunter;
+    Button killerPlant = Tower3GUI.killerPlant;
     MyPane board = new MyPane();
 
     // Application layout
@@ -105,7 +105,7 @@ public class SingleplayerBoard extends Application {
         exitGame.setOnAction(this::exitGame);
 
         //Left side bar 
-        leftVbox.getChildren().addAll(heartButton, Tower1GUI.plant, Tower_HunterGUI.hunter, Tower_KillerPlant.killerPlant, coinButton);
+        leftVbox.getChildren().addAll(heartButton, Tower1GUI.plant, Tower2GUI.hunter, Tower3GUI.killerPlant, coinButton);
         leftVbox.setAlignment(Pos.TOP_CENTER);
         VBox.setMargin(heartButton, new javafx.geometry.Insets(20, 0, 0, 0));
         VBox.setMargin(plant, new javafx.geometry.Insets(45, 0, 0, 0));

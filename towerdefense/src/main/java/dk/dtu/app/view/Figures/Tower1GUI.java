@@ -10,16 +10,16 @@ import javafx.stage.Stage;
 
 public class Tower1GUI extends Application {
 
-    public static Button plant = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
+    public static Button tower1 = createRoundButton("/dk/dtu/app/view/Images/ZdPH.gif");
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
          //tower design
-        plant.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
+        Tower1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-        plant.setPrefSize(130, 130);
+        Tower1.setPrefSize(130, 130);
     }
 
      // Create a circle to be used as the button's shape
@@ -47,13 +47,13 @@ public class Tower1GUI extends Application {
         return roundButton;
     }
     
-    public static void placePlant1(int x, int y, MyPane board) {
-        Circle plant = new Circle(50);
-        Image plantGif = new Image("/dk/dtu/app/view/Images/ZdPH.gif",false);
-        plant.setLayoutX(x);
-        plant.setLayoutY(y);
-        plant.setFill(new ImagePattern(plantGif));
-        board.getChildren().add(plant);
+    public static void placeTower1(int x, int y, MyPane board) {
+        Circle Tower1 = new Circle(50);
+        Image tower1Image = new Image("/dk/dtu/app/view/Images/ZdPH.gif",false);
+        Tower1.setLayoutX(x);
+        Tower1.setLayoutY(y);
+        Tower1.setFill(new ImagePattern(tower1Image));
+        board.getChildren().add(Tower1);
     }
 
 
