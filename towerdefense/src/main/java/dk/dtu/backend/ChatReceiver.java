@@ -7,6 +7,7 @@ import org.jspace.FormalField;
 import org.jspace.RemoteSpace;
 
 import dk.dtu.app.controller.BoardLogic.ChatController;
+import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import javafx.application.Platform;
 
 public class ChatReceiver implements Runnable {
@@ -53,7 +54,9 @@ public class ChatReceiver implements Runnable {
 
         } catch (InterruptedException e) {
             System.out.println("listenForMessages Error: Could not receive message");
-
+            Platform.runLater(() -> {
+                MultiplayerBoard.boardStage.close();
+            });
         }
     }
 }

@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
+import dk.dtu.app.view.MenuGUI.Menu;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -41,7 +42,7 @@ public class MultiplayerBoard extends Application {
     public static Label topTitle = new Label("RABBIT HUNTER");
     public static HBox bottomHUD = new HBox();
     public static final int sizeX = 1400;
-    private static final int sizeY = 900; 
+    private static final int sizeY = 900;
     // Local field variables
     private GridPane leftPane = new GridPane();
     private GridPane rightPane = new GridPane();
@@ -58,6 +59,9 @@ public class MultiplayerBoard extends Application {
         boardStage.setTitle("Multiplayer Board");
         boardStage.setResizable(false);
         boardStage.setMaximized(true);
+        boardStage.setOnCloseRequest(event -> {
+            Menu.mainMenuStage.show();
+        });
 
         // Application layout
         BorderPane borderPane = new BorderPane();
@@ -102,8 +106,6 @@ public class MultiplayerBoard extends Application {
         // Right vbox-menu setup
         rightVbox.getChildren().addAll(attackEnemy1btn, attackEnemy2btn, attackEnemy3btn, attackEnemy4btn,
                 attackEnemy5btn);
-
-
 
         // Button sizes
         int towerBtnWidth = 120;
@@ -158,7 +160,8 @@ public class MultiplayerBoard extends Application {
         TowerSelection.selectTower();
 
         // Start construction of chat GUI
-        ChatGUI.createChatGUI();;
+        ChatGUI.createChatGUI();
+        ;
 
     }
 
