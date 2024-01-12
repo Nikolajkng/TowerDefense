@@ -13,7 +13,7 @@ import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
 
 public class Enemy_Bunny extends Enemy_movement {
 
-    private int speed = 2;
+    private int speed = 1;
     private int hp = 100;
     private Enemy1_BunnyGUI gui;
 

@@ -24,6 +24,7 @@ public class Enemy_movement {
         boolean rightOK = true;
         boolean upOK = true;
         boolean downOK = true;
+        boolean directionchosen = false;
 
         // Border control
         if (coordinateX - 1 < 0) {
@@ -38,31 +39,43 @@ public class Enemy_movement {
         if (coordinateY + 1 > 10) {
             downOK = false;
         }
-
-        if (rightOK && board[coordinateX][coordinateY + 1] == pathTile) {
-            walkDown();
-            board[coordinateX][coordinateY + 1] = walkedTile;
-            System.out.println("path chosen: Down");
+        if (downOK && !directionchosen) {
+            if (board[coordinateX][coordinateY + 1] == pathTile) {
+                walkDown();
+                board[coordinateX][coordinateY] = walkedTile;
+                System.out.println("path chosen: Down");
+                directionchosen = true;
+            }
         }
 
-        else if (leftOK && board[coordinateX][coordinateY - 1] == pathTile) {
-            walkUp();
-            board[coordinateX][coordinateY - 1] = walkedTile;
-            System.out.println("path chosen: Up");
+        if (upOK && !directionchosen) {
+            if (board[coordinateX][coordinateY - 1] == pathTile) {
+                walkUp();
+                board[coordinateX][coordinateY] = walkedTile;
+                System.out.println("path chosen: Up");
+                directionchosen = true;
+            }
         }
 
-        else if (upOK && board[coordinateX - 1][coordinateY] == pathTile) {
-            walkLeft();
-            board[coordinateX - 1][coordinateY] = walkedTile;
-            System.out.println("path chosen: Left");
+        if (leftOK && !directionchosen) {
+            if (board[coordinateX - 1][coordinateY] == pathTile) {
+                walkLeft();
+                board[coordinateX][coordinateY] = walkedTile;
+                System.out.println("path chosen: Left");
+                directionchosen = true;
+            }
         }
 
-        else if (downOK && board[coordinateX + 1][coordinateY] == pathTile) {
-            walkRight();
-            board[coordinateX + 1][coordinateY] = walkedTile;
-            System.out.println("path chosen: Right");
-        }
-        else {
+        if (rightOK && !directionchosen) {
+            if (board[coordinateX + 1][coordinateY] == pathTile) {
+                walkRight();
+                board[coordinateX][coordinateY] = walkedTile;
+                System.out.println("path chosen: Right");
+                directionchosen = true;
+            }
+        } 
+
+        if (!directionchosen) {
             throw new Exception("Rabbit can't find a path");
         }
     }
