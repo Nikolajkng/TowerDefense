@@ -47,27 +47,30 @@ public class Enemy_Bunny extends Enemy_movement {
         try {
             obj = space.query(new ActualField("MyBoard"), new FormalField(MyButton[][].class));
             if (obj != null) {
-                objtest = obj;
                 for (int i = 0; i < numOfCellsX; i++) {
                     for (int j = 0; j < numOfCellsY; j++) {
                         board[i][j] = ((MyButton[][]) obj[1])[i][j].getValue();
                     }
                 }
-            }
+                System.out.println("har lavet et board");
+            } 
         } catch (InterruptedException e) {
         }
+        objtest = obj;
 
         while (true) {
                 CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
                     try {
+                        System.out.println("trying to choose a path");
                         super.choosePath(board);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    System.out.println("trying to place a bunny at x:" + coordinateX + " y:" + coordinateY);
                     gui.placeBunny(((MyButton[][]) objtest[1])[coordinateX][coordinateY]);
                 });
                 try {
-                    future.get(500, TimeUnit.MILLISECONDS);
+                    future.get(1500/speed, TimeUnit.MILLISECONDS);
                 } catch (Exception e) {
                 }
 

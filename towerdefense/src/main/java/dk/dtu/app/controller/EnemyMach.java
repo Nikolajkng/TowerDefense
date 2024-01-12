@@ -30,6 +30,11 @@ public class EnemyMach implements Runnable {
                 final int finalJ = j;
                 CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
                     Enemy_Bunny enemy_Bunny = new Enemy_Bunny(startingCoordinateX, startingCoordinateY, space, finalJ);
+                    try {
+                        space.put(finalJ,"Coordinates",startingCoordinateX,startingCoordinateY);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     enemy_Bunny.run();
                 });
                 try {

@@ -20,27 +20,48 @@ public class Enemy_movement {
     public void choosePath(int[][] board) throws Exception {
         int pathTile = -2;
         int walkedTile = 2; // To prevent going back
+        boolean leftOK = true;
+        boolean rightOK = true;
+        boolean upOK = true;
+        boolean downOK = true;
 
-        if (board[coordinateX][coordinateY + 1] == pathTile) {
+        // Border control
+        if (coordinateX - 1 < 0) {
+            leftOK = false;
+        }
+        if (coordinateX + 1 > 14) {
+            rightOK = false;
+        }
+        if (coordinateY - 1 < 0) {
+            upOK = false;
+        }
+        if (coordinateY + 1 > 10) {
+            downOK = false;
+        }
+
+        if (rightOK && board[coordinateX][coordinateY + 1] == pathTile) {
             walkDown();
             board[coordinateX][coordinateY + 1] = walkedTile;
+            System.out.println("path chosen: Down");
         }
 
-        else if (board[coordinateX][coordinateY - 1] == pathTile) {
+        else if (leftOK && board[coordinateX][coordinateY - 1] == pathTile) {
             walkUp();
             board[coordinateX][coordinateY - 1] = walkedTile;
+            System.out.println("path chosen: Up");
         }
 
-        else if (board[coordinateX - 1][coordinateY] == pathTile) {
+        else if (upOK && board[coordinateX - 1][coordinateY] == pathTile) {
             walkLeft();
             board[coordinateX - 1][coordinateY] = walkedTile;
+            System.out.println("path chosen: Left");
         }
 
-        else if (board[coordinateX + 1][coordinateY] == pathTile) {
+        else if (downOK && board[coordinateX + 1][coordinateY] == pathTile) {
             walkRight();
             board[coordinateX + 1][coordinateY] = walkedTile;
+            System.out.println("path chosen: Right");
         }
-
         else {
             throw new Exception("Rabbit can't find a path");
         }
@@ -54,6 +75,7 @@ public class Enemy_movement {
                 coordinateX = (Integer) obj[2];
                 coordinateY = (Integer) obj[3] + 1;
                 space.put(me, "Coordinates", coordinateX, coordinateY);
+                System.out.println("Bunny" + me + " new coordinates x:" + coordinateX + " y:" + coordinateY);
             }
         } catch (InterruptedException e) {
         }
@@ -67,6 +89,7 @@ public class Enemy_movement {
                 coordinateX = (Integer) obj[2];
                 coordinateY = (Integer) obj[3] - 1;
                 space.put(me, "Coordinates", coordinateX, coordinateY);
+                System.out.println("Bunny" + me + " new coordinates x:" + coordinateX + " y:" + coordinateY);
             }
         } catch (InterruptedException e) {
         }
@@ -80,6 +103,7 @@ public class Enemy_movement {
                 coordinateX = (Integer) obj[2] - 1;
                 coordinateY = (Integer) obj[3];
                 space.put(me, "Coordinates", coordinateX, coordinateY);
+                System.out.println("Bunny" + me + " new coordinates x:" + coordinateX + " y:" + coordinateY);
             }
         } catch (InterruptedException e) {
         }
@@ -93,6 +117,7 @@ public class Enemy_movement {
                 coordinateX = (Integer) obj[2] + 1;
                 coordinateY = (Integer) obj[3];
                 space.put(me, "Coordinates", coordinateX, coordinateY);
+                System.out.println("Bunny" + me + " new coordinates x:" + coordinateX + " y:" + coordinateY);
             }
         } catch (InterruptedException e) {
         }
