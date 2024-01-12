@@ -41,6 +41,7 @@ public class ChatReceiver implements Runnable {
                     Object[] end = chatRoom.queryp(new ActualField("lost connection"), new ActualField("Client"));
                     if (end != null) {
                         Platform.runLater(() -> {
+                            MultiplayerBoard.boardStage.close();
                             Menu.mainMenuStage.show();
                         });
                         PlayerConnection.hostChatListenerThread.interrupt();
@@ -66,6 +67,7 @@ public class ChatReceiver implements Runnable {
                     Object[] end = chatRoom.queryp(new ActualField("lost connection"), new ActualField("Host"));
                     if (end != null) {
                         Platform.runLater(() -> {
+                            MultiplayerBoard.boardStage.close();
                             Menu.mainMenuStage.show();
                         });
                         PlayerConnection.hostChatListenerThread.interrupt();
