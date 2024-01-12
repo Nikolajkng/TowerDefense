@@ -1,7 +1,11 @@
 package dk.dtu.app.view.Figures;
 import dk.dtu.app.controller.MyButton;
+
+import javafx.application.Platform;
+
 import javafx.application.Application;
 import javafx.scene.control.Button;
+
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -14,6 +18,10 @@ public class Enemy1_BunnyGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+public class Enemy1_BunnyGUI {
+    public void placeBunny(MyButton clickedButton) {
+        Circle bunny = new Circle(25);
 
          //tower design
         bunny.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
@@ -49,11 +57,21 @@ public class Enemy1_BunnyGUI extends Application {
     public static void placeBunny(MyButton clickedButton) {
         Rectangle bunny = new Rectangle(45, 45);
 
+
          Image bunnyGif = new Image("/dk/dtu/app/view/Images/bunny.gif",false);
          bunny.setFill(new ImagePattern(bunnyGif));
 
-        clickedButton.setGraphic(bunny);
+        Platform.runLater(() -> {
+            clickedButton.setGraphic(bunny);
+        });
     }
+    
+    public void removeBunny(MyButton clickedButton) {
+        Platform.runLater(() -> {
+            clickedButton.setGraphic(null);
+        });
+    }
+
 
 //public static void startPosBunny(){
 //    bunny(BoardController.board())

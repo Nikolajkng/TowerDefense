@@ -8,6 +8,9 @@ import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 
+import dk.dtu.backend.Server;
+
+
 import dk.dtu.app.controller.BoardLogic.ChatController;
 import dk.dtu.app.view.MenuGUI.Menu;
 import dk.dtu.backend.PlayerConnection;
@@ -235,8 +238,15 @@ public class MultiplayerBoard extends Application {
         rightSide.setMaxHeight(40);
 
         // Creating boards for two players
-        leftBoard = BoardController.createPlayerBoard(leftPane, 90, 12, 10, 0);
-        rightBoard = BoardController.createPlayerBoard(rightPane, 90, 12, 10, -1);
+
+        leftBoard = BoardController.createPlayerBoard(leftPane, 90, 14, 10, 0);
+        try {
+            Server.gameRoom.put("MyBoard",leftBoard);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        rightBoard = BoardController.createPlayerBoard(rightPane, 90, 14, 10, -1);
+
 
         // Activate button functionality in Controller
         TowerSelection.selectTower();

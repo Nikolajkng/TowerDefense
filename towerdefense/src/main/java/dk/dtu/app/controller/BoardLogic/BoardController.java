@@ -3,6 +3,9 @@ package dk.dtu.app.controller.BoardLogic;
 import dk.dtu.app.controller.*;
 import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
+
+import dk.dtu.app.view.Figures.Tower1GUI;
+
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.ActionSender;
 import javafx.event.ActionEvent;
@@ -67,13 +70,12 @@ public class BoardController {
                     @Override
                     public void handle(ActionEvent e) {
 
-                        // Ensures that enemies can only be placed on Path-tiles
-                        if (board[finalX][finalY].getValue() == pathValue) {
-                            Enemy1_BunnyGUI.placeBunny(tile);
-                        }
-                        // Check if player has clicked on a legal tile: (Own Board-tiles and not on path-tiles)
-                        if (board[finalX][finalY].getValue() != pathValue
-                                && board[finalX][finalY].getValue() != illegalValue) {
+
+                        // Check if player has clicked on a legal cell
+                        // if(board[finalX][finalY].getValue() == pathValue){
+                        //     Enemy1_BunnyGUI.placeBunny(cell);
+                        // }
+                        if(board[finalX][finalY].getValue() != -2){
 
                             clickInfo(board, finalX, finalY);
                             // "if wish to place tower, then execute Tower.placeTower action"
