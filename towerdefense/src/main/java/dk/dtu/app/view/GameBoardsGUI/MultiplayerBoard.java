@@ -102,7 +102,6 @@ public class MultiplayerBoard extends Application {
                 PlayerConnection.clientActionListenerThread.interrupt();
             }
 
-            System.exit(0);
 
         });
 
