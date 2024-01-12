@@ -62,10 +62,6 @@ public class MultiplayerBoard extends Application {
         boardStage.setMaximized(true);
         boardStage.setOnCloseRequest(event -> {
             Menu.mainMenuStage.show();
-
-
-            PlayerConnection.clientChatListenerThread.interrupt();
-            PlayerConnection.clientActionListenerThread.interrupt();
         });
 
         // Application layout
