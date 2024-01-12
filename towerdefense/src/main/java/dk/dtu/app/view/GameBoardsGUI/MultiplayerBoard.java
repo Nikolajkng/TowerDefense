@@ -193,7 +193,7 @@ public class MultiplayerBoard extends Application {
                 + "-fx-background-size: contain;");
 
         // Design of buttons
-        colorAllButtons();
+       // colorAllButtons();
         
 
         // Scene setup
@@ -291,7 +291,7 @@ public class MultiplayerBoard extends Application {
         });
     }
 
-    private void colorAllButtons() {
+   /*  private void colorAllButtons() {
         towerBtn1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/ZdPH.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
@@ -325,7 +325,7 @@ attackEnemy4btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bun
 attackEnemy5btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-*/
-    }
+
+    }*/
 
 }

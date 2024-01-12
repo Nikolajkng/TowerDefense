@@ -65,17 +65,17 @@ public class ChatReceiver implements Runnable {
         } else if (callsign == "Client") {
             while (true) {
                 try {
-                    Object[] end = chatRoom.queryp(new ActualField("lost connection"), new ActualField("Host"));
+                    /*Object[] end = chatRoom.queryp(new ActualField("lost connection"), new ActualField("Host"));
                     if (end != null) {
                         System.out.println("Got lost connection from " + (String) end[1]);
                         Platform.runLater(() -> {
                             MultiplayerBoard.boardStage.close();
                             Menu.mainMenuStage.show();
                         });
-                        PlayerConnection.hostChatListenerThread.interrupt();
+                        //PlayerConnection.hostChatListenerThread.interrupt();
                         PlayerConnection.hostActionListenerThread.interrupt();
                         break;
-                    }
+                    }*/
                     Object[] message = chatRoom.get(new ActualField("Host"), new FormalField(String.class));
                     System.out.println("Received message from Host: " + (String) message[1]);
                     Platform.runLater(() -> {
