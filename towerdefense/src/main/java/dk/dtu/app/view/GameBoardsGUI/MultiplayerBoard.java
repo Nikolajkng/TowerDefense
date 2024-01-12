@@ -66,7 +66,6 @@ public class MultiplayerBoard extends Application {
         boardStage = stage;
         boardStage.setTitle("Multiplayer Board");
         boardStage.setResizable(false);
-        boardStage.setMaximized(true);
         boardStage.setOnCloseRequest(event -> {
 
             Menu.mainMenuStage.show();
