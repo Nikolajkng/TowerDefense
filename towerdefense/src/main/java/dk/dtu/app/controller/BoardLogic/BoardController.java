@@ -3,7 +3,6 @@ package dk.dtu.app.controller.BoardLogic;
 import dk.dtu.app.controller.*;
 import dk.dtu.app.controller.Tower.ActionType;
 import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
-import dk.dtu.app.view.Figures.PlaceTower;
 import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.ActionSender;
