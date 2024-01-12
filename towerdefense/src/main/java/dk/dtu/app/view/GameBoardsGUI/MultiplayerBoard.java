@@ -74,6 +74,7 @@ public class MultiplayerBoard extends Application {
             if (callsign == "Host") {
                 try {
                     ChatController.chatRoom.put("lost connection", callsign);
+                    System.out.println(callsign + " lost connection");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -87,6 +88,7 @@ public class MultiplayerBoard extends Application {
             } else {
                 try {
                     ChatController.chatRoom.put("lost connection", callsign);
+                    System.out.println(callsign + " lost connection");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
