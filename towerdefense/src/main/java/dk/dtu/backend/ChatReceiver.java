@@ -38,7 +38,7 @@ public class ChatReceiver implements Runnable {
                     Object[] message = chatRoom.get(new ActualField("Client"), new FormalField(String.class));
                     System.out.println("Received message from Client: " + (String) message[1]);
                     Platform.runLater(() -> {
-                        ChatController.updateChatBox((String) message[1]);
+                        ChatController.updateChatBox("Client", (String) message[1]);
                     });
                 }
             } else if (callsign == "Client") {
@@ -46,7 +46,7 @@ public class ChatReceiver implements Runnable {
                     Object[] message = chatRoom.get(new ActualField("Host"), new FormalField(String.class));
                     System.out.println("Received message from Host: " + (String) message[1]);
                     Platform.runLater(() -> {
-                        ChatController.updateChatBox((String) message[1]);
+                        ChatController.updateChatBox("Host", (String) message[1]);
                     });
                 }
             }
