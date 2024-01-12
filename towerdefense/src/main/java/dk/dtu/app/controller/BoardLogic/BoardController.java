@@ -1,7 +1,7 @@
 package dk.dtu.app.controller.BoardLogic;
 
 import dk.dtu.app.controller.*;
-import dk.dtu.app.controller.Tower.ActionType;
+import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
 import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.backend.PlayerConnection;
@@ -12,7 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 
 public class BoardController {
-    public static Tower.ActionType type = ActionType.NONE;
+    public static Action.ActionType type = ActionType.NONE;
     public static String callsign = PlayerConnection.callsign;
     public static Circle bunny;
     public static int pathValue = -2;

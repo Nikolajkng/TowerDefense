@@ -1,6 +1,6 @@
 package dk.dtu.app.controller;
 import dk.dtu.app.controller.BoardLogic.BoardController;
-import dk.dtu.app.controller.Tower.ActionType;
+import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.app.view.GameBoardsGUI.*;
 
 public class TowerSelection {
