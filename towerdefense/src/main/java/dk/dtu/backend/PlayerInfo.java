@@ -12,7 +12,8 @@ public class PlayerInfo implements Runnable {
     static int life = 100;
 
     private static Stage loserStage;
-    int money = 100;
+    static int money = 100;
+
     SequentialSpace space;
 
     public PlayerInfo(SequentialSpace space) {
@@ -39,8 +40,23 @@ public class PlayerInfo implements Runnable {
         return life;
     }
 
-    public static void moneyTracker(){
-           
+    public static void moneyTracker(Space space){
+          
+        try {
+            Object[] object2 = space.get(new ActualField("Terminate"));
+            if (object2 != null){
+                money ++;
+                if (money <= 0) {
+                    new LostAlertGUI().start(loserStage);
+                }
+            }
+        } catch (InterruptedException e) {
+        }
+        
+    }
+
+    public static int getMoney() {
+        return money;
     }
 
     @Override
