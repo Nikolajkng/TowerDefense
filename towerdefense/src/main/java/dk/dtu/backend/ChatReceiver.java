@@ -40,9 +40,12 @@ public class ChatReceiver implements Runnable {
                 try {
                     Object[] end = chatRoom.queryp(new ActualField("lost connection"), new ActualField("Client"));
                     if (end != null) {
-                        Menu.mainMenuStage.show();
+                        Platform.runLater(() -> {
+                            Menu.mainMenuStage.show();
+                        });
                         PlayerConnection.hostChatListenerThread.interrupt();
                         PlayerConnection.hostActionListenerThread.interrupt();
+                        break;
                     }
                     Object[] message = chatRoom.get(new ActualField("Client"), new FormalField(String.class));
                     System.out.println("Received message from Client: " + (String) message[1]);
@@ -67,6 +70,7 @@ public class ChatReceiver implements Runnable {
                         });
                         PlayerConnection.hostChatListenerThread.interrupt();
                         PlayerConnection.hostActionListenerThread.interrupt();
+                        break;
                     }
                     Object[] message = chatRoom.get(new ActualField("Host"), new FormalField(String.class));
                     System.out.println("Received message from Host: " + (String) message[1]);
