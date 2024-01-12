@@ -1,6 +1,7 @@
 package dk.dtu.app.controller;
 
 import dk.dtu.app.controller.Action.ActionType;
+import dk.dtu.app.view.Figures.Tower1GUI;
 
 public class Tower {
 
@@ -11,6 +12,7 @@ public class Tower {
         System.out.println("Placing tower at: (" + x + ", " + y + ") with action: " + type);
 
         if (type == ActionType.TOWER1) {
+            Tower1GUI.placePlant1(tile);
             board[x][y].setText("X");
             board[x][y].setValue(-1);
         }

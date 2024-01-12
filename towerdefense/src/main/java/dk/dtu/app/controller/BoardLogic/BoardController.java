@@ -25,9 +25,11 @@ public class BoardController {
         int x;
         int y;
 
-        int[] pathX = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 9, 10, 10, 10, 10, 10, 11, 12, 13 };
-                
-        int[] pathY = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 7, 6, 5, 4, 3, 2, 1, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 7, 6, 5, 4, 4, 4, 4, 4, 4 };
+        int[] pathX = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 9, 10,
+                10, 10, 10, 10, 11, 12, 13 };
+
+        int[] pathY = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 7, 6, 5, 4, 3, 2, 1, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8,
+                7, 6, 5, 4, 4, 4, 4, 4, 4 };
 
         // Create the gameboard
         for (x = 0; x < numOftilesX; x++) {
@@ -37,21 +39,21 @@ public class BoardController {
 
                 // Creates a path where enemies will follow
                 boolean isPath = false;
-                for (int i = 0; i < pathX.length; i++){
-                    if ( x == pathX[i] && y == pathY[i]){ //checks the coordinate of the path 
+                for (int i = 0; i < pathX.length; i++) {
+                    if (x == pathX[i] && y == pathY[i]) { // checks the coordinate of the path
                         isPath = true;
                         break;
                     }
                 }
-                if(isPath){
+                if (isPath) {
                     tile.setValue(pathValue);
                     tile.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/sand_tile.png');"
-                    + "-fx-background-repeat: repeat;"
-                    + "-fx-background-size: cover;");
+                            + "-fx-background-repeat: repeat;"
+                            + "-fx-background-size: cover;");
                 } else {
-                     tile.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_3.png');"
-                    + "-fx-background-repeat: repeat;"
-                    + "-fx-background-size: cover;");
+                    tile.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_3.png');"
+                            + "-fx-background-repeat: repeat;"
+                            + "-fx-background-size: cover;");
                 }
 
                 // Add the button to the grid and a corresponding coordinate position
@@ -66,22 +68,22 @@ public class BoardController {
                     public void handle(ActionEvent e) {
 
                         // Check if player has clicked on a legal tile
-                        if(board[finalX][finalY].getValue() == pathValue){
+                        if (board[finalX][finalY].getValue() == pathValue) {
                             Enemy1_BunnyGUI.placeBunny(tile);
                         }
-                        if(board[finalX][finalY].getValue() != pathValue && board[finalX][finalY].getValue() != illegalValue){
-                            
+                        if (board[finalX][finalY].getValue() != pathValue
+                                && board[finalX][finalY].getValue() != illegalValue) {
+
                             clickInfo(board, finalX, finalY);
                             // "if wish to place tower, then execute Tower.placeTower action"
-                            if(true){
-                                Tower1GUI.placePlant1(tile);
+                            if (true) {
                                 Tower.placeTower(finalX, finalY, board, type);
                                 ActionSender.sendAction(finalX, finalY, type, callsign);
                             }
                         } else {
                             System.out.println("Clicked on illegal tile");
                         }
-                        
+
                     }
                 });
 
@@ -97,7 +99,4 @@ public class BoardController {
         System.out.println("Value: " + board[x][y].getValue());
     }
 
-
 }
-
-    
