@@ -124,7 +124,7 @@ public class SingleplayerBoard extends Application {
         rightVbox.setAlignment(Pos.BOTTOM_CENTER);
         VBox.setMargin(exitGame, new javafx.geometry.Insets(0, 0, 80, 0));
         
-        BoardController.createPlayerBoard(pane, 86, 14, 10, 0);
+        // BoardController.createPlayerBoard(pane, 86, 14, 10, 0);
     }
 
    // Create a circle to be used as the button's shape

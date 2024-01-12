@@ -2,10 +2,9 @@ package dk.dtu.app.view.GameBoardsGUI;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-
-import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
+import dk.dtu.app.controller.BoardLogic.MyPane;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,8 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -24,8 +23,10 @@ public class MultiplayerBoard extends Application {
 
     // Global field variables
     public static Stage boardStage = new Stage();
-    public static MyButton[][] leftBoard = new MyButton[0][0];
-    public static MyButton[][] rightBoard = new MyButton[0][0];
+    public static MyPane leftPane = new MyPane();
+    public static MyPane rightPane = new MyPane();
+    public static MyPane leftBoard = new MyPane();
+    public static MyPane rightBoard = new MyPane();
     public static Button towerBtn1 = new Button("Tower1 $0");
     public static Button towerBtn2 = new Button("Tower2 $0");
     public static Button towerBtn3 = new Button("Tower3 $0");
@@ -43,8 +44,7 @@ public class MultiplayerBoard extends Application {
     public static final int sizeX = 1400;
     private static final int sizeY = 900; 
     // Local field variables
-    private GridPane leftPane = new GridPane();
-    private GridPane rightPane = new GridPane();
+
     private Image healthIcon = new Image(getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
     private ImageView showHealthIcon1 = new ImageView(healthIcon);
     private ImageView showHealthIcon2 = new ImageView(healthIcon);
@@ -61,7 +61,7 @@ public class MultiplayerBoard extends Application {
 
         // Application layout
         BorderPane borderPane = new BorderPane();
-        HBox centerPane = new HBox(leftPane, rightPane);
+        HBox centerPane = new HBox(); // For the leftboard and rightboard
         VBox leftVbox = new VBox();
         VBox rightVbox = new VBox();
         HBox topBar = new HBox();
@@ -151,8 +151,11 @@ public class MultiplayerBoard extends Application {
         rightSide.setMaxHeight(40);
 
         // Creating boards for two players
-        leftBoard = BoardController.createPlayerBoard(leftPane, 90, 12, 10, 0);
-        rightBoard = BoardController.createPlayerBoard(rightPane, 90, 12, 10, -1);
+        int boardSizeX = 760;
+        int boardSizeY = 800;
+        leftBoard = BoardController.createPlayerBoardValues(leftPane, boardSizeX, boardSizeY, 1);
+        rightBoard = BoardController.createPlayerBoardValues(rightPane, boardSizeX, boardSizeY, -1);
+        centerPane.getChildren().addAll(leftBoard,rightBoard);
 
         // Activate button functionality in Controller
         TowerSelection.selectTower();
