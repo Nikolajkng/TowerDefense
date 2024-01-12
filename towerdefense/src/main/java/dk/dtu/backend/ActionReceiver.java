@@ -37,12 +37,6 @@ public class ActionReceiver implements Runnable {
         if (clientRoom != null) {
             try {
                 while (true) {
-                    Object[] end = clientRoom.query(new ActualField("lost connection"));
-                    if (end != null) {
-                        Menu.mainMenuStage.show();
-                        PlayerConnection.hostChatListenerThread.interrupt();
-                        PlayerConnection.hostActionListenerThread.interrupt();
-                    }
                     Object[] info = clientRoom.queryp(
                             new FormalField(Integer.class),
                             new FormalField(Integer.class),

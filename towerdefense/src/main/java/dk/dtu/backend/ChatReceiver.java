@@ -38,7 +38,7 @@ public class ChatReceiver implements Runnable {
         if (callsign == "Host") {
             while (true) {
                 try {
-                    Object[] end = chatRoom.query(new ActualField("lost connection"));
+                    Object[] end = chatRoom.query(new ActualField("lost connection"), new ActualField("Client"));
                     if (end != null) {
                         Menu.mainMenuStage.show();
                         PlayerConnection.hostChatListenerThread.interrupt();
@@ -59,19 +59,19 @@ public class ChatReceiver implements Runnable {
             }
         } else if (callsign == "Client") {
             while (true) {
-                if (!PlayerConnection.hostChatListenerThread.isInterrupted()) {
-                    Menu.mainMenuStage.show();
-                    PlayerConnection.clientChatListenerThread.interrupt();
-                    PlayerConnection.clientActionListenerThread.interrupt();
-                }
                 try {
+                    Object[] end = chatRoom.query(new ActualField("lost connection"), new ActualField("Host"));
+                    if (end != null) {
+                        Menu.mainMenuStage.show();
+                        PlayerConnection.hostChatListenerThread.interrupt();
+                        PlayerConnection.hostActionListenerThread.interrupt();
+                    }
                     Object[] message = chatRoom.get(new ActualField("Host"), new FormalField(String.class));
                     System.out.println("Received message from Host: " + (String) message[1]);
                     Platform.runLater(() -> {
                         ChatController.updateChatBox((String) message[1]);
                     });
                 } catch (InterruptedException e) {
-                    PlayerConnection.clientChatListenerThread.interrupt();
                     Platform.runLater(() -> {
                         MultiplayerBoard.boardStage.close();
                     });

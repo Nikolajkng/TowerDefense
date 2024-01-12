@@ -71,9 +71,9 @@ public class MultiplayerBoard extends Application {
         boardStage.setMaximized(true);
         boardStage.setOnCloseRequest(event -> {
             Menu.mainMenuStage.show();
-            if (callsign == "host") {
+            if (callsign == "Host") {
                 try {
-                    ChatController.chatRoom.put("lost connection");
+                    ChatController.chatRoom.put("lost connection", callsign);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -86,7 +86,7 @@ public class MultiplayerBoard extends Application {
                 PlayerConnection.hostActionListenerThread.interrupt();
             } else {
                 try {
-                    ChatController.chatRoom.put("lost connection");
+                    ChatController.chatRoom.put("lost connection", callsign);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
