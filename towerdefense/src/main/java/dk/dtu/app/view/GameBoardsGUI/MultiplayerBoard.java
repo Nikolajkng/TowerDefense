@@ -304,19 +304,13 @@ towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gi
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
-towerBtn4.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-towerBtn5.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/SYKT7E.gif');"
-        + "-fx-background-repeat: repeat;"
-        + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
 // Enemy design
 attackEnemy1btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-attackEnemy2btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+
+/*        attackEnemy2btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
@@ -331,7 +325,7 @@ attackEnemy4btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bun
 attackEnemy5btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
+*/
     }
 
 }
