@@ -4,8 +4,10 @@ import dk.dtu.app.controller.*;
 import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.ActionSender;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
 
 public class BoardController {
 
@@ -26,6 +28,15 @@ public class BoardController {
 
     // Creating the player boards
     public static MyPane createPlayerBoard(MyPane board, int value) {
+
+        Screen primaryScreen = Screen.getPrimary();
+
+        // Get the visual bounds of the primary screen
+        Rectangle2D bounds = primaryScreen.getVisualBounds();
+
+        // Print the screen resolution
+        System.out.println("Screen Resolution: " + bounds.getWidth() + "x" + bounds.getHeight());
+
         int boardSizeX = 760;
         int boardSizeY = 800;
         board.setPrefSize(boardSizeX, boardSizeY);
