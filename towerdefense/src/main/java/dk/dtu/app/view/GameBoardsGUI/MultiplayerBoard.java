@@ -113,8 +113,8 @@ public class MultiplayerBoard extends Application {
                 // Left vbox-menu setup:
                 leftVbox.getChildren().addAll(towerBtn1, towerBtn2, towerBtn3);
                 VBox.setMargin(towerBtn1, new javafx.geometry.Insets(20, 0, 0, 0));
-                VBox.setMargin(towerBtn2, new javafx.geometry.Insets(20, 0, 0, 0));
-                VBox.setMargin(towerBtn3, new javafx.geometry.Insets(20, 0, 0, 0));
+                VBox.setMargin(towerBtn2, new javafx.geometry.Insets(8, 0, 0, 0));
+                VBox.setMargin(towerBtn3, new javafx.geometry.Insets(8, 0, 0, 0));
         
                 // Right vbox-menu setup
                 rightVbox.getChildren().addAll(attackEnemy1btn);
@@ -124,8 +124,8 @@ public class MultiplayerBoard extends Application {
                 HBox.setMargin(coinButton, new javafx.geometry.Insets(0, 825, 25, 0));
 
                 // Button sizes
-                int towerBtnWidth = 120;
-                int towerBtnHeight = 115;
+                int towerBtnWidth = 115;
+                int towerBtnHeight = 110;
                 towerBtn1.setPrefSize(towerBtnWidth, towerBtnHeight);
                 towerBtn2.setPrefSize(towerBtnWidth, towerBtnHeight);
                 towerBtn3.setPrefSize(towerBtnWidth, towerBtnHeight);
