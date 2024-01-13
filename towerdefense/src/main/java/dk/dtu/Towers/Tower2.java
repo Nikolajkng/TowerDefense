@@ -5,22 +5,22 @@ import org.jspace.Space;
 import dk.dtu.app.controller.TowerLogik;
 
 public class Tower2 extends TowerLogik {
+    private int timeSinceFired;
     private int damage = 15;
-    private int shootspeed = 5;
-    private int radius = 30;
+    private double shootspeed = 0.5; // Attackspeed in seconds
+    private int radius = 45;
 
     public Tower2(int x, int y, Space space, int me) {
         super(x, y, space, me);
     }
 
-    public void start() {
-        System.out.println("tower 2 logik created");
-        while (true) {
-            super.shoot(radius, damage);
-            try {
-                Thread.sleep(1500/shootspeed);
-            } catch (InterruptedException e) {}
+    public void tryToShoot(double time) {
+        timeSinceFired += time;
+
+        if (timeSinceFired < shootspeed) {
+            return;
         }
+        super.shoot(radius, damage);    
     }
 
 }
