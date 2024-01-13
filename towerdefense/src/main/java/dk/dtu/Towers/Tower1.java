@@ -4,23 +4,22 @@ import org.jspace.Space;
 
 import dk.dtu.app.controller.TowerLogik;
 
-public class Tower1 extends TowerLogik implements Runnable {
+public class Tower1 extends TowerLogik{
+    private int timeSinceFired;
     private int damage = 30;
-    private int shootspeed = 2;
+    private double shootspeed = 1.5; // Attackspeed in seconds
     private int radius = 10;
 
     public Tower1(int x, int y, Space space, int me) {
         super(x, y, space, me);
     }
 
-    @Override
-    public void run() {
-        while (true) {
-            super.shoot(radius, damage);
-            try {
-                Thread.sleep(1500/shootspeed);
-            } catch (InterruptedException e) {}
-        }
-    }
+    public void tryToShoot(double time) {
+        timeSinceFired += time;
 
+        if (timeSinceFired < shootspeed) {
+            return;
+        }
+        super.shoot(radius, damage);    
+    }
 }

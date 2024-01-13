@@ -4,7 +4,7 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.Space;
 
-public class Enemy_movement {
+public class EnemyMovement {
     protected int coordinateX;
     protected int coordinateY;
     private int endCoordinatesX = 13;
@@ -15,7 +15,7 @@ public class Enemy_movement {
     int endCoordinateY;
 
 
-    public Enemy_movement(int x, int y, Space space, int me) {
+    public EnemyMovement(int x, int y, Space space, int me) {
         this.coordinateX = x;
         this.coordinateY = y;
         this.space = space;

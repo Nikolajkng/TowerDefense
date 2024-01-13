@@ -36,8 +36,8 @@ public class PlayerConnection {
         hostDialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
         hostDialog.setContentText("Hosting a game on IP address: " + LocalAddressScript.getLocalAddress());
         hostDialog.showAndWait();
+        
         try {
-
             Server.gameRoom.put("join", "player1");
             System.out.println("Player 1 has joined the room");
 
@@ -47,6 +47,7 @@ public class PlayerConnection {
 
             // Start game - if player 2 has joined
             showMultiPlayerBoard();
+            BattleLogic battleLogic = new BattleLogic(Server.gameRoom);
             ActionSender.start(Server.P1P2_uri, Server.P2P1_uri);
             hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room));
             hostChatListenerThread = new Thread(new ChatReceiver(callsign));
@@ -84,17 +85,16 @@ public class PlayerConnection {
 
             // Start game
             showMultiPlayerBoard();
+            Thread battleLogic = new Thread(new BattleLogic(Server.gameRoom));
+            battleLogic.start();
+
             ActionSender.start(P1P2_uri, P2P1_uri);
             clientActionListenerThread = new Thread(new ActionReceiver(P1P2_uri, P1P2room));
             clientChatListenerThread = new Thread(new ChatReceiver(callsign));
             clientActionListenerThread.start();
             clientChatListenerThread.start();
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
-            
         }
     }
 
@@ -106,8 +106,6 @@ public class PlayerConnection {
         multiplayerBoard.start(MultiplayerBoard.boardStage);
         MultiplayerMenu.boardStage.close();
         MultiplayerBoard.boardStage.show();
-        BattleLogic battleLogic = new BattleLogic(Server.gameRoom);
-        battleLogic.waves(new Wave1().enemies);
     }
 
 ///////////////////////////////////////////////////// Function that retrieves clients inputIP (host ip) /////////////////////////////////////////////////////////////

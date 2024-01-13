@@ -6,7 +6,7 @@ import org.jspace.Space;
 
 import java.awt.geom.Point2D;
 
-public class TowerLogik {
+abstract public class TowerLogik {
     private int coordinateX;
     private int coordinateY;
     protected Space space;
@@ -18,6 +18,8 @@ public class TowerLogik {
         this.space = space;
         this.me = me;
     }
+
+    abstract public void tryToShoot(double time);
 
     public void shoot(int radius, int damage) {
         try {

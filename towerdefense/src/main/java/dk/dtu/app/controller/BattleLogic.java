@@ -1,23 +1,91 @@
 package dk.dtu.app.controller;
 
+import java.util.ArrayList;
+
+import org.jspace.ActualField;
 import org.jspace.Space;
 
+import dk.dtu.Enemies.Enemy_Bunny;
+import dk.dtu.app.controller.BoardLogic.BoardController;
 
-public class BattleLogic {
+enum GameState {
+    START,
+    ONGOING,
+    END
+}
+
+public class BattleLogic implements Runnable {
     private Space space;
-    private int startingCoordinateX = 1;
-    private int startingCoordinateY = 0;
+    private long time;
+    private double elapsedTime;
+    public static ArrayList<EnemyMovement> enemies;
+    public static ArrayList<TowerLogik> towers;
+    private int numOfEnemiesCreated;
+    GameState gameState;
 
     public BattleLogic(Space space) {
+        numOfEnemiesCreated = 0;
         this.space = space;
-        new Thread( new TowerPlacer(space));
-
+        gameState = GameState.START;
         System.out.println("Started battle logik");
-
     }
 
     public void waves(int[] enemies) {
-        new Thread( new EnemyMach(space, enemies, startingCoordinateX, startingCoordinateY)).start();
+        // new Thread( new EnemyMach(space, enemies, startingCoordinateX,
+        // startingCoordinateY)).start();
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            switch (gameState) {
+                case START: {
+                    time = System.currentTimeMillis();
+
+                    enemies = new ArrayList<>();
+                    towers = new ArrayList<>();
+
+                    gameState = GameState.ONGOING;
+                }
+                case ONGOING: {
+                    try {
+                        Object[] obj = space.query(new ActualField("Player lost"));
+                        if (obj != null) {
+                            gameState = GameState.END;
+                        }
+                        long currentTime = System.currentTimeMillis();
+                        elapsedTime = (currentTime - time) / 1000.0;
+                        time = currentTime;
+
+                        for (TowerLogik t: towers) {
+                            t.tryToShoot(elapsedTime);
+                        }
+
+                        for (EnemyMovement e: enemies) {
+                            // Make the enemies move
+                        }
+
+                        this.enemyWave();
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                case END: {
+
+                }
+                default:
+                    System.out.println("An error has occrured in gameState");
+            }
+        }
+    }
+
+    private void enemyWave() {
+        if (time % 500 == 0) {
+            numOfEnemiesCreated ++;
+            enemies.add(new Enemy_Bunny(0, BoardController.boardSizeY, space, numOfEnemiesCreated));
+        }
     }
 
 }

@@ -17,6 +17,8 @@ public class BoardController {
     public static String callsign = PlayerConnection.callsign;
     public static int pathValue = -2;
     public static int illegalValue = -1;
+    public static int boardSizeY;
+    private static int boardSizeX;
 
     // Creating the player boards
     public static MyPane createPlayerBoard(MyPane board, int value) {
@@ -29,8 +31,8 @@ public class BoardController {
         // Print the screen resolution
         System.out.println("Screen Resolution: " + bounds.getWidth() + "x" + bounds.getHeight());
 
-        int boardSizeX = MultiplayerBoard.sizeX / 3;
-        int boardSizeY = MultiplayerBoard.sizeY * 2 / 3;
+        boardSizeX = MultiplayerBoard.sizeX / 3;
+        boardSizeY = MultiplayerBoard.sizeY * 2 / 3;
         board.setPrefSize(boardSizeX, boardSizeY);
         board.setStyle("-fx-background-color: #FFFFFF");
 
@@ -51,7 +53,11 @@ public class BoardController {
             getClickInfo(clickX, clickY, board);
             if (board.getHashMap().get(String.format("%d,%d", clickX, clickY)) != -1
                     && board.getHashMap().get(String.format("%d,%d", clickX, clickY)) != -2) {
-                Tower.placeTower(clickX, clickY, board, type);
+                        Object[] info = new Object[3];
+                        info[0] = clickX;
+                        info[1] = clickY;
+                        info[2] = type;
+                ActionHandler.selectAction(info,board);
                 ActionSender.sendAction(clickX, clickY, type, callsign);
             } else {
                 System.out.println("Illegal placement");
@@ -167,7 +173,6 @@ public class BoardController {
                 }
             }
         }
-
 
         // right
         for (int row = interval5 - pathThickness / 2; row < interval7 + 2; row++) {

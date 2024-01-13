@@ -30,7 +30,6 @@ public class ActionReceiver implements Runnable {
 
     @Override
     public void run() {
-
         // What client receives from the host
         if (clientRoom != null) {
             try {
@@ -54,7 +53,6 @@ public class ActionReceiver implements Runnable {
                     }
                 }
             } catch (InterruptedException e) {
-                PlayerConnection.clientActionListenerThread.interrupt();
                 Platform.runLater(() -> {
                     MultiplayerBoard.boardStage.close();
                 });
