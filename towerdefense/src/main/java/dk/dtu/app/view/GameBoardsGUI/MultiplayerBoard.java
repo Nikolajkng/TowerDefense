@@ -98,20 +98,30 @@ public class MultiplayerBoard extends Application {
                 // Size of boxPanes
                 leftVbox.setPrefWidth(sizeX / 8 - 25);
                 rightVbox.setPrefWidth(sizeX / 8 - 25);
-                bottomHUD.setPrefHeight(sizeY / 8 + 35);
+                bottomHUD.setPrefHeight(sizeY / 8 + 75);
                 topBar.setPrefHeight(sizeY / 8 + 25);
+
+                Image coin = new Image("/dk/dtu/app/view/Images/coin.png");
+                ImageView imageView = new ImageView(coin);
+                imageView.setFitWidth(40);
+                imageView.setFitHeight(40);
+                Button coinButton = new Button("" + PlayerInfo.getMoney(), imageView);
+                coinButton.setStyle("-fx-background-size: cover; -fx-background-color: transparent; "
+                                + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+                coinButton.setPrefSize(140, 140);
 
                 // Left vbox-menu setup:
                 leftVbox.getChildren().addAll(towerBtn1, towerBtn2, towerBtn3);
                 VBox.setMargin(towerBtn1, new javafx.geometry.Insets(20, 0, 0, 0));
                 VBox.setMargin(towerBtn2, new javafx.geometry.Insets(20, 0, 0, 0));
                 VBox.setMargin(towerBtn3, new javafx.geometry.Insets(20, 0, 0, 0));
-
+        
                 // Right vbox-menu setup
-                rightVbox.getChildren().addAll(attackEnemy1btn /*
-                                                                * , attackEnemy2btn, attackEnemy3btn, attackEnemy4btn,
-                                                                * attackEnemy5btn
-                                                                */);
+                rightVbox.getChildren().addAll(attackEnemy1btn);
+
+                //BottomHud setup:
+                bottomHUD.getChildren().addAll(coinButton);
+                HBox.setMargin(coinButton, new javafx.geometry.Insets(0, 825, 25, 0));
 
                 // Button sizes
                 int towerBtnWidth = 120;
@@ -160,6 +170,7 @@ public class MultiplayerBoard extends Application {
                                 "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
                 topTitle.setStyle(
                                 "-fx-fill: white; -fx-font-size: 60px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+
                 // leftSide.setStyle("-fx-border-color: #00e600; -fx-border-width: 7;
                 // -fx-border-radius: 20");
                 // rightSide.setStyle("-fx-border-color: #00e600; -fx-border-width: 7;
