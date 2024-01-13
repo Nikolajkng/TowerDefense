@@ -201,7 +201,7 @@ public class BoardController {
         int pathThickness = 50;
         int interval0 = boardSizeY / 2;
         int interval1 = boardSizeX / 6; // Right
-        int interval2 = interval0 + boardSizeY / 3; // down
+        int interval2 = interval0 + boardSizeY / 4; // down
         int interval3 = interval1 + boardSizeX / 3; // Right
         int interval4 = interval2 - boardSizeY * 2 / 3; // Up
         int interval5 = interval3 + boardSizeX / 3; // Right
@@ -210,7 +210,7 @@ public class BoardController {
 
         // Path 1: Start Right
         for (int row = 0; row < interval1; row++) {
-            for (int col = row - boardSizeY / 2 - pathThickness / 2; col < row + pathThickness / 2; col++) {
+            for (int col = interval0 - pathThickness / 2; col < interval0 + pathThickness / 2; col++) {
                 if (col >= 0 && col < boardSizeY && row >= 0 && row < boardSizeX) {
                     String pixelCoordinate = String.format("%d,%d", row, col);
                     board.getHashMap().put(pixelCoordinate, pathValue);
@@ -223,8 +223,9 @@ public class BoardController {
             }
         }
 
-        for (int col = interval1; col < interval2; col++) {
-            for (int row = col - pathThickness / 2; row < col + pathThickness / 2; row++) {
+        // down
+        for (int row = interval1 - pathThickness / 2; row < interval1 + pathThickness / 2; row++) {
+            for (int col = interval0 - pathThickness / 2; col < interval2; col++) {
                 if (col >= 0 && col < boardSizeY && row >= 0 && row < boardSizeX) {
                     String pixelCoordinate = String.format("%d,%d", row, col);
                     board.getHashMap().put(pixelCoordinate, pathValue);
@@ -237,16 +238,9 @@ public class BoardController {
             }
         }
 
-        for (int row = interval2; row < interval3; row++) {
-            for (int col = row - boardSizeY / 2 - pathThickness / 2; col < row + pathThickness / 2; col++) {
-                if (col >= 0 && col < boardSizeY && row >= 0 && row < boardSizeX) {
-                    pathArray[row][col] = true;
-                }
-            }
-        }
-
-        for (int col = interval3; col < interval4; col--) {
-            for (int row = col - pathThickness / 2; row < col + pathThickness / 2; row++) {
+        // right
+        for (int row = interval1 - pathThickness / 2; row < interval3; row++) {
+            for (int col = interval2 - pathThickness / 2; col < interval2 + pathThickness / 2; col++) {
                 if (col >= 0 && col < boardSizeY && row >= 0 && row < boardSizeX) {
                     String pixelCoordinate = String.format("%d,%d", row, col);
                     board.getHashMap().put(pixelCoordinate, pathValue);
@@ -259,8 +253,9 @@ public class BoardController {
             }
         }
 
-        for (int row = interval4; row < interval5; row++) {
-            for (int col = row - boardSizeY / 2 - pathThickness / 2; col < row + pathThickness / 2; col++) {
+        // up
+        for (int row = interval3 - pathThickness / 2; row < interval3 + pathThickness / 2; row++) {
+            for (int col = interval2 + pathThickness / 2 - 1; col > interval4; col--) {
                 if (col >= 0 && col < boardSizeY && row >= 0 && row < boardSizeX) {
                     String pixelCoordinate = String.format("%d,%d", row, col);
                     board.getHashMap().put(pixelCoordinate, pathValue);
@@ -273,8 +268,9 @@ public class BoardController {
             }
         }
 
-        for (int col = interval5; col < interval6; col++) {
-            for (int row = col - pathThickness / 2; row < col + pathThickness / 2; row++) {
+        // right
+        for (int row = interval3 - pathThickness / 2; row < interval5; row++) {
+            for (int col = interval4 - pathThickness / 2; col < interval4 + pathThickness / 2; col++) {
                 if (col >= 0 && col < boardSizeY && row >= 0 && row < boardSizeX) {
                     String pixelCoordinate = String.format("%d,%d", row, col);
                     board.getHashMap().put(pixelCoordinate, pathValue);
@@ -287,8 +283,9 @@ public class BoardController {
             }
         }
 
-        for (int row = interval6; row < interval7; row++) {
-            for (int col = row - boardSizeY / 2 - pathThickness / 2; col < row + pathThickness / 2; col++) {
+        // down
+        for (int row = interval5 - pathThickness / 2; row < interval5 + pathThickness / 2; row++) {
+            for (int col = interval4 - pathThickness / 2; col < interval6; col++) {
                 if (col >= 0 && col < boardSizeY && row >= 0 && row < boardSizeX) {
                     String pixelCoordinate = String.format("%d,%d", row, col);
                     board.getHashMap().put(pixelCoordinate, pathValue);
@@ -301,20 +298,20 @@ public class BoardController {
             }
         }
 
-        // for (int x = 0; x < boardSizeX; x++) {
-        //     for (int y = 0; y < boardSizeY; y++) {
-        //         if (pathArray[x][y]) {
-        //             String pixelCoordinate = String.format("%d,%d", x, y);
-        //             board.getHashMap().put(pixelCoordinate, pathValue);
 
-        //             // Add a rectangle to visually represent the path
-        //             Rectangle pathRectangle = new Rectangle(x, y, 1, 1);
-        //             pathRectangle.setFill(Color.RED); // Adjust the color as needed
-        //             board.getChildren().add(pathRectangle);
-        //         }
-        //     }
-        // }
+        // right
+        for (int row = interval5 - pathThickness / 2; row < interval7 + 2; row++) {
+            for (int col = interval6 - pathThickness / 2; col < interval6 + pathThickness / 2; col++) {
+                if (col >= 0 && col < boardSizeY && row >= 0 && row < boardSizeX) {
+                    String pixelCoordinate = String.format("%d,%d", row, col);
+                    board.getHashMap().put(pixelCoordinate, pathValue);
 
+                    // Add a rectangle to visually represent the path
+                    Rectangle pathRectangle = new Rectangle(row, col, 1, 1);
+                    pathRectangle.setFill(Color.RED); // Adjust the color as needed
+                    board.getChildren().add(pathRectangle);
+                }
+            }
+        }
     }
-
 }
