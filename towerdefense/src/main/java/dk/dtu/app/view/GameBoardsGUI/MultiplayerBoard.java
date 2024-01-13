@@ -178,7 +178,7 @@ public class MultiplayerBoard extends Application {
         // Color of background of Panes
         centerPane.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
                 + "-fx-background-repeat: repeat;"
-                + "-fx-background-size: contain;");
+                + "-fx-background-size: cover;");
         leftVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
                 + "-fx-background-repeat: repeat;"
                 + "-fx-background-size: contain;");
