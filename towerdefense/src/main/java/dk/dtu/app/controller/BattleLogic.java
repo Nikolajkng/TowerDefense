@@ -2,6 +2,8 @@ package dk.dtu.app.controller;
 
 import org.jspace.Space;
 
+import dk.dtu.app.controller.Enemy.EnemyMach;
+
 
 public class BattleLogic {
     private Space space;
@@ -12,7 +14,7 @@ public class BattleLogic {
         this.space = space;
         new Thread( new TowerPlacer(space));
 
-        System.out.println("Started battle logik");
+        //System.out.println("Started battle logik");
 
     }
 

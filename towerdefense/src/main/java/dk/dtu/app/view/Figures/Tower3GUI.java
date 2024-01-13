@@ -1,13 +1,11 @@
 package dk.dtu.app.view.Figures;
 
-import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Tower3GUI extends Application {

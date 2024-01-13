@@ -1,14 +1,12 @@
 package dk.dtu.Enemies;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
-
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.Space;
 
-import dk.dtu.app.controller.Enemy_movement;
 import dk.dtu.app.controller.MyButton;
+import dk.dtu.app.controller.Enemy.Enemy_movement;
 import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
 
 public class Enemy_Bunny extends Enemy_movement {
@@ -20,7 +18,7 @@ public class Enemy_Bunny extends Enemy_movement {
     public Enemy_Bunny(int x, int y, Space space, int me) {
         super(x, y, space, me);
         gui = new Enemy1_BunnyGUI();
-        System.out.println("Created bunny");
+        //System.out.println("Created bunny");
     }
 
     public void takeDamage(int damage) {
@@ -38,7 +36,7 @@ public class Enemy_Bunny extends Enemy_movement {
     }
 
     public void run() {
-        System.out.println("trying to run bunny");
+        //System.out.println("trying to run bunny");
         int numOfCellsX = 14;
         int numOfCellsY = 10;
         Object[] obj = null;

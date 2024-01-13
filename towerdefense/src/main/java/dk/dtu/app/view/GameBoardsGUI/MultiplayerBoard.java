@@ -1,7 +1,12 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.UnknownHostException;
+
+import javax.swing.Timer;
+
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.backend.Server;
@@ -14,6 +19,10 @@ import dk.dtu.app.view.MenuGUI.Menu;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.PlayerInfo;
 import dk.dtu.app.controller.BoardLogic.MyPane;
+import dk.dtu.app.controller.Waves.Wave;
+import javafx.animation.KeyFrame;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,7 +34,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class MultiplayerBoard extends Application {
 
@@ -66,6 +80,8 @@ public class MultiplayerBoard extends Application {
         // Program start
         @Override
         public void start(Stage stage) throws UnknownHostException, IOException {
+                // Spawn bunnies
+                //Wave.spawnEnemy(leftBoard, 3, new Circle(30));
 
                 // Stage setup
                 boardStage = stage;
@@ -186,7 +202,8 @@ public class MultiplayerBoard extends Application {
 
                 // Start construction of chat GUI
                 ChatGUI.createChatGUI();
-                ;
+                
+            
 
         }
 
@@ -194,7 +211,7 @@ public class MultiplayerBoard extends Application {
         private void handleClosedApplication() {
                 boardStage.setOnCloseRequest(event -> {
 
-                        Menu.mainMenuStage.show();
+                        //Menu.mainMenuStage.show();
                         if (callsign == "Host") {
                                 try {
                                         ChatController.chatRoom.put("lost connection", callsign);

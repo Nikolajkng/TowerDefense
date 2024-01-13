@@ -1,4 +1,4 @@
-package dk.dtu.app.controller;
+package dk.dtu.app.controller.Enemy;
 
 import java.util.concurrent.CompletableFuture;
 import org.jspace.Space;
@@ -15,7 +15,7 @@ public class EnemyMach implements Runnable {
     public EnemyMach(Space space, int[] enemies, int x, int y) {
         this.space = space;
         this.enemies = enemies;
-        System.out.println("Started enemy mach");
+        //System.out.println("Started enemy mach");
     }
 
     @Override
@@ -40,7 +40,7 @@ public class EnemyMach implements Runnable {
                 } catch (Exception e) {
                 }
             }
-            System.out.println("created all of these enemies");
+            //System.out.println("created all of these enemies");
         }
     }
 }

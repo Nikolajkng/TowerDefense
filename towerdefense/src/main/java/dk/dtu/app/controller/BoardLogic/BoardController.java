@@ -5,10 +5,16 @@ import dk.dtu.app.controller.Action.ActionType;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.ActionSender;
+import javafx.animation.PathTransition;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
+import javafx.util.Duration;
 
 public class BoardController {
 
@@ -21,14 +27,7 @@ public class BoardController {
     // Creating the player boards
     public static MyPane createPlayerBoard(MyPane board, int value) {
 
-        Screen primaryScreen = Screen.getPrimary();
-
-        // Get the visual bounds of the primary screen
-        Rectangle2D bounds = primaryScreen.getVisualBounds();
-
         // Print the screen resolution
-        System.out.println("Screen Resolution: " + bounds.getWidth() + "x" + bounds.getHeight());
-
         int boardSizeX = MultiplayerBoard.sizeX / 3;
         int boardSizeY = MultiplayerBoard.sizeY * 2 / 3 + 150;
         board.setPrefSize(boardSizeX, boardSizeY);
@@ -58,7 +57,37 @@ public class BoardController {
             }
         });
 
+        testSpawnEnemy(board);
+
         return board;
+    }
+
+    public static void testSpawnEnemy(MyPane board) {
+             // Create a path for the enemy to follow
+        Circle circle = new Circle(25);
+        circle.setFill(Color.BLACK);
+        circle.setLayoutX(0);
+        circle.setLayoutY(375);
+        board.getChildren().add(circle);
+
+        Path path = new Path();
+        path.getElements().add(new MoveTo(0,375)); // Starting point
+        path.getElements().add(new LineTo(100,375)); // Move right
+
+        PathTransition pathT = new PathTransition();
+        pathT.setDuration(Duration.seconds(2));
+        pathT.setPath(path);
+        pathT.setNode(circle);
+        pathT.setCycleCount(1);
+        path.getElements().forEach(element -> {
+            System.out.println("Path Element: " + element);
+        });
+        
+        pathT.play();
+        pathT.setOnFinished(event -> {
+            System.out.println("Animation Finished. Circle Position: (" + circle.getLayoutX() + ", " + circle.getLayoutY() + ")");
+        });
+        
     }
 
     private static void getClickInfo(int x, int y, MyPane board) {

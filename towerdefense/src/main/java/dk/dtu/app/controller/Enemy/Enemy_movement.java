@@ -1,4 +1,4 @@
-package dk.dtu.app.controller;
+package dk.dtu.app.controller.Enemy;
 
 import org.jspace.ActualField;
 import org.jspace.FormalField;
