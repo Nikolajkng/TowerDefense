@@ -30,7 +30,7 @@ public class BoardController {
         System.out.println("Screen Resolution: " + bounds.getWidth() + "x" + bounds.getHeight());
 
         int boardSizeX = MultiplayerBoard.sizeX / 3;
-        int boardSizeY = MultiplayerBoard.sizeY * 2 / 3;
+        int boardSizeY = MultiplayerBoard.sizeY * 2 / 3 + 150;
         board.setPrefSize(boardSizeX, boardSizeY);
         board.setStyle("-fx-background-color: #FFFFFF");
 
