@@ -28,6 +28,10 @@ public class ActionReceiver implements Runnable {
         this.hostRoom = room;
     }
 
+    // Client: clientActionListenerThread = new Thread(new ActionReceiver(P1P2_uri, P1P2room));
+    // Host  : hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room));
+
+
     @Override
     public void run() {
 

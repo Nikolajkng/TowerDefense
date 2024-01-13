@@ -6,10 +6,8 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.RemoteSpace;
 
-import dk.dtu.app.controller.Action;
 import dk.dtu.app.controller.BoardLogic.ChatController;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
-import dk.dtu.app.view.MenuGUI.Menu;
 import javafx.application.Platform;
 
 public class ChatReceiver implements Runnable {
@@ -38,17 +36,17 @@ public class ChatReceiver implements Runnable {
         if (callsign == "Host") {
             while (true) {
                 try {
-                    Object[] end = chatRoom.queryp(new ActualField("lost connection"), new ActualField("Client"));
-                    if (end != null) {
-                        System.out.println("Got lost connection from " + (String) end[1]);
-                        Platform.runLater(() -> {
-                            MultiplayerBoard.boardStage.close();
-                            Menu.mainMenuStage.show();
-                        });
-                        PlayerConnection.hostChatListenerThread.interrupt();
-                        PlayerConnection.hostActionListenerThread.interrupt();
-                        break;
-                    }
+                    // Object[] end = chatRoom.queryp(new ActualField("lost connection"), new ActualField("Client"));
+                    // if (end != null) {
+                    //     System.out.println("Got lost connection from " + (String) end[1]);
+                    //     Platform.runLater(() -> {
+                    //         MultiplayerBoard.boardStage.close();
+                    //         Menu.mainMenuStage.show();
+                    //     });
+                    //     PlayerConnection.hostChatListenerThread.interrupt();
+                    //     PlayerConnection.hostActionListenerThread.interrupt();
+                    //     break;
+                    // }
                     Object[] message = chatRoom.get(new ActualField("Client"), new FormalField(String.class));
                     System.out.println("Received message from Client: " + (String) message[1]);
                     Platform.runLater(() -> {
