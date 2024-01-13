@@ -125,7 +125,7 @@ public class MultiplayerBoard extends Application {
 
                 // Button sizes
                 int towerBtnWidth = 120;
-                int towerBtnHeight = 100;
+                int towerBtnHeight = 115;
                 towerBtn1.setPrefSize(towerBtnWidth, towerBtnHeight);
                 towerBtn2.setPrefSize(towerBtnWidth, towerBtnHeight);
                 towerBtn3.setPrefSize(towerBtnWidth, towerBtnHeight);
