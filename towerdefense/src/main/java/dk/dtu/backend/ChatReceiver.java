@@ -6,7 +6,6 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.RemoteSpace;
 
-import dk.dtu.app.controller.Action;
 import dk.dtu.app.controller.BoardLogic.ChatController;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.app.view.MenuGUI.Menu;

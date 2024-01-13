@@ -6,7 +6,6 @@ import java.net.UnknownHostException;
 import org.jspace.*;
 
 import dk.dtu.app.controller.BattleLogic;
-import dk.dtu.app.controller.Waves.Wave1;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.app.view.MenuGUI.MultiplayerMenu;
 import javafx.event.ActionEvent;
