@@ -28,8 +28,8 @@ public class BoardController {
     public static MyPane createPlayerBoard(MyPane board, int value) {
 
         // Board size and color setup
-        int boardSizeX = MultiplayerBoard.sizeX / 3;
-        int boardSizeY = MultiplayerBoard.sizeY * 2 / 3 + 150;
+        final int boardSizeX = MultiplayerBoard.sizeX / 3;
+        final int boardSizeY = MultiplayerBoard.sizeY * 2 / 3;
         board.setPrefSize(boardSizeX, boardSizeY);
         board.setStyle("-fx-background-color: #AEF359");
 
