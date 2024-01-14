@@ -45,6 +45,7 @@ public class Enemy_movement {
     // Extra constructors
     public Enemy_movement(MyPane myPane) {
         this.board = myPane;
+        this.enemyShape = new Circle(30);
          // Construct the enemy appearance and adds to board
          constructEnemy();
          myPane.getChildren().add(enemyShape);
