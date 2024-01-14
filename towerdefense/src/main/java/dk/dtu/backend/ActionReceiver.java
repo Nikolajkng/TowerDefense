@@ -14,13 +14,11 @@ import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import javafx.application.Platform;
 
 public class ActionReceiver implements Runnable {
-    String uri = "";
     RemoteSpace clientRoom;
     public SequentialSpace hostRoom;
     public static Object[] actionInfo;
 
     public ActionReceiver(String uri, RemoteSpace room) throws UnknownHostException, IOException {
-        this.uri = uri;
         this.clientRoom = new RemoteSpace(uri);
     }
 
