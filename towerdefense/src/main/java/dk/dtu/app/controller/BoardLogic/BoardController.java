@@ -23,13 +23,14 @@ public class BoardController {
     public static int interval5; // Right
     public static int interval6; // Down
     public static int interval7; // Right
+    private static int boardSizeY;
+    private static int boardSizeX;
 
     // Creating the player boards
     public static MyPane createPlayerBoard(MyPane board, int value) {
 
-        // Board size and color setup
-        final int boardSizeX = MultiplayerBoard.sizeX / 3;
-        final int boardSizeY = MultiplayerBoard.sizeY * 2 / 3;
+        boardSizeX = MultiplayerBoard.sizeX / 3;
+        boardSizeY = MultiplayerBoard.sizeY * 2 / 3;
         board.setPrefSize(boardSizeX, boardSizeY);
         board.setStyle("-fx-background-color: #AEF359");
 
@@ -50,7 +51,11 @@ public class BoardController {
             getClickInfo(clickX, clickY, board);
             if (board.getHashMap().get(String.format("%d,%d", clickX, clickY)) != -1
                     && board.getHashMap().get(String.format("%d,%d", clickX, clickY)) != -2) {
-                Tower.placeTower(clickX, clickY, board, type);
+                        Object[] info = new Object[3];
+                        info[0] = clickX;
+                        info[1] = clickY;
+                        info[2] = type;
+                ActionHandler.selectAction(info,board);
                 ActionSender.sendAction(clickX, clickY, type, callsign);
             } else {
                 System.out.println("Illegal placement");

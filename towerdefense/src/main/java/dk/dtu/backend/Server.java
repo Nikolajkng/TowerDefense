@@ -48,10 +48,4 @@ public class Server {
         System.out.println("ChatRoom URI: " + chatRoom_uri);
         System.out.println("---------------------");
     }
-
-    public void clientRoom(String ip, SpaceRepository server){
-        SequentialSpace clientRoom = new SequentialSpace();
-        server.add("clientRoom", clientRoom);
-    }
-
 }

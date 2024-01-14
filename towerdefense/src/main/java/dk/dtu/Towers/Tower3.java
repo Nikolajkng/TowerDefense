@@ -4,13 +4,13 @@ import org.jspace.Space;
 
 import dk.dtu.app.controller.TowerLogik;
 
-public class Tower1 extends TowerLogik{
+public class Tower3 extends TowerLogik {
     private int timeSinceFired;
-    private int damage = 30;
-    private double shootspeed = 1; // Attackspeed in seconds
-    private int radius = 30;
+    private int damage = 100;
+    private double shootspeed = 2; // Attackspeed in seconds
+    private int radius = 20;
 
-    public Tower1(int x, int y, Space space, int me) {
+    public Tower3(int x, int y, Space space, int me) {
         super(x, y, space, me);
     }
 
@@ -22,4 +22,5 @@ public class Tower1 extends TowerLogik{
         }
         super.shoot(radius, damage);    
     }
+
 }

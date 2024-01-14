@@ -46,9 +46,11 @@ public class PlayerInfo implements Runnable {
             Object[] object2 = space.get(new ActualField("Terminate"));
             if (object2 != null){
                 money ++;
-                if (money <= 0) {
-                    new LostAlertGUI().start(loserStage);
-                }
+
+                // skal nok ikke bruges?
+                // if (money <= 0) {
+                //     new LostAlertGUI().start(loserStage);
+                // }
             }
         } catch (InterruptedException e) {
         }
