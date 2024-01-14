@@ -10,16 +10,21 @@ import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 public class Enemy {
-    private MyPane board;
-    private Circle enemyShape;
-    private int health = 100;
-    private int speed = 5;
-    private int damage = 10;
+    protected MyPane board;
+    protected Circle enemyShape;
+    protected int health = 100;
+    protected int speed = 5;
+    protected int damage = 10;
 
     public Enemy(MyPane myPane) {
         this.board = myPane;
         this.enemyShape = new Circle(30);
+
+        // Construct the enemy appearance and adds to board
         constructEnemy();
+        myPane.getChildren().add(enemyShape);
+
+        // Sets the path for the enemy to move on
         setPath();
         System.out.println("Hi i am a bunny");
     }
@@ -30,30 +35,28 @@ public class Enemy {
 
     private void constructEnemy() {
         System.out.println("Constructing enemy...");
-        // Enemy GUI appearance
         enemyShape.setFill(Color.BLACK);
 
-        // Set the initial position of the rectangle to the leftmost edge
-        int startX = 100;
-        int startY = 375;
-        enemyShape.setLayoutX(startX);
-        enemyShape.setLayoutY(startY);
     }
 
-    public void setPath() {
-        System.out.println("Setting path...");
-    
-        //Create a path for the enemy to follow
-        // Path path = new Path();
-        // path.getElements().add(new MoveTo(100, 375)); // Starting point
-        // path.getElements().add(new LineTo(200, 375)); // Go right...
+    private void setPath() {
+        System.out.println("Setting path for enemy to move on...");
 
-        // PathTransition pathT = new PathTransition();
-        // pathT.setDuration(Duration.seconds(4));
-        // pathT.setPath(path);
-        // pathT.setNode(enemyShape);
-        // pathT.setCycleCount(PathTransition.INDEFINITE);
-        // pathT.play();
+        // Board positions
+        int startX = 0;
+        int startY = 375;
+
+        // Create a path for the enemy to follow
+        Path path = new Path();
+        path.getElements().add(new MoveTo(startX, startY)); // Starting point
+        path.getElements().add(new LineTo(150, 375)); // Go right...
+
+        PathTransition pathT = new PathTransition();
+        pathT.setDuration(Duration.seconds(3));
+        pathT.setPath(path);
+        pathT.setNode(enemyShape);
+        pathT.setCycleCount(PathTransition.INDEFINITE);
+        pathT.play();
     }
 
 }

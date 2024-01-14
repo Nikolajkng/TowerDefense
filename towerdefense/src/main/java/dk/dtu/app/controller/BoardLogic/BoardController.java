@@ -2,7 +2,6 @@ package dk.dtu.app.controller.BoardLogic;
 
 import dk.dtu.app.controller.*;
 import dk.dtu.app.controller.Action.ActionType;
-import dk.dtu.app.controller.Enemy.Enemy;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.ActionSender;
@@ -20,11 +19,12 @@ public class BoardController {
     // Creating the player boards
     public static MyPane createPlayerBoard(MyPane board, int value) {
 
-        // Print the screen resolution
+
+        // Board size and color setup
         int boardSizeX = MultiplayerBoard.sizeX / 3;
         int boardSizeY = MultiplayerBoard.sizeY * 2 / 3 + 150;
         board.setPrefSize(boardSizeX, boardSizeY);
-        board.setStyle("-fx-background-color: #FFFFFF");
+        board.setStyle("-fx-background-color: #AEF359");
 
         // Assign each pixel a value from paramter
         for (int x = 0; x < boardSizeX; x++) {
@@ -50,8 +50,10 @@ public class BoardController {
             }
         });
 
-        Enemy enemy = new Enemy(board);
-        board.getChildren().add(enemy.getEnemyShape());
+
+        //Enemy enemy = new Enemy(board);
+        //board.getChildren().add(enemy.getEnemyShape());
+        
         return board;
     }
 

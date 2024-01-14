@@ -14,6 +14,7 @@ import dk.dtu.app.view.Figures.Tower3GUI;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.PlayerInfo;
 import dk.dtu.app.controller.BoardLogic.MyPane;
+import dk.dtu.app.controller.Waves.Wave;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -130,7 +131,7 @@ public class MultiplayerBoard extends Application {
                  */
 
                 // Invoke the coloring of background of Panes
-                colorThePanes(centerPane, leftVbox, rightVbox, bottomHUD, topBar);
+                colorThePanes(centerPane, leftVbox, rightVbox, bottomHUD, topBar, leftBoard, rightBoard);
 
                 // Invoke the styling of tower buttons and enemy buttons
                 setStyleButtons();
@@ -176,19 +177,22 @@ public class MultiplayerBoard extends Application {
                 rightBoard = BoardController.createPlayerBoard(rightPane, -1);
                 centerPane.getChildren().addAll(leftBoard, rightBoard);
 
-                // Peters TEST:
-                try {
-                        Server.gameRoom.put("MyBoard", leftBoard);
-                } catch (InterruptedException e) {
-                        e.printStackTrace();
-                }
-
                 // Activate button functionality in Controller
                 TowerSelection.selectTower();
 
                 // Start construction of chat GUI
                 ChatGUI.createChatGUI();
-                
+
+                // Start spawning enemy after a time delay
+                Wave.spawnEnemy(leftBoard);
+
+
+                   // Peters TEST:
+                   try {
+                        Server.gameRoom.put("MyBoard", leftBoard);
+                } catch (InterruptedException e) {
+                        e.printStackTrace();
+                }
             
 
         }
@@ -231,7 +235,7 @@ public class MultiplayerBoard extends Application {
                 });
         }
         // Color of background of Panes
-        private void colorThePanes(HBox centerPane, VBox leftVbox, VBox rightVbox, HBox bottomHUD, HBox topBar) {
+        private void colorThePanes(HBox centerPane, VBox leftVbox, VBox rightVbox, HBox bottomHUD, HBox topBar, MyPane leftBoard, MyPane rightBoard) {
                 centerPane.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
                                 + "-fx-background-repeat: repeat;"
                                 + "-fx-background-size: cover;");
