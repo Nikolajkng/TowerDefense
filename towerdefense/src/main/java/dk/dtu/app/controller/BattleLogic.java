@@ -53,6 +53,7 @@ public class BattleLogic implements Runnable {
                     towers = new ArrayList<>();
 
                     gameState = GameState.ONGOING;
+                    break;
                 }
                 case ONGOING: {
                     System.out.println("Battle logic: switch(Ongoing)");
@@ -61,7 +62,7 @@ public class BattleLogic implements Runnable {
                         Object[] obj = space.getp(new ActualField("Player lost"));
                         if (obj != null) {
                             System.out.println("Found a tuple");
-                            //gameState = GameState.END;
+                            gameState = GameState.END;
                         }
                         long currentTime = System.currentTimeMillis();
                         elapsedTime = (currentTime - time) / 1000.0;
@@ -80,15 +81,15 @@ public class BattleLogic implements Runnable {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    gameState = GameState.ONGOING;
-
+                    break;
                 }
                 case END: {
                     System.out.println("Battle logic: switch(End)");
-
+                    break;
                 }
                 default:
                     System.out.println("An error has occrured in gameState");
+                    break;
             }
         }
     }
