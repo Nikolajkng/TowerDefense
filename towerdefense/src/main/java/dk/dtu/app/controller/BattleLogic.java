@@ -42,9 +42,11 @@ public class BattleLogic implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("Battle logic: run()");
         while (true) {
-            switch (gameState) {
+            switch (gameState) { 
                 case START: {
+                    System.out.println("Battle logic: switch(Start)");
                     time = System.currentTimeMillis();
 
                     enemies = new ArrayList<>();
@@ -53,31 +55,36 @@ public class BattleLogic implements Runnable {
                     gameState = GameState.ONGOING;
                 }
                 case ONGOING: {
+                    System.out.println("Battle logic: switch(Ongoing)");
                     try {
-                        Object[] obj = space.query(new ActualField("Player lost"));
+                        System.out.println("inside try");
+                        Object[] obj = space.getp(new ActualField("Player lost"));
                         if (obj != null) {
-                            gameState = GameState.END;
+                            System.out.println("Found a tuple");
+                            //gameState = GameState.END;
                         }
                         long currentTime = System.currentTimeMillis();
                         elapsedTime = (currentTime - time) / 1000.0;
                         time = currentTime;
 
                         for (TowerLogik t: towers) {
+                            System.out.println("inside tower before");
                             t.tryToShoot(elapsedTime);
+                            System.out.println("inside tower after");
                         }
 
                         for (EnemyMovement e: enemies) {
                             // Make the enemies move
                         }
-
                         this.enemyWave();
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                    gameState = GameState.ONGOING;
 
                 }
                 case END: {
+                    System.out.println("Battle logic: switch(End)");
 
                 }
                 default:
