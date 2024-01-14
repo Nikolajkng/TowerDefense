@@ -45,6 +45,13 @@ public class Enemy_movement {
     // Extra constructors
     public Enemy_movement(MyPane myPane) {
         this.board = myPane;
+         // Construct the enemy appearance and adds to board
+         constructEnemy();
+         myPane.getChildren().add(enemyShape);
+ 
+         // Sets the path for the enemy to move on
+         setPath();
+         System.out.println("Hi i am a bunny");
     }
 
     public Circle getEnemyShape() {
