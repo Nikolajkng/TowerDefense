@@ -24,7 +24,7 @@ public class Enemy_movement {
     int endCoordinateX;
     int endCoordinateY;
 
-
+    // Main constructor
     public Enemy_movement(int x, int y, Space space, int me, MyPane myPane) {
         this.coordinateX = x;
         this.coordinateY = y;
@@ -32,7 +32,6 @@ public class Enemy_movement {
         this.me = me;
         this.board = myPane;
         this.enemyShape = new Circle(30);
-
 
         // Construct the enemy appearance and adds to board
         constructEnemy();
@@ -43,7 +42,10 @@ public class Enemy_movement {
         System.out.println("Hi i am a bunny");
     }
 
-
+    // Extra constructors
+    public Enemy_movement(MyPane myPane) {
+        this.board = myPane;
+    }
 
     public Circle getEnemyShape() {
         return enemyShape;
@@ -68,7 +70,6 @@ public class Enemy_movement {
         int interval6 = BoardController.interval6;
         int interval7 = BoardController.interval7;
 
-
         // Create a path for the enemy to follow
         Path path = new Path();
         path.getElements().add(new MoveTo(startX, interval0)); // Starting point
@@ -86,26 +87,31 @@ public class Enemy_movement {
         pathT.setPath(path);
         pathT.setNode(enemyShape);
         pathT.setCycleCount(PathTransition.INDEFINITE);
+        pathT.setOnFinished(e -> {
+            board.getChildren().remove(enemyShape);
+        });
 
         // Enemy movement listener:
         enemyShape.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
 
             try {
-                double centerX = newValue.getMinX() + newValue.getWidth() / 2;
-                double centerY = newValue.getMinY() + newValue.getHeight() / 2;
-                System.out.println("CenterX: " + centerX);
-                System.out.println("CenterY: " + centerY);
+                Object[] obj = space.get(new FormalField(Integer.class), new ActualField("Coordinates"),
+                        new FormalField(Double.class), new FormalField(Double.class));
+                if (obj != null) {
+                    double centerX = newValue.getMinX() + newValue.getWidth() / 2;
+                    double centerY = newValue.getMinY() + newValue.getHeight() / 2;
+                    System.out.println("CenterX: " + centerX);
+                    System.out.println("CenterY: " + centerY);
+                    space.put(me, "Coordinates", centerX, centerY);
+                }
             } catch (Exception e) {
-                
+
             }
-                
-                
 
-            });
-
-       
+        });
 
         pathT.play();
     }
+
 
 }

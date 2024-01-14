@@ -6,6 +6,7 @@ import org.jspace.FormalField;
 import org.jspace.Space;
 
 import dk.dtu.app.controller.MyButton;
+import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.controller.Enemy.Enemy_movement;
 import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
 
@@ -15,8 +16,8 @@ public class Enemy_Bunny extends Enemy_movement {
     private int hp = 100;
     private Enemy1_BunnyGUI gui;
 
-    public Enemy_Bunny(int x, int y, Space space, int me) {
-        super(x, y, space, me);
+    public Enemy_Bunny(int x, int y, Space space, int me, MyPane board) {
+        super(x, y, space, me, board);
         gui = new Enemy1_BunnyGUI();
         //System.out.println("Created bunny");
     }
@@ -61,7 +62,7 @@ public class Enemy_Bunny extends Enemy_movement {
                     try {
                         System.out.println("trying to choose a path");
                         gui.removeBunny(((MyButton[][]) objtest[1])[coordinateX][coordinateY]);
-                        super.choosePath(board);
+                       // super.choosePath(board);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

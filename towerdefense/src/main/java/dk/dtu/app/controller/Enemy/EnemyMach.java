@@ -27,13 +27,13 @@ public class EnemyMach implements Runnable {
             for (int j = 0; j < enemies[i]; j++) {
                 final int finalJ = j;
                 CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
-                    Enemy_Bunny enemy_Bunny = new Enemy_Bunny(startingCoordinateX, startingCoordinateY, space, finalJ);
+                    // Enemy_Bunny enemy_Bunny = new Enemy_Bunny(startingCoordinateX, startingCoordinateY, space, finalJ);
                     try {
                         space.put(finalJ,"Coordinates",startingCoordinateX,startingCoordinateY);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    enemy_Bunny.run();
+                    // enemy_Bunny.run();
                 });
                 try {
                     future.wait(2000);

@@ -22,7 +22,7 @@ public class TowerLogik {
     public void shoot(int radius, int damage) {
         try {
             Object[] obj = space.queryp(new FormalField(Integer.class), new ActualField("Coordinates"),
-                    new FormalField(Integer.class), new FormalField(Integer.class));
+                    new FormalField(Double.class), new FormalField(Double.class));
             if (obj != null) {
                 double distance = Point2D.distance(coordinateX, coordinateY, (Integer) obj[2], (Integer) obj[3]);
                 if (distance <= radius) {
