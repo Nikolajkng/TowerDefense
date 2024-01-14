@@ -97,6 +97,8 @@ public class PlayerConnection {
         }
     }
 
+ 
+
 ///////////////////////////////////////////////////// Start game by opening multiplayer board for both player /////////////////////////////////////////////////////////////
     private static void showMultiPlayerBoard() throws UnknownHostException, IOException {
         System.out.println("Game has started!");

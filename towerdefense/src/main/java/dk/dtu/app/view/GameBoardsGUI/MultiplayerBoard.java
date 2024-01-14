@@ -11,6 +11,7 @@ import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
 import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.app.view.Figures.Tower2GUI;
 import dk.dtu.app.view.Figures.Tower3GUI;
+import dk.dtu.app.view.MenuGUI.Menu;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.PlayerInfo;
 import dk.dtu.app.controller.BoardLogic.MyPane;
@@ -199,35 +200,26 @@ public class MultiplayerBoard extends Application {
         // Close the current MultiplayerBoard stage
         private void handleClosedApplication() {
                 boardStage.setOnCloseRequest(event -> {
+                        boardStage.close();
+                        Menu.mainMenuStage.show();
 
-                        //Menu.mainMenuStage.show();
                         if (callsign == "Host") {
                                 try {
-                                        ChatController.chatRoom.put("lost connection", callsign);
+                                        ChatController.chatRoom.put(callsign, "disconnect");
                                         System.out.println(callsign + " lost connection");
                                 } catch (InterruptedException e) {
                                         e.printStackTrace();
                                 }
                                 PlayerConnection.hostChatListenerThread.interrupt();
-                                // try {
-                                // Server.P2P1room.put("lost connection");
-                                // } catch (InterruptedException e) {
-                                // e.printStackTrace();
-                                // }
                                 PlayerConnection.hostActionListenerThread.interrupt();
                         } else {
                                 try {
-                                        ChatController.chatRoom.put("lost connection", callsign);
+                                        ChatController.chatRoom.put(callsign, "disconnect");
                                         System.out.println(callsign + " lost connection");
                                 } catch (InterruptedException e) {
                                         e.printStackTrace();
                                 }
                                 PlayerConnection.clientChatListenerThread.interrupt();
-                                // try {
-                                // Server.P1P2room.put("lost connection");
-                                // } catch (InterruptedException e) {
-                                // e.printStackTrace();
-                                // }
                                 PlayerConnection.clientActionListenerThread.interrupt();
                         }
 

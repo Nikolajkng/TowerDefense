@@ -22,71 +22,87 @@ public class ChatReceiver implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            try {
-                listenForMessages();
-                Thread.sleep(100); // Adds a time delay in the while-loop of 100 ms
-            } catch (InterruptedException e) {
+
+        try {
+
+            listenForMessages();
+            Thread.sleep(100); // Adds a time delay in the while-loop of 100 ms
+
+        } catch (InterruptedException e) {
+            if (e.getMessage() != null && e.getMessage().contains("Gate is closed!")) {
+                System.out.println("Lort virker");
+            } else {
                 e.printStackTrace();
             }
         }
+
     }
 
     private void listenForMessages() {
         if (callsign == "Host") {
-            while (true) {
-                try {
-                    // Object[] end = chatRoom.queryp(new ActualField("lost connection"), new ActualField("Client"));
-                    // if (end != null) {
-                    //     System.out.println("Got lost connection from " + (String) end[1]);
-                    //     Platform.runLater(() -> {
-                    //         MultiplayerBoard.boardStage.close();
-                    //         Menu.mainMenuStage.show();
-                    //     });
-                    //     PlayerConnection.hostChatListenerThread.interrupt();
-                    //     PlayerConnection.hostActionListenerThread.interrupt();
-                    //     break;
-                    // }
+            try {
+                while (true) {
+
                     Object[] message = chatRoom.get(new ActualField("Client"), new FormalField(String.class));
-                    System.out.println("Received message from Client: " + (String) message[1]);
-                    Platform.runLater(() -> {
-                        ChatController.updateChatBox("Client", (String) message[1]);
-                    });
-                } catch (InterruptedException e) {
+                    if (((String) message[1]).startsWith("msg:")) {
+                        System.out.println("Received message from Client: " + (String) message[1]);
+                        Platform.runLater(() -> {
+                            ChatController.updateChatBox("Client", (String) message[1]);
+                        });
+                    } else if (((String) message[1]).equals("disconnect")){
+                        System.out.println("Received disconnect from Client");
+                        Platform.runLater(() -> {
+                            MultiplayerBoard.boardStage.close();
+                        });
+                    } else{
+                        System.out.println("hej client: " + message[1]);
+                    }
+
+                }
+            } catch (InterruptedException e) {
+                if (e.getMessage() != null && e.getMessage().contains("Gate is closed!")) {
                     Platform.runLater(() -> {
                         MultiplayerBoard.boardStage.close();
                     });
+                    System.out.println("Lort virker2");
+                } else {
                     e.printStackTrace();
                 }
 
             }
         } else if (callsign == "Client") {
-            while (true) {
-                try {
-                    /*Object[] end = chatRoom.queryp(new ActualField("lost connection"), new ActualField("Host"));
-                    if (end != null) {
-                        System.out.println("Got lost connection from " + (String) end[1]);
+
+            try {
+                while (true) {
+
+                    Object[] message = chatRoom.get(new ActualField("Host"), new FormalField(String.class));
+                    if (((String) message[1]).startsWith("msg:")) {
+                        System.out.println("Received message from Host: " + (String) message[1]);
+                        Platform.runLater(() -> {
+                            ChatController.updateChatBox("Host", (String) message[1]);
+                        });
+                    } else if (((String) message[1]).equals("disconnect")){
+                        System.out.println("Received disconnect from Host");
                         Platform.runLater(() -> {
                             MultiplayerBoard.boardStage.close();
-                            Menu.mainMenuStage.show();
                         });
-                        //PlayerConnection.hostChatListenerThread.interrupt();
-                        PlayerConnection.hostActionListenerThread.interrupt();
-                        break;
-                    }*/
-                    Object[] message = chatRoom.get(new ActualField("Host"), new FormalField(String.class));
-                    System.out.println("Received message from Host: " + (String) message[1]);
-                    Platform.runLater(() -> {
-                        ChatController.updateChatBox("Host", (String) message[1]);
-                    });
-                } catch (InterruptedException e) {
+                    } else{
+                        System.out.println("hej host: " + message[1]);
+                    }
+
+                }
+            } catch (InterruptedException e) {
+                if (e.getMessage() != null && e.getMessage().contains("Gate is closed!")) {
                     Platform.runLater(() -> {
                         MultiplayerBoard.boardStage.close();
                     });
+                    System.out.println("Lort virker3");
+                } else {
                     e.printStackTrace();
                 }
 
             }
         }
+
     }
 }
