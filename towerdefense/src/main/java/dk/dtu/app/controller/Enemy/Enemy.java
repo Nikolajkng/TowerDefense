@@ -34,7 +34,7 @@ public class Enemy {
         enemyShape.setFill(Color.BLACK);
 
         // Set the initial position of the rectangle to the leftmost edge
-        int startX = 0;
+        int startX = 100;
         int startY = 375;
         enemyShape.setLayoutX(startX);
         enemyShape.setLayoutY(startY);
@@ -43,17 +43,17 @@ public class Enemy {
     public void setPath() {
         System.out.println("Setting path...");
     
-        // Create a path for the enemy to follow
-        Path path = new Path();
-        path.getElements().add(new MoveTo(0, 375)); // Starting point
-        path.getElements().add(new LineTo(200, 375)); // Go right...
+        //Create a path for the enemy to follow
+        // Path path = new Path();
+        // path.getElements().add(new MoveTo(100, 375)); // Starting point
+        // path.getElements().add(new LineTo(200, 375)); // Go right...
 
-        PathTransition pathT = new PathTransition();
-        pathT.setDuration(Duration.seconds(4));
-        pathT.setPath(path);
-        pathT.setNode(enemyShape);
-        pathT.setCycleCount(PathTransition.INDEFINITE);
-        pathT.play();
+        // PathTransition pathT = new PathTransition();
+        // pathT.setDuration(Duration.seconds(4));
+        // pathT.setPath(path);
+        // pathT.setNode(enemyShape);
+        // pathT.setCycleCount(PathTransition.INDEFINITE);
+        // pathT.play();
     }
 
 }

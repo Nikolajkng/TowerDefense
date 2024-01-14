@@ -5,9 +5,9 @@ import dk.dtu.app.controller.Enemy.Enemy;
 import javafx.scene.shape.Circle;
 
 public class Wave {
-    private MyPane board;
-    private int numberOfEnemies;
-    private int enemyType;
+    protected MyPane board;
+    protected int numberOfEnemies;
+    protected int enemyType;
 
 
     public Wave(MyPane myPane,int numberOfEnemies, int enemyType) {
@@ -17,9 +17,6 @@ public class Wave {
     }
 
     public static void spawnEnemy(MyPane leftBoard, Circle circle) {
-        int health = 100;
-        int speed = 1;
-        int damage = 5;
         Enemy enemy = new Enemy(leftBoard);
         leftBoard.getChildren().add(enemy.getEnemyShape());
              System.out.println("Spawning enemy...");
