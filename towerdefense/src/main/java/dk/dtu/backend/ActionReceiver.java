@@ -34,15 +34,11 @@ public class ActionReceiver implements Runnable {
         if (clientRoom != null) {
             try {
                 while (true) {
-                    Object[] info = clientRoom.queryp(
-                            new FormalField(Integer.class),
-                            new FormalField(Integer.class),
-                            new FormalField(Action.ActionType.class));
-                    if (info != null) {
-                        actionInfo = clientRoom.get(
+                    actionInfo = clientRoom.get(
                                 new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(Action.ActionType.class));
+                    if (actionInfo != null) {
                         System.out.println(
                                 "Received action from Host (" + (ActionType) actionInfo[2] + ") successfully!");
                         Platform.runLater(() -> {
@@ -62,13 +58,11 @@ public class ActionReceiver implements Runnable {
         } else {
             try {
                 while (true) {
-                    Object[] info = hostRoom.queryp(new FormalField(Integer.class),
-                            new FormalField(Integer.class),
-                            new FormalField(Action.ActionType.class));
-                    if (info != null) {
-                        actionInfo = hostRoom.get(new FormalField(Integer.class),
+                    actionInfo = hostRoom.get(
+                                new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(Action.ActionType.class));
+                    if (actionInfo != null) {
                         System.out.println(
                                 "Received action from Client (" + (ActionType) actionInfo[2] + ") successfully!");
                         Platform.runLater(() -> {
