@@ -14,7 +14,7 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
-public class Enemy_movement {
+public class EnemyMovement {
     protected int coordinateX;
     protected int coordinateY;
     protected Space space;
@@ -25,7 +25,7 @@ public class Enemy_movement {
     int endCoordinateY;
 
     // Main constructor
-    public Enemy_movement(int x, int y, Space space, int me, MyPane myPane) {
+    public EnemyMovement(int x, int y, Space space, int me, MyPane myPane) {
         this.coordinateX = x;
         this.coordinateY = y;
         this.space = space;
@@ -43,7 +43,7 @@ public class Enemy_movement {
     }
 
     // Extra constructors
-    public Enemy_movement(MyPane myPane) {
+    public EnemyMovement (MyPane myPane) {
         this.board = myPane;
         this.enemyShape = new Circle(30);
          // Construct the enemy appearance and adds to board

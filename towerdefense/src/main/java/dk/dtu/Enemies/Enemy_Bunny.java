@@ -9,7 +9,7 @@ import org.jspace.Space;
 import dk.dtu.app.controller.EnemyMovement;
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.BoardLogic.MyPane;
-import dk.dtu.app.controller.Enemy.Enemy_movement;
+import dk.dtu.app.controller.Enemy.EnemyMovement;
 import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
 
 public class Enemy_Bunny extends EnemyMovement {
