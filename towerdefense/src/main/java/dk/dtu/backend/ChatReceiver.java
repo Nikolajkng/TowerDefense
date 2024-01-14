@@ -51,6 +51,7 @@ public class ChatReceiver implements Runnable {
                         });
                     } else if (((String) message[1]).equals("disconnect")){
                         System.out.println("Received disconnect from Client");
+                        PlayerConnection.closeHostThreads();
                         Platform.runLater(() -> {
                             MultiplayerBoard.boardStage.close();
                         });
@@ -83,6 +84,7 @@ public class ChatReceiver implements Runnable {
                         });
                     } else if (((String) message[1]).equals("disconnect")){
                         System.out.println("Received disconnect from Host");
+                        PlayerConnection.closeClientThreads();
                         Platform.runLater(() -> {
                             MultiplayerBoard.boardStage.close();
                         });

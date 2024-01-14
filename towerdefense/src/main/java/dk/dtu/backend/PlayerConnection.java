@@ -23,6 +23,9 @@ public class PlayerConnection {
     public static Thread hostChatListenerThread;
     public static Thread clientActionListenerThread;
     public static Thread clientChatListenerThread;
+    public static Thread clientBattleLogicThread;
+    public static Thread hostBattleLogicThread;
+
 
     ///////////////////////////////////////////////// HOST /////////////////////////////////////////////////////////////////////
     public static void hostGame(ActionEvent event) throws UnknownHostException, IOException {
@@ -46,12 +49,13 @@ public class PlayerConnection {
 
             // Start game - if player 2 has joined
             showMultiPlayerBoard();
-            new Thread(new BattleLogic(Server.gameRoom, MultiplayerBoard.leftBoard)).start();
+            hostBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom, MultiplayerBoard.leftBoard));
             ActionSender.start(Server.P1P2_uri, Server.P2P1_uri);
             hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room));
             hostChatListenerThread = new Thread(new ChatReceiver(callsign));
             hostActionListenerThread.start();
             hostChatListenerThread.start();
+            hostBattleLogicThread.start();
 
         } catch (InterruptedException e) {
             System.out.println("Error: Player 2 did not join the room");
@@ -84,14 +88,13 @@ public class PlayerConnection {
 
             // Start game
             showMultiPlayerBoard();
-            Thread battleLogic = new Thread(new BattleLogic(Server.gameRoom, MultiplayerBoard.leftBoard));
-            battleLogic.start();
-
             ActionSender.start(P1P2_uri, P2P1_uri);
             clientActionListenerThread = new Thread(new ActionReceiver(P1P2_uri, P1P2room));
             clientChatListenerThread = new Thread(new ChatReceiver(callsign));
+            clientBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom, MultiplayerBoard.leftBoard));
             clientActionListenerThread.start();
             clientChatListenerThread.start();
+            clientBattleLogicThread.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -121,6 +124,19 @@ public class PlayerConnection {
             inputIP = input;
         });
 
+    }
+
+
+    public static void closeClientThreads(){
+        clientActionListenerThread.interrupt();
+        clientChatListenerThread.interrupt();
+        clientBattleLogicThread.interrupt();
+    }
+    
+    public static void closeHostThreads(){
+        hostActionListenerThread.interrupt();
+        hostChatListenerThread.interrupt();
+        hostBattleLogicThread.interrupt();
     }
 
 }
