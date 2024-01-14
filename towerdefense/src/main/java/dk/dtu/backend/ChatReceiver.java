@@ -30,7 +30,7 @@ public class ChatReceiver implements Runnable {
 
         } catch (InterruptedException e) {
             if (e.getMessage() != null && e.getMessage().contains("Gate is closed!")) {
-                System.out.println("Lort virker");
+                System.out.println("virker");
             } else {
                 e.printStackTrace();
             }
@@ -39,11 +39,14 @@ public class ChatReceiver implements Runnable {
     }
 
     private void listenForMessages() {
+        ///////////////////////////////////////////////////// HOST //////////////////////////////////////////////////////////////////
         if (callsign == "Host") {
             try {
                 while (true) {
-
+                    // Listens to message
                     Object[] message = chatRoom.get(new ActualField("Client"), new FormalField(String.class));
+
+                    // Check type of message: chatmessage or disconnect
                     if (((String) message[1]).startsWith("msg:")) {
                         System.out.println("Received message from Client: " + (String) message[1]);
                         Platform.runLater(() -> {
@@ -65,18 +68,21 @@ public class ChatReceiver implements Runnable {
                     Platform.runLater(() -> {
                         MultiplayerBoard.boardStage.close();
                     });
-                    System.out.println("Lort virker2");
+                    System.out.println("virker2");
                 } else {
                     e.printStackTrace();
                 }
 
             }
+            ///////////////////////////////////////////////////// CLIENT //////////////////////////////////////////////////////////////////
         } else if (callsign == "Client") {
 
             try {
                 while (true) {
-
+                    // Listens to message
                     Object[] message = chatRoom.get(new ActualField("Host"), new FormalField(String.class));
+
+                    // Check type of message: chatmessage or disconnect
                     if (((String) message[1]).startsWith("msg:")) {
                         System.out.println("Received message from Host: " + (String) message[1]);
                         Platform.runLater(() -> {
@@ -98,7 +104,7 @@ public class ChatReceiver implements Runnable {
                     Platform.runLater(() -> {
                         MultiplayerBoard.boardStage.close();
                     });
-                    System.out.println("Lort virker3");
+                    System.out.println("virker3");
                 } else {
                     e.printStackTrace();
                 }
