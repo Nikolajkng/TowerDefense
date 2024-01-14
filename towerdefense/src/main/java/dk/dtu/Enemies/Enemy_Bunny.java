@@ -6,7 +6,6 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.Space;
 
-import dk.dtu.app.controller.EnemyMovement;
 import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.controller.Enemy.EnemyMovement;

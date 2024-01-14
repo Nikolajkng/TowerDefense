@@ -11,7 +11,6 @@ public class Wave {
 
     public static void spawnEnemy(MyPane leftBoard) {
         EnemyMovement enemy = new EnemyMovement(leftBoard);
-        //leftBoard.getChildren().add(enemy.getEnemyShape());
              System.out.println("Spawning enemy...");
     }
 

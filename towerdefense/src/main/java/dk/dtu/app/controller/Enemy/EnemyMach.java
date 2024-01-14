@@ -3,8 +3,6 @@ package dk.dtu.app.controller.Enemy;
 import java.util.concurrent.CompletableFuture;
 import org.jspace.Space;
 
-import dk.dtu.Enemies.Enemy_Bunny;
-
 public class EnemyMach implements Runnable {
 
     int[] enemies;

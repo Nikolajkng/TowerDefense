@@ -14,7 +14,6 @@ import dk.dtu.app.view.Figures.Tower3GUI;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.PlayerInfo;
 import dk.dtu.app.controller.BoardLogic.MyPane;
-import dk.dtu.app.controller.Waves.Wave;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -183,8 +182,8 @@ public class MultiplayerBoard extends Application {
                 // Start construction of chat GUI
                 ChatGUI.createChatGUI();
 
-                // Start spawning enemy after a time delay
-                Wave.spawnEnemy(leftBoard);
+                // TEST: Start spawning enemy after a time delay
+                // Wave.spawnEnemy(leftBoard);
 
 
                    // Peters TEST:

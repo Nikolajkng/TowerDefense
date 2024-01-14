@@ -23,7 +23,7 @@ public class BoardController {
     public static int interval5; // Right
     public static int interval6; // Down
     public static int interval7; // Right
-    private static int boardSizeY;
+    public static int boardSizeY;
     private static int boardSizeX;
 
     // Creating the player boards

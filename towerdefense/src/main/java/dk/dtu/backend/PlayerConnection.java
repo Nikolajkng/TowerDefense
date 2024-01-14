@@ -46,7 +46,7 @@ public class PlayerConnection {
 
             // Start game - if player 2 has joined
             showMultiPlayerBoard();
-            new Thread(new BattleLogic(Server.gameRoom)).start();
+            new Thread(new BattleLogic(Server.gameRoom, MultiplayerBoard.leftBoard)).start();
             ActionSender.start(Server.P1P2_uri, Server.P2P1_uri);
             hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room));
             hostChatListenerThread = new Thread(new ChatReceiver(callsign));
@@ -84,7 +84,7 @@ public class PlayerConnection {
 
             // Start game
             showMultiPlayerBoard();
-            Thread battleLogic = new Thread(new BattleLogic(Server.gameRoom));
+            Thread battleLogic = new Thread(new BattleLogic(Server.gameRoom, MultiplayerBoard.leftBoard));
             battleLogic.start();
 
             ActionSender.start(P1P2_uri, P2P1_uri);
