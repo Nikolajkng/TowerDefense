@@ -1,11 +1,7 @@
 package dk.dtu.app.view.GameBoardsGUI;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.UnknownHostException;
-
-import javax.swing.Timer;
 
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
@@ -15,14 +11,9 @@ import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
 import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.app.view.Figures.Tower2GUI;
 import dk.dtu.app.view.Figures.Tower3GUI;
-import dk.dtu.app.view.MenuGUI.Menu;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.PlayerInfo;
 import dk.dtu.app.controller.BoardLogic.MyPane;
-import dk.dtu.app.controller.Waves.Wave;
-import javafx.animation.KeyFrame;
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -34,12 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class MultiplayerBoard extends Application {
 

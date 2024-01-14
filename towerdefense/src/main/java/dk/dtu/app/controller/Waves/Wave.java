@@ -16,11 +16,11 @@ public class Wave {
         this.enemyType = enemyType;
     }
 
-    public static void spawnEnemy(MyPane leftBoard, int i, Circle circle) {
+    public static void spawnEnemy(MyPane leftBoard, Circle circle) {
         int health = 100;
         int speed = 1;
         int damage = 5;
-        Enemy enemy = new Enemy(leftBoard, health, speed, damage);
+        Enemy enemy = new Enemy(leftBoard);
         leftBoard.getChildren().add(enemy.getEnemyShape());
              System.out.println("Spawning enemy...");
     }
