@@ -15,10 +15,17 @@ public class BoardController {
     public static String callsign = PlayerConnection.callsign;
     public static int pathValue = -2;
     public static int illegalValue = -1;
+    public static int interval0; // Starting point for y
+    public static int interval1; // Right
+    public static int interval2; // down
+    public static int interval3; // Right
+    public static int interval4; // Up
+    public static int interval5; // Right
+    public static int interval6; // Down
+    public static int interval7; // Right
 
     // Creating the player boards
     public static MyPane createPlayerBoard(MyPane board, int value) {
-
 
         // Board size and color setup
         int boardSizeX = MultiplayerBoard.sizeX / 3;
@@ -50,13 +57,8 @@ public class BoardController {
             }
         });
 
-
-        //Enemy enemy = new Enemy(board);
-        //board.getChildren().add(enemy.getEnemyShape());
-        
         return board;
     }
-
 
     private static void getClickInfo(int x, int y, MyPane board) {
         String pixelCoordinate = String.format("%d,%d", x, y);
@@ -66,14 +68,14 @@ public class BoardController {
 
     private static void constructPath(int boardSizeX, int boardSizeY, MyPane board) {
         int pathThickness = 50;
-        int interval0 = boardSizeY / 2;
-        int interval1 = boardSizeX / 6; // Right
-        int interval2 = interval0 + boardSizeY / 4; // down
-        int interval3 = interval1 + boardSizeX / 3; // Right
-        int interval4 = interval2 - boardSizeY * 2 / 3; // Up
-        int interval5 = interval3 + boardSizeX / 3; // Right
-        int interval6 = interval4 + boardSizeY / 3; // Down
-        int interval7 = interval5 + boardSizeX / 6; // Right
+        interval0 = boardSizeY / 2;
+        interval1 = boardSizeX / 6; // Right
+        interval2 = interval0 + boardSizeY / 4; // down
+        interval3 = interval1 + boardSizeX / 3; // Right
+        interval4 = interval2 - boardSizeY * 2 / 3; // Up
+        interval5 = interval3 + boardSizeX / 3; // Right
+        interval6 = interval4 + boardSizeY / 3; // Down
+        interval7 = interval5 + boardSizeX / 6; // Right
 
         // Path 1: Start Right
         for (int row = 0; row < interval1; row++) {
