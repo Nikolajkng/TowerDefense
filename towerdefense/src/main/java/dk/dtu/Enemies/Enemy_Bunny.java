@@ -10,6 +10,7 @@ import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.controller.Enemy.EnemyMovement;
 import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
+import javafx.scene.shape.Circle;
 
 public class Enemy_Bunny extends EnemyMovement {
 
@@ -19,8 +20,7 @@ public class Enemy_Bunny extends EnemyMovement {
 
     public Enemy_Bunny(int x, int y, Space space, int me, MyPane board) {
         super(x, y, space, me, board);
-        gui = new Enemy1_BunnyGUI();
-        //System.out.println("Created bunny");
+        // gui = new Enemy1_BunnyGUI(new Circle(30));
     }
 
     public void takeDamage(int damage) {
@@ -58,22 +58,22 @@ public class Enemy_Bunny extends EnemyMovement {
         }
         objtest = obj;
 
-        while (true) {
-                CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
-                    try {
-                        System.out.println("trying to choose a path");
-                        gui.removeBunny(((MyButton[][]) objtest[1])[coordinateX][coordinateY]);
-                       // super.choosePath(board);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("trying to place a bunny at x:" + coordinateX + " y:" + coordinateY);
-                    gui.placeBunny(((MyButton[][]) objtest[1])[coordinateX][coordinateY]);
-                });
-                try {
-                    future.wait(2000/speed);
-                } catch (Exception e) {
-                }
+        // while (true) {
+        //         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+        //             try {
+        //                 System.out.println("trying to choose a path");
+        //                 gui.removeBunny(((MyButton[][]) objtest[1])[coordinateX][coordinateY]);
+        //                // super.choosePath(board);
+        //             } catch (Exception e) {
+        //                 e.printStackTrace();
+        //             }
+        //             System.out.println("trying to place a bunny at x:" + coordinateX + " y:" + coordinateY);
+        //             gui.placeBunny(((MyButton[][]) objtest[1])[coordinateX][coordinateY]);
+        //         });
+        //         try {
+        //             future.wait(2000/speed);
+        //         } catch (Exception e) {
+        //         }
 
         //     if (obj != null) {
         //         System.out.println("placing bunny at (" + coordinateX + "," + coordinateY + ")");
@@ -84,6 +84,6 @@ public class Enemy_Bunny extends EnemyMovement {
         //     } catch (Exception e) {
         //     }
         // }
-        }
+        // }
     }
 }

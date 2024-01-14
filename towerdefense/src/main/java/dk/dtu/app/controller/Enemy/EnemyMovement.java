@@ -7,6 +7,7 @@ import org.jspace.Space;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import javafx.animation.PathTransition;
+import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.LineTo;
@@ -35,24 +36,13 @@ public class EnemyMovement {
 
         // Construct the enemy appearance and adds to board
         constructEnemy();
-        myPane.getChildren().add(enemyShape);
+        Platform.runLater(() -> {
+            myPane.getChildren().add(enemyShape);
+        });
 
         // Sets the path for the enemy to move on
         setPath();
         System.out.println("Hi i am a bunny");
-    }
-
-    // Extra constructors
-    public EnemyMovement (MyPane myPane) {
-        this.board = myPane;
-        this.enemyShape = new Circle(30);
-         // Construct the enemy appearance and adds to board
-         constructEnemy();
-         myPane.getChildren().add(enemyShape);
- 
-         // Sets the path for the enemy to move on
-         setPath();
-         System.out.println("Hi i am a bunny");
     }
 
     public Circle getEnemyShape() {

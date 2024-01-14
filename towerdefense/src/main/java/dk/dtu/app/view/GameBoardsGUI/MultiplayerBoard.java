@@ -39,8 +39,8 @@ public class MultiplayerBoard extends Application {
         public static Button towerBtn1 = Tower1GUI.tower1;
         public static Button towerBtn2 = Tower2GUI.tower2;
         public static Button towerBtn3 = Tower3GUI.tower3;
-        public static Button attackEnemy1btn = Enemy1_BunnyGUI.enemy1;
         /*
+        *   public static Button attackEnemy1btn = Enemy1_BunnyGUI.enemy1;
          * public static Button attackEnemy2btn = Enemy1_BunnyGUI.enemy1;
          * public static Button attackEnemy3btn = Enemy1_BunnyGUI.enemy1;
          * public static Button attackEnemy4btn = Enemy1_BunnyGUI.enemy1;
@@ -111,7 +111,7 @@ public class MultiplayerBoard extends Application {
                 VBox.setMargin(towerBtn3, new javafx.geometry.Insets(20, 0, 0, 0));
 
                 // Right vbox-menu setup
-                rightVbox.getChildren().addAll(attackEnemy1btn /*
+                rightVbox.getChildren().addAll( /*attackEnemy1btn
                                                                 * , attackEnemy2btn, attackEnemy3btn, attackEnemy4btn,
                                                                 * attackEnemy5btn
                                                                 */);
@@ -122,8 +122,8 @@ public class MultiplayerBoard extends Application {
                 towerBtn1.setPrefSize(towerBtnWidth, towerBtnHeight);
                 towerBtn2.setPrefSize(towerBtnWidth, towerBtnHeight);
                 towerBtn3.setPrefSize(towerBtnWidth, towerBtnHeight);
-                attackEnemy1btn.setPrefSize(towerBtnWidth, towerBtnHeight);
-                /*
+                
+                /* attackEnemy1btn.setPrefSize(towerBtnWidth, towerBtnHeight);
                  * attackEnemy2btn.setPrefSize(towerBtnWidth, towerBtnHeight);
                  * attackEnemy3btn.setPrefSize(towerBtnWidth, towerBtnHeight);
                  * attackEnemy4btn.setPrefSize(towerBtnWidth, towerBtnHeight);
@@ -260,11 +260,11 @@ public class MultiplayerBoard extends Application {
                                 + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
                 // Enemy design
-                attackEnemy1btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+                
+
+                /*attackEnemy1btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
                                 + "-fx-background-repeat: repeat;"
                                 + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-                /*
                  * attackEnemy2btn.
                  * setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
                  * + "-fx-background-repeat: repeat;"

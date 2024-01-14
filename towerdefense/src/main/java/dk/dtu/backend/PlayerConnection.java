@@ -110,6 +110,7 @@ public class PlayerConnection {
         multiplayerBoard.start(MultiplayerBoard.boardStage);
         MultiplayerMenu.boardStage.close();
         MultiplayerBoard.boardStage.show();
+        
     }
 
 ///////////////////////////////////////////////////// Function that retrieves clients inputIP (host ip) /////////////////////////////////////////////////////////////

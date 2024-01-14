@@ -1,7 +1,6 @@
 package dk.dtu.app.controller.Waves;
-
 import dk.dtu.app.controller.BoardLogic.MyPane;
-import dk.dtu.app.controller.Enemy.EnemyMovement;
+
 
 public class Wave {
     protected MyPane board;
@@ -10,7 +9,6 @@ public class Wave {
 
 
     public static void spawnEnemy(MyPane leftBoard) {
-        EnemyMovement enemy = new EnemyMovement(leftBoard);
              System.out.println("Spawning enemy...");
     }
 

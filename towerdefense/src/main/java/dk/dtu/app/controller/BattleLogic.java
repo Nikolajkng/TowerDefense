@@ -6,7 +6,6 @@ import org.jspace.ActualField;
 import org.jspace.Space;
 
 import dk.dtu.app.controller.Enemy.EnemyMovement;
-import dk.dtu.app.controller.Waves.Wave;
 import dk.dtu.Enemies.Enemy_Bunny;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.BoardLogic.MyPane;
@@ -22,7 +21,6 @@ public class BattleLogic implements Runnable {
     private Space space;
     private long time;
     private double elapsedTime;
-    public static ArrayList<EnemyMovement> enemies;
     public static ArrayList<TowerLogik> towers;
     private int numOfEnemiesCreated;
     GameState gameState;
@@ -35,10 +33,7 @@ public class BattleLogic implements Runnable {
         System.out.println("Started battle logik");
     }
 
-    public void waves(int[] enemies) {
-        // new Thread( new EnemyMach(space, enemies, startingCoordinateX,
-        // startingCoordinateY)).start();
-    }
+  
 
     @Override
     public void run() {
@@ -49,19 +44,16 @@ public class BattleLogic implements Runnable {
                     System.out.println("Battle logic: switch(Start)");
                     time = System.currentTimeMillis();
 
-                    enemies = new ArrayList<>();
+                   
                     towers = new ArrayList<>();
 
                     gameState = GameState.ONGOING;
                     break;
                 }
                 case ONGOING: {
-                    System.out.println("Battle logic: switch(Ongoing)");
                     try {
-                        System.out.println("inside try");
                         Object[] obj = space.getp(new ActualField("Player lost"));
                         if (obj != null) {
-                            System.out.println("Found a tuple");
                             gameState = GameState.END;
                         }
                         long currentTime = System.currentTimeMillis();
@@ -69,18 +61,15 @@ public class BattleLogic implements Runnable {
                         time = currentTime;
 
                         for (TowerLogik t: towers) {
-                            System.out.println("inside tower before");
                             t.tryToShoot(elapsedTime);
-                            System.out.println("inside tower after");
                         }
 
-                        for (EnemyMovement e: enemies) {
-                            // Make the enemies move
-                        }
-                        this.enemyWave();
+                        this.startEnemyWave();
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                   
                     break;
                 }
                 case END: {
@@ -94,11 +83,11 @@ public class BattleLogic implements Runnable {
         }
     }
 
-    private void enemyWave() {
+    private void startEnemyWave() {
         if (time % 500 == 0) {
             numOfEnemiesCreated ++;
-            enemies.add(new Enemy_Bunny(0, BoardController.boardSizeY, space, numOfEnemiesCreated, board));
-            Wave.spawnEnemy(board);
+            new Enemy_Bunny(0, BoardController.boardSizeY, space, numOfEnemiesCreated, board);
+           
         }
     }
 
