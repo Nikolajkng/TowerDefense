@@ -18,7 +18,7 @@ public class Tower {
         String pixelCoordinate = String.format("%d,%d", x, y);
         if (type == ActionType.TOWER1) {
             Tower1GUI.placeTower1(x, y, board);
-            BattleLogic.towers.add(new Tower1(x, y, Server.gameRoom, me));
+            BattleLogic.towers.add(new Tower1(x, y, Server.gameRoom, me, board));
             // Change the coordinates value to -1
             if (board.getHashMap().containsKey(pixelCoordinate)) {
                 board.getHashMap().remove(pixelCoordinate);
@@ -30,7 +30,7 @@ public class Tower {
             }
         } else if (type == ActionType.TOWER2) {
             Tower2GUI.placeTower2(x, y, board);
-            BattleLogic.towers.add(new Tower2(x, y, Server.gameRoom, me));
+            BattleLogic.towers.add(new Tower2(x, y, Server.gameRoom, me, board));
             // Change the coordinates value to -1
             if (board.getHashMap().containsKey(pixelCoordinate)) {
                 board.getHashMap().remove(pixelCoordinate);
@@ -43,7 +43,7 @@ public class Tower {
             }
         } else if (type == ActionType.TOWER3) {
             Tower3GUI.placeTower3(x, y, board);
-            BattleLogic.towers.add(new Tower3(x, y, Server.gameRoom, me));
+            BattleLogic.towers.add(new Tower3(x, y, Server.gameRoom, me, board));
             // Change the coordinates value to -1
             if (board.getHashMap().containsKey(pixelCoordinate)) {
                 board.getHashMap().remove(pixelCoordinate);

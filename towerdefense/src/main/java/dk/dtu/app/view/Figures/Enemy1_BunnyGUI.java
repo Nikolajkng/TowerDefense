@@ -1,6 +1,5 @@
 package dk.dtu.app.view.Figures;
 
-import dk.dtu.app.controller.MyButton;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -19,11 +18,4 @@ public class Enemy1_BunnyGUI {
         });
 
     }
-
-    public void removeBunny(MyButton clickedButton) {
-        Platform.runLater(() -> {
-            clickedButton.setGraphic(null);
-        });
-    }
-
 }

@@ -3,6 +3,7 @@ package dk.dtu.app.view.GameBoardsGUI;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+import dk.dtu.app.controller.Projectile;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.backend.Server;
@@ -195,6 +196,10 @@ public class MultiplayerBoard extends Application {
                         new Enemy(rightBoard, Color.RED, numOfEnemiesCreated);
                         numOfEnemiesCreated++;
                 System.out.println("Number of Enemies spawned: "+numOfEnemiesCreated++);
+        }
+
+        public static void projectile(double startX, double startY, double endX, double endY, MyPane board){
+                new Projectile(startX,startY,endX,endY, board);
         }
 
         // Close the current MultiplayerBoard stage
