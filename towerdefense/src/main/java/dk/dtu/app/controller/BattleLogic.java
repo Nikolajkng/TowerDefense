@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import org.jspace.ActualField;
 import org.jspace.Space;
 
-import dk.dtu.app.controller.Enemy.EnemyMovement;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import javafx.application.Platform;
-import dk.dtu.Enemies.Enemy_Bunny;
-import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 
 enum GameState {
@@ -70,7 +67,6 @@ public class BattleLogic implements Runnable {
                             System.out.println("spawns enemy");
                             Platform.runLater(() -> {
                                 MultiplayerBoard.startSpawnEnemy();
-                                // startEnemyWave();
                             });
                             timeSinceEnemySpawn = 0.0;
                         }
@@ -91,14 +87,5 @@ public class BattleLogic implements Runnable {
             }
         }
     }
-
-    // private void startEnemyWave() {
-    // if (time % 500 == 0) {
-    // numOfEnemiesCreated ++;
-    // new Enemy_Bunny(0, BoardController.boardSizeY, space, numOfEnemiesCreated,
-    // board);
-
-    // }
-    // }
 
 }

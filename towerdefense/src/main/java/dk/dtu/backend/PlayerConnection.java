@@ -2,16 +2,19 @@ package dk.dtu.backend;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.Optional;
 
 import org.jspace.*;
 
 import dk.dtu.app.controller.BattleLogic;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.app.view.MenuGUI.MultiplayerMenu;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 public class PlayerConnection {
     // Global fields
