@@ -230,6 +230,7 @@ public class MultiplayerBoard extends Application {
                                 }
                                 PlayerConnection.hostChatListenerThread.interrupt();
                                 PlayerConnection.hostActionListenerThread.interrupt();
+                                PlayerConnection.hostBattleLogicThread.interrupt();
                         } else {
                                 try {
                                         ChatController.chatRoom.put(callsign, "disconnect");
@@ -239,6 +240,7 @@ public class MultiplayerBoard extends Application {
                                 }
                                 PlayerConnection.clientChatListenerThread.interrupt();
                                 PlayerConnection.clientActionListenerThread.interrupt();
+                                PlayerConnection.hostBattleLogicThread.interrupt();
                         }
 
                 });

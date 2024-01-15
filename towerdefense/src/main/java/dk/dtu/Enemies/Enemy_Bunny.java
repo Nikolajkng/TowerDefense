@@ -54,35 +54,5 @@ public class Enemy_Bunny extends EnemyMovement {
         } catch (InterruptedException e) {
         }
         objtest = obj;
-
-        // while (true) {
-        // CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
-        // try {
-        // System.out.println("trying to choose a path");
-        // gui.removeBunny(((MyButton[][]) objtest[1])[coordinateX][coordinateY]);
-        // // super.choosePath(board);
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // }
-        // System.out.println("trying to place a bunny at x:" + coordinateX + " y:" +
-        // coordinateY);
-        // gui.placeBunny(((MyButton[][]) objtest[1])[coordinateX][coordinateY]);
-        // });
-        // try {
-        // future.wait(2000/speed);
-        // } catch (Exception e) {
-        // }
-
-        // if (obj != null) {
-        // System.out.println("placing bunny at (" + coordinateX + "," + coordinateY +
-        // ")");
-        // gui.placeBunny(((MyButton[][]) obj[1])[coordinateX][coordinateY]);
-        // try {
-        // Thread.sleep(2000 / speed);
-        // super.choosePath(board);
-        // } catch (Exception e) {
-        // }
-        // }
-        // }
     }
 }

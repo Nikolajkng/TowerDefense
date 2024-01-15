@@ -98,8 +98,8 @@ public class EnemyMovement {
                 if (obj != null) {
                     double centerX = newValue.getMinX() + newValue.getWidth() / 2;
                     double centerY = newValue.getMinY() + newValue.getHeight() / 2;
-                    System.out.println("CenterX: " + centerX);
-                    System.out.println("CenterY: " + centerY);
+                    // System.out.println("CenterX: " + centerX);
+                    // System.out.println("CenterY: " + centerY);
                     space.put(me, "Coordinates", centerX, centerY);
                 }
             } catch (Exception e) {

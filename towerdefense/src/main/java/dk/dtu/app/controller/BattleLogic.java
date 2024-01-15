@@ -25,8 +25,8 @@ public class BattleLogic implements Runnable {
     private double elapsedTime;
     public static ArrayList<TowerLogik> towers;
     private int numOfEnemiesCreated;
-    private int timeSinceEnemySpawn;
-    private int spawnRate = 2;
+    private double timeSinceEnemySpawn;
+    private double spawnRate = 2.0;
     GameState gameState;
 
     public BattleLogic(Space space, MyPane myPane) {
@@ -66,12 +66,13 @@ public class BattleLogic implements Runnable {
                         }
 
                         timeSinceEnemySpawn += elapsedTime;
-                        if (timeSinceEnemySpawn < spawnRate) {
+                        if (timeSinceEnemySpawn > spawnRate) {
+                            System.out.println("spawns enemy");
                             Platform.runLater(() -> {
                                 MultiplayerBoard.startSpawnEnemy();
-                                timeSinceEnemySpawn = 0;
                                 // startEnemyWave();
                             });
+                            timeSinceEnemySpawn = 0.0;
                         }
 
                     } catch (InterruptedException e) {
