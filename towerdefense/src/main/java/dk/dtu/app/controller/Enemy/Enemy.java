@@ -8,7 +8,9 @@ import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.backend.Server;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
@@ -50,9 +52,13 @@ public class Enemy {
     }
 
     private void constructEnemy() {
-
+        Image bunnyGif = new Image("/dk/dtu/app/view/Images/bunny.gif", false);
+        enemyShape.setFill(new ImagePattern(bunnyGif));
+        Platform.runLater(() -> {
+            enemyShape.setFill(new ImagePattern(bunnyGif));
+        });
         // Michelle TO DO:
-        enemyShape.setFill(color);
+        //enemyShape.setFill(color);
 
     }
 

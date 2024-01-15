@@ -6,13 +6,11 @@ import org.jspace.Space;
 
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.controller.Enemy.EnemyMovement;
-import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
 
 public class Enemy_Bunny extends EnemyMovement {
 
     private int speed = 1;
     private int hp = 100;
-    private Enemy1_BunnyGUI gui;
 
     public Enemy_Bunny(int x, int y, Space space, int me, MyPane board) {
         super(x, y, space, me, board);
