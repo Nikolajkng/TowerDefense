@@ -46,7 +46,7 @@ public class PlayerConnection {
             ActionSender.start(Server.P1P2_uri, Server.P2P1_uri);
             hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room));
             hostChatListenerThread = new Thread(new ChatReceiver(callsign));
-            hostBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom, MultiplayerBoard.leftBoard));
+            hostBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom));
             hostActionListenerThread.start();
             hostChatListenerThread.start();
             hostBattleLogicThread.start();
@@ -85,7 +85,7 @@ public class PlayerConnection {
             ActionSender.start(P1P2_uri, P2P1_uri);
             clientActionListenerThread = new Thread(new ActionReceiver(P1P2_uri, P1P2room));
             clientChatListenerThread = new Thread(new ChatReceiver(callsign));
-            clientBattleLogicThread = new Thread(new BattleLogic(gameRoom, MultiplayerBoard.leftBoard));
+            clientBattleLogicThread = new Thread(new BattleLogic(gameRoom));
             clientActionListenerThread.start();
             clientChatListenerThread.start();
             clientBattleLogicThread.start();

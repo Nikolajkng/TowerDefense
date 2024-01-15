@@ -27,10 +27,9 @@ public class BattleLogic implements Runnable {
     private double spawnRate = 2.0;
     GameState gameState;
 
-    public BattleLogic(Space space, MyPane myPane) {
+    public BattleLogic(Space space) {
         numOfEnemiesCreated = 0;
         this.space = space;
-        this.board = myPane;
         gameState = GameState.START;
         System.out.println("Started battle logik");
     }
@@ -49,7 +48,6 @@ public class BattleLogic implements Runnable {
                     synchronizeStart();
                     break;
 
-
                 }
                 case ONGOING: {
                     try {
@@ -57,6 +55,7 @@ public class BattleLogic implements Runnable {
                         if (obj != null) {
                             gameState = GameState.END;
                         }
+                        // Tracks time passed
                         long currentTime = System.currentTimeMillis();
                         elapsedTime = (currentTime - time) / 1000.0;
                         time = currentTime;
@@ -64,8 +63,8 @@ public class BattleLogic implements Runnable {
                         for (TowerLogik t : towers) {
                             t.tryToShoot(elapsedTime);
                         }
-
                         timeSinceEnemySpawn += elapsedTime;
+                        // Spawns enemies in a time interval of "spawnRate" seconds:
                         if (timeSinceEnemySpawn > spawnRate) {
                             System.out.println("spawns enemy");
                             Platform.runLater(() -> {
@@ -110,7 +109,8 @@ public class BattleLogic implements Runnable {
         } else {
             try {
                 System.out.println("ready to get host");
-                Object[] obj = space.get(new ActualField("Host"), new ActualField("gameState"), new ActualField("ONGOING"));
+                Object[] obj = space.get(new ActualField("Host"), new ActualField("gameState"),
+                        new ActualField("ONGOING"));
                 System.out.println("got host?");
                 if (obj != null) {
                     System.out.println("Host: gameState = ONGOING");
