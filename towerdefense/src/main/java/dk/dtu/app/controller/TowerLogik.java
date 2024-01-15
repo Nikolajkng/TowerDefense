@@ -26,8 +26,11 @@ abstract public class TowerLogik {
             Object[] obj = space.queryp(new FormalField(Integer.class), new ActualField("Coordinates"),
                     new FormalField(Double.class), new FormalField(Double.class));
             if (obj != null) {
-                double distance = Point2D.distance(coordinateX, coordinateY, (Integer) obj[2], (Integer) obj[3]);
+                System.out.println("saw some coordinates from " + (Integer) obj[0]);
+                double distance = Point2D.distance(coordinateX, coordinateY, (Double) obj[2], (Double) obj[3]);
+                System.out.println("Distance to target " + distance);
                 if (distance <= radius) {
+                    System.out.println("tower shoots at " + (Integer) obj[0]);
                     space.put((Integer) obj[0], "Damage", damage);
                 }
             }

@@ -189,12 +189,11 @@ public class MultiplayerBoard extends Application {
         }
 
         public static void startSpawnEnemy() {
-                if (numOfEnemiesCreated < 10) {
-                        new Enemy(leftBoard, Color.BLUE);
-                        new Enemy(rightBoard, Color.RED);
-                } else {
-                System.out.println("Wave done");
-                }
+                
+                        new Enemy(leftBoard, Color.BLUE, numOfEnemiesCreated);
+                        numOfEnemiesCreated++;
+                        new Enemy(rightBoard, Color.RED, numOfEnemiesCreated);
+                        numOfEnemiesCreated++;
                 System.out.println("Number of Enemies spawned: "+numOfEnemiesCreated++);
         }
 
