@@ -70,7 +70,8 @@ public class BattleLogic implements Runnable {
                             });
                             timeSinceEnemySpawn = 0.0;
                         }
-
+                        // Add a delay to avoid high CPU usage
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
