@@ -38,7 +38,7 @@ public class ChatController {
 
                 // Send message to chatRoom
                 try {
-                    chatRoom.put(PlayerConnection.callsign, userMessage);
+                    chatRoom.put(PlayerConnection.callsign, "msg:"+userMessage);
                     System.out.println(PlayerConnection.callsign + "Invoked chatRoom.put(" + PlayerConnection.callsign + ", " + userMessage + ")");
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();

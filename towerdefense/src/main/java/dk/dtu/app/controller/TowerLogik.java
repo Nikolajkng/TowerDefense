@@ -6,7 +6,7 @@ import org.jspace.Space;
 
 import java.awt.geom.Point2D;
 
-public class TowerLogik {
+abstract public class TowerLogik {
     private int coordinateX;
     private int coordinateY;
     protected Space space;
@@ -19,10 +19,12 @@ public class TowerLogik {
         this.me = me;
     }
 
+    abstract public void tryToShoot(double time);
+
     public void shoot(int radius, int damage) {
         try {
             Object[] obj = space.queryp(new FormalField(Integer.class), new ActualField("Coordinates"),
-                    new FormalField(Integer.class), new FormalField(Integer.class));
+                    new FormalField(Double.class), new FormalField(Double.class));
             if (obj != null) {
                 double distance = Point2D.distance(coordinateX, coordinateY, (Integer) obj[2], (Integer) obj[3]);
                 if (distance <= radius) {

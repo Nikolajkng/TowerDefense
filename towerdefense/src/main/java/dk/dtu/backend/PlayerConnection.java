@@ -2,11 +2,9 @@ package dk.dtu.backend;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-
 import org.jspace.*;
 
 import dk.dtu.app.controller.BattleLogic;
-import dk.dtu.app.controller.Waves.Wave1;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.app.view.MenuGUI.MultiplayerMenu;
 import javafx.event.ActionEvent;
@@ -24,20 +22,17 @@ public class PlayerConnection {
     public static Thread hostChatListenerThread;
     public static Thread clientActionListenerThread;
     public static Thread clientChatListenerThread;
+    public static Thread clientBattleLogicThread;
+    public static Thread hostBattleLogicThread;
 
-    ///////////////////////////////////////////////// HOST /////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////// HOST
+    ///////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
     public static void hostGame(ActionEvent event) throws UnknownHostException, IOException {
-        Alert hostDialog = new Alert(AlertType.INFORMATION);
-        inputIP = LocalAddressScript.getLocalAddress();
-        callsign = "Host";
         System.out.println("Hosting game...");
-        Server.hostNewGame();
-        hostDialog.setTitle("Hosting Game");
-        hostDialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
-        hostDialog.setContentText("Hosting a game on IP address: " + LocalAddressScript.getLocalAddress());
-        hostDialog.showAndWait();
-        try {
+        callsign = "Host";
+        showAlertBox();
 
+        try {
             Server.gameRoom.put("join", "player1");
             System.out.println("Player 1 has joined the room");
 
@@ -47,11 +42,14 @@ public class PlayerConnection {
 
             // Start game - if player 2 has joined
             showMultiPlayerBoard();
+            Server.gameRoom.put("Client", "gameState", "ONGOING");
             ActionSender.start(Server.P1P2_uri, Server.P2P1_uri);
             hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room));
             hostChatListenerThread = new Thread(new ChatReceiver(callsign));
+            hostBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom, MultiplayerBoard.leftBoard));
             hostActionListenerThread.start();
             hostChatListenerThread.start();
+            hostBattleLogicThread.start();
 
         } catch (InterruptedException e) {
             System.out.println("Error: Player 2 did not join the room");
@@ -60,8 +58,8 @@ public class PlayerConnection {
 
     }
 
-
-    /////////////////////////////////////////////////////// CLIENT ///////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////// CLIENT
+    /////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////
     public static void joinGame(ActionEvent event) throws InterruptedException {
         System.out.println("Joining game...");
         callsign = "Client";
@@ -80,25 +78,34 @@ public class PlayerConnection {
 
             // Create two remoteSpaces for message passing between player 1 and player 2
             RemoteSpace P1P2room = new RemoteSpace(P1P2_uri);
-            //RemoteSpace P2P1room = new RemoteSpace(P2P1_uri);
+            // RemoteSpace P2P1room = new RemoteSpace(P2P1_uri);
 
             // Start game
             showMultiPlayerBoard();
             ActionSender.start(P1P2_uri, P2P1_uri);
             clientActionListenerThread = new Thread(new ActionReceiver(P1P2_uri, P1P2room));
             clientChatListenerThread = new Thread(new ChatReceiver(callsign));
+            clientBattleLogicThread = new Thread(new BattleLogic(gameRoom, MultiplayerBoard.leftBoard));
             clientActionListenerThread.start();
             clientChatListenerThread.start();
-
-
-
+            clientBattleLogicThread.start();
         } catch (IOException e) {
             e.printStackTrace();
-            
         }
     }
 
-///////////////////////////////////////////////////// Start game by opening multiplayer board for both player /////////////////////////////////////////////////////////////
+    // Displays the IP address of the host
+    private static void showAlertBox() {
+        Alert hostDialog = new Alert(AlertType.INFORMATION);
+        inputIP = LocalAddressScript.getLocalAddress();
+        Server.hostNewGame();
+        hostDialog.setTitle("Hosting Game");
+        hostDialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
+        hostDialog.setContentText("Hosting a game on IP address: " + LocalAddressScript.getLocalAddress());
+        hostDialog.showAndWait();
+    }
+
+    // Start game by opening multiplayer board for both player
     private static void showMultiPlayerBoard() throws UnknownHostException, IOException {
         System.out.println("Game has started!");
         // Close the current MainMenu stage
@@ -106,11 +113,10 @@ public class PlayerConnection {
         multiplayerBoard.start(MultiplayerBoard.boardStage);
         MultiplayerMenu.boardStage.close();
         MultiplayerBoard.boardStage.show();
-        BattleLogic battleLogic = new BattleLogic(Server.gameRoom);
-        battleLogic.waves(new Wave1().enemies);
+
     }
 
-///////////////////////////////////////////////////// Function that retrieves clients inputIP (host ip) /////////////////////////////////////////////////////////////
+    // Retrieves clients inputIP (host ip)
     private static void showTextInputDialog() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Joining Game");
@@ -122,6 +128,19 @@ public class PlayerConnection {
             inputIP = input;
         });
 
+    }
+
+    // Threads related
+    public static void closeClientThreads() {
+        clientActionListenerThread.interrupt();
+        clientChatListenerThread.interrupt();
+        clientBattleLogicThread.interrupt();
+    }
+
+    public static void closeHostThreads() {
+        hostActionListenerThread.interrupt();
+        hostChatListenerThread.interrupt();
+        hostBattleLogicThread.interrupt();
     }
 
 }

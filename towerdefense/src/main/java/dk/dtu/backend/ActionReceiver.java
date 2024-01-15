@@ -14,13 +14,11 @@ import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import javafx.application.Platform;
 
 public class ActionReceiver implements Runnable {
-    String uri = "";
     RemoteSpace clientRoom;
     public SequentialSpace hostRoom;
     public static Object[] actionInfo;
 
     public ActionReceiver(String uri, RemoteSpace room) throws UnknownHostException, IOException {
-        this.uri = uri;
         this.clientRoom = new RemoteSpace(uri);
     }
 
@@ -34,20 +32,15 @@ public class ActionReceiver implements Runnable {
 
     @Override
     public void run() {
-
         // What client receives from the host
         if (clientRoom != null) {
             try {
                 while (true) {
-                    Object[] info = clientRoom.queryp(
-                            new FormalField(Integer.class),
-                            new FormalField(Integer.class),
-                            new FormalField(Action.ActionType.class));
-                    if (info != null) {
-                        actionInfo = clientRoom.get(
+                    actionInfo = clientRoom.get(
                                 new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(Action.ActionType.class));
+                    if (actionInfo != null) {
                         System.out.println(
                                 "Received action from Host (" + (ActionType) actionInfo[2] + ") successfully!");
                         Platform.runLater(() -> {
@@ -58,7 +51,6 @@ public class ActionReceiver implements Runnable {
                     }
                 }
             } catch (InterruptedException e) {
-                PlayerConnection.clientActionListenerThread.interrupt();
                 Platform.runLater(() -> {
                     MultiplayerBoard.boardStage.close();
                 });
@@ -68,13 +60,11 @@ public class ActionReceiver implements Runnable {
         } else {
             try {
                 while (true) {
-                    Object[] info = hostRoom.queryp(new FormalField(Integer.class),
-                            new FormalField(Integer.class),
-                            new FormalField(Action.ActionType.class));
-                    if (info != null) {
-                        actionInfo = hostRoom.get(new FormalField(Integer.class),
+                    actionInfo = hostRoom.get(
+                                new FormalField(Integer.class),
                                 new FormalField(Integer.class),
                                 new FormalField(Action.ActionType.class));
+                    if (actionInfo != null) {
                         System.out.println(
                                 "Received action from Client (" + (ActionType) actionInfo[2] + ") successfully!");
                         Platform.runLater(() -> {
