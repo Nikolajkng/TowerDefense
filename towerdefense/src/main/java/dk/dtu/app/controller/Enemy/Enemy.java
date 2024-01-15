@@ -5,6 +5,7 @@ import org.jspace.FormalField;
 
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.BoardLogic.MyPane;
+import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.Server;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
@@ -92,7 +93,16 @@ public class Enemy {
         pathT.setNode(enemyShape);
         pathT.setCycleCount(1);
         pathT.setOnFinished(e -> {
+            // Delete the rabit when it reaches the end of the path
             board.getChildren().remove(enemyShape);
+
+            // Update health when rabbit reaches end of path
+            int rabbitDamage = 5;
+            int currentHealth = Integer.parseInt(MultiplayerBoard.healthP1.getText());
+            Platform.runLater(() -> {
+                MultiplayerBoard.healthP1.setText(Integer.toString(currentHealth - rabbitDamage));
+            });
+
             try {
                 Server.gameRoom.get(new ActualField(me), new ActualField("Coordinates"),
                             new FormalField(Double.class), new FormalField(Double.class));

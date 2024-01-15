@@ -39,6 +39,9 @@ public class PlayerInfo implements Runnable {
     public static int getLife() {
         return life;
     }
+    public static void setLife(int life) {
+        PlayerInfo.life = life;
+    }
 
     public static void moneyTracker(Space space){
           
