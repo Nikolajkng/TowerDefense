@@ -46,35 +46,9 @@ public class BattleLogic implements Runnable {
 
                     towers = new ArrayList<>();
 
-                    if (PlayerConnection.callsign.equals("Client")) {
-                        try {
-                            System.out.println("ready to get client");
-                            Object[] obj = space.get(new ActualField("Client"), new ActualField("gameState"),
-                                    new ActualField("ONGOING"));
-                            System.out.println("got client?");
-                            if (obj != null) {
-                                System.out.println("Client: gameState = ONGOING");
-                                gameState = GameState.ONGOING;
-                                space.put("Host", "gameState", "ONGOING");
-                                break;
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        try {
-                            System.out.println("ready to get host");
-                            Object[] obj = space.get(new ActualField("Host"), new ActualField("gameState"), new ActualField("ONGOING"));
-                            System.out.println("got host?");
-                            if (obj != null) {
-                                System.out.println("Host: gameState = ONGOING");
-                                gameState = GameState.ONGOING;
-                                break;
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    synchronizeStart();
+                    break;
+
 
                 }
                 case ONGOING: {
@@ -113,6 +87,37 @@ public class BattleLogic implements Runnable {
                 default:
                     System.out.println("An error has occrured in gameState");
                     break;
+            }
+        }
+    }
+
+    private void synchronizeStart() {
+        if (PlayerConnection.callsign.equals("Client")) {
+            try {
+                System.out.println("ready to get client");
+                Object[] obj = space.get(new ActualField("Client"), new ActualField("gameState"),
+                        new ActualField("ONGOING"));
+                System.out.println("got client?");
+                if (obj != null) {
+                    System.out.println("Client: gameState = ONGOING");
+                    timeSinceEnemySpawn = -2.0;
+                    gameState = GameState.ONGOING;
+                    space.put("Host", "gameState", "ONGOING");
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                System.out.println("ready to get host");
+                Object[] obj = space.get(new ActualField("Host"), new ActualField("gameState"), new ActualField("ONGOING"));
+                System.out.println("got host?");
+                if (obj != null) {
+                    System.out.println("Host: gameState = ONGOING");
+                    gameState = GameState.ONGOING;
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
