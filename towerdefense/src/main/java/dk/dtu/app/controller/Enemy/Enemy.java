@@ -97,11 +97,16 @@ public class Enemy {
             board.getChildren().remove(enemyShape);
 
             // Update health when rabbit reaches end of path
-            int rabbitDamage = 5;
+            int rabbitDamage = 1;
             int currentHealth = Integer.parseInt(MultiplayerBoard.healthP1.getText());
-            Platform.runLater(() -> {
-                MultiplayerBoard.healthP1.setText(Integer.toString(currentHealth - rabbitDamage));
-            });
+            if(currentHealth != 0){
+                Platform.runLater(() -> {
+                    MultiplayerBoard.healthP1.setText(Integer.toString(currentHealth - rabbitDamage));
+                });
+            } else{
+                System.out.println("Game over a player has lost");
+            }
+            
 
             try {
                 Server.gameRoom.get(new ActualField(me), new ActualField("Coordinates"),

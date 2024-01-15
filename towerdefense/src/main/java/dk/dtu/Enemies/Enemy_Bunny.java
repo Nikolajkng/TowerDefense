@@ -8,7 +8,6 @@ import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.controller.Enemy.EnemyMovement;
 
 public class Enemy_Bunny extends EnemyMovement {
-
     private int speed = 1;
     private int hp = 100;
 
