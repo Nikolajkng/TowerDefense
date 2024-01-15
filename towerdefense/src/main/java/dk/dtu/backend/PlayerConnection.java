@@ -25,8 +25,7 @@ public class PlayerConnection {
     public static Thread clientBattleLogicThread;
     public static Thread hostBattleLogicThread;
 
-    ///////////////////////////////////////////////// HOST
-    ///////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////// HOST /////////////////////////////////////////////////////////////////////
     public static void hostGame(ActionEvent event) throws UnknownHostException, IOException {
         System.out.println("Hosting game...");
         callsign = "Host";
@@ -42,11 +41,14 @@ public class PlayerConnection {
 
             // Start game - if player 2 has joined
             showMultiPlayerBoard();
-            Server.gameRoom.put("Client", "gameState", "ONGOING");
+
+            // Start actionsender for host
             ActionSender.start(Server.P1P2_uri, Server.P2P1_uri);
-            hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room));
+
+            // Start all threads
+            hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room, callsign));
             hostChatListenerThread = new Thread(new ChatReceiver(callsign));
-            hostBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom));
+            hostBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom, callsign));
             hostActionListenerThread.start();
             hostChatListenerThread.start();
             hostBattleLogicThread.start();
@@ -58,8 +60,7 @@ public class PlayerConnection {
 
     }
 
-    /////////////////////////////////////////////////////// CLIENT
-    /////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////// CLIENT ///////////////////////////////////////////////////////////
     public static void joinGame(ActionEvent event) throws InterruptedException {
         System.out.println("Joining game...");
         callsign = "Client";
@@ -78,14 +79,17 @@ public class PlayerConnection {
 
             // Create two remoteSpaces for message passing between player 1 and player 2
             RemoteSpace P1P2room = new RemoteSpace(P1P2_uri);
-            // RemoteSpace P2P1room = new RemoteSpace(P2P1_uri);
 
             // Start game
             showMultiPlayerBoard();
+
+            // Start actionsender for client
             ActionSender.start(P1P2_uri, P2P1_uri);
-            clientActionListenerThread = new Thread(new ActionReceiver(P1P2_uri, P1P2room));
+
+            // Start all threads
+            clientActionListenerThread = new Thread(new ActionReceiver(P1P2_uri, P1P2room, callsign));
             clientChatListenerThread = new Thread(new ChatReceiver(callsign));
-            clientBattleLogicThread = new Thread(new BattleLogic(gameRoom));
+            clientBattleLogicThread = new Thread(new BattleLogic(gameRoom, callsign));
             clientActionListenerThread.start();
             clientChatListenerThread.start();
             clientBattleLogicThread.start();

@@ -17,21 +17,22 @@ public class ActionReceiver implements Runnable {
     RemoteSpace clientRoom;
     public SequentialSpace hostRoom;
     public static Object[] actionInfo;
+    private String callSign;
 
-    public ActionReceiver(String uri, RemoteSpace room) throws UnknownHostException, IOException {
+    public ActionReceiver(String uri, RemoteSpace room, String callSign) throws UnknownHostException, IOException {
         this.clientRoom = new RemoteSpace(uri);
+        this.callSign = callSign;
     }
 
-    public ActionReceiver(SequentialSpace room) {
+    public ActionReceiver(SequentialSpace room, String callSign) {
         this.hostRoom = room;
+        this.callSign = callSign;
     }
-
-    // Client: clientActionListenerThread = new Thread(new ActionReceiver(P1P2_uri, P1P2room));
-    // Host  : hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room));
 
 
     @Override
     public void run() {
+        System.out.println(callSign + ": ActionReceiver thread: run() has started");
         // What client receives from the host
         if (clientRoom != null) {
             try {

@@ -11,8 +11,9 @@ import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import javafx.application.Platform;
 
 public class ChatReceiver implements Runnable {
-    String callsign;
-    RemoteSpace chatRoom;
+    private String callsign;
+    private RemoteSpace chatRoom;
+    
 
     public ChatReceiver(String callsign) throws UnknownHostException, IOException {
         this.callsign = callsign;
@@ -22,7 +23,7 @@ public class ChatReceiver implements Runnable {
 
     @Override
     public void run() {
-
+        System.out.println(callsign + ": ChatReceiver thread: run() has started");
         try {
 
             listenForMessages();
