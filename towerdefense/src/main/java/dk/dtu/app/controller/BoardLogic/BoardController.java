@@ -25,6 +25,7 @@ public class BoardController {
     public static int interval7; // Right
     public static int boardSizeY;
     private static int boardSizeX;
+    public static int pathThickness = 50;
 
     // Creating the player boards
     public static MyPane createPlayerBoard(MyPane board, int value) {
@@ -72,7 +73,6 @@ public class BoardController {
     }
 
     private static void constructPath(int boardSizeX, int boardSizeY, MyPane board) {
-        int pathThickness = 50;
         interval0 = boardSizeY / 2;
         interval1 = boardSizeX / 6; // Right
         interval2 = interval0 + boardSizeY / 4; // down
