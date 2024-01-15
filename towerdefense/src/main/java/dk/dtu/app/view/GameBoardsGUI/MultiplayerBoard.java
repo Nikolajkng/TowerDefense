@@ -105,7 +105,7 @@ public class MultiplayerBoard extends Application {
                 Button coinButton = new Button("" + PlayerInfo.getMoney(), imageView);
                 coinButton.setStyle("-fx-background-size: cover; -fx-background-color: transparent; "
                                 + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
-                coinButton.setPrefSize(130, 130);
+                coinButton.setPrefSize(100, 100);
 
                 // Left vbox-menu setup:
                 leftVbox.getChildren().addAll(towerBtn1, towerBtn2, towerBtn3);
