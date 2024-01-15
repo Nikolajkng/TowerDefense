@@ -6,7 +6,6 @@ import org.jspace.ActualField;
 import org.jspace.Space;
 
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
-import dk.dtu.backend.PlayerConnection;
 import javafx.application.Platform;
 
 enum GameState {
@@ -20,34 +19,64 @@ public class BattleLogic implements Runnable {
     private Space space;
     private long time;
     private double elapsedTime;
+    private String callSign;
     int numOfEnemiesCreated;
     private double timeSinceEnemySpawn;
     private double spawnRate = 2.0;
+    private boolean firstLoop = true;
     GameState gameState;
 
-    public BattleLogic(Space space) {
-        numOfEnemiesCreated = 0;
+    public BattleLogic(Space space, String callSign) {
+        this.callSign = callSign;
         this.space = space;
+        numOfEnemiesCreated = 0;
         gameState = GameState.START;
-        System.out.println("Started battle logik");
     }
 
     @Override
     public void run() {
-        System.out.println("Battle logic: run()");
+        System.out.println(callSign + ": Battle logic threads: run() has started");
         while (true) {
             switch (gameState) {
                 case START: {
-                    System.out.println("Battle logic: switch(Start)");
-                    time = System.currentTimeMillis();
 
                     towers = new ArrayList<>();
-
-                    synchronizeStart();
+                    gameState = GameState.ONGOING;
                     break;
 
                 }
                 case ONGOING: {
+                    if (callSign.equals("Host")) {
+                        try {
+                            // System.out.println("Host: ready to start");
+                            space.put("Host", "ready", "startONGOING");
+                            space.get(new ActualField("Client"), new ActualField("ready"),
+                                    new ActualField("startONGOING"));
+                            if (firstLoop) {
+                                time = System.currentTimeMillis();
+                                firstLoop = false;
+                            }
+                            // System.out.println("Host: got client");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } else if (callSign.equals("Client")) {
+                        try {
+                            // System.out.println("Client: ready to start");
+                            space.put("Client", "ready", "startONGOING");
+                            space.get(new ActualField("Host"), new ActualField("ready"),
+                                    new ActualField("startONGOING"));
+                            if (firstLoop) {
+                                time = System.currentTimeMillis();
+                                firstLoop = false;
+                            }
+                            // System.out.println("Client: got host");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Error: callSign is not Host or Client");
+                    }
                     try {
                         Object[] obj = space.getp(new ActualField("Player lost"));
                         if (obj != null) {
@@ -68,6 +97,7 @@ public class BattleLogic implements Runnable {
                             Platform.runLater(() -> {
                                 MultiplayerBoard.startSpawnEnemy();
                             });
+                            numOfEnemiesCreated += 2;
                             timeSinceEnemySpawn = 0.0;
                         }
                         // Add a delay to avoid high CPU usage
@@ -85,38 +115,6 @@ public class BattleLogic implements Runnable {
                 default:
                     System.out.println("An error has occrured in gameState");
                     break;
-            }
-        }
-    }
-
-    private void synchronizeStart() {
-        if (PlayerConnection.callsign.equals("Client")) {
-            try {
-                System.out.println("ready to get client");
-                Object[] obj = space.get(new ActualField("Client"), new ActualField("gameState"),
-                        new ActualField("ONGOING"));
-                System.out.println("got client?");
-                if (obj != null) {
-                    System.out.println("Client: gameState = ONGOING");
-                    timeSinceEnemySpawn = 0;
-                    gameState = GameState.ONGOING;
-                    space.put("Host", "gameState", "ONGOING");
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } else {
-            try {
-                System.out.println("ready to get host");
-                Object[] obj = space.get(new ActualField("Host"), new ActualField("gameState"),
-                        new ActualField("ONGOING"));
-                System.out.println("got host?");
-                if (obj != null) {
-                    System.out.println("Host: gameState = ONGOING");
-                    gameState = GameState.ONGOING;
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }
