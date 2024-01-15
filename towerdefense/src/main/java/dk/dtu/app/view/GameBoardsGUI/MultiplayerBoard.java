@@ -210,9 +210,9 @@ public class MultiplayerBoard extends Application {
                                 new Enemy(leftBoard, Color.YELLOW);
                         }
                 } else {
-                System.out.println("Wave 1 done");
+                System.out.println("Wave done");
                 }
-                System.out.println(numOfEnemiesCreated++);
+                System.out.println("Number of Enemies spawned: "+numOfEnemiesCreated++);
         }
 
         // Close the current MultiplayerBoard stage
