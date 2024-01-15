@@ -2,20 +2,15 @@ package dk.dtu.backend;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.Optional;
-
 import org.jspace.*;
 
 import dk.dtu.app.controller.BattleLogic;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
-import dk.dtu.app.view.MenuGUI.Menu;
 import dk.dtu.app.view.MenuGUI.MultiplayerMenu;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 
 public class PlayerConnection {
     // Global fields
@@ -54,7 +49,7 @@ public class PlayerConnection {
             // Start game - if player 2 has joined
             showMultiPlayerBoard();
             hostBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom, MultiplayerBoard.leftBoard));
-            Server.gameRoom.put(callsign,"gameState","ONGOING");
+            Server.gameRoom.put("Client", "gameState","ONGOING");
             ActionSender.start(Server.P1P2_uri, Server.P2P1_uri);
             hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room));
             hostChatListenerThread = new Thread(new ChatReceiver(callsign));
@@ -96,7 +91,7 @@ public class PlayerConnection {
             ActionSender.start(P1P2_uri, P2P1_uri);
             clientActionListenerThread = new Thread(new ActionReceiver(P1P2_uri, P1P2room));
             clientChatListenerThread = new Thread(new ChatReceiver(callsign));
-            clientBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom, MultiplayerBoard.leftBoard));
+            clientBattleLogicThread = new Thread(new BattleLogic(gameRoom, MultiplayerBoard.leftBoard));
             clientActionListenerThread.start();
             clientChatListenerThread.start();
             clientBattleLogicThread.start();

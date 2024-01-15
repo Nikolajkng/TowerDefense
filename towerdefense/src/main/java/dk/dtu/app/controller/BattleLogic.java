@@ -48,9 +48,12 @@ public class BattleLogic implements Runnable {
 
                     if (PlayerConnection.callsign.equals("Client")) {
                         try {
+                            System.out.println("ready to get client");
                             Object[] obj = space.get(new ActualField("Client"), new ActualField("gameState"),
                                     new ActualField("ONGOING"));
+                            System.out.println("got client?");
                             if (obj != null) {
+                                System.out.println("Client: gameState = ONGOING");
                                 gameState = GameState.ONGOING;
                                 space.put("Host", "gameState", "ONGOING");
                                 break;
@@ -60,8 +63,11 @@ public class BattleLogic implements Runnable {
                         }
                     } else {
                         try {
+                            System.out.println("ready to get host");
                             Object[] obj = space.get(new ActualField("Host"), new ActualField("gameState"), new ActualField("ONGOING"));
+                            System.out.println("got host?");
                             if (obj != null) {
+                                System.out.println("Host: gameState = ONGOING");
                                 gameState = GameState.ONGOING;
                                 break;
                             }
