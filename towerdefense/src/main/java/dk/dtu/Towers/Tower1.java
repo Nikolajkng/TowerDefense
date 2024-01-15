@@ -20,6 +20,7 @@ public class Tower1 extends TowerLogik{
         if (timeSinceFired < shootspeed) {
             return;
         }
-        super.shoot(radius, damage);    
+        super.shoot(radius, damage);
+        timeSinceFired = 0;    
     }
 }
