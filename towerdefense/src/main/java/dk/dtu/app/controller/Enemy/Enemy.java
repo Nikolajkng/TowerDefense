@@ -1,7 +1,11 @@
 package dk.dtu.app.controller.Enemy;
 
+import org.jspace.ActualField;
+import org.jspace.FormalField;
+
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.BoardLogic.MyPane;
+import dk.dtu.backend.Server;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
@@ -15,17 +19,25 @@ public class Enemy {
     protected MyPane board;
     protected Circle enemyShape;
     protected Color color;
+    protected int me;
 
     // Main constructor
-    public Enemy(MyPane myPane, Color color) {
+    public Enemy(MyPane myPane, Color color, int me) {
         this.board = myPane;
         this.enemyShape = new Circle(30);
         this.color = color;
+        this.me = me;
+        System.out.println("gives coordinates");
+        try {
+            Server.gameRoom.put(me, "Coordinates", 0.0, Double.parseDouble(Integer.toString(BoardController.interval0)));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // Construct the enemy appearance and adds to board
         constructEnemy();
         Platform.runLater(() -> {
-            board.getChildren().add(enemyShape);
+            myPane.getChildren().add(enemyShape);
         });
 
         // Sets the path for the enemy to move on
@@ -74,18 +86,32 @@ public class Enemy {
         pathT.setNode(enemyShape);
         pathT.setCycleCount(1);
         pathT.setOnFinished(e -> {
-            Platform.runLater(() -> {
-                board.getChildren().remove(enemyShape);
-            });
+            board.getChildren().remove(enemyShape);
+            try {
+                Server.gameRoom.get(new ActualField(me), new ActualField("Coordinates"),
+                            new FormalField(Double.class), new FormalField(Double.class));
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
         });
 
         // Enemy movement listener:
         enemyShape.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
+            //System.out.println("gets coordinates");
+            try {
+                Server.gameRoom.get(new ActualField(me), new ActualField("Coordinates"),
+                        new FormalField(Double.class), new FormalField(Double.class));
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
             double centerX = newValue.getMinX() + newValue.getWidth() / 2;
             double centerY = newValue.getMinY() + newValue.getHeight() / 2;
-            // System.out.println("CenterX: " + centerX);
-            // System.out.println("CenterY: " + centerY);
-
+            try {
+                //System.out.println("gives coordinates");
+                Server.gameRoom.put(me, "Coordinates", centerX, centerY);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
         });
 
         pathT.play();

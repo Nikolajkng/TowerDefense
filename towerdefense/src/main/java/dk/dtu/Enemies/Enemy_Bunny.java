@@ -4,7 +4,6 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.Space;
 
-import dk.dtu.app.controller.MyButton;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.controller.Enemy.EnemyMovement;
 import dk.dtu.app.view.Figures.Enemy1_BunnyGUI;
@@ -32,27 +31,5 @@ public class Enemy_Bunny extends EnemyMovement {
             }
         } catch (InterruptedException e) {
         }
-    }
-
-    public void run() {
-        // System.out.println("trying to run bunny");
-        int numOfCellsX = 14;
-        int numOfCellsY = 10;
-        Object[] obj = null;
-        final Object[] objtest;
-        int[][] board = new int[numOfCellsX][numOfCellsY];
-        try {
-            obj = space.query(new ActualField("MyBoard"), new FormalField(MyButton[][].class));
-            if (obj != null) {
-                for (int i = 0; i < numOfCellsX; i++) {
-                    for (int j = 0; j < numOfCellsY; j++) {
-                        board[i][j] = ((MyButton[][]) obj[1])[i][j].getValue();
-                    }
-                }
-                System.out.println("har lavet et board");
-            }
-        } catch (InterruptedException e) {
-        }
-        objtest = obj;
     }
 }
