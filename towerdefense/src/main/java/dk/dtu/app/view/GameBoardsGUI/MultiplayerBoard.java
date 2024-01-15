@@ -40,13 +40,6 @@ public class MultiplayerBoard extends Application {
         public static Button towerBtn1 = Tower1GUI.tower1;
         public static Button towerBtn2 = Tower2GUI.tower2;
         public static Button towerBtn3 = Tower3GUI.tower3;
-        /*
-         * public static Button attackEnemy1btn = Enemy1_BunnyGUI.enemy1;
-         * public static Button attackEnemy2btn = Enemy1_BunnyGUI.enemy1;
-         * public static Button attackEnemy3btn = Enemy1_BunnyGUI.enemy1;
-         * public static Button attackEnemy4btn = Enemy1_BunnyGUI.enemy1;
-         * public static Button attackEnemy5btn = Enemy1_BunnyGUI.enemy1;
-         */
         public static Label healthP1 = new Label("" + PlayerInfo.getLife());
         public static Label healthP2 = new Label("" + PlayerInfo.getLife());
         public static Label topTitle = new Label("RABBIT HUNTER");
@@ -123,11 +116,8 @@ public class MultiplayerBoard extends Application {
                 VBox.setMargin(towerBtn3, new javafx.geometry.Insets(8, 0, 0, 0));
         
                 // Right vbox-menu setup
-                rightVbox.getChildren().addAll();
-
-                //BottomHud setup:
-                bottomHUD.getChildren().addAll(coinButton);
-                HBox.setMargin(coinButton, new javafx.geometry.Insets(0, 825, 25, 0));
+                rightVbox.getChildren().addAll(coinButton);
+                VBox.setMargin(coinButton, new javafx.geometry.Insets(15, 5, 0, 0));
 
                 // Button sizes
                 int towerBtnWidth = 115;
@@ -135,14 +125,6 @@ public class MultiplayerBoard extends Application {
                 towerBtn1.setPrefSize(towerBtnWidth, towerBtnHeight);
                 towerBtn2.setPrefSize(towerBtnWidth, towerBtnHeight);
                 towerBtn3.setPrefSize(towerBtnWidth, towerBtnHeight);
-
-                /*
-                 * attackEnemy1btn.setPrefSize(towerBtnWidth, towerBtnHeight);
-                 * attackEnemy2btn.setPrefSize(towerBtnWidth, towerBtnHeight);
-                 * attackEnemy3btn.setPrefSize(towerBtnWidth, towerBtnHeight);
-                 * attackEnemy4btn.setPrefSize(towerBtnWidth, towerBtnHeight);
-                 * attackEnemy5btn.setPrefSize(towerBtnWidth, towerBtnHeight);
-                 */
 
                 // Invoke the coloring of background of Panes
                 colorThePanes(centerPane, leftVbox, rightVbox, bottomHUD, topBar, leftBoard, rightBoard);
@@ -178,10 +160,6 @@ public class MultiplayerBoard extends Application {
                 topTitle.setStyle(
                                 "-fx-fill: white; -fx-font-size: 60px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
 
-                // leftSide.setStyle("-fx-border-color: #00e600; -fx-border-width: 7;
-                // -fx-border-radius: 20");
-                // rightSide.setStyle("-fx-border-color: #00e600; -fx-border-width: 7;
-                // -fx-border-radius: 20");
                 leftSide.setPadding(new Insets(10));
                 leftSide.setMaxHeight(40);
                 rightSide.setPadding(new Insets(10));
@@ -284,35 +262,6 @@ public class MultiplayerBoard extends Application {
                 towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tower3.png');"
                                 + "-fx-background-repeat: repeat;"
                                 + "-fx-background-size: cover; -fx-background-color: transparent; ");
-
-                // Enemy design
-
-                /*
-                 * attackEnemy1btn.
-                 * setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
-                 * + "-fx-background-repeat: repeat;"
-                 * + "-fx-background-size: cover; -fx-background-color: transparent; ");
-                 * attackEnemy2btn.
-                 * setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
-                 * + "-fx-background-repeat: repeat;"
-                 * + "-fx-background-size: cover; -fx-background-color: transparent; ");
-                 * 
-                 * attackEnemy3btn.
-                 * setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
-                 * + "-fx-background-repeat: repeat;"
-                 * + "-fx-background-size: cover; -fx-background-color: transparent; ");
-                 * 
-                 * attackEnemy4btn.
-                 * setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
-                 * + "-fx-background-repeat: repeat;"
-                 * + "-fx-background-size: cover; -fx-background-color: transparent; ");
-                 * 
-                 * attackEnemy5btn.
-                 * setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
-                 * + "-fx-background-repeat: repeat;"
-                 * + "-fx-background-size: cover; -fx-background-color: transparent; ");
-                 */
-
         }
 
 }
