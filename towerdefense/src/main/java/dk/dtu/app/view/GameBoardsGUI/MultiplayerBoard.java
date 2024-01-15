@@ -64,9 +64,7 @@ public class MultiplayerBoard extends Application {
         // Program start
         @Override
         public void start(Stage stage) throws UnknownHostException, IOException {
-                // Spawn bunnies
-                // Wave.spawnEnemy(leftBoard, 3, new Circle(30));
-
+   
                 // Stage setup
                 boardStage = stage;
                 boardStage.setTitle("Multiplayer Board");
