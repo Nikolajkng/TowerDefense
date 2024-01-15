@@ -7,6 +7,7 @@ import org.jspace.Space;
 
 import dk.dtu.app.controller.Enemy.EnemyMovement;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
+import dk.dtu.backend.PlayerConnection;
 import javafx.application.Platform;
 import dk.dtu.Enemies.Enemy_Bunny;
 import dk.dtu.app.controller.BoardLogic.BoardController;
@@ -48,8 +49,30 @@ public class BattleLogic implements Runnable {
 
                     towers = new ArrayList<>();
 
-                    gameState = GameState.ONGOING;
-                    break;
+                    if (PlayerConnection.callsign.equals("Client")) {
+                        try {
+                            Object[] obj = space.get(new ActualField("Client"), new ActualField("gameState"),
+                                    new ActualField("ONGOING"));
+                            if (obj != null) {
+                                gameState = GameState.ONGOING;
+                                space.put("Host", "gameState", "ONGOING");
+                                break;
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        try {
+                            Object[] obj = space.get(new ActualField("Host"), new ActualField("gameState"), new ActualField("ONGOING"));
+                            if (obj != null) {
+                                gameState = GameState.ONGOING;
+                                break;
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                 }
                 case ONGOING: {
                     try {

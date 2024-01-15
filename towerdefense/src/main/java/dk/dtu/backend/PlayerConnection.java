@@ -7,6 +7,7 @@ import org.jspace.*;
 
 import dk.dtu.app.controller.BattleLogic;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
+import dk.dtu.app.view.MenuGUI.Menu;
 import dk.dtu.app.view.MenuGUI.MultiplayerMenu;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -50,6 +51,7 @@ public class PlayerConnection {
             // Start game - if player 2 has joined
             showMultiPlayerBoard();
             hostBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom, MultiplayerBoard.leftBoard));
+            Server.gameRoom.put(callsign,"gameState","ONGOING");
             ActionSender.start(Server.P1P2_uri, Server.P2P1_uri);
             hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room));
             hostChatListenerThread = new Thread(new ChatReceiver(callsign));
