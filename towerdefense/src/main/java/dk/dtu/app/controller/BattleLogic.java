@@ -63,7 +63,7 @@ public class BattleLogic implements Runnable {
                         for (TowerLogik t : towers) {
                             t.tryToShoot(elapsedTime);
                         }
-                        if (loopcounter % 3000 == 0) {
+                        if (loopcounter % 100000 == 0) {
                             Platform.runLater(() -> {
                                 MultiplayerBoard.startSpawnEnemy();
                                 // startEnemyWave();
