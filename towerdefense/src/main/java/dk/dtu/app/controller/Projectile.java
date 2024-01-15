@@ -35,6 +35,10 @@ public class Projectile {
         // Michelle to do:
         projectileShape.setStroke(Color.RED);
 
+        //try later
+        // Image carrotImage = new Image(getClass().getResource("/dk/dtu/app/view/Images/carrotarrow.png").toExternalForm())
+        //ImagePattern carroImagePattern = new ImagePattern(carrotImage);
+
         Platform.runLater(() -> {
             board.getChildren().add(projectileShape);
         });
