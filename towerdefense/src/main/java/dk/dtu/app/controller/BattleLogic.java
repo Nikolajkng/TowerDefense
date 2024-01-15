@@ -17,11 +17,10 @@ enum GameState {
 }
 
 public class BattleLogic implements Runnable {
-    private MyPane board;
+    public static ArrayList<TowerLogik> towers;
     private Space space;
     private long time;
     private double elapsedTime;
-    public static ArrayList<TowerLogik> towers;
     private int numOfEnemiesCreated;
     private double timeSinceEnemySpawn;
     private double spawnRate = 2.0;
