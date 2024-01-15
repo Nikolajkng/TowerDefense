@@ -25,6 +25,7 @@ public class BattleLogic implements Runnable {
     private double elapsedTime;
     public static ArrayList<TowerLogik> towers;
     private int numOfEnemiesCreated;
+    private int loopcounter;
     GameState gameState;
 
     public BattleLogic(Space space, MyPane myPane) {
@@ -35,18 +36,15 @@ public class BattleLogic implements Runnable {
         System.out.println("Started battle logik");
     }
 
-  
-
     @Override
     public void run() {
         System.out.println("Battle logic: run()");
         while (true) {
-            switch (gameState) { 
+            switch (gameState) {
                 case START: {
                     System.out.println("Battle logic: switch(Start)");
                     time = System.currentTimeMillis();
 
-                   
                     towers = new ArrayList<>();
 
                     gameState = GameState.ONGOING;
@@ -62,20 +60,21 @@ public class BattleLogic implements Runnable {
                         elapsedTime = (currentTime - time) / 1000.0;
                         time = currentTime;
 
-                        for (TowerLogik t: towers) {
+                        for (TowerLogik t : towers) {
                             t.tryToShoot(elapsedTime);
                         }
+                        if (loopcounter % 3000 == 0) {
+                            Platform.runLater(() -> {
+                                MultiplayerBoard.startSpawnEnemy();
+                                // startEnemyWave();
+                            });
+                        }
+                        loopcounter++;
 
-                        Platform.runLater(() -> {
-                            MultiplayerBoard.startSpawnEnemy();
-                            //startEnemyWave();
-                        });
-                        
-                        Thread.sleep(3000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                   
+
                     break;
                 }
                 case END: {
@@ -90,11 +89,12 @@ public class BattleLogic implements Runnable {
     }
 
     // private void startEnemyWave() {
-    //     if (time % 500 == 0) {
-    //         numOfEnemiesCreated ++;
-    //         new Enemy_Bunny(0, BoardController.boardSizeY, space, numOfEnemiesCreated, board);
-           
-    //     }
+    // if (time % 500 == 0) {
+    // numOfEnemiesCreated ++;
+    // new Enemy_Bunny(0, BoardController.boardSizeY, space, numOfEnemiesCreated,
+    // board);
+
+    // }
     // }
 
 }
