@@ -63,9 +63,7 @@ public class MultiplayerBoard extends Application {
         // Program start
         @Override
         public void start(Stage stage) throws UnknownHostException, IOException {
-                // Spawn bunnies
-                // Wave.spawnEnemy(leftBoard, 3, new Circle(30));
-
+   
                 // Stage setup
                 boardStage = stage;
                 boardStage.setTitle("Multiplayer Board");
@@ -189,12 +187,8 @@ public class MultiplayerBoard extends Application {
         }
 
         public static void startSpawnEnemy() {
-                if (numOfEnemiesCreated < 10) {
-                        new Enemy(leftBoard, Color.BLUE);
-                        new Enemy(rightBoard, Color.RED);
-                } else {
-                System.out.println("Wave done");
-                }
+                new Enemy(leftBoard, Color.BLUE);
+                new Enemy(rightBoard, Color.RED);
                 System.out.println("Number of Enemies spawned: "+numOfEnemiesCreated++);
         }
 
