@@ -6,6 +6,8 @@ import org.jspace.ActualField;
 import org.jspace.Space;
 
 import dk.dtu.app.controller.Enemy.EnemyMovement;
+import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
+import javafx.application.Platform;
 import dk.dtu.Enemies.Enemy_Bunny;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.BoardLogic.MyPane;
@@ -64,8 +66,12 @@ public class BattleLogic implements Runnable {
                             t.tryToShoot(elapsedTime);
                         }
 
-                        this.startEnemyWave();
-                        Thread.sleep(100);
+                        Platform.runLater(() -> {
+                            MultiplayerBoard.startSpawnEnemy();
+                            //startEnemyWave();
+                        });
+                        
+                        Thread.sleep(3000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

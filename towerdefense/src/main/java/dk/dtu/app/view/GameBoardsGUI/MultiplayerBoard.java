@@ -15,6 +15,8 @@ import dk.dtu.app.view.MenuGUI.Menu;
 import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.PlayerInfo;
 import dk.dtu.app.controller.BoardLogic.MyPane;
+import dk.dtu.app.controller.Enemy.Enemy;
+import dk.dtu.app.controller.Waves.Wave;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -40,7 +42,7 @@ public class MultiplayerBoard extends Application {
         public static Button towerBtn2 = Tower2GUI.tower2;
         public static Button towerBtn3 = Tower3GUI.tower3;
         /*
-        *   public static Button attackEnemy1btn = Enemy1_BunnyGUI.enemy1;
+         * public static Button attackEnemy1btn = Enemy1_BunnyGUI.enemy1;
          * public static Button attackEnemy2btn = Enemy1_BunnyGUI.enemy1;
          * public static Button attackEnemy3btn = Enemy1_BunnyGUI.enemy1;
          * public static Button attackEnemy4btn = Enemy1_BunnyGUI.enemy1;
@@ -52,7 +54,7 @@ public class MultiplayerBoard extends Application {
         public static HBox bottomHUD = new HBox();
         public static final int sizeX = 1400;
         public static final int sizeY = 900;
-        
+
         // Local field variables
         private Image healthIcon = new Image(
                         getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
@@ -68,7 +70,7 @@ public class MultiplayerBoard extends Application {
         @Override
         public void start(Stage stage) throws UnknownHostException, IOException {
                 // Spawn bunnies
-                //Wave.spawnEnemy(leftBoard, 3, new Circle(30));
+                // Wave.spawnEnemy(leftBoard, 3, new Circle(30));
 
                 // Stage setup
                 boardStage = stage;
@@ -111,10 +113,11 @@ public class MultiplayerBoard extends Application {
                 VBox.setMargin(towerBtn3, new javafx.geometry.Insets(20, 0, 0, 0));
 
                 // Right vbox-menu setup
-                rightVbox.getChildren().addAll( /*attackEnemy1btn
-                                                                * , attackEnemy2btn, attackEnemy3btn, attackEnemy4btn,
-                                                                * attackEnemy5btn
-                                                                */);
+                rightVbox.getChildren().addAll( /*
+                                                 * attackEnemy1btn
+                                                 * , attackEnemy2btn, attackEnemy3btn, attackEnemy4btn,
+                                                 * attackEnemy5btn
+                                                 */);
 
                 // Button sizes
                 int towerBtnWidth = 120;
@@ -122,8 +125,9 @@ public class MultiplayerBoard extends Application {
                 towerBtn1.setPrefSize(towerBtnWidth, towerBtnHeight);
                 towerBtn2.setPrefSize(towerBtnWidth, towerBtnHeight);
                 towerBtn3.setPrefSize(towerBtnWidth, towerBtnHeight);
-                
-                /* attackEnemy1btn.setPrefSize(towerBtnWidth, towerBtnHeight);
+
+                /*
+                 * attackEnemy1btn.setPrefSize(towerBtnWidth, towerBtnHeight);
                  * attackEnemy2btn.setPrefSize(towerBtnWidth, towerBtnHeight);
                  * attackEnemy3btn.setPrefSize(towerBtnWidth, towerBtnHeight);
                  * attackEnemy4btn.setPrefSize(towerBtnWidth, towerBtnHeight);
@@ -183,18 +187,20 @@ public class MultiplayerBoard extends Application {
                 // Start construction of chat GUI
                 ChatGUI.createChatGUI();
 
-                // TEST: Start spawning enemy after a time delay
-                // Wave.spawnEnemy(leftBoard);
+                // TEST: Start spawning enemy after a time delay (virker)
+                // new Enemy(leftBoard);
 
-
-                   // Peters TEST:
-                   try {
+                // Peters TEST:
+                try {
                         Server.gameRoom.put("MyBoard", leftBoard);
                 } catch (InterruptedException e) {
                         e.printStackTrace();
                 }
-            
 
+        }
+
+        public static void startSpawnEnemy() {
+                new Enemy(leftBoard);
         }
 
         // Close the current MultiplayerBoard stage
@@ -225,8 +231,10 @@ public class MultiplayerBoard extends Application {
 
                 });
         }
+
         // Color of background of Panes
-        private void colorThePanes(HBox centerPane, VBox leftVbox, VBox rightVbox, HBox bottomHUD, HBox topBar, MyPane leftBoard, MyPane rightBoard) {
+        private void colorThePanes(HBox centerPane, VBox leftVbox, VBox rightVbox, HBox bottomHUD, HBox topBar,
+                        MyPane leftBoard, MyPane rightBoard) {
                 centerPane.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
                                 + "-fx-background-repeat: repeat;"
                                 + "-fx-background-size: cover;");
@@ -260,11 +268,12 @@ public class MultiplayerBoard extends Application {
                                 + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
                 // Enemy design
-                
 
-                /*attackEnemy1btn.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
-                                + "-fx-background-repeat: repeat;"
-                                + "-fx-background-size: cover; -fx-background-color: transparent; ");
+                /*
+                 * attackEnemy1btn.
+                 * setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
+                 * + "-fx-background-repeat: repeat;"
+                 * + "-fx-background-size: cover; -fx-background-color: transparent; ");
                  * attackEnemy2btn.
                  * setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/bunny.gif');"
                  * + "-fx-background-repeat: repeat;"
