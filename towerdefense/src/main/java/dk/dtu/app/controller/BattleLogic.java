@@ -7,11 +7,7 @@ import org.jspace.Space;
 
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.PlayerConnection;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.util.Duration;
-import dk.dtu.app.controller.BoardLogic.MyPane;
 
 enum GameState {
     START,
@@ -24,7 +20,7 @@ public class BattleLogic implements Runnable {
     private Space space;
     private long time;
     private double elapsedTime;
-    private int numOfEnemiesCreated;
+    int numOfEnemiesCreated;
     private double timeSinceEnemySpawn;
     private double spawnRate = 2.0;
     GameState gameState;
@@ -101,9 +97,7 @@ public class BattleLogic implements Runnable {
                 System.out.println("got client?");
                 if (obj != null) {
                     System.out.println("Client: gameState = ONGOING");
-                    // Hvis Host er foran, gå ned
-                    // Hvis Host er bagud, gå op
-                    timeSinceEnemySpawn = -1;   // 1 - 1.5 | 2.17515 - 2.17525
+                    timeSinceEnemySpawn = 0;
                     gameState = GameState.ONGOING;
                     space.put("Host", "gameState", "ONGOING");
                 }
