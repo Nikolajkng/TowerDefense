@@ -14,12 +14,14 @@ import javafx.util.Duration;
 public class Enemy{
     protected MyPane board;
     protected Circle enemyShape;
+    protected Color color;
 
 
     // Main constructor
-public Enemy(MyPane myPane) {
+public Enemy(MyPane myPane, Color color) {
     this.board = myPane;
     this.enemyShape = new Circle(30);
+    this.color = color;
 
     // Construct the enemy appearance and adds to board
     constructEnemy();
@@ -39,7 +41,7 @@ public Circle getEnemyShape() {
 private void constructEnemy() {
 
     // Michelle TO DO:
-    enemyShape.setFill(Color.BLACK);
+    enemyShape.setFill(color);
 
 }
 

@@ -89,12 +89,12 @@ public class BattleLogic implements Runnable {
         }
     }
 
-    private void startEnemyWave() {
-        if (time % 500 == 0) {
-            numOfEnemiesCreated ++;
-            new Enemy_Bunny(0, BoardController.boardSizeY, space, numOfEnemiesCreated, board);
+    // private void startEnemyWave() {
+    //     if (time % 500 == 0) {
+    //         numOfEnemiesCreated ++;
+    //         new Enemy_Bunny(0, BoardController.boardSizeY, space, numOfEnemiesCreated, board);
            
-        }
-    }
+    //     }
+    // }
 
 }

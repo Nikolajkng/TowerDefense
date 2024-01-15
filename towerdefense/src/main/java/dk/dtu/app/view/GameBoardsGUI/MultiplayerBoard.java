@@ -28,6 +28,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MultiplayerBoard extends Application {
@@ -56,12 +57,14 @@ public class MultiplayerBoard extends Application {
         public static final int sizeY = 900;
 
         // Local field variables
+        private static int numOfEnemiesCreated = 0;
         private Image healthIcon = new Image(
                         getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
         private ImageView showHealthIcon1 = new ImageView(healthIcon);
         private ImageView showHealthIcon2 = new ImageView(healthIcon);
         private String callsign;
 
+        // Constructor
         public MultiplayerBoard(String callsign) {
                 this.callsign = callsign;
         }
@@ -200,7 +203,16 @@ public class MultiplayerBoard extends Application {
         }
 
         public static void startSpawnEnemy() {
-                new Enemy(leftBoard);
+                if (numOfEnemiesCreated < 10) {
+                        if (numOfEnemiesCreated % 2 == 0) {
+                                new Enemy(leftBoard, Color.BLUE);
+                        } else {
+                                new Enemy(leftBoard, Color.YELLOW);
+                        }
+                } else {
+                System.out.println("Wave 1 done");
+                }
+                System.out.println(numOfEnemiesCreated++);
         }
 
         // Close the current MultiplayerBoard stage
