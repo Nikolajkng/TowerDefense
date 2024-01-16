@@ -28,11 +28,11 @@ public class Enemy {
     private boolean belongsToLeftBoard;
 
     // Main constructor
-    public Enemy(MyPane myPane, int me, String callsign, boolean belongsToLeftBoard) {
+    public Enemy(MyPane myPane, int me, String callcign, boolean belongsToLeftBoard) {
         this.belongsToLeftBoard = belongsToLeftBoard;
         this.board = myPane;
         this.me = me;
-        this.callsign = callsign;
+        this.callsign = callcign;
         this.enemyShape = new Circle(30);
         try {
             Server.gameRoom.put(me, "Coordinates", 0.0,
