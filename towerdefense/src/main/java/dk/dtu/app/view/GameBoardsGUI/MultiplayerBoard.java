@@ -95,6 +95,13 @@ public class MultiplayerBoard extends Application {
                 rightVbox.setAlignment(Pos.TOP_CENTER);
                 rightVbox.setSpacing(30);
 
+                Label countdownLabel = new Label();
+                countdownLabel.setStyle("-fx-fill: white; -fx-font-size: 100px; -fx-font-family: 'Arial'; -fx-font-weight: bold;");
+                countdownLabel.setAlignment(Pos.CENTER);
+                countdownLabel.setPrefSize(sizeX, sizeY);
+                countdownLabel.setVisible(false);
+                borderPane.getChildren().add(countdownLabel);
+
                 // Size of boxPanes
                 leftVbox.setPrefWidth(sizeX / 8 - 25);
                 rightVbox.setPrefWidth(sizeX / 8 - 25);

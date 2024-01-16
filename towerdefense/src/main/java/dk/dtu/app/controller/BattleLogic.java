@@ -1,7 +1,7 @@
 package dk.dtu.app.controller;
 
 import java.util.ArrayList;
-
+import javafx.scene.control.Label;
 import org.jspace.ActualField;
 import org.jspace.Space;
 
@@ -16,6 +16,7 @@ enum GameState {
 
 public class BattleLogic implements Runnable {
     public static ArrayList<TowerLogik> towers;
+    private Label countdownLabel;
     private Space space;
     private long time;
     private double elapsedTime;
@@ -97,12 +98,20 @@ public class BattleLogic implements Runnable {
     }
 
     private void setInitialEnemySpawnTime(long time) {
-        if(flagOnce){
-            try {
-                Thread.sleep(time*1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        if (flagOnce) {
+            countdownLabel.setVisible(true);
+            for (int i = (int) time; i >= 1; i--) {
+                final int countdownValue = i;
+                Platform.runLater(() -> {
+                    countdownLabel.setText(String.valueOf(countdownValue));
+                });
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+            countdownLabel.setVisible(false);
             flagOnce = false;
         }
     }
