@@ -22,9 +22,10 @@ public class Enemy {
     protected MyPane board;
     protected Circle enemyShape;
     protected Color color;
-    protected int me;
+    public int me;
     public static double getX;
     public static double getY;
+    public PathTransition pathT;
 
     // Main constructor
     public Enemy(MyPane myPane, Color color, int me) {
@@ -87,7 +88,7 @@ public class Enemy {
         path.getElements().add(new LineTo(interval5, interval6 - 10)); // Go down...
         path.getElements().add(new LineTo(interval7, interval6 - 10)); // Go right...
 
-        PathTransition pathT = new PathTransition();
+        pathT = new PathTransition();
         int enemyMovementSpeed = 30;
         pathT.setDuration(Duration.seconds(enemyMovementSpeed));
         pathT.setPath(path);
@@ -96,6 +97,7 @@ public class Enemy {
         pathT.setOnFinished(e -> {
             // Delete the rabit when it reaches the end of the path
             board.getChildren().remove(enemyShape);
+            // MultiplayerBoard.enemyList.remove(this);
 
             // Update health when rabbit reaches end of path
             int rabbitDamage = 1;
@@ -139,5 +141,14 @@ public class Enemy {
         });
 
         pathT.play();
+    }
+
+    public void removeCoordinates(){
+        try {
+            Server.gameRoom.get(new ActualField(me), new ActualField("Coordinates"),
+                    new FormalField(Double.class), new FormalField(Double.class));
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
     }
 }

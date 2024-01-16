@@ -2,6 +2,7 @@ package dk.dtu.app.view.GameBoardsGUI;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import dk.dtu.app.controller.Projectile;
 import dk.dtu.app.controller.TowerSelection;
@@ -47,6 +48,7 @@ public class MultiplayerBoard extends Application {
         public static HBox bottomHUD = new HBox();
         public static final int sizeX = 1400;
         public static final int sizeY = 900;
+        public static ArrayList <Enemy> enemyList = new ArrayList<Enemy>();
 
         // Local field variables
         private static int numOfEnemiesCreated = 0;
@@ -175,9 +177,7 @@ public class MultiplayerBoard extends Application {
                 // Start construction of chat GUI
                 ChatGUI.createChatGUI();
 
-                // TEST: Start spawning enemy after a time delay (virker)
-                // new Enemy(leftBoard);
-
+        
                 // Peters TEST:
                 try {
                         Server.gameRoom.put("MyBoard", leftBoard);
@@ -188,12 +188,11 @@ public class MultiplayerBoard extends Application {
         }
 
         public static void startSpawnEnemy() {
-                
-                        new Enemy(leftBoard, Color.BLUE, numOfEnemiesCreated);
+                        enemyList.add(new Enemy(leftBoard, Color.BLUE, numOfEnemiesCreated));
                         numOfEnemiesCreated++;
-                        new Enemy(rightBoard, Color.RED, numOfEnemiesCreated);
+                        enemyList.add(new Enemy(rightBoard, Color.RED, numOfEnemiesCreated));
                         numOfEnemiesCreated++;
-                System.out.println("Number of Enemies spawned: "+numOfEnemiesCreated++);
+                System.out.println("Number of Enemies spawned: " + numOfEnemiesCreated);
         }
 
         public static void projectile(double startX, double startY, double endX, double endY, MyPane board){
