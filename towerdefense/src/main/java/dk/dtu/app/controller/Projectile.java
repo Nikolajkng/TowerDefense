@@ -7,6 +7,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.Shape;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
 import javafx.scene.shape.StrokeType;
@@ -15,6 +16,7 @@ import javafx.util.Duration;
 public class Projectile {
     public static double getX;
     public static double getY;
+    public Path carrotShape;
 
     public Projectile(double startX, double startY, double endX, double endY, MyPane board) {
         double maxLength = 30; // maximum length of the line
@@ -34,7 +36,7 @@ public class Projectile {
         // Michelle to do:
         //projectileShape.setStroke(Color.RED);
 
-        Path carrotShape = carrotShape(startX, startY, newEndX, newEndY);
+        carrotShape = carrotShape(startX, startY, newEndX, newEndY);
         Platform.runLater(() -> {
             board.getChildren().add(carrotShape); ////
         });
@@ -81,6 +83,10 @@ public class Projectile {
         carrotShape.setStrokeWidth(4);
         carrotShape.setStroke(Paint.valueOf("orange"));
         
+        return carrotShape;
+    }
+
+    public Shape getProjectileShape() {
         return carrotShape;
     }
 }
