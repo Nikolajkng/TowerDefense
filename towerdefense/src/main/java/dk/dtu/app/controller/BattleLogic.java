@@ -60,6 +60,7 @@ public class BattleLogic implements Runnable {
                         elapsedTime = (currentTime - time) / 1000.0;
                         time = currentTime;
 
+                        // Iterate through tower options and apply logic on them all
                         for (TowerLogik t : towers) {
                             t.tryToShoot(elapsedTime);
                         }
