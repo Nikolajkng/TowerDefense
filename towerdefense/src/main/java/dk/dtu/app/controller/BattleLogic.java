@@ -20,10 +20,11 @@ public class BattleLogic implements Runnable {
     private long time;
     private double elapsedTime;
     private String callSign;
-    int numOfEnemiesCreated;
     private double timeSinceEnemySpawn;
     private double spawnRate = 2.0;
     private boolean firstLoop = true;
+    private boolean flagOnce = true;
+    int numOfEnemiesCreated;
     GameState gameState;
 
     public BattleLogic(Space space, String callSign) {
@@ -48,6 +49,8 @@ public class BattleLogic implements Runnable {
                 case ONGOING: {
                     // Start the wave only when both players are ready
                     synchronizePlayers();
+                    setInitialEnemySpawnTime(7); // seconds
+                    
 
                     // Player lost results in gamestate ends and stop. 
                     try {
@@ -75,7 +78,7 @@ public class BattleLogic implements Runnable {
                             timeSinceEnemySpawn = 0.0;
                         }
                         // Add a delay to avoid high CPU usage
-                        Thread.sleep(200);
+                        Thread.sleep(400);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -90,6 +93,17 @@ public class BattleLogic implements Runnable {
                     System.out.println("An error has occrured in gameState");
                     break;
             }
+        }
+    }
+
+    private void setInitialEnemySpawnTime(long time) {
+        if(flagOnce){
+            try {
+                Thread.sleep(time*1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            flagOnce = false;
         }
     }
 
