@@ -31,6 +31,7 @@ public class SingleplayerBoard extends Application {
     Button tower2bButton = Tower2GUI.tower2;
     Button tower3bButton = Tower3GUI.tower3;
     MyPane board = new MyPane();
+    PlayerInfo myInfo = new PlayerInfo(null);
 
     // Application layout
     BorderPane borderPane = new BorderPane();
@@ -77,7 +78,7 @@ public class SingleplayerBoard extends Application {
         tower3bButton.setPrefSize(130, 130);
 
         //Other buttons design
-        heartButton.setText("" + PlayerInfo.getLife());
+        heartButton.setText("" + myInfo.getLife());
         heartButton.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/heart.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; "
@@ -88,7 +89,7 @@ public class SingleplayerBoard extends Application {
         ImageView imageView = new ImageView(coin);
         imageView.setFitWidth(40);
         imageView.setFitHeight(40);
-        Button coinButton = new Button("" + PlayerInfo.getMoney(), imageView);
+        Button coinButton = new Button("" + myInfo.getMoney(), imageView);
         coinButton.setStyle("-fx-background-size: cover; -fx-background-color: transparent; "
         + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
         coinButton.setPrefSize(140, 140);
@@ -120,7 +121,7 @@ public class SingleplayerBoard extends Application {
         
         BoardController.createPlayerBoard(board, 0);
     
-        TowerSelection.selectTower();
+        TowerSelection.selectTower(myInfo);
     }
     
     private void exitGame(ActionEvent event) {

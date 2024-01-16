@@ -36,7 +36,7 @@ public class PlayerInfo implements Runnable {
 
     }
 
-    public static int getLife() {
+    public int getLife() {
         return life;
     }
     public static void setLife(int life) {
@@ -60,8 +60,12 @@ public class PlayerInfo implements Runnable {
         
     }
 
-    public static int getMoney() {
+    public int getMoney() {
         return money;
+    }
+
+    public static void setMoney(int money) {
+        PlayerInfo.money = money;
     }
 
     @Override

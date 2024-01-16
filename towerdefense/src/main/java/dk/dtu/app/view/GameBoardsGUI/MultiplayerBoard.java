@@ -41,8 +41,10 @@ public class MultiplayerBoard extends Application {
         public static Button towerBtn1 = Tower1GUI.tower1;
         public static Button towerBtn2 = Tower2GUI.tower2;
         public static Button towerBtn3 = Tower3GUI.tower3;
-        public static Label healthP1 = new Label("" + PlayerInfo.getLife());
-        public static Label healthP2 = new Label("" + PlayerInfo.getLife());
+        public static PlayerInfo myInfo = new PlayerInfo(Server.gameRoom);
+        public static PlayerInfo enemyInfo = new PlayerInfo(Server.gameRoom);
+        public static Label healthP1 = new Label("" + myInfo.getLife());
+        public static Label healthP2 = new Label("" + enemyInfo.getLife());
         public static Label topTitle = new Label("RABBIT HUNTER");
         public static HBox bottomHUD = new HBox();
         public static final int sizeX = 1400;
@@ -103,7 +105,7 @@ public class MultiplayerBoard extends Application {
                 ImageView imageView = new ImageView(coin);
                 imageView.setFitWidth(40);
                 imageView.setFitHeight(40);
-                Button coinButton = new Button("" + PlayerInfo.getMoney(), imageView);
+                Button coinButton = new Button("" + myInfo.getMoney(), imageView);
                 coinButton.setStyle("-fx-background-size: cover; -fx-background-color: transparent; "
                                 + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
                 coinButton.setPrefSize(140, 140);
@@ -170,7 +172,7 @@ public class MultiplayerBoard extends Application {
                 centerPane.getChildren().addAll(leftBoard, rightBoard);
 
                 // Activate button functionality in Controller
-                TowerSelection.selectTower();
+                TowerSelection.selectTower(myInfo);
 
                 // Start construction of chat GUI
                 ChatGUI.createChatGUI();
