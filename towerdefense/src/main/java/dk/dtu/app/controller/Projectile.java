@@ -13,9 +13,8 @@ import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
 
 public class Projectile {
-    private static boolean projectileEnd = false;
-    public static double projX;
-    public static double projY;
+    public static double getX;
+    public static double getY;
 
     public Projectile(double startX, double startY, double endX, double endY, MyPane board) {
         double maxLength = 30; // maximum length of the line
@@ -59,10 +58,13 @@ public class Projectile {
 
 
         carrotShape.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
-                projX = newValue.getMinX() + newValue.getWidth() / 2;
-                projY = newValue.getMinY() + newValue.getHeight() / 2;
-                System.out.println("Projectile coordinates: " + projX);
-                System.out.println("Projectile coordinates: " + projY);
+                getX = newValue.getMinX() + newValue.getWidth() / 2;
+                getY = newValue.getMinY() + newValue.getHeight() / 2;
+                //System.out.println("Projectile coordinates: " + getX);
+                //System.out.println("Projectile coordinates: " + getY);
+
+                // Check for collision
+                new Collision();
           
                     
         });

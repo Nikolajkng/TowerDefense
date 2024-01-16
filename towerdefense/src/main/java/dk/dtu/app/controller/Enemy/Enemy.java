@@ -23,8 +23,8 @@ public class Enemy {
     protected Circle enemyShape;
     protected Color color;
     protected int me;
-    public static double enemyX;
-    public static double enemyY;
+    public static double getX;
+    public static double getY;
 
     // Main constructor
     public Enemy(MyPane myPane, Color color, int me) {
@@ -128,11 +128,11 @@ public class Enemy {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-            enemyX = newValue.getMinX() + newValue.getWidth() / 2;
-            enemyY = newValue.getMinY() + newValue.getHeight() / 2;
+            getX = newValue.getMinX() + newValue.getWidth() / 2;
+            getY = newValue.getMinY() + newValue.getHeight() / 2;
             try {
                 //System.out.println("gives coordinates");
-                Server.gameRoom.put(me, "Coordinates", enemyX, enemyY);
+                Server.gameRoom.put(me, "Coordinates", getX, getY);
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
             }
