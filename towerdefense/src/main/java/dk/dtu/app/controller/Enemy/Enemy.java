@@ -59,7 +59,6 @@ public class Enemy {
             enemyShape.setFill(new ImagePattern(bunnyGif));
         });
         // Michelle TO DO:
-        //enemyShape.setFill(color);
 
     }
 
