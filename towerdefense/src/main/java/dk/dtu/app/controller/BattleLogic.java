@@ -23,7 +23,7 @@ public class BattleLogic implements Runnable {
     private double timeSinceEnemySpawn;
     private double spawnRate = 3.0;
     private boolean firstLoop = true;
-    private boolean flagOnce = true;
+    private boolean firstSpawn = true;
     int numOfEnemiesCreated;
     GameState gameState;
 
@@ -99,20 +99,19 @@ public class BattleLogic implements Runnable {
     }
 
     private void setInitialEnemySpawnTime(long time) {
-        if(flagOnce){
+        if(firstSpawn){
             try {
                 Thread.sleep(time*1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            flagOnce = false;
+            firstSpawn = false;
         }
     }
 
     private void synchronizePlayers() {
         if (callSign.equals("Host")) {
             try {
-                // System.out.println("Host: ready to start");
                 space.put("Host", "ready", "startONGOING");
                 space.get(new ActualField("Client"), new ActualField("ready"),
                         new ActualField("startONGOING"));
@@ -120,13 +119,11 @@ public class BattleLogic implements Runnable {
                     time = System.currentTimeMillis();
                     firstLoop = false;
                 }
-                // System.out.println("Host: got client");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         } else if (callSign.equals("Client")) {
             try {
-                // System.out.println("Client: ready to start");
                 space.put("Client", "ready", "startONGOING");
                 space.get(new ActualField("Host"), new ActualField("ready"),
                         new ActualField("startONGOING"));
@@ -134,7 +131,6 @@ public class BattleLogic implements Runnable {
                     time = System.currentTimeMillis();
                     firstLoop = false;
                 }
-                // System.out.println("Client: got host");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

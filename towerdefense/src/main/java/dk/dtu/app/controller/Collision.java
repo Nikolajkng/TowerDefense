@@ -8,7 +8,7 @@ import javafx.application.Platform;
 import javafx.scene.shape.Path;
 
 public class Collision {
-  
+
     // Invoked under Projectile "boundsInParentProperty"
     public static void checkForCollision(Path carrotShape) {
         Iterator<Enemy> iterator = MultiplayerBoard.enemyList.iterator();
@@ -17,8 +17,8 @@ public class Collision {
             if (carrotShape.getBoundsInParent().intersects(e.getEnemyShape().getBoundsInParent())) {
                 System.out.println("Collision detected");
                 // Deletes the bunny from Arraylist
-                iterator.remove();  // Use iterator's remove method
-                
+                iterator.remove(); // Use iterator's remove method
+
                 // Stop bunny path to avoid tower conflict
                 e.removeCoordinates();
                 e.pathT.stop();
@@ -39,5 +39,5 @@ public class Collision {
         }
 
     }
-    
+
 }
