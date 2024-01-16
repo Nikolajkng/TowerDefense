@@ -87,7 +87,7 @@ public class Enemy {
         path.getElements().add(new LineTo(interval7, interval6 - 10)); // Go right...
 
         PathTransition pathT = new PathTransition();
-        int enemyMovementSpeed = 15;
+        int enemyMovementSpeed = 10;
         pathT.setDuration(Duration.seconds(enemyMovementSpeed));
         pathT.setPath(path);
         pathT.setNode(enemyShape);
@@ -98,10 +98,12 @@ public class Enemy {
 
             // Update health when rabbit reaches end of path
             int rabbitDamage = 1;
-            int currentHealth = Integer.parseInt(MultiplayerBoard.healthP1.getText());
-            if(currentHealth != 0){
+            int currentHealthP1 = Integer.parseInt(MultiplayerBoard.healthP1.getText());
+            int currentHealthP2 = Integer.parseInt(MultiplayerBoard.healthP2.getText());
+            if(currentHealthP1 != 0){
                 Platform.runLater(() -> {
-                    MultiplayerBoard.healthP1.setText(Integer.toString(currentHealth - rabbitDamage));
+                    MultiplayerBoard.healthP1.setText(Integer.toString(currentHealthP1 - rabbitDamage));
+                    MultiplayerBoard.healthP2.setText(Integer.toString(currentHealthP2 - rabbitDamage));
                 });
             } else{
                 System.out.println("Game over a player has lost");
