@@ -35,8 +35,7 @@ public class Enemy {
         this.callsign = callcign;
         this.enemyShape = new Circle(30);
         try {
-            Server.gameRoom.put(me, "Coordinates", 0.0,
-                    Double.parseDouble(Integer.toString(BoardController.interval0)));
+            Server.gameRoom.put(me, "Coordinates", 0.0, Double.parseDouble(Integer.toString(BoardController.interval0)));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -88,15 +87,15 @@ public class Enemy {
 
         // Create a path for the enemy to follow
         Path path = new Path();
-        path.getElements().add(new MoveTo(startX + 15, interval0 - 10)); // Starting point
+        path.getElements().add(new MoveTo(startX+15, interval0 - 10)); // Starting point
         path.getElements().add(new LineTo(interval1, interval0 - 10)); // Go right...
         path.getElements().add(new LineTo(interval1, interval2 - 10)); // Go down...
         path.getElements().add(new LineTo(interval3, interval2 - 10)); // Go right...
-        path.getElements().add(new LineTo(interval3, (interval3 - interval4) / 2 - 10)); // Go up... (part1)
+        path.getElements().add(new LineTo(interval3, (interval3 - interval4)/2 - 10)); // Go up... (part1)
         path.getElements().add(new LineTo(interval3, interval4 - 10)); // Go up... (part2)
         path.getElements().add(new LineTo(interval5, interval4 - 10)); // Go right...
         path.getElements().add(new LineTo(interval5, interval6 - 10)); // Go down...
-        path.getElements().add(new LineTo(interval7 - 10, interval6 - 10)); // Go right...
+        path.getElements().add(new LineTo(interval7-10, interval6 - 10)); // Go right...
 
         pathT = new PathTransition();
         int enemyMovementSpeed = 30;
@@ -112,27 +111,19 @@ public class Enemy {
             int rabbitDamage = 10; // Set to 10 for testing purposes -Niko
             int currentHealthP1 = Integer.parseInt(MultiplayerBoard.healthP1.getText());
             int currentHealthP2 = Integer.parseInt(MultiplayerBoard.healthP2.getText());
-            if (belongsToLeftBoard) {
-                if (currentHealthP1 != 0) {
-                    Platform.runLater(() -> {
-                        MultiplayerBoard.healthP1.setText(Integer.toString(currentHealthP1 - rabbitDamage));
-                    });
-                } else {
-                    System.out.println("Game over: " + callsign + " has lost");
-                }
-            } else if (!belongsToLeftBoard) {
-                if (currentHealthP2 != 0) {
-                    Platform.runLater(() -> {
-                        MultiplayerBoard.healthP2.setText(Integer.toString(currentHealthP2 - rabbitDamage));
-                    });
-                } else {
-                    System.out.println("Game over: " + callsign + " has lost");
-                }
+            if(currentHealthP1 != 0){
+                Platform.runLater(() -> {
+                    MultiplayerBoard.healthP1.setText(Integer.toString(currentHealthP1 - rabbitDamage));
+                    MultiplayerBoard.healthP2.setText(Integer.toString(currentHealthP2 - rabbitDamage));
+                });
+            } else{
+                System.out.println("Game over: " + callsign +" has lost");
             }
+            
 
             try {
                 Server.gameRoom.get(new ActualField(me), new ActualField("Coordinates"),
-                        new FormalField(Double.class), new FormalField(Double.class));
+                            new FormalField(Double.class), new FormalField(Double.class));
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
             }
@@ -140,7 +131,7 @@ public class Enemy {
 
         // Enemy movement listener:
         enemyShape.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
-            // System.out.println("gets coordinates");
+            //System.out.println("gets coordinates");
             try {
                 Server.gameRoom.get(new ActualField(me), new ActualField("Coordinates"),
                         new FormalField(Double.class), new FormalField(Double.class));
@@ -150,7 +141,7 @@ public class Enemy {
             getX = newValue.getMinX() + newValue.getWidth() / 2;
             getY = newValue.getMinY() + newValue.getHeight() / 2;
             try {
-                // System.out.println("gives coordinates");
+                //System.out.println("gives coordinates");
                 Server.gameRoom.put(me, "Coordinates", getX, getY);
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
@@ -160,7 +151,7 @@ public class Enemy {
         pathT.play();
     }
 
-    public void removeCoordinates() {
+    public void removeCoordinates(){
         try {
             Server.gameRoom.get(new ActualField(me), new ActualField("Coordinates"),
                     new FormalField(Double.class), new FormalField(Double.class));
