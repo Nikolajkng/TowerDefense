@@ -1,10 +1,6 @@
 package dk.dtu.app.controller;
 
-import org.jspace.ActualField;
-import org.jspace.FormalField;
-
 import dk.dtu.app.controller.BoardLogic.MyPane;
-import dk.dtu.backend.Server;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.scene.paint.Paint;
