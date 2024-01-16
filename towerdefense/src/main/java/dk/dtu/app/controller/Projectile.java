@@ -7,7 +7,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import javafx.scene.shape.Shape;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
 import javafx.scene.shape.StrokeType;
@@ -16,7 +15,6 @@ import javafx.util.Duration;
 public class Projectile {
     public static double getX;
     public static double getY;
-    public Path carrotShape;
 
     public Projectile(double startX, double startY, double endX, double endY, MyPane board) {
         double maxLength = 30; // maximum length of the line
@@ -32,27 +30,28 @@ public class Projectile {
             newEndX = startX + (endX - startX) * ratio;
             newEndY = startY + (endY - startY) * ratio;
 
-        //Line projectileShape = new Line(startX, startY, newEndX, newEndY);
-        // Michelle to do:
-        //projectileShape.setStroke(Color.RED);
+    
 
-        carrotShape = carrotShape(startX, startY, newEndX, newEndY);
+        // Projectile shape
+        Path carrotShape = carrotShape(startX, startY, newEndX, newEndY);
         Platform.runLater(() -> {
             board.getChildren().add(carrotShape); ////
         });
 
+        // Create a linear path for projectile
         Path path = new Path();
-        path.getElements().add(new MoveTo(startX, startY)); // Starting point
-        path.getElements().add(new LineTo(endX, endY)); // Go right...
+        path.getElements().add(new MoveTo(startX, startY)); 
+        path.getElements().add(new LineTo(endX, endY)); 
 
+        // Set the path for projectile
+        double projectileSpeed = 0.25;
         PathTransition pathT = new PathTransition();
-        pathT.setDuration(Duration.seconds(0.5));
+        pathT.setDuration(Duration.seconds(projectileSpeed));
         pathT.setPath(path);
         pathT.setNode(carrotShape); 
         pathT.setCycleCount(1);
         pathT.setOnFinished(e -> {
             board.getChildren().remove(carrotShape); 
-            System.out.println("-------------------");
           
         });
         pathT.play();
@@ -66,8 +65,7 @@ public class Projectile {
                 //System.out.println("Projectile coordinates: " + getY);
 
                 // Check for collision
-                new Collision();
-          
+                
                     
         });
     }
@@ -86,7 +84,5 @@ public class Projectile {
         return carrotShape;
     }
 
-    public Shape getProjectileShape() {
-        return carrotShape;
-    }
+
 }
