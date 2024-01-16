@@ -188,11 +188,10 @@ public class MultiplayerBoard extends Application {
         }
 
         public static void startSpawnEnemy() {
-                        enemyList.add(new Enemy(leftBoard, Color.BLUE, numOfEnemiesCreated));
+                        enemyList.add(new Enemy(leftBoard, numOfEnemiesCreated));
                         numOfEnemiesCreated++;
-                        enemyList.add(new Enemy(rightBoard, Color.RED, numOfEnemiesCreated));
+                        enemyList.add(new Enemy(rightBoard, numOfEnemiesCreated));
                         numOfEnemiesCreated++;
-                System.out.println("Number of Enemies spawned: " + numOfEnemiesCreated);
         }
 
         public static void projectile(double startX, double startY, double endX, double endY, MyPane board){

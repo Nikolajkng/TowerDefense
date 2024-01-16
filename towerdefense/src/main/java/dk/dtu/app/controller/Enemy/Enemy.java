@@ -21,17 +21,15 @@ import javafx.util.Duration;
 public class Enemy {
     protected MyPane board;
     protected Circle enemyShape;
-    protected Color color;
     public int me;
     public static double getX;
     public static double getY;
     public PathTransition pathT;
 
     // Main constructor
-    public Enemy(MyPane myPane, Color color, int me) {
+    public Enemy(MyPane myPane, int me) {
         this.board = myPane;
         this.enemyShape = new Circle(30);
-        this.color = color;
         this.me = me;
         System.out.println("gives coordinates");
         try {
