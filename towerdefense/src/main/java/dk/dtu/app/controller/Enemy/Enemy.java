@@ -24,13 +24,14 @@ public class Enemy {
     public static double getX;
     public static double getY;
     public PathTransition pathT;
+    public String callsign;
 
     // Main constructor
-    public Enemy(MyPane myPane, int me) {
+    public Enemy(MyPane myPane, int me, String callcign) {
         this.board = myPane;
-        this.enemyShape = new Circle(30);
         this.me = me;
-        System.out.println("gives coordinates");
+        this.callsign = callcign;
+        this.enemyShape = new Circle(30);
         try {
             Server.gameRoom.put(me, "Coordinates", 0.0, Double.parseDouble(Integer.toString(BoardController.interval0)));
         } catch (InterruptedException e) {
@@ -45,7 +46,6 @@ public class Enemy {
 
         // Sets the path for the enemy to move on
         setPath();
-        System.out.println("Hi i am a bunny");
     }
 
     public Circle getEnemyShape() {
@@ -83,7 +83,7 @@ public class Enemy {
         path.getElements().add(new LineTo(interval3, interval4 - 10)); // Go up... (part2)
         path.getElements().add(new LineTo(interval5, interval4 - 10)); // Go right...
         path.getElements().add(new LineTo(interval5, interval6 - 10)); // Go down...
-        path.getElements().add(new LineTo(interval7, interval6 - 10)); // Go right...
+        path.getElements().add(new LineTo(interval7-10, interval6 - 10)); // Go right...
 
         pathT = new PathTransition();
         int enemyMovementSpeed = 30;
@@ -97,7 +97,7 @@ public class Enemy {
             // MultiplayerBoard.enemyList.remove(this);
 
             // Update health when rabbit reaches end of path
-            int rabbitDamage = 1;
+            int rabbitDamage = 10; // Set to 10 for testing purposes -Niko
             int currentHealthP1 = Integer.parseInt(MultiplayerBoard.healthP1.getText());
             int currentHealthP2 = Integer.parseInt(MultiplayerBoard.healthP2.getText());
             if(currentHealthP1 != 0){
@@ -106,7 +106,7 @@ public class Enemy {
                     MultiplayerBoard.healthP2.setText(Integer.toString(currentHealthP2 - rabbitDamage));
                 });
             } else{
-                System.out.println("Game over a player has lost");
+                System.out.println("Game over: " + callsign +" has lost");
             }
             
 

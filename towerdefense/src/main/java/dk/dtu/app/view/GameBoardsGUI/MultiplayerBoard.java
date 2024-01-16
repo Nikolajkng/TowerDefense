@@ -55,7 +55,7 @@ public class MultiplayerBoard extends Application {
                         getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
         private ImageView showHealthIcon1 = new ImageView(healthIcon);
         private ImageView showHealthIcon2 = new ImageView(healthIcon);
-        private String callsign;
+        private static String callsign;
 
         // Constructor
         public MultiplayerBoard(String callsign) {
@@ -190,9 +190,9 @@ public class MultiplayerBoard extends Application {
         }
 
         public static void startSpawnEnemy() {
-                        enemyList.add(new Enemy(leftBoard, numOfEnemiesCreated));
+                        enemyList.add(new Enemy(leftBoard, numOfEnemiesCreated, callsign));
                         numOfEnemiesCreated++;
-                        enemyList.add(new Enemy(rightBoard, numOfEnemiesCreated));
+                        enemyList.add(new Enemy(rightBoard, numOfEnemiesCreated, callsign));
                         numOfEnemiesCreated++;
         }
 
