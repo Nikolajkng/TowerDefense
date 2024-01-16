@@ -23,6 +23,8 @@ public class Enemy {
     protected Circle enemyShape;
     protected Color color;
     protected int me;
+    public static double getX;
+    public static double getY;
 
     // Main constructor
     public Enemy(MyPane myPane, Color color, int me) {
@@ -58,7 +60,6 @@ public class Enemy {
         Platform.runLater(() -> {
             enemyShape.setFill(new ImagePattern(bunnyGif));
         });
-        // Michelle TO DO:
 
     }
 
@@ -80,7 +81,8 @@ public class Enemy {
         path.getElements().add(new LineTo(interval1, interval0 - 10)); // Go right...
         path.getElements().add(new LineTo(interval1, interval2 - 10)); // Go down...
         path.getElements().add(new LineTo(interval3, interval2 - 10)); // Go right...
-        path.getElements().add(new LineTo(interval3, interval4 - 10)); // Go up...
+        path.getElements().add(new LineTo(interval3, (interval3 - interval4)/2 - 10)); // Go up... (part1)
+        path.getElements().add(new LineTo(interval3, interval4 - 10)); // Go up... (part2)
         path.getElements().add(new LineTo(interval5, interval4 - 10)); // Go right...
         path.getElements().add(new LineTo(interval5, interval6 - 10)); // Go down...
         path.getElements().add(new LineTo(interval7, interval6 - 10)); // Go right...
@@ -126,11 +128,11 @@ public class Enemy {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-            double centerX = newValue.getMinX() + newValue.getWidth() / 2;
-            double centerY = newValue.getMinY() + newValue.getHeight() / 2;
+            getX = newValue.getMinX() + newValue.getWidth() / 2;
+            getY = newValue.getMinY() + newValue.getHeight() / 2;
             try {
                 //System.out.println("gives coordinates");
-                Server.gameRoom.put(me, "Coordinates", centerX, centerY);
+                Server.gameRoom.put(me, "Coordinates", getX, getY);
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
             }
