@@ -116,7 +116,7 @@ public class MultiplayerBoard extends Application {
         
                 // Right vbox-menu setup
                 rightVbox.getChildren().addAll(coinButton);
-                VBox.setMargin(coinButton, new javafx.geometry.Insets(15, 5, 0, 0));
+                VBox.setMargin(coinButton, new javafx.geometry.Insets(10, 5, 0, 0));
 
                 // Button sizes
                 int towerBtnWidth = 115;
@@ -234,9 +234,7 @@ public class MultiplayerBoard extends Application {
         // Color of background of Panes
         private void colorThePanes(HBox centerPane, VBox leftVbox, VBox rightVbox, HBox bottomHUD, HBox topBar,
                         MyPane leftBoard, MyPane rightBoard) {
-                centerPane.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
-                                + "-fx-background-repeat: repeat;"
-                                + "-fx-background-size: cover;");
+                centerPane.setStyle("-fx-background-color:#46910b;");
                 leftVbox.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/grass_tile_2.png');"
                                 + "-fx-background-repeat: repeat;"
                                 + "-fx-background-size: contain;");

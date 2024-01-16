@@ -12,7 +12,7 @@ public class PlayerInfo implements Runnable {
     static int life = 100;
 
     private static Stage loserStage;
-    static int money = 100;
+    static int money = 200;
 
     SequentialSpace space;
 
