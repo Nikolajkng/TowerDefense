@@ -46,37 +46,10 @@ public class BattleLogic implements Runnable {
 
                 }
                 case ONGOING: {
-                    if (callSign.equals("Host")) {
-                        try {
-                            // System.out.println("Host: ready to start");
-                            space.put("Host", "ready", "startONGOING");
-                            space.get(new ActualField("Client"), new ActualField("ready"),
-                                    new ActualField("startONGOING"));
-                            if (firstLoop) {
-                                time = System.currentTimeMillis();
-                                firstLoop = false;
-                            }
-                            // System.out.println("Host: got client");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    } else if (callSign.equals("Client")) {
-                        try {
-                            // System.out.println("Client: ready to start");
-                            space.put("Client", "ready", "startONGOING");
-                            space.get(new ActualField("Host"), new ActualField("ready"),
-                                    new ActualField("startONGOING"));
-                            if (firstLoop) {
-                                time = System.currentTimeMillis();
-                                firstLoop = false;
-                            }
-                            // System.out.println("Client: got host");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        System.out.println("Error: callSign is not Host or Client");
-                    }
+                    // Start the wave only when both players are ready
+                    synchronizePlayers();
+
+                    // Player lost results in gamestate ends and stop. 
                     try {
                         Object[] obj = space.getp(new ActualField("Player lost"));
                         if (obj != null) {
@@ -101,7 +74,7 @@ public class BattleLogic implements Runnable {
                             timeSinceEnemySpawn = 0.0;
                         }
                         // Add a delay to avoid high CPU usage
-                        Thread.sleep(100);
+                        Thread.sleep(200);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -116,6 +89,40 @@ public class BattleLogic implements Runnable {
                     System.out.println("An error has occrured in gameState");
                     break;
             }
+        }
+    }
+
+    private void synchronizePlayers() {
+        if (callSign.equals("Host")) {
+            try {
+                // System.out.println("Host: ready to start");
+                space.put("Host", "ready", "startONGOING");
+                space.get(new ActualField("Client"), new ActualField("ready"),
+                        new ActualField("startONGOING"));
+                if (firstLoop) {
+                    time = System.currentTimeMillis();
+                    firstLoop = false;
+                }
+                // System.out.println("Host: got client");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else if (callSign.equals("Client")) {
+            try {
+                // System.out.println("Client: ready to start");
+                space.put("Client", "ready", "startONGOING");
+                space.get(new ActualField("Host"), new ActualField("ready"),
+                        new ActualField("startONGOING"));
+                if (firstLoop) {
+                    time = System.currentTimeMillis();
+                    firstLoop = false;
+                }
+                // System.out.println("Client: got host");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Error: callSign is not Host or Client");
         }
     }
 
