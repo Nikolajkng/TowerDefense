@@ -91,7 +91,50 @@ public class BoardController {
         interval7 = interval5 + boardSizeX / 6; // Right
 
         // Path 1: Start Right
-        for (int row = 0; row < interval1; row++) {
+    Rectangle pathRectangle1 = pathRectangle(0, interval0 - pathThickness / 2, interval1, interval0 + pathThickness / 2, board);
+    board.getChildren().add(pathRectangle1);
+
+    // down
+    Rectangle pathRectangle2 = pathRectangle(interval1 - pathThickness / 2, interval0, interval1 + pathThickness / 2, interval2, board);
+    board.getChildren().add(pathRectangle2);
+
+    // right
+    Rectangle pathRectangle3 = pathRectangle(interval1, interval2 - pathThickness / 2, interval3, interval2 + pathThickness / 2, board);
+    board.getChildren().add(pathRectangle3);
+
+    // up
+    Rectangle pathRectangle4 = pathRectangle(interval3 - pathThickness / 2, interval2 - pathThickness, interval3 + pathThickness / 2, interval2, board);
+    board.getChildren().add(pathRectangle4);
+
+    // right
+    Rectangle pathRectangle5 = pathRectangle(interval3, interval4 - pathThickness / 2, interval5, interval4 + pathThickness / 2, board);
+    board.getChildren().add(pathRectangle5);
+
+    // down
+    Rectangle pathRectangle6 = pathRectangle(interval5 - pathThickness / 2, interval4, interval5 + pathThickness / 2, interval6, board);
+    board.getChildren().add(pathRectangle6);
+
+    // right
+    Rectangle pathRectangle7 = pathRectangle(interval5, interval6 - pathThickness / 2, interval7, interval6 + pathThickness / 2, board);
+    board.getChildren().add(pathRectangle7);
+    }
+    
+    private static Rectangle pathRectangle(int startX, int startY, int endX, int endY, MyPane board) {
+        Rectangle rectanglePath = new Rectangle(startX, startY, endX - startX, endY - startY);
+        rectanglePath.setFill(new ImagePattern(path));
+
+        for (int row = startX; row < endX; row++) {
+            for (int col = startY; col < endY; col++) {
+                if (row >= 0 && row < boardSizeX && col >= 0 && col < boardSizeY) {
+                    String pixelCoordinate = String.format("%d,%d", row, col);
+                    board.getHashMap().put(pixelCoordinate, pathValue);
+                }
+            }
+        }
+        return rectanglePath;
+    }
+        // Path 1: Start Right
+        /*for (int row = 0; row < interval1; row++) {
             for (int col = interval0 - pathThickness / 2; col < interval0 + pathThickness / 2; col++) {
                 if (col >= 0 && col < boardSizeY && row >= 0 && row < boardSizeX) {
                     String pixelCoordinate = String.format("%d,%d", row, col);
@@ -200,6 +243,5 @@ public class BoardController {
                     board.getChildren().add(pathRectangle);
                 }
             }
-        }
+        }*/
     }
-}
