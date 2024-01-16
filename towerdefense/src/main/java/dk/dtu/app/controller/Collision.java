@@ -1,31 +1,20 @@
 package dk.dtu.app.controller;
 
 import dk.dtu.app.controller.Enemy.Enemy;
+import javafx.scene.shape.Shape;
 
 public class Collision {
-    protected static double projX;
-    protected static double projY;
-    protected static double enemyX;
-    protected static double enemyY;
+    public static boolean checkCollision(Enemy enemy, Projectile projectile) {
+        Shape enemyShape = enemy.getEnemyShape();
+        Shape projectileShape = projectile.getProjectileShape();
 
-    public Collision(){
-        projX = Projectile.getX;
-        projY = Projectile.getY;
-        enemyX = Enemy.getX;
-        enemyY = Enemy.getY;
-        startDetection();
-    }
-
-    // Start the collision detection
-    public static void startDetection(){
-        if (projX == enemyX && projY == enemyY){
+        // Check if the bounds of the enemy and the projectile intersect
+        if (enemyShape.getBoundsInParent().intersects(projectileShape.getBoundsInParent())) {
             System.out.println("Collision detected");
+            return true;
         } else {
-            System.out.println("nothing");
+            System.out.println("No collision");
+            return false;
         }
-
     }
-
-
 }
-
