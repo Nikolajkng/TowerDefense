@@ -10,7 +10,6 @@ import dk.dtu.backend.Server;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.LineTo;
