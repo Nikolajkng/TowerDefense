@@ -24,6 +24,7 @@ public class BattleLogic implements Runnable {
     private double timeSinceEnemySpawn;
     private double spawnRate = 2.0;
     private boolean firstLoop = true;
+    private boolean firstEnemySpawned = false;
     GameState gameState;
 
     public BattleLogic(Space space, String callSign) {
@@ -48,7 +49,26 @@ public class BattleLogic implements Runnable {
                 case ONGOING: {
                     // Start the wave only when both players are ready
                     synchronizePlayers();
-
+                    // ... other class members ...
+                    if (!firstEnemySpawned) {
+                        try {
+                            int countdownTime = 7; // Countdown time in seconds
+                            for (int i = countdownTime; i > 0; i--) {
+                                System.out.println("Countdown: " + i + " seconds remaining");
+                                // Update the UI in JavaFX thread if needed
+                                // Platform.runLater(() -> updateCountdownDisplay(i));
+                                Thread.sleep(1000); // Wait for 1 second
+                            }
+                            System.out.println("Countdown finished, starting next action...");
+                    
+                            // Next action here, e.g., spawn the first enemy
+                            // spawnFirstEnemy(); // Replace this with your actual spawning method
+                            firstEnemySpawned = true; // Set the flag to true after spawning the first enemy
+                    
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     // Player lost results in gamestate ends and stop. 
                     try {
                         Object[] obj = space.getp(new ActualField("Player lost"));
