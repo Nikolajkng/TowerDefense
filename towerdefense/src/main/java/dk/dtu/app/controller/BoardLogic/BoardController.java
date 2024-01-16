@@ -36,7 +36,11 @@ public class BoardController {
         boardSizeX = MultiplayerBoard.sizeX / 3;
         boardSizeY = MultiplayerBoard.sizeY * 2 / 3;
         board.setPrefSize(boardSizeX, boardSizeY);
-        board.setStyle("-fx-background-color: #6fb90f");
+        board.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tester.jpg');"
+        + "-fx-background-repeat: repeat;"
+        + "-fx-background-size: contain;");
+
+    
         //"-fx-background-image: url('/dk/dtu/app/view/Images/heart.png');"
 
         // Assign each pixel a value from paramter
