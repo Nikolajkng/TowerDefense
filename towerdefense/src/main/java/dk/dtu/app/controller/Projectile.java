@@ -1,14 +1,9 @@
 package dk.dtu.app.controller;
 
-import java.util.Iterator;
-
 import dk.dtu.app.controller.BoardLogic.MyPane;
-import dk.dtu.app.controller.Enemy.Enemy;
-import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -67,43 +62,11 @@ public class Projectile {
             // System.out.println("Projectile coordinates: " + getY);
 
             // Check for collision
-            checkForCollision();
+            Collision.checkForCollision(carrotShape);
   
         });
     }
 
-    private void checkForCollision() {
-        if(MultiplayerBoard.enemyList.isEmpty()){
-            return;
-        }
-        Iterator<Enemy> iterator = MultiplayerBoard.enemyList.iterator();
-        while (iterator.hasNext()) {
-            Enemy e = iterator.next();
-            if (carrotShape.getBoundsInParent().intersects(e.getEnemyShape().getBoundsInParent())) {
-                System.out.println("Collision detected");
-                // Deletes the bunny from Arraylist
-                iterator.remove();  // Use iterator's remove method
-                
-                // Stop bunny path to avoid tower conflict
-                e.removeCoordinates();
-                e.pathT.stop();
-
-                // Update the correct board (doesnt work yet)
-                if (e.me % 2 == 0) {
-                    Platform.runLater(() -> {
-                        MultiplayerBoard.leftBoard.getChildren().remove(e.getEnemyShape());
-                    });
-                } else {
-                    Platform.runLater(() -> {
-                        MultiplayerBoard.rightBoard.getChildren().remove(e.getEnemyShape());
-                    });
-                }
-            } else {
-                System.out.println("No collision");
-            }
-        }
-
-    }
 
     private Path carrotShape(double startX, double startY, double endX, double endY) {
 
