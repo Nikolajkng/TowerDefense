@@ -9,16 +9,20 @@ import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.shape.StrokeLineJoin;
+import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
 
 public class Projectile {
 
     public Projectile(double startX, double startY, double endX, double endY, MyPane board) {
-        double maxLength = 10; // maximum length of the line
+        double maxLength = 30; // maximum length of the line
 
         // Calculate the distance between A and B
         double distance = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
@@ -31,16 +35,14 @@ public class Projectile {
             newEndX = startX + (endX - startX) * ratio;
             newEndY = startY + (endY - startY) * ratio;
 
-        Line projectileShape = new Line(startX, startY, newEndX, newEndY);
+        //Line projectileShape = new Line(startX, startY, newEndX, newEndY);
         // Michelle to do:
-        projectileShape.setStroke(Color.RED);
+        //projectileShape.setStroke(Color.RED);
 
-        //try later
-        // Image carrotImage = new Image(getClass().getResource("/dk/dtu/app/view/Images/carrotarrow.png").toExternalForm())
-        //ImagePattern carroImagePattern = new ImagePattern(carrotImage);
+        Path carrotShape = carrotShape(startX, startY, newEndX, newEndY);
 
         Platform.runLater(() -> {
-            board.getChildren().add(projectileShape);
+            board.getChildren().add(carrotShape); ////
         });
 
         Path path = new Path();
@@ -50,12 +52,25 @@ public class Projectile {
         PathTransition pathT = new PathTransition();
         pathT.setDuration(Duration.seconds(0.5));
         pathT.setPath(path);
-        pathT.setNode(projectileShape);
+        pathT.setNode(carrotShape); /////
         pathT.setCycleCount(1);
         pathT.setOnFinished(e -> {
-            board.getChildren().remove(projectileShape);
+            board.getChildren().remove(carrotShape); /////
         });
         pathT.play();
     }
 
+    private Path carrotShape(double startX, double startY, double endX, double endY){
+        
+        Path carrotShape = new Path();
+        carrotShape.getElements().add(new MoveTo(startX,startY));
+        carrotShape.getElements().add(new LineTo(endX,endY));
+        carrotShape.setStrokeType(StrokeType.CENTERED);
+        carrotShape.setStrokeLineCap(StrokeLineCap.ROUND);
+        carrotShape.setStrokeLineJoin(StrokeLineJoin.ROUND);
+        carrotShape.setStrokeWidth(4);
+        carrotShape.setStroke(Paint.valueOf("orange"));
+        
+        return carrotShape;
+    }
 }
