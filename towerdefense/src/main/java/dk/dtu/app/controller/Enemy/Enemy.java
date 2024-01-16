@@ -5,6 +5,7 @@ import org.jspace.FormalField;
 
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.BoardLogic.MyPane;
+import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.Server;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
@@ -86,13 +87,29 @@ public class Enemy {
         path.getElements().add(new LineTo(interval7, interval6 - 10)); // Go right...
 
         PathTransition pathT = new PathTransition();
-        int enemyMovementSpeed = 15;
+        int enemyMovementSpeed = 10;
         pathT.setDuration(Duration.seconds(enemyMovementSpeed));
         pathT.setPath(path);
         pathT.setNode(enemyShape);
         pathT.setCycleCount(1);
         pathT.setOnFinished(e -> {
+            // Delete the rabit when it reaches the end of the path
             board.getChildren().remove(enemyShape);
+
+            // Update health when rabbit reaches end of path
+            int rabbitDamage = 1;
+            int currentHealthP1 = Integer.parseInt(MultiplayerBoard.healthP1.getText());
+            int currentHealthP2 = Integer.parseInt(MultiplayerBoard.healthP2.getText());
+            if(currentHealthP1 != 0){
+                Platform.runLater(() -> {
+                    MultiplayerBoard.healthP1.setText(Integer.toString(currentHealthP1 - rabbitDamage));
+                    MultiplayerBoard.healthP2.setText(Integer.toString(currentHealthP2 - rabbitDamage));
+                });
+            } else{
+                System.out.println("Game over a player has lost");
+            }
+            
+
             try {
                 Server.gameRoom.get(new ActualField(me), new ActualField("Coordinates"),
                             new FormalField(Double.class), new FormalField(Double.class));
