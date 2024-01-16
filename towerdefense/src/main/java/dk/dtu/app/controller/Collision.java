@@ -39,7 +39,7 @@ public class Collision {
                 });
 
             } else {
-                System.out.println("No collision detected");
+                //System.out.println("No collision detected");
             }
         }
 

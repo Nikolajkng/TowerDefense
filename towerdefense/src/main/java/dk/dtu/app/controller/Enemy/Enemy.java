@@ -153,6 +153,7 @@ public class Enemy {
             try {
                 // System.out.println("gives coordinates");
                 Server.gameRoom.put(me, "Coordinates", getX, getY);
+                System.out.println("Enemy: " + me + " X: " + getX + " Y: " + getY);
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
             }
