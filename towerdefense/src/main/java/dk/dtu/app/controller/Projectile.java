@@ -1,6 +1,10 @@
 package dk.dtu.app.controller;
 
+import org.jspace.ActualField;
+import org.jspace.FormalField;
+
 import dk.dtu.app.controller.BoardLogic.MyPane;
+import dk.dtu.backend.Server;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.scene.paint.Paint;
@@ -13,6 +17,9 @@ import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
 
 public class Projectile {
+    private static boolean projectileEnd = false;
+    public static double projX;
+    public static double projY;
 
     public Projectile(double startX, double startY, double endX, double endY, MyPane board) {
         double maxLength = 30; // maximum length of the line
@@ -33,7 +40,6 @@ public class Projectile {
         //projectileShape.setStroke(Color.RED);
 
         Path carrotShape = carrotShape(startX, startY, newEndX, newEndY);
-
         Platform.runLater(() -> {
             board.getChildren().add(carrotShape); ////
         });
@@ -45,12 +51,25 @@ public class Projectile {
         PathTransition pathT = new PathTransition();
         pathT.setDuration(Duration.seconds(0.5));
         pathT.setPath(path);
-        pathT.setNode(carrotShape); /////
+        pathT.setNode(carrotShape); 
         pathT.setCycleCount(1);
         pathT.setOnFinished(e -> {
-            board.getChildren().remove(carrotShape); /////
+            board.getChildren().remove(carrotShape); 
+            System.out.println("-------------------");
+          
         });
         pathT.play();
+
+
+
+        carrotShape.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
+                projX = newValue.getMinX() + newValue.getWidth() / 2;
+                projY = newValue.getMinY() + newValue.getHeight() / 2;
+                System.out.println("Projectile coordinates: " + projX);
+                System.out.println("Projectile coordinates: " + projY);
+          
+                    
+        });
     }
 
     private Path carrotShape(double startX, double startY, double endX, double endY){
