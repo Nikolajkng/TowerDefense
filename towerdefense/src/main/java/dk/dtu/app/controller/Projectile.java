@@ -55,10 +55,10 @@ public class Projectile {
         });
         pathT.play();
 
-        // Detect the projectiles movement during traversal each second
+        // Detect the projectiles movement each millisec
         carrotShape.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
           
-            // Check for collision
+            // Check for collision with bunny during movement traversal
             Collision.checkForCollision(carrotShape);
   
         });

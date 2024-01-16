@@ -9,7 +9,7 @@ import javafx.scene.shape.Path;
 
 public class Collision {
   
-
+    // Invoked under Projectile "boundsInParentProperty"
     public static void checkForCollision(Path carrotShape) {
         Iterator<Enemy> iterator = MultiplayerBoard.enemyList.iterator();
         while (iterator.hasNext()) {

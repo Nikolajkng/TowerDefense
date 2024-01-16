@@ -21,7 +21,7 @@ public class BattleLogic implements Runnable {
     private double elapsedTime;
     private String callSign;
     private double timeSinceEnemySpawn;
-    private double spawnRate = 2.0;
+    private double spawnRate = 3.0;
     private boolean firstLoop = true;
     private boolean flagOnce = true;
     int numOfEnemiesCreated;
@@ -47,8 +47,10 @@ public class BattleLogic implements Runnable {
 
                 }
                 case ONGOING: {
-                    // Start the wave only when both players are ready
+                    // Start the game logic only when both players are ready
                     synchronizePlayers();
+
+                    // Start the wave after 7 seconds
                     setInitialEnemySpawnTime(7); // seconds
                     
 
