@@ -55,12 +55,9 @@ public class Projectile {
         });
         pathT.play();
 
+        // Detect the projectiles movement during traversal each second
         carrotShape.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
-            getX = newValue.getMinX() + newValue.getWidth() / 2;
-            getY = newValue.getMinY() + newValue.getHeight() / 2;
-            // System.out.println("Projectile coordinates: " + getX);
-            // System.out.println("Projectile coordinates: " + getY);
-
+          
             // Check for collision
             Collision.checkForCollision(carrotShape);
   
