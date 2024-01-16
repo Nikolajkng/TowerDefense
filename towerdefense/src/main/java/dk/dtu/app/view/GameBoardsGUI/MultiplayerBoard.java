@@ -101,11 +101,11 @@ public class MultiplayerBoard extends Application {
 
                 Image coin = new Image("/dk/dtu/app/view/Images/coin.png");
                 ImageView imageView = new ImageView(coin);
-                imageView.setFitWidth(40);
-                imageView.setFitHeight(40);
+                imageView.setFitWidth(20);
+                imageView.setFitHeight(20);
                 Button coinButton = new Button("" + PlayerInfo.getMoney(), imageView);
                 coinButton.setStyle("-fx-background-size: cover; -fx-background-color: transparent; "
-                                + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+                                + "-fx-fill: white; -fx-font-size: 20px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
                 coinButton.setPrefSize(140, 140);
 
                 // Left vbox-menu setup:
@@ -119,7 +119,7 @@ public class MultiplayerBoard extends Application {
                // VBox.setMargin(coinButton, new javafx.geometry.Insets(10, 5, 0, 0));
 
                 bottomHUD.getChildren().addAll(coinButton);
-                HBox.setMargin(coinButton, new javafx.geometry.Insets(80, 0, 0, 0));
+                HBox.setMargin(coinButton, new javafx.geometry.Insets(0, 800, 30, 0));
 
                 // Button sizes
                 int towerBtnWidth = 115;
@@ -156,9 +156,9 @@ public class MultiplayerBoard extends Application {
 
                 // Health styling
                 healthP1.setStyle(
-                                "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+                                "-fx-fill: white; -fx-font-size: 20px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
                 healthP2.setStyle(
-                                "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+                                "-fx-fill: white; -fx-font-size: 20px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
                 topTitle.setStyle(
                                 "-fx-fill: white; -fx-font-size: 60px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
 
