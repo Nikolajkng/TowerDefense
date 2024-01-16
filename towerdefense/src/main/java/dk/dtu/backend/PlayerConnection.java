@@ -27,6 +27,7 @@ public class PlayerConnection {
 
     ///////////////////////////////////////////////// HOST /////////////////////////////////////////////////////////////////////
     public static void hostGame(ActionEvent event) throws UnknownHostException, IOException {
+
         System.out.println("Hosting game...");
         callsign = "Host";
         showAlertBox();
