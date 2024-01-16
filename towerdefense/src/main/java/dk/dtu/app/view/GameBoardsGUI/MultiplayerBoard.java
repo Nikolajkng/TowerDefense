@@ -3,6 +3,7 @@ package dk.dtu.app.view.GameBoardsGUI;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.List;
 
 import dk.dtu.app.controller.Projectile;
 import dk.dtu.app.controller.TowerSelection;
@@ -47,7 +48,8 @@ public class MultiplayerBoard extends Application {
         public static HBox bottomHUD = new HBox();
         public static final int sizeX = 1400;
         public static final int sizeY = 900;
-        public static ArrayList <Enemy> enemyList = new ArrayList<Enemy>();
+        public static List<Enemy> leftEnemyList = new ArrayList<>();
+        public static List<Enemy> rightEnemyList = new ArrayList<>();
 
         // Local field variables
         private static int numOfEnemiesCreated = 0;
@@ -190,9 +192,9 @@ public class MultiplayerBoard extends Application {
         }
 
         public static void startSpawnEnemy() {
-                        enemyList.add(new Enemy(leftBoard, numOfEnemiesCreated, callsign));
+                        new Enemy(leftBoard, numOfEnemiesCreated, callsign, true);
                         numOfEnemiesCreated++;
-                        enemyList.add(new Enemy(rightBoard, numOfEnemiesCreated, callsign));
+                        new Enemy(rightBoard, numOfEnemiesCreated, callsign, false);
                         numOfEnemiesCreated++;
         }
 

@@ -43,8 +43,8 @@ public class BattleLogic implements Runnable {
 
                     towers = new ArrayList<>();
                     gameState = GameState.ONGOING;
-                    break;
 
+                    break;
                 }
                 case ONGOING: {
                     // Start the game logic only when both players are ready
@@ -52,7 +52,6 @@ public class BattleLogic implements Runnable {
 
                     // Start the wave after 7 seconds
                     setInitialEnemySpawnTime(7); // seconds
-                    
 
                     // Player lost results in gamestate ends and stop. 
                     try {

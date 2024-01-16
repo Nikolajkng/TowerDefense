@@ -12,30 +12,29 @@ public class Collision {
 
     // Invoked under Projectile "boundsInParentProperty"
     public static void checkForCollision(Path carrotShape, MyPane board) {
-        Iterator<Enemy> iterator = MultiplayerBoard.enemyList.iterator();
+        Iterator<Enemy> iterator;
+        if (board == MultiplayerBoard.leftBoard) {
+            iterator = MultiplayerBoard.leftEnemyList.iterator();
+        } else {
+            iterator = MultiplayerBoard.rightEnemyList.iterator();
+        }
+
         while (iterator.hasNext()) {
             Enemy e = iterator.next();
             if (carrotShape.getBoundsInParent().intersects(e.getEnemyShape().getBoundsInParent())) {
                 System.out.println("Collision detected");
                 // Deletes the bunny from Arraylist
-                iterator.remove(); // Use iterator's remove method
+                iterator.remove();
 
                 // Stop bunny path to avoid tower conflict
                 e.removeCoordinates();
                 e.pathT.stop();
 
-
-
-                //Update the correct board (doesnt work yet)
-                if (e.me % 2 == 0) {
-                    Platform.runLater(() -> {
-                        board.getChildren().remove(e.getEnemyShape());
-                     });
-                } else {
-                    Platform.runLater(() -> {
-                        board.getChildren().remove(e.getEnemyShape());
-                     });
-                }
+                // Update the correct board (doesnt work yet)
+                Platform.runLater(() -> {
+                    board.getChildren().remove(e.getEnemyShape());
+                });
+                
             } else {
                 return;
             }

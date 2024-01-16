@@ -25,9 +25,11 @@ public class Enemy {
     public static double getY;
     public PathTransition pathT;
     public String callsign;
+    private boolean belongsToLeftBoard;
 
     // Main constructor
-    public Enemy(MyPane myPane, int me, String callcign) {
+    public Enemy(MyPane myPane, int me, String callcign, boolean belongsToLeftBoard) {
+        this.belongsToLeftBoard = belongsToLeftBoard;
         this.board = myPane;
         this.me = me;
         this.callsign = callcign;
@@ -46,6 +48,16 @@ public class Enemy {
 
         // Sets the path for the enemy to move on
         setPath();
+
+        if (belongsToLeftBoard) {
+            MultiplayerBoard.leftEnemyList.add(this);
+        } else {
+            MultiplayerBoard.rightEnemyList.add(this);
+        }
+    }
+
+    public boolean belongsToLeftBoard() {
+        return belongsToLeftBoard;
     }
 
     public Circle getEnemyShape() {
@@ -92,9 +104,8 @@ public class Enemy {
         pathT.setNode(enemyShape);
         pathT.setCycleCount(1);
         pathT.setOnFinished(e -> {
-            // Delete the rabit when it reaches the end of the path
+            // Delete the rabbit when it reaches the end of the path
             board.getChildren().remove(enemyShape);
-            // MultiplayerBoard.enemyList.remove(this);
 
             // Update health when rabbit reaches end of path
             int rabbitDamage = 10; // Set to 10 for testing purposes -Niko
