@@ -87,7 +87,7 @@ public class Enemy {
         path.getElements().add(new LineTo(interval7, interval6 - 10)); // Go right...
 
         PathTransition pathT = new PathTransition();
-        int enemyMovementSpeed = 10;
+        int enemyMovementSpeed = 30;
         pathT.setDuration(Duration.seconds(enemyMovementSpeed));
         pathT.setPath(path);
         pathT.setNode(enemyShape);
