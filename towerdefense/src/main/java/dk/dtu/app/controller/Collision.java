@@ -11,9 +11,6 @@ public class Collision {
   
 
     public static void checkForCollision(Path carrotShape) {
-        if(MultiplayerBoard.enemyList.isEmpty()){
-            return;
-        }
         Iterator<Enemy> iterator = MultiplayerBoard.enemyList.iterator();
         while (iterator.hasNext()) {
             Enemy e = iterator.next();
