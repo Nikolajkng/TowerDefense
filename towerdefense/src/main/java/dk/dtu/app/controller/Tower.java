@@ -18,61 +18,57 @@ public class Tower {
         System.out.println("Placing tower at: (" + x + ", " + y + ") with action: " + type);
         String pixelCoordinate = String.format("%d,%d", x, y);
         if (type == ActionType.TOWER1) {
-            if(BattleLogic.myInfo.getMoney() >= 50){
-                Tower1GUI.placeTower1(x, y, board);
-                BattleLogic.towers.add(new Tower1(x, y, Server.gameRoom, me, board));
-                if (board == MultiplayerBoard.leftBoard) {
-                    MultiplayerBoard.changeMoney(-50);
-                }
-                // Change the coordinates value to -1
-                if (board.getHashMap().containsKey(pixelCoordinate)) {
-                    board.getHashMap().remove(pixelCoordinate);
-                    board.getHashMap().put(pixelCoordinate, illegalValue);
-                    // Check if it really has been changed
-                    System.out.println(board.getHashMap().get(pixelCoordinate)); // Should be -1
-                } else {
-                    System.out.println("Key not found in HashMap");
-                }
+
+            Tower1GUI.placeTower1(x, y, board);
+            BattleLogic.towers.add(new Tower1(x, y, Server.gameRoom, me, board));
+            if (board == MultiplayerBoard.leftBoard) {
+                MultiplayerBoard.changeMoney(-50);
             }
-           
+            // Change the coordinates value to -1
+            if (board.getHashMap().containsKey(pixelCoordinate)) {
+                board.getHashMap().remove(pixelCoordinate);
+                board.getHashMap().put(pixelCoordinate, illegalValue);
+                // Check if it really has been changed
+                System.out.println(board.getHashMap().get(pixelCoordinate)); // Should be -1
+            } else {
+                System.out.println("Key not found in HashMap");
+            }
 
         } else if (type == ActionType.TOWER2) {
-            if(BattleLogic.myInfo.getMoney() >= 100){
-                Tower2GUI.placeTower2(x, y, board);
-                BattleLogic.towers.add(new Tower2(x, y, Server.gameRoom, me, board));
-                if (board == MultiplayerBoard.leftBoard) {
-                    MultiplayerBoard.changeMoney(-100);
-                }
-                // Change the coordinates value to -1
-                if (board.getHashMap().containsKey(pixelCoordinate)) {
-                    board.getHashMap().remove(pixelCoordinate);
-                    board.getHashMap().put(pixelCoordinate, illegalValue);
-                    // Check if it really has been changed
-                    System.out.println(board.getHashMap().get(pixelCoordinate)); // Should be -1
-    
-                } else {
-                    System.out.println("Key not found in HashMap");
-                }
+
+            Tower2GUI.placeTower2(x, y, board);
+            BattleLogic.towers.add(new Tower2(x, y, Server.gameRoom, me, board));
+            if (board == MultiplayerBoard.leftBoard) {
+                MultiplayerBoard.changeMoney(-100);
             }
-            
+            // Change the coordinates value to -1
+            if (board.getHashMap().containsKey(pixelCoordinate)) {
+                board.getHashMap().remove(pixelCoordinate);
+                board.getHashMap().put(pixelCoordinate, illegalValue);
+                // Check if it really has been changed
+                System.out.println(board.getHashMap().get(pixelCoordinate)); // Should be -1
+
+            } else {
+                System.out.println("Key not found in HashMap");
+            }
 
         } else if (type == ActionType.TOWER3) {
-            if(BattleLogic.myInfo.getMoney() >= 200){
-                Tower3GUI.placeTower3(x, y, board);
-                BattleLogic.towers.add(new Tower3(x, y, Server.gameRoom, me, board));
-                if (board == MultiplayerBoard.leftBoard) {
-                    MultiplayerBoard.changeMoney(-200);
-                }
-                // Change the coordinates value to -1
-                if (board.getHashMap().containsKey(pixelCoordinate)) {
-                    board.getHashMap().remove(pixelCoordinate);
-                    board.getHashMap().put(pixelCoordinate, illegalValue);
-                    // Check if it really has been changed
-                    System.out.println(board.getHashMap().get(pixelCoordinate)); // Should be -1
-    
-                } else {
-                    System.out.println("Key not found in HashMap");
-                }
+
+            Tower3GUI.placeTower3(x, y, board);
+            BattleLogic.towers.add(new Tower3(x, y, Server.gameRoom, me, board));
+            if (board == MultiplayerBoard.leftBoard) {
+                MultiplayerBoard.changeMoney(-200);
+            }
+            // Change the coordinates value to -1
+            if (board.getHashMap().containsKey(pixelCoordinate)) {
+                board.getHashMap().remove(pixelCoordinate);
+                board.getHashMap().put(pixelCoordinate, illegalValue);
+                // Check if it really has been changed
+                System.out.println(board.getHashMap().get(pixelCoordinate)); // Should be -1
+
+            } else {
+                System.out.println("Key not found in HashMap");
+
             }
 
         } else {
