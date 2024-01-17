@@ -27,7 +27,7 @@ public class GameRules {
             "These coins can be used to purchase additional towers, enhancing your defense capabilities.\n\n" +
             "Every rabbit that makes it to the end of the path will cost you a life. " +
             "If you run out of lives, reaching 0, it's game over. \n\n" +
-            "The game features two separate paths: your own on the left side and your opponent's on the right side." +
+            "The game features two separate paths: your own on the left side and your opponent's on the right side. " +
             "Plan your strategy wisely, build the ultimate defense, and ensure that no rabbits breach your barriers.\n\n" +
             "Additionally, there's a chat feature represented by the gray box, where you can communicate with your opponent. \n\n" +
             "Good luck, and may the best defender win!"
