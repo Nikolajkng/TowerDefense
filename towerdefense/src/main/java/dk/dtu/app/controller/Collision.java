@@ -22,8 +22,8 @@ public class Collision {
         while (iterator.hasNext()) {
             Enemy e = iterator.next();
             if (carrotShape.getBoundsInParent().intersects(e.getEnemyShape().getBoundsInParent())) {
-                System.out.println("Collision detected");
-                System.out.println("-------------------");
+                //System.out.println("Collision detected");
+                //System.out.println("-------------------");
 
                 // Deletes the bunny from Arraylist
                 iterator.remove();

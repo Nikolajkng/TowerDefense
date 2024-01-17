@@ -25,16 +25,16 @@ public class BattleLogic implements Runnable {
     private double spawnRate = 3.0;
     private boolean firstLoop = true;
     private boolean firstSpawn = true;
-    private PlayerInfo myInfo;
-    private PlayerInfo opponentInfo;
+    public static PlayerInfo myInfo;
+    public static PlayerInfo opponentInfo;
     int numOfEnemiesCreated;
     GameState gameState;
 
-    public BattleLogic(Space space, String callSign, PlayerInfo myInfo, PlayerInfo opponentInfo) {
+    public BattleLogic(Space space, String callSign, PlayerInfo mInfo, PlayerInfo oppInfo) {
         this.callSign = callSign;
         this.space = space;
-        this.myInfo = myInfo;
-        this.opponentInfo = opponentInfo;
+        myInfo = mInfo;
+        opponentInfo = oppInfo;
         numOfEnemiesCreated = 0;
         gameState = GameState.START;
     }
@@ -59,7 +59,6 @@ public class BattleLogic implements Runnable {
                     setInitialEnemySpawnTime(7); // seconds
 
                     // Player lost results in gamestate ends and stop. 
-                    checkPlayerHealth();
                     try {
                         Object[] obj = space.getp(new ActualField("Player lost"));
                         if (obj != null) {
@@ -103,9 +102,6 @@ public class BattleLogic implements Runnable {
         }
     }
 
-    private void checkPlayerHealth() {
-        
-    }
 
     private void setInitialEnemySpawnTime(long time) {
         if(firstSpawn){

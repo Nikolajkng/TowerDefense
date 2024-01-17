@@ -3,6 +3,7 @@ package dk.dtu.app.controller.Enemy;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
+import dk.dtu.app.controller.BattleLogic;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
@@ -26,6 +27,10 @@ public class Enemy {
     public PathTransition pathT;
     public String callsign;
     private boolean belongsToLeftBoard;
+    private int rabbitDamage = 100; // Set to 10 for testing purposes -Niko
+    private int currentHealthMe = BattleLogic.myInfo.getHealth();
+    private int currentHealthYou = BattleLogic.opponentInfo.getHealth();
+
 
     // Main constructor
     public Enemy(MyPane myPane, int me, String callcign, boolean belongsToLeftBoard) {
@@ -109,24 +114,26 @@ public class Enemy {
             board.getChildren().remove(enemyShape);
 
             // Update health when rabbit reaches end of path
-            int rabbitDamage = 100; // Set to 10 for testing purposes -Niko
-            int currentHealthP1 = Integer.parseInt(MultiplayerBoard.healthP1.getText());
-            int currentHealthP2 = Integer.parseInt(MultiplayerBoard.healthP2.getText());
 
             if (belongsToLeftBoard) {
+                int newHealthMe = currentHealthMe - rabbitDamage;
                 Platform.runLater(() -> {
-                    MultiplayerBoard.healthP1.setText(Integer.toString(currentHealthP1 - rabbitDamage));
+                    MultiplayerBoard.healthP1.setText(Integer.toString(newHealthMe));
                 });
-                if (currentHealthP1 <= 0) {
-                    System.out.println("Game over: " + callsign + " has lost");
+                currentHealthMe = newHealthMe;
+                if (currentHealthMe <= 0) {
+                    System.out.println("Game over: " + BattleLogic.myInfo.getCallsign() + " has lost");
                 }
 
             } else if (!belongsToLeftBoard) {
+                int newHealthYou = currentHealthYou - rabbitDamage;
                 Platform.runLater(() -> {
-                    MultiplayerBoard.healthP2.setText(Integer.toString(currentHealthP2 - rabbitDamage));
+                    MultiplayerBoard.healthP2.setText(Integer.toString(newHealthYou));
                 });
-                if (currentHealthP2 != 0) {
-                    System.out.println("Game over: " + callsign + " has lost");
+                currentHealthYou = newHealthYou;
+                if (currentHealthYou <= 0) {
+                    
+                    System.out.println("Game over: " + BattleLogic.opponentInfo.getCallsign() + " has lost");
                 }
             }
 
