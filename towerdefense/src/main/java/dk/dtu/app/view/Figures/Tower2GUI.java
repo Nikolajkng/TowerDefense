@@ -31,7 +31,7 @@ public class Tower2GUI extends Application {
         roundButton.setMinSize(100, 100); // Set the size of the button
 
         // Set hover effects
-        String buttonStyle = "-fx-background-image: url('"+ imageUrl +"');"
+        String buttonStyle = "-fx-background-image: url('/dk/dtu/app/view/Images/tower2pane.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent;";
         String hoverStyle = "-fx-scale-x: 1.1; -fx-scale-y: 1.1;"; // Make the button 10% larger in both x and y directions

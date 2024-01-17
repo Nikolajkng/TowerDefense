@@ -255,15 +255,15 @@ public class MultiplayerBoard extends Application {
 
         // Style of tower buttons and enemy buttons
         private void setStyleButtons() {
-                towerBtn1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tower1.png');"
+                towerBtn1.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tower1pane.png');"
                                 + "-fx-background-repeat: repeat;"
                                 + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
-                towerBtn2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tower2.png');"
+                towerBtn2.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tower2pane.png');"
                                 + "-fx-background-repeat: repeat;"
                                 + "-fx-background-size: cover; -fx-background-color: transparent; ");
 
-                towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tower3.png');"
+                towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tower3pane.png');"
                                 + "-fx-background-repeat: repeat;"
                                 + "-fx-background-size: cover; -fx-background-color: transparent; ");
         }
