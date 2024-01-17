@@ -28,7 +28,7 @@ public class Enemy {
     public PathTransition pathT;
     public String callsign;
     private boolean belongsToLeftBoard;
-    private int rabbitDamage = 100; // Set to 10 for testing purposes -Niko
+    private int rabbitDamage = 10; 
     public static int currentHealthMe = BattleLogic.myInfo.getHealth();
     public static int currentHealthYou = BattleLogic.opponentInfo.getHealth();
 
