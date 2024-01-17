@@ -149,14 +149,16 @@ public class PlayerConnection {
 
     // Threads related
     public static void closeClientThreads() {
-        clientActionListenerThread.interrupt();
+        System.out.println("Closing client threads...");
         clientChatListenerThread.interrupt();
+        clientActionListenerThread.interrupt();
         clientBattleLogicThread.interrupt();
     }
 
     public static void closeHostThreads() {
-        hostActionListenerThread.interrupt();
+        System.out.println("Closing host threads...");
         hostChatListenerThread.interrupt();
+        hostActionListenerThread.interrupt();
         hostBattleLogicThread.interrupt();
     }
 
