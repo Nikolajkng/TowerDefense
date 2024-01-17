@@ -3,6 +3,8 @@ package dk.dtu.app.controller.Enemy;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
+import dk.dtu.app.controller.BattleLogic;
+import dk.dtu.app.controller.Health;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
@@ -26,13 +28,17 @@ public class Enemy {
     public PathTransition pathT;
     public String callsign;
     private boolean belongsToLeftBoard;
+    private int rabbitDamage = 100; // Set to 10 for testing purposes -Niko
+    private int currentHealthMe = BattleLogic.myInfo.getHealth();
+    private int currentHealthYou = BattleLogic.opponentInfo.getHealth();
+
 
     // Main constructor
-    public Enemy(MyPane myPane, int me, String callcign, boolean belongsToLeftBoard) {
+    public Enemy(MyPane myPane, int me, String callsign, boolean belongsToLeftBoard) {
         this.belongsToLeftBoard = belongsToLeftBoard;
         this.board = myPane;
         this.me = me;
-        this.callsign = callcign;
+        this.callsign = callsign;
         this.enemyShape = new Circle(30);
         try {
             Server.gameRoom.put(me, "Coordinates", 0.0,
@@ -109,27 +115,7 @@ public class Enemy {
             board.getChildren().remove(enemyShape);
 
             // Update health when rabbit reaches end of path
-            int rabbitDamage = 10; // Set to 10 for testing purposes -Niko
-            int currentHealthP1 = Integer.parseInt(MultiplayerBoard.healthP1.getText());
-            int currentHealthP2 = Integer.parseInt(MultiplayerBoard.healthP2.getText());
-            if (belongsToLeftBoard) {
-                if (currentHealthP1 != 0) {
-                    Platform.runLater(() -> {
-                        MultiplayerBoard.healthP1.setText(Integer.toString(currentHealthP1 - rabbitDamage));
-                    });
-                } else {
-                    System.out.println("Game over: " + callsign + " has lost");
-                }
-
-            } else if (!belongsToLeftBoard) {
-                if (currentHealthP2 != 0) {
-                    Platform.runLater(() -> {
-                        MultiplayerBoard.healthP2.setText(Integer.toString(currentHealthP2 - rabbitDamage));
-                    });
-                } else {
-                    System.out.println("Game over: " + callsign + " has lost");
-                }
-            }
+            Health.healthTracker(belongsToLeftBoard, currentHealthMe, currentHealthYou, rabbitDamage);
 
             try {
                 Server.gameRoom.get(new ActualField(me), new ActualField("Coordinates"),
@@ -153,7 +139,7 @@ public class Enemy {
             try {
                 // System.out.println("gives coordinates");
                 Server.gameRoom.put(me, "Coordinates", getX, getY);
-                System.out.println("Enemy: " + me + " X: " + getX + " Y: " + getY);
+                // System.out.println("Enemy: " + me + " X: " + getX + " Y: " + getY);
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
             }

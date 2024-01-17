@@ -77,7 +77,7 @@ public class SingleplayerBoard extends Application {
         tower3bButton.setPrefSize(130, 130);
 
         //Other buttons design
-        heartButton.setText("" + PlayerInfo.getLife());
+        heartButton.setText("");
         heartButton.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/heart.png');"
         + "-fx-background-repeat: repeat;"
         + "-fx-background-size: cover; -fx-background-color: transparent; "
