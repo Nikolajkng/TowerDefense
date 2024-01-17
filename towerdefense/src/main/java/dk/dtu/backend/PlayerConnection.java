@@ -16,6 +16,9 @@ public class PlayerConnection {
     // Global fields
     public static String inputIP = "";
     public static String callsign;
+    public static PlayerInfo hostInfo = new PlayerInfo("Host");
+    public static PlayerInfo clientInfo = new PlayerInfo("Client");
+    
 
     // Local fields
     public static Thread hostActionListenerThread;
@@ -48,7 +51,7 @@ public class PlayerConnection {
             // Start all threads
             hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room, callsign));
             hostChatListenerThread = new Thread(new ChatReceiver(callsign));
-            hostBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom, callsign));
+            hostBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom, callsign, hostInfo, clientInfo));
             hostActionListenerThread.start();
             hostChatListenerThread.start();
             hostBattleLogicThread.start();
@@ -89,7 +92,7 @@ public class PlayerConnection {
             // Start all threads
             clientActionListenerThread = new Thread(new ActionReceiver(P1P2_uri, P1P2room, callsign));
             clientChatListenerThread = new Thread(new ChatReceiver(callsign));
-            clientBattleLogicThread = new Thread(new BattleLogic(gameRoom, callsign));
+            clientBattleLogicThread = new Thread(new BattleLogic(gameRoom, callsign, clientInfo, hostInfo));
             clientActionListenerThread.start();
             clientChatListenerThread.start();
             clientBattleLogicThread.start();

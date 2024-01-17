@@ -1,29 +1,23 @@
 package dk.dtu.backend;
 
-import org.jspace.ActualField;
 import org.jspace.SequentialSpace;
-import org.jspace.Space;
-
-import dk.dtu.app.view.GameBoardsGUI.LostAlertGUI;
 import javafx.stage.Stage;
 
 public class PlayerInfo {
-    
-    static int life = 100;
 
-    private static Stage loserStage;
-    public static int money = 50; // Infinity money gliiiith -Niko
+    protected static int money = 50;
+    protected static int life = 100;
+    protected SequentialSpace space;
+    protected String callsign;
 
-    SequentialSpace space;
-
-    public PlayerInfo(SequentialSpace space) {
-        this.space = space;
-
+    public PlayerInfo(String callsign) {
+        this.callsign = callsign;
     }
 
     public static int getLife() {
         return life;
     }
+
     public static void setLife(int life) {
         PlayerInfo.life = life;
     }

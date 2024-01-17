@@ -109,24 +109,23 @@ public class Enemy {
             board.getChildren().remove(enemyShape);
 
             // Update health when rabbit reaches end of path
-            int rabbitDamage = 10; // Set to 10 for testing purposes -Niko
+            int rabbitDamage = 100; // Set to 10 for testing purposes -Niko
             int currentHealthP1 = Integer.parseInt(MultiplayerBoard.healthP1.getText());
             int currentHealthP2 = Integer.parseInt(MultiplayerBoard.healthP2.getText());
+
             if (belongsToLeftBoard) {
-                if (currentHealthP1 != 0) {
-                    Platform.runLater(() -> {
-                        MultiplayerBoard.healthP1.setText(Integer.toString(currentHealthP1 - rabbitDamage));
-                    });
-                } else {
+                Platform.runLater(() -> {
+                    MultiplayerBoard.healthP1.setText(Integer.toString(currentHealthP1 - rabbitDamage));
+                });
+                if (currentHealthP1 <= 0) {
                     System.out.println("Game over: " + callsign + " has lost");
                 }
 
             } else if (!belongsToLeftBoard) {
+                Platform.runLater(() -> {
+                    MultiplayerBoard.healthP2.setText(Integer.toString(currentHealthP2 - rabbitDamage));
+                });
                 if (currentHealthP2 != 0) {
-                    Platform.runLater(() -> {
-                        MultiplayerBoard.healthP2.setText(Integer.toString(currentHealthP2 - rabbitDamage));
-                    });
-                } else {
                     System.out.println("Game over: " + callsign + " has lost");
                 }
             }
@@ -153,7 +152,7 @@ public class Enemy {
             try {
                 // System.out.println("gives coordinates");
                 Server.gameRoom.put(me, "Coordinates", getX, getY);
-                System.out.println("Enemy: " + me + " X: " + getX + " Y: " + getY);
+                // System.out.println("Enemy: " + me + " X: " + getX + " Y: " + getY);
             } catch (InterruptedException e1) {
                 e1.printStackTrace();
             }

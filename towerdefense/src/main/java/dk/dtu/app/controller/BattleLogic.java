@@ -6,6 +6,7 @@ import org.jspace.ActualField;
 import org.jspace.Space;
 
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
+import dk.dtu.backend.PlayerInfo;
 import javafx.application.Platform;
 
 enum GameState {
@@ -24,12 +25,16 @@ public class BattleLogic implements Runnable {
     private double spawnRate = 3.0;
     private boolean firstLoop = true;
     private boolean firstSpawn = true;
+    private PlayerInfo myInfo;
+    private PlayerInfo opponentInfo;
     int numOfEnemiesCreated;
     GameState gameState;
 
-    public BattleLogic(Space space, String callSign) {
+    public BattleLogic(Space space, String callSign, PlayerInfo myInfo, PlayerInfo opponentInfo) {
         this.callSign = callSign;
         this.space = space;
+        this.myInfo = myInfo;
+        this.opponentInfo = opponentInfo;
         numOfEnemiesCreated = 0;
         gameState = GameState.START;
     }
@@ -58,6 +63,7 @@ public class BattleLogic implements Runnable {
                         Object[] obj = space.getp(new ActualField("Player lost"));
                         if (obj != null) {
                             gameState = GameState.END;
+                            System.out.println("Player lost. Gamestate END");
                         }
                         // Tracks time passed
                         long currentTime = System.currentTimeMillis();
