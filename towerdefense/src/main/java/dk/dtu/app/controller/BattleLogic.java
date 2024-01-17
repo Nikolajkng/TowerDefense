@@ -61,33 +61,6 @@ public class BattleLogic implements Runnable {
                     // Start the game logic only when both players are ready
                     synchronizePlayers();
 
-                    // ... other class members ...
-                    if (!firstEnemySpawned) {
-                        try {
-                            int countdownTime = 7; // Countdown time in seconds
-                            for (int i = countdownTime; i >= 0; i--) {
-                                if(i == 0){
-                                    Platform.runLater(() -> MultiplayerBoard.countdownLabel.setText(""));
-                                } else {
-                                    // Update the countdown label (must be done in the JavaFX thread
-                                int finalI = i;
-                                Platform.runLater(() -> MultiplayerBoard.countdownLabel.setText("" + finalI));
-                                Thread.sleep(1000);
-                                }
-                            }
-                            System.out.println("Countdown finished, starting next action...");
-                    
-                            // Next action here, e.g., spawn the first enemy
-                            // spawnFirstEnemy(); // Replace this with your actual spawning method
-                            firstEnemySpawned = true; // Set the flag to true after spawning the first enemy
-                    
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    // Player lost results in gamestate ends and stop. 
-
-
                     // Start the wave after 7 seconds
                     setInitialEnemySpawnTime(7); // seconds
 
@@ -164,14 +137,30 @@ public class BattleLogic implements Runnable {
     }
 
     private void setInitialEnemySpawnTime(long time) {
-        if (firstSpawn) {
+        if (!firstEnemySpawned) {
             try {
-                Thread.sleep(time * 1000);
+                int countdownTime = (int) time; // Countdown time in seconds
+                for (int i = countdownTime; i >= 0; i--) {
+                    if(i == 0){
+                        Platform.runLater(() -> MultiplayerBoard.countdownLabel.setText(""));
+                    } else {
+                        // Update the countdown label (must be done in the JavaFX thread
+                    int finalI = i;
+                    Platform.runLater(() -> MultiplayerBoard.countdownLabel.setText("" + finalI));
+                    Thread.sleep(1000);
+                    }
+                }
+                System.out.println("Countdown finished, starting next action...");
+        
+                // Next action here, e.g., spawn the first enemy
+                // spawnFirstEnemy(); // Replace this with your actual spawning method
+                firstEnemySpawned = true; // Set the flag to true after spawning the first enemy
+        
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            firstSpawn = false;
         }
+
     }
 
     private void synchronizePlayers() {
