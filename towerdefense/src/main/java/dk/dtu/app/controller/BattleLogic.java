@@ -151,9 +151,6 @@ public class BattleLogic implements Runnable {
                     }
                 }
                 System.out.println("Countdown finished, starting next action...");
-        
-                // Next action here, e.g., spawn the first enemy
-                // spawnFirstEnemy(); // Replace this with your actual spawning method
                 firstEnemySpawned = true; // Set the flag to true after spawning the first enemy
         
             } catch (InterruptedException e) {
