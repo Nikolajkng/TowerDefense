@@ -59,6 +59,7 @@ public class BattleLogic implements Runnable {
                     setInitialEnemySpawnTime(7); // seconds
 
                     // Player lost results in gamestate ends and stop. 
+                    checkPlayerHealth();
                     try {
                         Object[] obj = space.getp(new ActualField("Player lost"));
                         if (obj != null) {
@@ -100,6 +101,10 @@ public class BattleLogic implements Runnable {
                     break;
             }
         }
+    }
+
+    private void checkPlayerHealth() {
+        
     }
 
     private void setInitialEnemySpawnTime(long time) {

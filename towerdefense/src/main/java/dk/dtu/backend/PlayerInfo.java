@@ -1,12 +1,11 @@
 package dk.dtu.backend;
 
 import org.jspace.SequentialSpace;
-import javafx.stage.Stage;
 
 public class PlayerInfo {
 
     protected static int money = 50;
-    protected static int life = 100;
+    protected static int health = 100;
     protected SequentialSpace space;
     protected String callsign;
 
@@ -14,12 +13,12 @@ public class PlayerInfo {
         this.callsign = callsign;
     }
 
-    public static int getLife() {
-        return life;
+    public static int getHealth() {
+        return health;
     }
 
-    public static void setLife(int life) {
-        PlayerInfo.life = life;
+    public static void setHealth(int life) {
+        PlayerInfo.health = life;
     }
 
     public static int getMoney() {

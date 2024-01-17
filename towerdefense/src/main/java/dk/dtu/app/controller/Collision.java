@@ -5,7 +5,6 @@ import java.util.Iterator;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.controller.Enemy.Enemy;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
-import dk.dtu.backend.PlayerInfo;
 import javafx.application.Platform;
 import javafx.scene.shape.Path;
 
