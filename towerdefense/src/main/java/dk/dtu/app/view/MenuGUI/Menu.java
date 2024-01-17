@@ -1,7 +1,6 @@
 package dk.dtu.app.view.MenuGUI;
 
 import java.net.MalformedURLException;
-import dk.dtu.app.view.GameBoardsGUI.SingleplayerBoard;
 import javafx.scene.layout.StackPane;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -16,7 +15,6 @@ public class Menu extends Application{
 
     private int sizeX = 700;
     private int sizeY = 700;
-    public Button singleplayerBtn = new Button();
     public Button multiplayerBtn = new Button();
     public Button exitBtn = new Button();
     public Button rulesBtn = new Button(); 
@@ -30,10 +28,6 @@ public class Menu extends Application{
         mainMenuStage.setTitle("Main Menu");
 
         // Buttons
-        Button singleplayerBtn = new Button();
-        singleplayerBtn.setText("Singleplayer");
-        singleplayerBtn.setOnAction(this::startSingleplayerGame);
-        
         Button multiplayerBtn = new Button();
         multiplayerBtn.setText("Multiplayer");
         multiplayerBtn.setOnAction(this::multiplayerMenu);
@@ -59,12 +53,10 @@ public class Menu extends Application{
          // Opret og konfigurer knappen
         // Opret en StackPane og tilføj ImageView og Button
         StackPane stackPane = new StackPane();
-        stackPane.getChildren().addAll(imageView, singleplayerBtn, multiplayerBtn, rulesBtn, exitBtn); // Knap oven på billedet
-        StackPane.setAlignment(singleplayerBtn, Pos.TOP_CENTER);
+        stackPane.getChildren().addAll(imageView, multiplayerBtn, rulesBtn, exitBtn); // Knap oven på billedet
         StackPane.setAlignment(multiplayerBtn, Pos.TOP_CENTER);
         StackPane.setAlignment(rulesBtn, Pos.TOP_CENTER);
         StackPane.setAlignment(exitBtn, Pos.TOP_CENTER);
-        StackPane.setMargin(singleplayerBtn, new javafx.geometry.Insets(200, 0, 0, 0));
         StackPane.setMargin(multiplayerBtn, new javafx.geometry.Insets(260, 0, 0, 0));
         StackPane.setMargin(rulesBtn, new javafx.geometry.Insets(320, 0, 0, 0));
         StackPane.setMargin(exitBtn, new javafx.geometry.Insets(380, 0, 0, 0));
@@ -72,15 +64,11 @@ public class Menu extends Application{
         String buttonStyle = "-fx-background-color: #5DADE2; -fx-text-fill: white; "
         + "-fx-font-size: 1.5em; -fx-min-width: 150px; -fx-min-height: 25px; "
         + "-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 5px;";
-        singleplayerBtn.setStyle(buttonStyle);
         multiplayerBtn.setStyle(buttonStyle);
         rulesBtn.setStyle(buttonStyle);
         exitBtn.setStyle(buttonStyle);
 
         String hoverStyle = "-fx-scale-x: 1.1; -fx-scale-y: 1.1;"; // Gør knappen 10% større i både x- og y-retningen
-
-        singleplayerBtn.setOnMouseEntered(e -> singleplayerBtn.setStyle(buttonStyle + hoverStyle));
-        singleplayerBtn.setOnMouseExited(e -> singleplayerBtn.setStyle(buttonStyle));
 
         multiplayerBtn.setOnMouseEntered(e -> multiplayerBtn.setStyle(buttonStyle + hoverStyle));
         multiplayerBtn.setOnMouseExited(e -> multiplayerBtn.setStyle(buttonStyle));
@@ -98,18 +86,6 @@ public class Menu extends Application{
         mainMenuStage.setScene(scene2);
         mainMenuStage.show();
 
-    }
-
-    // Button interaction and functions
-    private void startSingleplayerGame(ActionEvent event) {
-        SingleplayerBoard singleplayerBoard = new SingleplayerBoard();
-        singleplayerBoard.start(SingleplayerBoard.boardStage);
-
-        // Close the current MainMenu stage
-        mainMenuStage.close();
-
-        // Show the new SingleplayerBoard stage
-        SingleplayerBoard.boardStage.show();
     }
 
     private void multiplayerMenu(ActionEvent event) {
