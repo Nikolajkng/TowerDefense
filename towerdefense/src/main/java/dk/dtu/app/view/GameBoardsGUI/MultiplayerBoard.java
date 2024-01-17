@@ -47,6 +47,8 @@ public class MultiplayerBoard extends Application {
         public static HBox bottomHUD = new HBox();
         public static final int sizeX = 1400;
         public static final int sizeY = 900;
+        public static HBox centerPane = new HBox(); 
+        public static Label countdownLabel = new Label();
 
         // Local field variables
         private static int numOfEnemiesCreated = 0;
@@ -73,7 +75,6 @@ public class MultiplayerBoard extends Application {
 
                 // Main Layout-structure of MultiplayerBoard
                 BorderPane borderPane = new BorderPane();
-                HBox centerPane = new HBox(); // For the leftboard and rightboard
                 VBox leftVbox = new VBox();
                 VBox rightVbox = new VBox();
                 HBox topBar = new HBox();
@@ -81,7 +82,7 @@ public class MultiplayerBoard extends Application {
 
                 // Positions of all panes
                 centerPane.setAlignment(Pos.CENTER);
-                centerPane.setSpacing(100);
+                //centerPane.setSpacing(100);
                 borderPane.setLeft(leftVbox);
                 borderPane.setRight(rightVbox);
                 borderPane.setCenter(centerPane);
@@ -170,7 +171,14 @@ public class MultiplayerBoard extends Application {
                 // Creating boards for two players
                 leftBoard = BoardController.createPlayerBoard(leftPane, 1);
                 rightBoard = BoardController.createPlayerBoard(rightPane, -1);
-                centerPane.getChildren().addAll(leftBoard, rightBoard);
+                VBox vBox = new VBox();
+                vBox.setPrefWidth(100);
+                vBox.setStyle("-fx-background-color: transparent;");
+                countdownLabel.setAlignment(Pos.CENTER);
+                countdownLabel.setStyle("-fx-font-size: 40px; -fx-text-fill: black; -fx-font-weight: bold;");
+                vBox.getChildren().add(countdownLabel);
+                vBox.setAlignment(Pos.CENTER);
+                centerPane.getChildren().addAll(leftBoard, vBox, rightBoard);
 
                 // Activate button functionality in Controller
                 TowerSelection.selectTower();

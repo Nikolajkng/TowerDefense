@@ -53,11 +53,15 @@ public class BattleLogic implements Runnable {
                     if (!firstEnemySpawned) {
                         try {
                             int countdownTime = 7; // Countdown time in seconds
-                            for (int i = countdownTime; i > 0; i--) {
-                                System.out.println("Countdown: " + i + " seconds remaining");
-                                // Update the UI in JavaFX thread if needed
-                                // Platform.runLater(() -> updateCountdownDisplay(i));
-                                Thread.sleep(1000); // Wait for 1 second
+                            for (int i = countdownTime; i >= 0; i--) {
+                                if(i == 0){
+                                    Platform.runLater(() -> MultiplayerBoard.countdownLabel.setText(""));
+                                } else {
+                                    // Update the countdown label (must be done in the JavaFX thread
+                                int finalI = i;
+                                Platform.runLater(() -> MultiplayerBoard.countdownLabel.setText("" + finalI));
+                                Thread.sleep(1000);
+                                }
                             }
                             System.out.println("Countdown finished, starting next action...");
                     
