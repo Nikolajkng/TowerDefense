@@ -27,12 +27,13 @@ public class BattleLogic implements Runnable {
     private double timeSinceEnemySpawn;
     private double spawnRate = 3.0;
     private boolean firstLoop = true;
-    private boolean firstSpawn = true;
+    private boolean firstEnemySpawned = false;
     public static PlayerInfo myInfo;
     public static PlayerInfo opponentInfo;
     private boolean gameHasEnded = false;
     private static Object[] obj;
     int numOfEnemiesCreated;
+
     GameState gameState;
 
     public BattleLogic(Space space, String callSign, PlayerInfo mInfo, PlayerInfo oppInfo) {
@@ -60,6 +61,33 @@ public class BattleLogic implements Runnable {
                     // Start the game logic only when both players are ready
                     synchronizePlayers();
 
+                    // ... other class members ...
+                    if (!firstEnemySpawned) {
+                        try {
+                            int countdownTime = 7; // Countdown time in seconds
+                            for (int i = countdownTime; i >= 0; i--) {
+                                if(i == 0){
+                                    Platform.runLater(() -> MultiplayerBoard.countdownLabel.setText(""));
+                                } else {
+                                    // Update the countdown label (must be done in the JavaFX thread
+                                int finalI = i;
+                                Platform.runLater(() -> MultiplayerBoard.countdownLabel.setText("" + finalI));
+                                Thread.sleep(1000);
+                                }
+                            }
+                            System.out.println("Countdown finished, starting next action...");
+                    
+                            // Next action here, e.g., spawn the first enemy
+                            // spawnFirstEnemy(); // Replace this with your actual spawning method
+                            firstEnemySpawned = true; // Set the flag to true after spawning the first enemy
+                    
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    // Player lost results in gamestate ends and stop. 
+
+
                     // Start the wave after 7 seconds
                     setInitialEnemySpawnTime(7); // seconds
 
@@ -86,6 +114,7 @@ public class BattleLogic implements Runnable {
                         timeSinceEnemySpawn = 0.0;
                     }
                     // Add a delay to avoid high CPU usage
+
                     try {
                         Thread.sleep(50);
                     } catch (InterruptedException e) {
