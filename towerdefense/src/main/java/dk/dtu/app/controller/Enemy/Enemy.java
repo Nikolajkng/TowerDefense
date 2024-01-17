@@ -9,6 +9,7 @@ import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.Server;
+import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
@@ -108,6 +109,7 @@ public class Enemy {
         int enemyMovementSpeed = 30;
         pathT.setDuration(Duration.seconds(enemyMovementSpeed));
         pathT.setPath(path);
+        pathT.setInterpolator(Interpolator.LINEAR);
         pathT.setNode(enemyShape);
         pathT.setCycleCount(1);
         pathT.setOnFinished(e -> {
