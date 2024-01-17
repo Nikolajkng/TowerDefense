@@ -8,7 +8,7 @@ import dk.dtu.app.controller.BoardLogic.MyPane;
 public class Tower2 extends TowerLogik {
     private double timeSinceFired;
     private double shootspeed = 0.75; // Attackspeed in seconds
-    private int radius = 50;
+    private int radius = 85;
 
     public Tower2(double x, double y, Space space, int me, MyPane board) {
         super(x, y, space, me, board);

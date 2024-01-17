@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import org.jspace.RemoteSpace;
 
 import dk.dtu.app.controller.Action;
+import dk.dtu.app.controller.BattleLogic;
 
 public class ActionSender {
     public static RemoteSpace P1P2room;
@@ -20,24 +21,101 @@ public class ActionSender {
 
     public static void sendAction(int x, int y, Action.ActionType type, String callsign) {
         if (callsign == "Host") {
-        try {
-            System.out.println(callsign + " has selected following: " + type);
-            P1P2room.put(x, y, type);
+            switch (type) {
+                case NONE:
+                    break;
+                case TOWER1:
+                System.out.println("Host: BattleLogic.myInfo.getMoney() = " + BattleLogic.myInfo.getMoney());
+                if (BattleLogic.myInfo.getMoney() >= 50) {
+                    System.out.println("Host: inside");
+                        try {
+                            System.out.println("Host inside try");
+                            System.out.println(callsign + " has selected following: " + type);
+                            P1P2room.put(x, y, type);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    } else {
-         try {
-           System.out.println(callsign + " has selected following: " + type);            
-           P2P1room.put(x, y, type);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+                case TOWER2:
+                    if (BattleLogic.myInfo.getMoney() >= 100) {
+                        try {
+                            System.out.println(callsign + " has selected following: " + type);
+                            P1P2room.put(x, y, type);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+                case TOWER3:
+                    if (BattleLogic.myInfo.getMoney() >= 200) {
+                        try {
+                            System.out.println(callsign + " has selected following: " + type);
+                            P1P2room.put(x, y, type);
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+
+        } else if (callsign == "Client") {
+
+            switch (type) {
+                case NONE:
+                    break;
+                case TOWER1:
+                System.out.println("Client: BattleLogic.myInfo.getMoney() = " + BattleLogic.myInfo.getMoney());
+
+                    if (BattleLogic.myInfo.getMoney() >= 50) {
+                        System.out.println("Client inside");
+                        
+                        try {
+                            System.out.println("Client inside try");
+                            System.out.println(callsign + " has selected following: " + type);
+                            P2P1room.put(x, y, type);
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+                case TOWER2:
+                    if (BattleLogic.myInfo.getMoney() >= 100) {
+                        try {
+                            System.out.println(callsign + " has selected following: " + type);
+                            P2P1room.put(x, y, type);
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+                case TOWER3:
+                    if (BattleLogic.myInfo.getMoney() >= 200) {
+                        try {
+                            System.out.println(callsign + " has selected following: " + type);
+                            P2P1room.put(x, y, type);
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        } else {
+            System.out.println("Something went wrong in ActionSender.java");
         }
+
     }
 
-    }
-
-        
 }

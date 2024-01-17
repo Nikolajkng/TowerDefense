@@ -78,7 +78,7 @@ public class BattleLogic implements Runnable {
                     timeSinceEnemySpawn += elapsedTime;
                     // Spawns enemies in a time interval of "spawnRate" seconds:
                     if (timeSinceEnemySpawn > spawnRate) {
-                        spawnRate = spawnRate * 0.95;
+                        spawnRate = spawnRate * 0.99;
                         Platform.runLater(() -> {
                             MultiplayerBoard.startSpawnEnemy();
                         });
@@ -86,11 +86,11 @@ public class BattleLogic implements Runnable {
                         timeSinceEnemySpawn = 0.0;
                     }
                     // Add a delay to avoid high CPU usage
-                    // try {
-                    //     Thread.sleep(400);
-                    // } catch (InterruptedException e) {
-                    //     e.printStackTrace();
-                    // }
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
                     break;
                 }
