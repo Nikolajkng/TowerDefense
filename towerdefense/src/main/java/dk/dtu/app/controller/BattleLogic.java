@@ -7,6 +7,8 @@ import org.jspace.FormalField;
 import org.jspace.Space;
 
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
+import dk.dtu.app.view.MenuGUI.Menu;
+import dk.dtu.backend.PlayerConnection;
 import dk.dtu.backend.PlayerInfo;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -23,7 +25,7 @@ public class BattleLogic implements Runnable {
     private Space space;
     private long time;
     private double elapsedTime;
-    private String callSign;
+    private static String callSign;
     private double timeSinceEnemySpawn;
     private double spawnRate = 3.0;
     private boolean firstLoop = true;
@@ -117,11 +119,7 @@ public class BattleLogic implements Runnable {
             hostDialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
             hostDialog.setContentText((String) obj[0] + " has lost the game");
             hostDialog.showAndWait();
-            hostDialog.setOnCloseRequest(e -> {
-                Platform.exit();
-                System.exit(0);
-                    //MultiplayerBoard.closeWindow();
-            });
+           
         });
     }
 
@@ -129,6 +127,7 @@ public class BattleLogic implements Runnable {
         try {
             obj = space.getp(new FormalField(String.class), new ActualField("lost"));
             if (obj != null) {
+                System.out.println((String) obj[0] + " has lost. Gamestate END");
                 gameState = GameState.END;
             }
         } catch (InterruptedException e) {
@@ -141,18 +140,18 @@ public class BattleLogic implements Runnable {
             try {
                 int countdownTime = (int) time; // Countdown time in seconds
                 for (int i = countdownTime; i >= 0; i--) {
-                    if(i == 0){
+                    if (i == 0) {
                         Platform.runLater(() -> MultiplayerBoard.countdownLabel.setText(""));
                     } else {
                         // Update the countdown label (must be done in the JavaFX thread
-                    int finalI = i;
-                    Platform.runLater(() -> MultiplayerBoard.countdownLabel.setText("" + finalI));
-                    Thread.sleep(1000);
+                        int finalI = i;
+                        Platform.runLater(() -> MultiplayerBoard.countdownLabel.setText("" + finalI));
+                        Thread.sleep(1000);
                     }
                 }
                 System.out.println("Countdown finished, starting next action...");
                 firstEnemySpawned = true; // Set the flag to true after spawning the first enemy
-        
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

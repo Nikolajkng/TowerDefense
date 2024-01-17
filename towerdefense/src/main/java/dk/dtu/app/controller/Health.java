@@ -7,6 +7,7 @@ import org.jspace.RemoteSpace;
 
 import dk.dtu.app.controller.Enemy.Enemy;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
+import dk.dtu.app.view.MenuGUI.Menu;
 import dk.dtu.backend.PlayerConnection;
 import javafx.application.Platform;
 
@@ -33,7 +34,18 @@ public class Health {
                     try {
                         System.out.println("Game over: " + BattleLogic.myInfo.getCallsign() + " has lost");
                         space.put(BattleLogic.myInfo.getCallsign(), "lost");
-                        // pathT.stop();
+                        Platform.runLater(() -> {
+                            MultiplayerBoard.healthP1.setText("0");
+                            MultiplayerBoard.boardStage.close();
+                            Menu.mainMenuStage.show();    
+                        });
+                        if(BattleLogic.myInfo.getCallsign().equals("Host")){
+                            PlayerConnection.closeHostThreads();
+                        } else if(BattleLogic.myInfo.getCallsign().equals("Client")){
+                            PlayerConnection.closeClientThreads();
+                        }
+
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -49,8 +61,17 @@ public class Health {
                     try {
                         System.out.println("Game over: " + BattleLogic.opponentInfo.getCallsign() + " has lost");
                         space.put(BattleLogic.opponentInfo.getCallsign(), "lost");
-               
-                        // pathT.stop();
+                        Platform.runLater(() -> {
+                            MultiplayerBoard.healthP2.setText("0");
+                            MultiplayerBoard.boardStage.close();
+                            Menu.mainMenuStage.show();
+                        });
+                        if(BattleLogic.myInfo.getCallsign().equals("Host")){
+                            PlayerConnection.closeHostThreads();
+                        } else if(BattleLogic.myInfo.getCallsign().equals("Client")){
+                            PlayerConnection.closeClientThreads();
+                        }
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

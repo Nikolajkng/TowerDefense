@@ -40,14 +40,14 @@ public class ChatReceiver implements Runnable {
                 System.out.println("virker");
             } else {
                 e.printStackTrace();
-            }
+            
         }
 
     }
 
     private void listenForMessages() {
         ///////////////////////////////////////////////////// HOST //////////////////////////////////////////////////////////////////
-        if (callsign == "Host") {
+        if (callsign.equals("Host")) {
             try {
                 while (true) {
                     // Listens to message
@@ -79,10 +79,9 @@ public class ChatReceiver implements Runnable {
                 } else {
                     e.printStackTrace();
                 }
-
             }
             ///////////////////////////////////////////////////// CLIENT //////////////////////////////////////////////////////////////////
-        } else if (callsign == "Client") {
+        } else if (callsign.equals("Client")) {
 
             try {
                 while (true) {
