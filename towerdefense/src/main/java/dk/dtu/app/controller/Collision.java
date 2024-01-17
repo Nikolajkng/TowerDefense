@@ -38,7 +38,9 @@ public class Collision {
 
                 });
 
-                MultiplayerBoard.changeMoney(10);
+                if(e.me % 2 == 0){
+                    MultiplayerBoard.changeMoney(10);
+                }
 
             } else {
                 //System.out.println("No collision detected");

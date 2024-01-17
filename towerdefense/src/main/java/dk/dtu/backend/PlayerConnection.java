@@ -7,6 +7,7 @@ import org.jspace.*;
 import dk.dtu.app.controller.BattleLogic;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.app.view.MenuGUI.MultiplayerMenu;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
@@ -116,10 +117,17 @@ public class PlayerConnection {
     private static void showMultiPlayerBoard() throws UnknownHostException, IOException {
         System.out.println("Game has started!");
         // Close the current MainMenu stage
-        MultiplayerBoard multiplayerBoard = new MultiplayerBoard(callsign);
-        multiplayerBoard.start(MultiplayerBoard.boardStage);
-        MultiplayerMenu.boardStage.close();
-        MultiplayerBoard.boardStage.show();
+        Platform.runLater(() -> {
+            MultiplayerBoard multiplayerBoard = new MultiplayerBoard(callsign);
+            try {
+                multiplayerBoard.start(MultiplayerBoard.boardStage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            MultiplayerMenu.boardStage.close();
+            MultiplayerBoard.boardStage.show();
+        });
+      
 
     }
 

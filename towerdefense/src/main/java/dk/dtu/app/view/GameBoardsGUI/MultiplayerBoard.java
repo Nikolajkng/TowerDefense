@@ -5,6 +5,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dk.dtu.app.controller.BattleLogic;
 import dk.dtu.app.controller.Projectile;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
@@ -42,8 +43,8 @@ public class MultiplayerBoard extends Application {
         public static Button towerBtn1 = Tower1GUI.tower1;
         public static Button towerBtn2 = Tower2GUI.tower2;
         public static Button towerBtn3 = Tower3GUI.tower3;
-        public static Label healthP1 = new Label("");
-        public static Label healthP2 = new Label("");
+        public static Label healthP1 = new Label(BattleLogic.opponentInfo.getHealth()+"");
+        public static Label healthP2 = new Label(BattleLogic.opponentInfo.getHealth()+"");
         public static Label topTitle = new Label("RABBIT HUNTER");
         public static HBox bottomHUD = new HBox();
         public static final int sizeX = 1400;
