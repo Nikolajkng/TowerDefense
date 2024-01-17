@@ -62,7 +62,7 @@ public class BattleLogic implements Runnable {
                     synchronizePlayers();
 
                     // Start the wave after 7 seconds
-                    setInitialEnemySpawnTime(7); // seconds
+                    setInitialEnemySpawnTime(10); // seconds
 
                     // Player lost results in gamestate ends and stop.
                     checkForPlayerLost();
