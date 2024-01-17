@@ -104,11 +104,11 @@ public class MultiplayerBoard extends Application {
 
                 Image coin = new Image("/dk/dtu/app/view/Images/coin.png");
                 ImageView imageView = new ImageView(coin);
-                imageView.setFitWidth(30);
-                imageView.setFitHeight(30);
+                imageView.setFitWidth(50);
+                imageView.setFitHeight(50);
                 coinButton = new Label("" + PlayerInfo.getMoney(), imageView);
                 coinButton.setStyle("-fx-background-size: cover; -fx-background-color: transparent; "
-                                + "-fx-fill: white; -fx-font-size: 20px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+                                + "-fx-fill: white; -fx-font-size: 40px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
                 coinButton.setPrefSize(140, 140);
 
                 // Left vbox-menu setup:
