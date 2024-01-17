@@ -9,6 +9,8 @@ import org.jspace.Space;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.PlayerInfo;
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 enum GameState {
     START,
@@ -29,6 +31,7 @@ public class BattleLogic implements Runnable {
     public static PlayerInfo myInfo;
     public static PlayerInfo opponentInfo;
     private boolean gameHasEnded = false;
+    private static Object[] obj;
     int numOfEnemiesCreated;
     GameState gameState;
 
@@ -93,6 +96,8 @@ public class BattleLogic implements Runnable {
                 case END: {
                     gameHasEnded = true;
                     System.out.println("Battle logic: switch(End)");
+                    System.out.println((String) obj[0] + " has lost. Gamestate END");
+                    showGameOver();
                     break;
                 }
                 default:
@@ -102,12 +107,26 @@ public class BattleLogic implements Runnable {
         }
     }
 
+    private static void showGameOver() {
+        Platform.runLater(() -> {
+            Alert hostDialog = new Alert(AlertType.INFORMATION);
+            hostDialog.setTitle("Game Over");
+            hostDialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
+            hostDialog.setContentText((String) obj[0] + " has lost the game");
+            hostDialog.showAndWait();
+            hostDialog.setOnCloseRequest(e -> {
+                Platform.exit();
+                System.exit(0);
+                    //MultiplayerBoard.closeWindow();
+            });
+        });
+    }
+
     private void checkForPlayerLost() {
         try {
-            Object[] obj = space.getp(new FormalField(String.class), new ActualField("lost"));
+            obj = space.getp(new FormalField(String.class), new ActualField("lost"));
             if (obj != null) {
                 gameState = GameState.END;
-                System.out.println((String) obj[0] + " has lost. Gamestate END");
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
