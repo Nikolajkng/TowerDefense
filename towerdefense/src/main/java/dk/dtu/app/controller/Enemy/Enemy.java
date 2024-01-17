@@ -4,6 +4,7 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 
 import dk.dtu.app.controller.BattleLogic;
+import dk.dtu.app.controller.Health;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
@@ -114,28 +115,7 @@ public class Enemy {
             board.getChildren().remove(enemyShape);
 
             // Update health when rabbit reaches end of path
-
-            if (belongsToLeftBoard) {
-                int newHealthMe = currentHealthMe - rabbitDamage;
-                Platform.runLater(() -> {
-                    MultiplayerBoard.healthP1.setText(Integer.toString(newHealthMe));
-                });
-                currentHealthMe = newHealthMe;
-                if (currentHealthMe <= 0) {
-                    System.out.println("Game over: " + BattleLogic.myInfo.getCallsign() + " has lost");
-                }
-
-            } else if (!belongsToLeftBoard) {
-                int newHealthYou = currentHealthYou - rabbitDamage;
-                Platform.runLater(() -> {
-                    MultiplayerBoard.healthP2.setText(Integer.toString(newHealthYou));
-                });
-                currentHealthYou = newHealthYou;
-                if (currentHealthYou <= 0) {
-                    
-                    System.out.println("Game over: " + BattleLogic.opponentInfo.getCallsign() + " has lost");
-                }
-            }
+            Health.healthTracker(belongsToLeftBoard, currentHealthMe, currentHealthYou, rabbitDamage);
 
             try {
                 Server.gameRoom.get(new ActualField(me), new ActualField("Coordinates"),
