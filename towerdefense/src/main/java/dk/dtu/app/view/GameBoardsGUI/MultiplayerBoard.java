@@ -10,12 +10,10 @@ import dk.dtu.app.controller.Projectile;
 import dk.dtu.app.controller.TowerSelection;
 import dk.dtu.app.controller.BoardLogic.BoardController;
 import dk.dtu.backend.Server;
-import dk.dtu.app.controller.BoardLogic.ChatController;
 import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.app.view.Figures.Tower2GUI;
 import dk.dtu.app.view.Figures.Tower3GUI;
-import dk.dtu.app.view.MenuGUI.Menu;
-import dk.dtu.backend.PlayerConnection;
+import dk.dtu.backend.DisconnectionHandler;
 import dk.dtu.backend.PlayerInfo;
 import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.controller.Enemy.Enemy;
@@ -74,7 +72,7 @@ public class MultiplayerBoard extends Application {
                 boardStage = stage;
                 boardStage.setTitle("Multiplayer Board");
                 boardStage.setResizable(false);
-                handleClosedApplication();
+                DisconnectionHandler.handleClosedApplication(boardStage, callsign);
 
                 // Main Layout-structure of MultiplayerBoard
                 BorderPane borderPane = new BorderPane();
@@ -192,6 +190,7 @@ public class MultiplayerBoard extends Application {
 
         }
 
+
         public static void startSpawnEnemy() {
                 new Enemy(leftBoard, numOfEnemiesCreated, callsign, true);
                 numOfEnemiesCreated++;
@@ -203,36 +202,7 @@ public class MultiplayerBoard extends Application {
                 new Projectile(startX, startY, endX, endY, board);
         }
 
-        // Close the current MultiplayerBoard stage
-        private void handleClosedApplication() {
-                boardStage.setOnCloseRequest(event -> {
-                        boardStage.close();
-                        Menu.mainMenuStage.show();
-
-                        if (callsign == "Host") {
-                                try {
-                                        ChatController.chatRoom.put(callsign, "disconnect");
-                                        System.out.println(callsign + " lost connection");
-                                } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                }
-                                PlayerConnection.hostChatListenerThread.interrupt();
-                                PlayerConnection.hostActionListenerThread.interrupt();
-                                PlayerConnection.hostBattleLogicThread.interrupt();
-                        } else {
-                                try {
-                                        ChatController.chatRoom.put(callsign, "disconnect");
-                                        System.out.println(callsign + " lost connection");
-                                } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                }
-                                PlayerConnection.clientChatListenerThread.interrupt();
-                                PlayerConnection.clientActionListenerThread.interrupt();
-                                PlayerConnection.hostBattleLogicThread.interrupt();
-                        }
-
-                });
-        }
+        
 
         // Color of background of Panes
         private void colorThePanes(HBox centerPane, VBox leftVbox, VBox rightVbox, HBox bottomHUD, HBox topBar,
