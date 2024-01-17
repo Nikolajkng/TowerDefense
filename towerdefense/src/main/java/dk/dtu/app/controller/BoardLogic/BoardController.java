@@ -28,7 +28,7 @@ public class BoardController {
     public static int boardSizeY;
     private static int boardSizeX;
     public static int pathThickness = 50;
-    public static Image path = new Image("/dk/dtu/app/view/Images/sand_tile.png");
+    // public static Image path = new Image("/dk/dtu/app/view/Images/sand_tile.png");
 
     // Creating the player boards
     public static MyPane createPlayerBoard(MyPane board, int value) {
@@ -99,8 +99,10 @@ public class BoardController {
 
                     // Add a rectangle to visually represent the path
                     Rectangle pathRectangle = new Rectangle(row, col, 1, 1);
-                    //pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
-                    pathRectangle.setFill(new ImagePattern(path));
+                    pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
+
+                    // This code doesnt work on linux
+                    //pathRectangle.setFill(new ImagePattern(path));
                     board.getChildren().add(pathRectangle);
                 }
             }
@@ -115,8 +117,10 @@ public class BoardController {
 
                     // Add a rectangle to visually represent the path
                     Rectangle pathRectangle = new Rectangle(row, col, 1, 1);
-                    //pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
-                    pathRectangle.setFill(new ImagePattern(path));
+                    pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
+
+                    // This code doesnt work on linux
+                    //pathRectangle.setFill(new ImagePattern(path));
                     board.getChildren().add(pathRectangle);
                 }
             }
@@ -131,8 +135,10 @@ public class BoardController {
 
                     // Add a rectangle to visually represent the path
                     Rectangle pathRectangle = new Rectangle(row, col, 1, 1);
-                    //pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
-                    pathRectangle.setFill(new ImagePattern(path));
+                    pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
+
+                    // This code doesnt work on linux
+                    //pathRectangle.setFill(new ImagePattern(path));
                     board.getChildren().add(pathRectangle);
                 }
             }
@@ -147,8 +153,10 @@ public class BoardController {
 
                     // Add a rectangle to visually represent the path
                     Rectangle pathRectangle = new Rectangle(row, col, 1, 1);
-                    //pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
-                    pathRectangle.setFill(new ImagePattern(path));
+                    pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
+
+                    // This code doesnt work on linux
+                    //pathRectangle.setFill(new ImagePattern(path));
                     board.getChildren().add(pathRectangle);
                 }
             }
@@ -163,8 +171,10 @@ public class BoardController {
 
                     // Add a rectangle to visually represent the path
                     Rectangle pathRectangle = new Rectangle(row, col, 1, 1);
-                    //pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
-                    pathRectangle.setFill(new ImagePattern(path));
+                    pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
+
+                    // This code doesnt work on linux
+                    //pathRectangle.setFill(new ImagePattern(path));
                     board.getChildren().add(pathRectangle);
                 }
             }
@@ -179,8 +189,10 @@ public class BoardController {
 
                     // Add a rectangle to visually represent the path
                     Rectangle pathRectangle = new Rectangle(row, col, 1, 1);
-                    //pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
-                    pathRectangle.setFill(new ImagePattern(path));
+                    pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
+
+                    // This code doesnt work on linux
+                    //pathRectangle.setFill(new ImagePattern(path));
                     board.getChildren().add(pathRectangle);
                 }
             }
@@ -195,8 +207,10 @@ public class BoardController {
 
                     // Add a rectangle to visually represent the path
                     Rectangle pathRectangle = new Rectangle(row, col, 1, 1);
-                    //pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
-                    pathRectangle.setFill(new ImagePattern(path));
+                    pathRectangle.setFill(Color.PAPAYAWHIP); // Adjust the color as needed
+
+                    // This code doesnt work on linux
+                    //pathRectangle.setFill(new ImagePattern(path));
                     board.getChildren().add(pathRectangle);
                 }
             }
