@@ -2,6 +2,8 @@ package dk.dtu.app.view.GameBoardsGUI;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 import dk.dtu.app.controller.Projectile;
 import dk.dtu.app.controller.TowerSelection;
@@ -27,7 +29,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MultiplayerBoard extends Application {
@@ -47,6 +48,8 @@ public class MultiplayerBoard extends Application {
         public static HBox bottomHUD = new HBox();
         public static final int sizeX = 1400;
         public static final int sizeY = 900;
+        public static List<Enemy> leftEnemyList = new ArrayList<>();
+        public static List<Enemy> rightEnemyList = new ArrayList<>();
 
         // Local field variables
         private static int numOfEnemiesCreated = 0;
@@ -54,17 +57,18 @@ public class MultiplayerBoard extends Application {
                         getClass().getResource("/dk/dtu/app/view/Images/heart.png").toExternalForm());
         private ImageView showHealthIcon1 = new ImageView(healthIcon);
         private ImageView showHealthIcon2 = new ImageView(healthIcon);
-        private String callsign;
+        private static String callsign;
+        private static Label coinButton;
 
         // Constructor
         public MultiplayerBoard(String callsign) {
-                this.callsign = callsign;
+                MultiplayerBoard.callsign = callsign;
         }
 
         // Program start
         @Override
         public void start(Stage stage) throws UnknownHostException, IOException {
-   
+
                 // Stage setup
                 boardStage = stage;
                 boardStage.setTitle("Multiplayer Board");
@@ -103,9 +107,9 @@ public class MultiplayerBoard extends Application {
                 ImageView imageView = new ImageView(coin);
                 imageView.setFitWidth(30);
                 imageView.setFitHeight(30);
-                Button coinButton = new Button("" + PlayerInfo.getMoney(), imageView);
+                coinButton = new Label("" + PlayerInfo.getMoney(), imageView);
                 coinButton.setStyle("-fx-background-size: cover; -fx-background-color: transparent; "
-                                + "-fx-fill: white; -fx-font-size: 30px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
+                                + "-fx-fill: white; -fx-font-size: 20px; -fx-font-family: 'Commic Sans MS'; -fx-font-weight: bold;");
                 coinButton.setPrefSize(140, 140);
 
                 // Left vbox-menu setup:
@@ -113,13 +117,13 @@ public class MultiplayerBoard extends Application {
                 VBox.setMargin(towerBtn1, new javafx.geometry.Insets(20, 0, 0, 0));
                 VBox.setMargin(towerBtn2, new javafx.geometry.Insets(8, 0, 0, 0));
                 VBox.setMargin(towerBtn3, new javafx.geometry.Insets(8, 0, 0, 0));
-        
-                //Right vbox-menu setup
+
+                // Right vbox-menu setup
                 rightVbox.getChildren().addAll(coinButton);
                 VBox.setMargin(coinButton, new javafx.geometry.Insets(10, 5, 0, 0));
 
-                //bottomHUD.getChildren().addAll(coinButton);
-                //HBox.setMargin(coinButton, new javafx.geometry.Insets(0, 800, 30, 0));
+                // bottomHUD.getChildren().addAll(coinButton);
+                // HBox.setMargin(coinButton, new javafx.geometry.Insets(0, 800, 30, 0));
 
                 // Button sizes
                 int towerBtnWidth = 115;
@@ -178,9 +182,6 @@ public class MultiplayerBoard extends Application {
                 // Start construction of chat GUI
                 ChatGUI.createChatGUI();
 
-                // TEST: Start spawning enemy after a time delay (virker)
-                // new Enemy(leftBoard);
-
                 // Peters TEST:
                 try {
                         Server.gameRoom.put("MyBoard", leftBoard);
@@ -191,16 +192,14 @@ public class MultiplayerBoard extends Application {
         }
 
         public static void startSpawnEnemy() {
-                
-                        new Enemy(leftBoard, Color.BLUE, numOfEnemiesCreated);
-                        numOfEnemiesCreated++;
-                        new Enemy(rightBoard, Color.RED, numOfEnemiesCreated);
-                        numOfEnemiesCreated++;
-                System.out.println("Number of Enemies spawned: "+numOfEnemiesCreated++);
+                new Enemy(leftBoard, numOfEnemiesCreated, callsign, true);
+                numOfEnemiesCreated++;
+                new Enemy(rightBoard, numOfEnemiesCreated, callsign, false);
+                numOfEnemiesCreated++;
         }
 
-        public static void projectile(double startX, double startY, double endX, double endY, MyPane board){
-                new Projectile(startX,startY,endX,endY, board);
+        public static void projectile(double startX, double startY, double endX, double endY, MyPane board) {
+                new Projectile(startX, startY, endX, endY, board);
         }
 
         // Close the current MultiplayerBoard stage
@@ -266,6 +265,14 @@ public class MultiplayerBoard extends Application {
                 towerBtn3.setStyle("-fx-background-image: url('/dk/dtu/app/view/Images/tower3.png');"
                                 + "-fx-background-repeat: repeat;"
                                 + "-fx-background-size: cover; -fx-background-color: transparent; ");
+        }
+
+        public static void changeMoney(int change) {
+                PlayerInfo.setMoney(PlayerInfo.getMoney() + change);
+                coinButton.setText(Integer.toString(PlayerInfo.getMoney()));
+                Tower1GUI.tower1.setDisable(PlayerInfo.getMoney() < 50);
+                Tower2GUI.tower2.setDisable(PlayerInfo.getMoney() < 100);
+                Tower3GUI.tower3.setDisable(PlayerInfo.getMoney() < 200);
         }
 
 }

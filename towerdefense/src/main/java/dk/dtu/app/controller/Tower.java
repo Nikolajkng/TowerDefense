@@ -8,6 +8,7 @@ import dk.dtu.app.controller.BoardLogic.MyPane;
 import dk.dtu.app.view.Figures.Tower1GUI;
 import dk.dtu.app.view.Figures.Tower2GUI;
 import dk.dtu.app.view.Figures.Tower3GUI;
+import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.Server;
 
 public class Tower {
@@ -19,6 +20,7 @@ public class Tower {
         if (type == ActionType.TOWER1) {
             Tower1GUI.placeTower1(x, y, board);
             BattleLogic.towers.add(new Tower1(x, y, Server.gameRoom, me, board));
+            MultiplayerBoard.changeMoney(-50);
             // Change the coordinates value to -1
             if (board.getHashMap().containsKey(pixelCoordinate)) {
                 board.getHashMap().remove(pixelCoordinate);
@@ -31,6 +33,7 @@ public class Tower {
         } else if (type == ActionType.TOWER2) {
             Tower2GUI.placeTower2(x, y, board);
             BattleLogic.towers.add(new Tower2(x, y, Server.gameRoom, me, board));
+            MultiplayerBoard.changeMoney(-100);
             // Change the coordinates value to -1
             if (board.getHashMap().containsKey(pixelCoordinate)) {
                 board.getHashMap().remove(pixelCoordinate);
@@ -44,6 +47,7 @@ public class Tower {
         } else if (type == ActionType.TOWER3) {
             Tower3GUI.placeTower3(x, y, board);
             BattleLogic.towers.add(new Tower3(x, y, Server.gameRoom, me, board));
+            MultiplayerBoard.changeMoney(-200);
             // Change the coordinates value to -1
             if (board.getHashMap().containsKey(pixelCoordinate)) {
                 board.getHashMap().remove(pixelCoordinate);

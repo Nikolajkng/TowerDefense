@@ -7,32 +7,17 @@ import org.jspace.Space;
 import dk.dtu.app.view.GameBoardsGUI.LostAlertGUI;
 import javafx.stage.Stage;
 
-public class PlayerInfo implements Runnable {
+public class PlayerInfo {
     
     static int life = 100;
 
     private static Stage loserStage;
-    static int money = 500; // Infinity money gliiiith -Niko
+    public static int money = 50; // Infinity money gliiiith -Niko
 
     SequentialSpace space;
 
     public PlayerInfo(SequentialSpace space) {
         this.space = space;
-
-    }
-
-    public static void lifeTracker(Space space){
-
-        try {
-            Object[] object = space.get(new ActualField("finish"));
-            if (object != null){
-                life --;
-                if (life <= 0) {
-                    new LostAlertGUI().start(loserStage);
-                }
-            }
-        } catch (InterruptedException e) {
-        }
 
     }
 
@@ -43,29 +28,11 @@ public class PlayerInfo implements Runnable {
         PlayerInfo.life = life;
     }
 
-    public static void moneyTracker(Space space){
-          
-        try {
-            Object[] object2 = space.get(new ActualField("Terminate"));
-            if (object2 != null){
-                money ++;
-
-                // skal nok ikke bruges?
-                // if (money <= 0) {
-                //     new LostAlertGUI().start(loserStage);
-                // }
-            }
-        } catch (InterruptedException e) {
-        }
-        
-    }
-
     public static int getMoney() {
         return money;
     }
 
-    @Override
-    public void run() {
-        
+    public static void setMoney(int money) {
+        PlayerInfo.money = money;
     }
 }
