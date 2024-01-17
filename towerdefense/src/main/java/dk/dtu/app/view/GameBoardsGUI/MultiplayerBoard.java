@@ -269,7 +269,7 @@ public class MultiplayerBoard extends Application {
         }
 
         public static void changeMoney(int change) {
-                PlayerInfo.setMoney(PlayerInfo.getMoney() + change);
+                BattleLogic.myInfo.setMoney(BattleLogic.myInfo.getMoney() + change);
                 coinButton.setText(Integer.toString(PlayerInfo.getMoney()));
                 Tower1GUI.tower1.setDisable(PlayerInfo.getMoney() < 50);
                 Tower2GUI.tower2.setDisable(PlayerInfo.getMoney() < 100);

@@ -20,7 +20,9 @@ public class Tower {
         if (type == ActionType.TOWER1) {
             Tower1GUI.placeTower1(x, y, board);
             BattleLogic.towers.add(new Tower1(x, y, Server.gameRoom, me, board));
-            MultiplayerBoard.changeMoney(-50);
+            if(board == MultiplayerBoard.leftBoard){
+                MultiplayerBoard.changeMoney(-50);
+            }
             // Change the coordinates value to -1
             if (board.getHashMap().containsKey(pixelCoordinate)) {
                 board.getHashMap().remove(pixelCoordinate);
@@ -33,7 +35,9 @@ public class Tower {
         } else if (type == ActionType.TOWER2) {
             Tower2GUI.placeTower2(x, y, board);
             BattleLogic.towers.add(new Tower2(x, y, Server.gameRoom, me, board));
-            MultiplayerBoard.changeMoney(-100);
+            if(board == MultiplayerBoard.leftBoard){
+                MultiplayerBoard.changeMoney(-100);
+            }
             // Change the coordinates value to -1
             if (board.getHashMap().containsKey(pixelCoordinate)) {
                 board.getHashMap().remove(pixelCoordinate);
@@ -47,7 +51,9 @@ public class Tower {
         } else if (type == ActionType.TOWER3) {
             Tower3GUI.placeTower3(x, y, board);
             BattleLogic.towers.add(new Tower3(x, y, Server.gameRoom, me, board));
-            MultiplayerBoard.changeMoney(-200);
+            if(board == MultiplayerBoard.leftBoard){
+                MultiplayerBoard.changeMoney(-200);
+            }
             // Change the coordinates value to -1
             if (board.getHashMap().containsKey(pixelCoordinate)) {
                 board.getHashMap().remove(pixelCoordinate);
