@@ -8,7 +8,13 @@ import org.jspace.RemoteSpace;
 
 import dk.dtu.app.controller.BoardLogic.ChatController;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
+import dk.dtu.app.view.MenuGUI.Menu;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 
 public class ChatReceiver implements Runnable {
     private String callsign;
@@ -48,7 +54,7 @@ public class ChatReceiver implements Runnable {
                     Object[] message = chatRoom.get(new ActualField("Client"), new FormalField(String.class));
 
                     // Check type of message: chatmessage or disconnect
-                    if (((String) message[1]).startsWith("msg:")) {
+                    if (((String) message[1]).startsWith(" ")) {
                         System.out.println("Received message from Client: " + (String) message[1]);
                         Platform.runLater(() -> {
                             ChatController.updateChatBox("Client", (String) message[1]);
@@ -58,9 +64,10 @@ public class ChatReceiver implements Runnable {
                         PlayerConnection.closeHostThreads();
                         Platform.runLater(() -> {
                             MultiplayerBoard.boardStage.close();
+                            Menu.mainMenuStage.show();
+                            showEndGameResult(callsign);
                         });
                     } else{
-                        System.out.println("hej client: " + message[1]);
                     }
 
                 }
@@ -69,7 +76,6 @@ public class ChatReceiver implements Runnable {
                     Platform.runLater(() -> {
                         MultiplayerBoard.boardStage.close();
                     });
-                    System.out.println("virker2");
                 } else {
                     e.printStackTrace();
                 }
@@ -84,7 +90,7 @@ public class ChatReceiver implements Runnable {
                     Object[] message = chatRoom.get(new ActualField("Host"), new FormalField(String.class));
 
                     // Check type of message: chatmessage or disconnect
-                    if (((String) message[1]).startsWith("msg:")) {
+                    if (((String) message[1]).startsWith(" ")) {
                         System.out.println("Received message from Host: " + (String) message[1]);
                         Platform.runLater(() -> {
                             ChatController.updateChatBox("Host", (String) message[1]);
@@ -94,6 +100,8 @@ public class ChatReceiver implements Runnable {
                         PlayerConnection.closeClientThreads();
                         Platform.runLater(() -> {
                             MultiplayerBoard.boardStage.close();
+                            Menu.mainMenuStage.show();
+                            showEndGameResult(callsign);
                         });
                     } else{
                         System.out.println("hej host: " + message[1]);
@@ -114,4 +122,24 @@ public class ChatReceiver implements Runnable {
         }
 
     }
+    private static void showEndGameResult(String callsign) {
+        System.out.println("Game Result: " + callsign + " has won the game!");
+    Platform.runLater(() -> {
+        Alert hostDialog = new Alert(AlertType.INFORMATION);
+        hostDialog.setTitle("Game Over");
+        hostDialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
+
+        // Create a custom label with centered and bigger text
+        Label contentLabel = new Label("A player has disconnected. "+callsign +" has Won!");
+        contentLabel.setStyle("-fx-font-size: 16px;"); // Adjust the font size as needed
+        StackPane.setAlignment(contentLabel, Pos.CENTER);
+
+        // Create a custom dialog pane and set the content
+        StackPane customPane = new StackPane(contentLabel);
+        customPane.setStyle("-fx-padding: 20px;");
+        hostDialog.getDialogPane().setContent(customPane);
+
+        hostDialog.showAndWait();
+    });
+}
 }

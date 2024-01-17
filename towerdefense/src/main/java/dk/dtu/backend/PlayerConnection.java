@@ -7,6 +7,7 @@ import org.jspace.*;
 import dk.dtu.app.controller.BattleLogic;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.app.view.MenuGUI.MultiplayerMenu;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
@@ -16,6 +17,9 @@ public class PlayerConnection {
     // Global fields
     public static String inputIP = "";
     public static String callsign;
+    public static PlayerInfo hostInfo = new PlayerInfo("Host");
+    public static PlayerInfo clientInfo = new PlayerInfo("Client");
+    
 
     // Local fields
     public static Thread hostActionListenerThread;
@@ -27,6 +31,7 @@ public class PlayerConnection {
 
     ///////////////////////////////////////////////// HOST /////////////////////////////////////////////////////////////////////
     public static void hostGame(ActionEvent event) throws UnknownHostException, IOException {
+        inputIP = LocalAddressScript.getLocalAddress();
         System.out.println("Hosting game...");
         callsign = "Host";
         showAlertBox();
@@ -48,7 +53,7 @@ public class PlayerConnection {
             // Start all threads
             hostActionListenerThread = new Thread(new ActionReceiver(Server.P2P1room, callsign));
             hostChatListenerThread = new Thread(new ChatReceiver(callsign));
-            hostBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom, callsign));
+            hostBattleLogicThread = new Thread(new BattleLogic(Server.gameRoom, callsign, hostInfo, clientInfo));
             hostActionListenerThread.start();
             hostChatListenerThread.start();
             hostBattleLogicThread.start();
@@ -89,7 +94,7 @@ public class PlayerConnection {
             // Start all threads
             clientActionListenerThread = new Thread(new ActionReceiver(P1P2_uri, P1P2room, callsign));
             clientChatListenerThread = new Thread(new ChatReceiver(callsign));
-            clientBattleLogicThread = new Thread(new BattleLogic(gameRoom, callsign));
+            clientBattleLogicThread = new Thread(new BattleLogic(gameRoom, callsign, clientInfo, hostInfo));
             clientActionListenerThread.start();
             clientChatListenerThread.start();
             clientBattleLogicThread.start();
@@ -98,8 +103,27 @@ public class PlayerConnection {
         }
     }
 
-    // Displays the IP address of the host
-    private static void showAlertBox() {
+
+    // Start game by opening multiplayer board for both player
+    private static void showMultiPlayerBoard() throws UnknownHostException, IOException {
+        System.out.println("Game has started!");
+        // Close the current MainMenu stage
+        Platform.runLater(() -> {
+            MultiplayerBoard multiplayerBoard = new MultiplayerBoard(callsign);
+            try {
+                multiplayerBoard.start(MultiplayerBoard.boardStage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            MultiplayerMenu.boardStage.close();
+            MultiplayerBoard.boardStage.show();
+        });
+      
+
+    }
+
+     // Displays the IP address of the host
+     private static void showAlertBox() {
         Alert hostDialog = new Alert(AlertType.INFORMATION);
         inputIP = LocalAddressScript.getLocalAddress();
         Server.hostNewGame();
@@ -107,17 +131,6 @@ public class PlayerConnection {
         hostDialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
         hostDialog.setContentText("Hosting a game on IP address: " + LocalAddressScript.getLocalAddress());
         hostDialog.showAndWait();
-    }
-
-    // Start game by opening multiplayer board for both player
-    private static void showMultiPlayerBoard() throws UnknownHostException, IOException {
-        System.out.println("Game has started!");
-        // Close the current MainMenu stage
-        MultiplayerBoard multiplayerBoard = new MultiplayerBoard(callsign);
-        multiplayerBoard.start(MultiplayerBoard.boardStage);
-        MultiplayerMenu.boardStage.close();
-        MultiplayerBoard.boardStage.show();
-
     }
 
     // Retrieves clients inputIP (host ip)

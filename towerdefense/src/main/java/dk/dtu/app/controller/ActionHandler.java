@@ -27,24 +27,6 @@ public class ActionHandler {
                 Tower.placeTower(x, y, board, action, towerCounter);
                 towerCounter++;
                 break;
-            case TOWER4:
-                Tower.placeTower(x, y, board, action, towerCounter);
-                towerCounter++;
-                break;
-            case TOWER5:
-                Tower.placeTower(x, y, board, action, towerCounter);
-                towerCounter++;
-                break;
-            case ENEMY1:
-                break;
-            case ENEMY2:
-                break;
-            case ENEMY3:
-                break;
-            case ENEMY4:
-                break;
-            case ENEMY5:
-                break;
         }
     }
 }

@@ -1,71 +1,35 @@
 package dk.dtu.backend;
 
-import org.jspace.ActualField;
 import org.jspace.SequentialSpace;
-import org.jspace.Space;
 
-import dk.dtu.app.view.GameBoardsGUI.LostAlertGUI;
-import javafx.stage.Stage;
+public class PlayerInfo {
 
-public class PlayerInfo implements Runnable {
-    
-    static int life = 100;
+    protected static int money = 50;
+    protected static int health = 100;
+    protected static SequentialSpace space;
+    protected String callsign;
 
-    private static Stage loserStage;
-    static int money = 500; // Infinity money gliiiith -Niko
-
-    SequentialSpace space;
-
-    public PlayerInfo(SequentialSpace space) {
-        this.space = space;
-
+    public PlayerInfo(String callsign2) {
+        this.callsign = callsign2;
     }
 
-    public static void lifeTracker(Space space){
-
-        try {
-            Object[] object = space.get(new ActualField("finish"));
-            if (object != null){
-                life --;
-                if (life <= 0) {
-                    new LostAlertGUI().start(loserStage);
-                }
-            }
-        } catch (InterruptedException e) {
-        }
-
+    public int getHealth() {
+        return health;
     }
 
-    public static int getLife() {
-        return life;
-    }
-    public static void setLife(int life) {
-        PlayerInfo.life = life;
-    }
-
-    public static void moneyTracker(Space space){
-          
-        try {
-            Object[] object2 = space.get(new ActualField("Terminate"));
-            if (object2 != null){
-                money ++;
-
-                // skal nok ikke bruges?
-                // if (money <= 0) {
-                //     new LostAlertGUI().start(loserStage);
-                // }
-            }
-        } catch (InterruptedException e) {
-        }
-        
+    public static void setHealth(int life) {
+        health = life;
     }
 
     public static int getMoney() {
         return money;
     }
 
-    @Override
-    public void run() {
-        
+    public static void setMoney(int penge) {
+        money = penge;
+    }
+
+    public String getCallsign(){
+        return callsign;
     }
 }

@@ -20,24 +20,29 @@ public class ActionSender {
 
     public static void sendAction(int x, int y, Action.ActionType type, String callsign) {
         if (callsign == "Host") {
-        try {
-            System.out.println(callsign + " has selected following: " + type);
-            P1P2room.put(x, y, type);
+            try {
+                System.out.println("Host inside try");
+                System.out.println(callsign + " has selected following: " + type);
+                P1P2room.put(x, y, type);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    } else {
-         try {
-           System.out.println(callsign + " has selected following: " + type);            
-           P2P1room.put(x, y, type);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        } else if (callsign == "Client") {
+
+            try {
+                System.out.println("Client inside try");
+                System.out.println(callsign + " has selected following: " + type);
+                P2P1room.put(x, y, type);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Something went wrong in ActionSender.java");
         }
+
     }
 
-    }
-
-        
 }

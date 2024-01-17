@@ -27,20 +27,36 @@ abstract public class TowerLogik {
 
     abstract public void tryToShoot(double time);
 
-    public void shoot(int radius, int damage) {
+    public void shoot(int radius, MyPane board) {
         try {
             List<Object[]> obj = space.queryAll(new FormalField(Integer.class), new ActualField("Coordinates"),
                     new FormalField(Double.class), new FormalField(Double.class));
             if (obj != null) {
                 for (int i = 0; i < obj.size(); i++) {
-                    //System.out.println("saw some coordinates from " + (Integer) obj.get(i)[0]);
-                    double distance = Point2D.distance(coordinateX, coordinateY, (Double) obj.get(i)[2], (Double) obj.get(i)[3]);
-                    // System.out.println("Distance to target " + distance);
-                    if (distance <= radius) {
-                        //System.out.println("tower shoots at " + (Integer) obj.get(i)[0]);
-                        // space.put((Integer) obj.get(1)[0], "Damage", damage);
-                        MultiplayerBoard.projectile(coordinateX, coordinateY, (Double) obj.get(i)[2], (Double) obj.get(i)[3], board);
-                        break;
+                    if (board == MultiplayerBoard.leftBoard && (Integer) obj.get(i)[0] % 2 == 0) {
+                        // System.out.println("saw some coordinates from " + (Integer) obj.get(i)[0]);
+                        double distance = Point2D.distance(coordinateX, coordinateY, (Double) obj.get(i)[2],
+                                (Double) obj.get(i)[3]);
+                        // System.out.println("Distance to target " + distance);
+                        if (distance <= radius) {
+                            // System.out.println("tower shoots at " + (Integer) obj.get(i)[0]);
+                            // space.put((Integer) obj.get(1)[0], "Damage", damage);
+                            MultiplayerBoard.projectile(coordinateX, coordinateY, (Double) obj.get(i)[2],
+                                    (Double) obj.get(i)[3], board);
+                            break;
+                        }
+                    } else if (board == MultiplayerBoard.rightBoard && (Integer) obj.get(i)[0] % 2 == 1) {
+                        // System.out.println("saw some coordinates from " + (Integer) obj.get(i)[0]);
+                        double distance = Point2D.distance(coordinateX, coordinateY, (Double) obj.get(i)[2],
+                                (Double) obj.get(i)[3]);
+                        // System.out.println("Distance to target " + distance);
+                        if (distance <= radius) {
+                            // System.out.println("tower shoots at " + (Integer) obj.get(i)[0]);
+                            // space.put((Integer) obj.get(1)[0], "Damage", damage);
+                            MultiplayerBoard.projectile(coordinateX, coordinateY, (Double) obj.get(i)[2],
+                                    (Double) obj.get(i)[3], board);
+                            break;
+                        }
                     }
                 }
             }
