@@ -18,7 +18,7 @@ public class Projectile {
     public Path carrotShape;
 
     public Projectile(double startX, double startY, double endX, double endY, MyPane board) {
-        double maxLength = 30; // maximum length of the line
+        double maxLength = 20; // maximum length of the line
 
         // Calculate the distance between A and B
         double distance = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
@@ -72,8 +72,8 @@ public class Projectile {
         carrotShape.getElements().add(new LineTo(endX, endY));
         carrotShape.setStrokeType(StrokeType.CENTERED);
         carrotShape.setStrokeLineCap(StrokeLineCap.ROUND);
-        carrotShape.setStrokeLineJoin(StrokeLineJoin.ROUND);
-        carrotShape.setStrokeWidth(4);
+        carrotShape.setStrokeLineJoin(StrokeLineJoin.MITER);
+        carrotShape.setStrokeWidth(5);
         carrotShape.setStroke(Paint.valueOf("orange"));
 
         return carrotShape;
