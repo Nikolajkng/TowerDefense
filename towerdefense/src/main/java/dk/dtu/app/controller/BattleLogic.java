@@ -20,10 +20,11 @@ public class BattleLogic implements Runnable {
     private long time;
     private double elapsedTime;
     private String callSign;
-    int numOfEnemiesCreated;
     private double timeSinceEnemySpawn;
-    private double spawnRate = 2.0;
+    private double spawnRate = 3.0;
     private boolean firstLoop = true;
+    private boolean firstSpawn = true;
+    int numOfEnemiesCreated;
     GameState gameState;
 
     public BattleLogic(Space space, String callSign) {
@@ -42,12 +43,15 @@ public class BattleLogic implements Runnable {
 
                     towers = new ArrayList<>();
                     gameState = GameState.ONGOING;
-                    break;
 
+                    break;
                 }
                 case ONGOING: {
-                    // Start the wave only when both players are ready
+                    // Start the game logic only when both players are ready
                     synchronizePlayers();
+
+                    // Start the wave after 7 seconds
+                    setInitialEnemySpawnTime(7); // seconds
 
                     // Player lost results in gamestate ends and stop. 
                     try {
@@ -67,7 +71,6 @@ public class BattleLogic implements Runnable {
                         timeSinceEnemySpawn += elapsedTime;
                         // Spawns enemies in a time interval of "spawnRate" seconds:
                         if (timeSinceEnemySpawn > spawnRate) {
-                            System.out.println("spawns enemy");
                             Platform.runLater(() -> {
                                 MultiplayerBoard.startSpawnEnemy();
                             });
@@ -75,7 +78,7 @@ public class BattleLogic implements Runnable {
                             timeSinceEnemySpawn = 0.0;
                         }
                         // Add a delay to avoid high CPU usage
-                        Thread.sleep(200);
+                        Thread.sleep(400);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -93,10 +96,20 @@ public class BattleLogic implements Runnable {
         }
     }
 
+    private void setInitialEnemySpawnTime(long time) {
+        if(firstSpawn){
+            try {
+                Thread.sleep(time*1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            firstSpawn = false;
+        }
+    }
+
     private void synchronizePlayers() {
         if (callSign.equals("Host")) {
             try {
-                // System.out.println("Host: ready to start");
                 space.put("Host", "ready", "startONGOING");
                 space.get(new ActualField("Client"), new ActualField("ready"),
                         new ActualField("startONGOING"));
@@ -104,13 +117,11 @@ public class BattleLogic implements Runnable {
                     time = System.currentTimeMillis();
                     firstLoop = false;
                 }
-                // System.out.println("Host: got client");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         } else if (callSign.equals("Client")) {
             try {
-                // System.out.println("Client: ready to start");
                 space.put("Client", "ready", "startONGOING");
                 space.get(new ActualField("Host"), new ActualField("ready"),
                         new ActualField("startONGOING"));
@@ -118,7 +129,6 @@ public class BattleLogic implements Runnable {
                     time = System.currentTimeMillis();
                     firstLoop = false;
                 }
-                // System.out.println("Client: got host");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

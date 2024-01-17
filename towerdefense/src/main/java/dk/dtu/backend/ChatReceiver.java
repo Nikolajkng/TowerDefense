@@ -48,7 +48,7 @@ public class ChatReceiver implements Runnable {
                     Object[] message = chatRoom.get(new ActualField("Client"), new FormalField(String.class));
 
                     // Check type of message: chatmessage or disconnect
-                    if (((String) message[1]).startsWith("msg:")) {
+                    if (((String) message[1]).startsWith(" ")) {
                         System.out.println("Received message from Client: " + (String) message[1]);
                         Platform.runLater(() -> {
                             ChatController.updateChatBox("Client", (String) message[1]);
@@ -60,7 +60,6 @@ public class ChatReceiver implements Runnable {
                             MultiplayerBoard.boardStage.close();
                         });
                     } else{
-                        System.out.println("hej client: " + message[1]);
                     }
 
                 }
@@ -69,7 +68,6 @@ public class ChatReceiver implements Runnable {
                     Platform.runLater(() -> {
                         MultiplayerBoard.boardStage.close();
                     });
-                    System.out.println("virker2");
                 } else {
                     e.printStackTrace();
                 }
@@ -84,7 +82,7 @@ public class ChatReceiver implements Runnable {
                     Object[] message = chatRoom.get(new ActualField("Host"), new FormalField(String.class));
 
                     // Check type of message: chatmessage or disconnect
-                    if (((String) message[1]).startsWith("msg:")) {
+                    if (((String) message[1]).startsWith(" ")) {
                         System.out.println("Received message from Host: " + (String) message[1]);
                         Platform.runLater(() -> {
                             ChatController.updateChatBox("Host", (String) message[1]);

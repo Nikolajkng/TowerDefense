@@ -22,7 +22,7 @@ public class Tower1 extends TowerLogik {
 
         if (timeSinceFired > shootspeed) {
             //System.out.println("can shoot");
-            super.shoot(radius, damage);
+            super.shoot(radius, damage, board);
             timeSinceFired = 0;
         }
 
