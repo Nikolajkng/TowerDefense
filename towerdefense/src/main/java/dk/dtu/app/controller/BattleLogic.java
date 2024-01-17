@@ -3,6 +3,7 @@ package dk.dtu.app.controller;
 import java.util.ArrayList;
 
 import org.jspace.ActualField;
+import org.jspace.FormalField;
 import org.jspace.Space;
 
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
@@ -27,6 +28,7 @@ public class BattleLogic implements Runnable {
     private boolean firstSpawn = true;
     public static PlayerInfo myInfo;
     public static PlayerInfo opponentInfo;
+    private boolean gameHasEnded = false;
     int numOfEnemiesCreated;
     GameState gameState;
 
@@ -42,7 +44,7 @@ public class BattleLogic implements Runnable {
     @Override
     public void run() {
         System.out.println(callSign + ": Battle logic threads: run() has started");
-        while (true) {
+        while (!gameHasEnded) {
             switch (gameState) {
                 case START: {
 
@@ -58,32 +60,29 @@ public class BattleLogic implements Runnable {
                     // Start the wave after 7 seconds
                     setInitialEnemySpawnTime(7); // seconds
 
-                    // Player lost results in gamestate ends and stop. 
-                    try {
-                        Object[] obj = space.getp(new ActualField("Player lost"));
-                        if (obj != null) {
-                            gameState = GameState.END;
-                            System.out.println("Player lost. Gamestate END");
-                        }
-                        // Tracks time passed
-                        long currentTime = System.currentTimeMillis();
-                        elapsedTime = (currentTime - time) / 1000.0;
-                        time = currentTime;
+                    // Player lost results in gamestate ends and stop.
+                    checkForPlayerLost();
 
-                        // Iterate through tower options and apply logic on them all.
-                        for (TowerLogik t : towers) {
-                            t.tryToShoot(elapsedTime);
-                        }
-                        timeSinceEnemySpawn += elapsedTime;
-                        // Spawns enemies in a time interval of "spawnRate" seconds:
-                        if (timeSinceEnemySpawn > spawnRate) {
-                            Platform.runLater(() -> {
-                                MultiplayerBoard.startSpawnEnemy();
-                            });
-                            numOfEnemiesCreated += 2;
-                            timeSinceEnemySpawn = 0.0;
-                        }
-                        // Add a delay to avoid high CPU usage
+                    // Tracks time passed
+                    long currentTime = System.currentTimeMillis();
+                    elapsedTime = (currentTime - time) / 1000.0;
+                    time = currentTime;
+
+                    // Iterate through tower options and apply logic on them all.
+                    for (TowerLogik t : towers) {
+                        t.tryToShoot(elapsedTime);
+                    }
+                    timeSinceEnemySpawn += elapsedTime;
+                    // Spawns enemies in a time interval of "spawnRate" seconds:
+                    if (timeSinceEnemySpawn > spawnRate) {
+                        Platform.runLater(() -> {
+                            MultiplayerBoard.startSpawnEnemy();
+                        });
+                        numOfEnemiesCreated += 2;
+                        timeSinceEnemySpawn = 0.0;
+                    }
+                    // Add a delay to avoid high CPU usage
+                    try {
                         Thread.sleep(400);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -92,6 +91,7 @@ public class BattleLogic implements Runnable {
                     break;
                 }
                 case END: {
+                    gameHasEnded = true;
                     System.out.println("Battle logic: switch(End)");
                     break;
                 }
@@ -102,11 +102,22 @@ public class BattleLogic implements Runnable {
         }
     }
 
+    private void checkForPlayerLost() {
+        try {
+            Object[] obj = space.getp(new FormalField(String.class), new ActualField("lost"));
+            if (obj != null) {
+                gameState = GameState.END;
+                System.out.println((String) obj[0] + " has lost. Gamestate END");
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void setInitialEnemySpawnTime(long time) {
-        if(firstSpawn){
+        if (firstSpawn) {
             try {
-                Thread.sleep(time*1000);
+                Thread.sleep(time * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

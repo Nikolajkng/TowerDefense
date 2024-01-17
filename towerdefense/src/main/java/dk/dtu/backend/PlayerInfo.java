@@ -7,10 +7,10 @@ public class PlayerInfo {
     protected static int money = 50;
     protected static int health = 100;
     protected static SequentialSpace space;
-    protected static String callsign;
+    protected String callsign;
 
     public PlayerInfo(String callsign2) {
-        callsign = callsign2;
+        this.callsign = callsign2;
     }
 
     public int getHealth() {
