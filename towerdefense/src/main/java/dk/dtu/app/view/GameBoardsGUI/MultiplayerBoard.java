@@ -118,10 +118,6 @@ public class MultiplayerBoard extends Application {
                 VBox.setMargin(towerBtn2, new javafx.geometry.Insets(8, 0, 0, 0));
                 VBox.setMargin(towerBtn3, new javafx.geometry.Insets(8, 0, 0, 0));
 
-                // Right vbox-menu setup
-                //rightVbox.getChildren().addAll(coinButton);
-                //VBox.setMargin(coinButton, new javafx.geometry.Insets(10, 5, 0, 0));
-
                 bottomHUD.getChildren().addAll(coinButton);
                 HBox.setMargin(coinButton, new javafx.geometry.Insets(0, 800, 30, 0));
 
