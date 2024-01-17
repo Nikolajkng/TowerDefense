@@ -40,7 +40,7 @@ public class Collision {
                 });
 
                 if(e.me % 2 == 0){
-                    MultiplayerBoard.changeMoney(10);
+                    MultiplayerBoard.changeMoney(2);
                 }
                 break;
             } else {

@@ -116,7 +116,6 @@ public class Enemy {
 
             // Update health when rabbit reaches end of path
             Health.healthTracker(belongsToLeftBoard, currentHealthMe, currentHealthYou, rabbitDamage);
-
             try {
                 Server.gameRoom.get(new ActualField(me), new ActualField("Coordinates"),
                         new FormalField(Double.class), new FormalField(Double.class));

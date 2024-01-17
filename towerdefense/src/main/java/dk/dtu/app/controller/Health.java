@@ -13,7 +13,7 @@ import javafx.application.Platform;
 public class Health {
     private static RemoteSpace space;
 
-    public static void healthTracker(boolean belongsToLeftBoard, int currentHealthMe, int currentHealthYou, int rabbitDamage ){
+    public static void healthTracker(boolean belongsToLeftBoard, int currentHealthMe, int currentHealthYou, int rabbitDamage){
 
         try {
             space = new RemoteSpace("tcp://"+ PlayerConnection.inputIP + ":55000/GameRoom?keep");
@@ -33,6 +33,7 @@ public class Health {
                     try {
                         System.out.println("Game over: " + BattleLogic.myInfo.getCallsign() + " has lost");
                         space.put(BattleLogic.myInfo.getCallsign(), "lost");
+                        // pathT.stop();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -48,6 +49,8 @@ public class Health {
                     try {
                         System.out.println("Game over: " + BattleLogic.opponentInfo.getCallsign() + " has lost");
                         space.put(BattleLogic.opponentInfo.getCallsign(), "lost");
+               
+                        // pathT.stop();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
