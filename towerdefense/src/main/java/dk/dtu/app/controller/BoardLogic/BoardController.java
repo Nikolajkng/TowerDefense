@@ -61,8 +61,20 @@ public class BoardController {
                         info[0] = clickX;
                         info[1] = clickY;
                         info[2] = type;
-                ActionHandler.selectAction(info,board);
-                ActionSender.sendAction(clickX, clickY, type, callsign);
+
+                        if(BattleLogic.myInfo.getMoney() >= 50 && type == ActionType.TOWER1){
+                            ActionSender.sendAction(clickX, clickY, type, callsign);
+                            ActionHandler.selectAction(info,board);
+                        } else if(BattleLogic.myInfo.getMoney() >= 100 && type == ActionType.TOWER2){
+                            ActionSender.sendAction(clickX, clickY, type, callsign);
+                            ActionHandler.selectAction(info,board);
+                        } else if(BattleLogic.myInfo.getMoney() >= 200 && type == ActionType.TOWER3){
+                            ActionSender.sendAction(clickX, clickY, type, callsign);
+                            ActionHandler.selectAction(info,board);
+                        } else {
+                            System.out.println("Not enough money");
+                        }   
+
             } else {
                 System.out.println("Illegal placement");
             }

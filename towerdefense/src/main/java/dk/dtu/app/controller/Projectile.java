@@ -59,7 +59,7 @@ public class Projectile {
         carrotShape.boundsInParentProperty().addListener((observable, oldValue, newValue) -> {
           
             // Check for collision with bunny during movement traversal
-            Collision.checkForCollision(carrotShape, board);
+            Collision.checkForCollision(carrotShape, board, pathT);
   
         });
     }

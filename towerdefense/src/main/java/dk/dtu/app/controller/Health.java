@@ -5,6 +5,7 @@ import java.net.UnknownHostException;
 
 import org.jspace.RemoteSpace;
 
+import dk.dtu.app.controller.Enemy.Enemy;
 import dk.dtu.app.view.GameBoardsGUI.MultiplayerBoard;
 import dk.dtu.backend.PlayerConnection;
 import javafx.application.Platform;
@@ -27,7 +28,7 @@ public class Health {
                 Platform.runLater(() -> {
                     MultiplayerBoard.healthP1.setText(Integer.toString(newHealthMe));
                 });
-                currentHealthMe = newHealthMe;
+                Enemy.currentHealthMe = newHealthMe;
                 if (currentHealthMe <= 0) {
                     try {
                         System.out.println("Game over: " + BattleLogic.myInfo.getCallsign() + " has lost");
@@ -42,7 +43,7 @@ public class Health {
                 Platform.runLater(() -> {
                     MultiplayerBoard.healthP2.setText(Integer.toString(newHealthYou));
                 });
-                currentHealthYou = newHealthYou;
+                Enemy.currentHealthYou = newHealthYou;
                 if (currentHealthYou <= 0) {
                     try {
                         System.out.println("Game over: " + BattleLogic.opponentInfo.getCallsign() + " has lost");

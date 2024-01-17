@@ -27,7 +27,7 @@ abstract public class TowerLogik {
 
     abstract public void tryToShoot(double time);
 
-    public void shoot(int radius, int damage, MyPane board) {
+    public void shoot(int radius, MyPane board) {
         try {
             List<Object[]> obj = space.queryAll(new FormalField(Integer.class), new ActualField("Coordinates"),
                     new FormalField(Double.class), new FormalField(Double.class));

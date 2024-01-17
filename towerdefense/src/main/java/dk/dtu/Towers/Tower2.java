@@ -7,9 +7,8 @@ import dk.dtu.app.controller.BoardLogic.MyPane;
 
 public class Tower2 extends TowerLogik {
     private double timeSinceFired;
-    private int damage = 15;
-    private double shootspeed = 0.5; // Attackspeed in seconds
-    private int radius = 200;
+    private double shootspeed = 0.75; // Attackspeed in seconds
+    private int radius = 85;
 
     public Tower2(double x, double y, Space space, int me, MyPane board) {
         super(x, y, space, me, board);
@@ -22,7 +21,7 @@ public class Tower2 extends TowerLogik {
 
         if (timeSinceFired > shootspeed) {
             //System.out.println("can shoot");
-            super.shoot(radius, damage, board);
+            super.shoot(radius, board);
             timeSinceFired = 0;
         }
 
