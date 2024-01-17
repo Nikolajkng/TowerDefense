@@ -139,11 +139,14 @@ public class Menu extends Application{
     // }
     
     private void showGameRules(ActionEvent event) {
-        // Implement logic to display the game rules (e.g., in a dialog or separate screen)
-        // You can use a Pop-up, Dialog, or navigate to a different scene for displaying rules.
-        // For simplicity, you can show a message here.
-        System.out.println("Game Rules:"); // Replace with your game rules display logic.
+        GameRules gameRules = new GameRules();
+        gameRules.showGameRules();
+        mainMenuStage.close();
+    
+        // Optionally close the main menu, or handle other logic here
+        // mainMenuStage.close();
     }
+    
 
     private void closeProgram (ActionEvent event) {
         System.exit(0);
