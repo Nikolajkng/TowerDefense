@@ -40,7 +40,7 @@ public class ChatReceiver implements Runnable {
                 System.out.println("virker");
             } else {
                 e.printStackTrace();
-            
+            }
         }
 
     }
