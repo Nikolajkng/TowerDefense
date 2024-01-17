@@ -29,7 +29,7 @@ public class Enemy {
     public PathTransition pathT;
     public String callsign;
     private boolean belongsToLeftBoard;
-    private int rabbitDamage = 10; 
+    private int rabbitDamage = 1; 
     public static int currentHealthMe = BattleLogic.myInfo.getHealth();
     public static int currentHealthYou = BattleLogic.opponentInfo.getHealth();
 
