@@ -103,16 +103,6 @@ public class PlayerConnection {
         }
     }
 
-    // Displays the IP address of the host
-    private static void showAlertBox() {
-        Alert hostDialog = new Alert(AlertType.INFORMATION);
-        inputIP = LocalAddressScript.getLocalAddress();
-        Server.hostNewGame();
-        hostDialog.setTitle("Hosting Game");
-        hostDialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
-        hostDialog.setContentText("Hosting a game on IP address: " + LocalAddressScript.getLocalAddress());
-        hostDialog.showAndWait();
-    }
 
     // Start game by opening multiplayer board for both player
     private static void showMultiPlayerBoard() throws UnknownHostException, IOException {
@@ -130,6 +120,17 @@ public class PlayerConnection {
         });
       
 
+    }
+
+     // Displays the IP address of the host
+     private static void showAlertBox() {
+        Alert hostDialog = new Alert(AlertType.INFORMATION);
+        inputIP = LocalAddressScript.getLocalAddress();
+        Server.hostNewGame();
+        hostDialog.setTitle("Hosting Game");
+        hostDialog.setHeaderText(null); // Must be null, otherwise the header text will be displayed twice
+        hostDialog.setContentText("Hosting a game on IP address: " + LocalAddressScript.getLocalAddress());
+        hostDialog.showAndWait();
     }
 
     // Retrieves clients inputIP (host ip)

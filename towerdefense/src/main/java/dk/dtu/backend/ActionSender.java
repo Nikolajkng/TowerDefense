@@ -6,7 +6,6 @@ import java.net.UnknownHostException;
 import org.jspace.RemoteSpace;
 
 import dk.dtu.app.controller.Action;
-import dk.dtu.app.controller.BattleLogic;
 
 public class ActionSender {
     public static RemoteSpace P1P2room;
